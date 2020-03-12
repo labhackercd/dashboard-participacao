@@ -8,8 +8,8 @@ import {
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import {Colors} from './components/constant/index'
 import './App.css';
-import Statitics from './containers/Statitics'
-
+import Statitics from './containers/StatisticsOne'
+import InitialDashboard from './containers/InitialDashboard'
 
 const theme = createMuiTheme({
   palette: {
@@ -26,6 +26,9 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/">
+            <InitialDashboard></InitialDashboard>
+          </Route>
+          <Route exact path="/estatisticas1">
             <Statitics />
           </Route>
         </Switch>

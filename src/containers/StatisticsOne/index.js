@@ -44,82 +44,9 @@ class Statitics extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      profileImg: null,
-      isAlreadyregistered : false,
-      isAlreadyAuthenticated : false,
-      isLoadingPage:true,
-      userIsAdmin:false,
       openSnackBar:false,
       snackBarMessageError:""
     };
-  }
-
-  onImageChange = (event) => {
-    if (event.target.files.length > 0) {
-      const url = URL.createObjectURL(event.target.files[0]);
-      this.setState({
-        profileImg: event.target.files[0],
-        profileImgURL: url
-      });
-    }
-  }
-
-
-  // Load page functions
-  checkIfUserIsAdmin(callback) {
-    const url = new URL(window.location.protocol + '//' + window.location.hostname + ":3000/api/v1/users/isRegistered")
-
-    fetch(url, {
-      method: 'GET',
-      credentials: 'include',
-      cors:'no-cors'
-    }).then((response) => response.json())
-    .then((responseJson) => {
-      //console.log(responseJson)
-      if(responseJson.isRegistered && responseJson.isAdmin ){
-        //User is already registered. Redirect to dashboard in render
-        this.setState({ isAlreadyregistered: true });
-        this.setState({ userIsAdmin: true });
-      }else{
-        // Continue render normaly to register user
-        this.setState({ isAlreadyregistered: false });
-        this.setState({ userIsAdmin: responseJson.isAdmin });
-      }
-
-      callback();
-
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-  }
-
-  checkIfUserIsAuthenticaded (callback){
-
-    const url = new URL(window.location.protocol + '//' + window.location.hostname + ":3000/isAuthenticated");
-
-    fetch(url, {
-      method: 'GET',
-      credentials: 'include',
-      cors:'no-cors'
-    }).then((response) => response.json())
-    .then((responseData) => {
-      
-      if(responseData.isAuthenticated === false){
-        // Nothing to do, user will be redirect in render;
-      }else{
-        // User is already authenticated
-        // Set email automaticaly
-        this.setState({isAlreadyAuthenticated: true});
-        //this.setState({email: responseData.email});
-      }
-
-      callback();
-
-    })
-    .catch((error) => {
-      console.error(error);
-    });
   }
 
 
@@ -127,7 +54,7 @@ class Statitics extends Component {
     this._isMounted = true;
     /*
     if(this._isMounted){
-          
+      // If we need to wait for something to full render before render the page
       this.checkIfUserIsAuthenticaded(() => {
 
         this.checkIfUserIsAdmin( () => {
@@ -158,9 +85,7 @@ class Statitics extends Component {
     return  (
       <div>
         <ResponsiveDrawer title = 'Estatísticas Partipação Pública'>
-        <StatiticsTable></StatiticsTable>
- 
-          
+          <StatiticsTable> </StatiticsTable>
         </ResponsiveDrawer>
       </div> 
     );

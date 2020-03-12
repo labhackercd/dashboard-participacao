@@ -18,7 +18,9 @@ import { Link } from "react-router-dom";
 export const mainListItems = (
   <div>
     <ListSubheader inset>Gráficos</ListSubheader>
-    <ListItem button>
+    
+    <ListItem button component={Link} 
+          to={"/"}>
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
@@ -26,7 +28,7 @@ export const mainListItems = (
     </ListItem>
 
     <ListItem button component={Link} 
-          to={"/statitics"}>
+          to={"/estatisticas1"}>
       <ListItemIcon>
         <BarChartIcon/>
       </ListItemIcon>
