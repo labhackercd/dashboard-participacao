@@ -11,9 +11,6 @@ module.exports = Object.freeze({
      //NAME CONSTANTS
      APPLICATION_NAME: 'Participacao'
 
-    
-
-
 
 
   });

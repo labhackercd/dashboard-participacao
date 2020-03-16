@@ -18,35 +18,35 @@ import { Link } from "react-router-dom";
 export const mainListItems = (
   <div>
     <ListSubheader inset>Gráficos</ListSubheader>
-    
-    <ListItem button component={Link} 
-          to={"/"}>
+
+    <ListItem button component={Link}
+      to={"/"}>
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItem>
 
-    <ListItem button component={Link} 
-          to={"/estatisticas1"}>
+    <ListItem button component={Link}
+      to={"/estatisticas1"}>
       <ListItemIcon>
-        <BarChartIcon/>
+        <BarChartIcon />
       </ListItemIcon>
       <ListItemText primary="Estatísticas 1" />
     </ListItem>
 
-    <ListItem button >
+    <ListItem button component={Link} to={"/analytics-page"}>
       <ListItemIcon>
-        <ReportProblemIcon/>
+        <ReportProblemIcon />
       </ListItemIcon>
-      <ListItemText primary="Estatísticas 2" />
+      <ListItemText primary="Google Analytics" />
     </ListItem>
 
     <ListItem button>
       <ListItemIcon>
-        <SettingsIcon/>
+        <SettingsIcon />
       </ListItemIcon>
-      <ListItemText primary="Estatísticas 3"/>
+      <ListItemText primary="Estatísticas 3" />
     </ListItem>
 
   </div>
@@ -55,7 +55,7 @@ export const mainListItems = (
 export const secondaryListItems = (
   <div>
     <ListSubheader inset>Relatórios</ListSubheader>
-    <ListItem button component={Link} 
+    <ListItem button component={Link}
       to={"/list-students"}>
       <ListItemIcon>
         <GroupIcon />
@@ -67,7 +67,7 @@ export const secondaryListItems = (
       <ListItemIcon>
         <PersonIcon />
       </ListItemIcon>
-      <ListItemText primary="Relatório 2"/>
+      <ListItemText primary="Relatório 2" />
     </ListItem>
 
     <ListItem button component={Link} to={"/register-admin"}>
@@ -80,14 +80,14 @@ export const secondaryListItems = (
 );
 
 export const thirdListItems = (
-    <div>
-      <ListSubheader inset>Para Desenvolvedores</ListSubheader>
-      <ListItem button  component="">
-        <ListItemIcon>
-            <ExitToAppIcon/>
-        </ListItemIcon>
-          <ListItemText primary="API's" />
-      </ListItem>
-  
-    </div>
-  );
+  <div>
+    <ListSubheader inset>Para Desenvolvedores</ListSubheader>
+    <ListItem button component="">
+      <ListItemIcon>
+        <ExitToAppIcon />
+      </ListItemIcon>
+      <ListItemText primary="API's" />
+    </ListItem>
+
+  </div>
+);

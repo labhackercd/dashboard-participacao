@@ -6,19 +6,20 @@ import {
 } from "react-router-dom";
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import {Colors} from './components/constant/index'
+import { Colors } from './components/constant/index'
 import './App.css';
 import Statitics from './containers/StatisticsOne'
 import InitialDashboard from './containers/InitialDashboard'
+import AnalyticsPage from './containers/AnalyticsPage'
+
 
 const theme = createMuiTheme({
   palette: {
     primary: {
-        main: Colors.mainColor
-      }
+      main: Colors.mainColor
     }
   },
-)
+})
 
 function App() {
   return (
@@ -30,6 +31,9 @@ function App() {
           </Route>
           <Route exact path="/estatisticas1">
             <Statitics />
+          </Route>
+          <Route exact path="/analytics-page">
+            <AnalyticsPage theme={theme}></AnalyticsPage>
           </Route>
         </Switch>
       </Router>
