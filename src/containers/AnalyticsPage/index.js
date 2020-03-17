@@ -5,86 +5,114 @@ import ResponsiveDrawer from '../MenuDrawer';
 
 // graph 1 config
 const last30days = {
-    reportType: "ga",
+    reportType: 'ga',
     query: {
-        dimensions: "ga:date",
-        metrics: "ga:pageviews,ga:sessions",
-        "start-date": "30daysAgo",
-        "end-date": "yesterday"
+        'dimensions': 'ga:date',
+        'metrics': 'ga:pageviews,ga:sessions',
+        'start-date': '30daysAgo',
+        'end-date': 'yesterday'
     },
     chart: {
-        type: "LINE",
+        type: 'LINE',
         options: {
-            // options for google charts
-            // https://google-developers.appspot.com/chart/interactive/docs/gallery
-            title: "Last 30 days pageviews"
+            'title': 'E-democracia - últimos 30 dias'
+        }
+    }
+}
+
+const trafficByPlatformLast30Days = {
+    query: {
+        'start-date': '30daysAgo',
+        'end-date': 'yesterday',
+        'metrics': 'ga:pageviews',
+        'dimensions': 'ga:pagePathLevel1',
+        'sort': '-ga:pageviews',
+        'filters': 'ga:pagePathLevel1!=/',
+        'max-results': 4 //number of platforms
+    },
+    chart: {
+        'type': 'PIE',
+        'options': {
+            'width': '100%',
+            'pieHole': 4 / 9,
+            'title': 'Tráfego por plataforma nos últimos 30 dias'
         }
     }
 }
 
 // graph 2 config
 const last7days = {
-    reportType: "ga",
+    reportType: 'ga',
     query: {
-        dimensions: "ga:date",
-        metrics: "ga:pageviews, ga:sessions",
-        "start-date": "7daysAgo",
-        "end-date": "yesterday"
+        'dimensions': 'ga:date',
+        'metrics': 'ga:pageviews,ga:sessions',
+        'start-date': '7daysAgo',
+        'end-date': 'yesterday'
     },
     chart: {
-        type: "LINE"
+        type: 'LINE',
+        options: {
+            'title': 'E-democracia - últimos 7 dias'
+        }
     }
 }
 
-const trafficByPlatformLast30Days =  {
-  query: {
-      'start-date': "30daysAgo",
-      'end-date': 'yesterday',
-      'metrics': 'ga:pageviews',
-      'dimensions': 'ga:pagePathLevel1',
-      'sort': '-ga:pageviews',
-      'filters': 'ga:pagePathLevel1!=/',
-      'max-results': 4 //number of platforms
-  },
-  chart: {
-      'type': 'PIE',
-      'options': {
-          'width': '100%',
-          'pieHole': 4 / 9,
-      }
-  }
+
+const trafficByPlatformLast7Days = {
+    query: {
+        'start-date': '7daysAgo',
+        'end-date': 'yesterday',
+        'metrics': 'ga:pageviews',
+        'dimensions': 'ga:pagePathLevel1',
+        'sort': '-ga:pageviews',
+        'filters': 'ga:pagePathLevel1!=/',
+        'max-results': 4 //number of platforms
+    },
+    chart: {
+        'type': 'PIE',
+        'options': {
+            'width': '100%',
+            'pieHole': 4 / 9,
+            'title': 'Tráfego por plataforma nos últimos 7 dias'
+        }
+    }
 }
 
-const trafficByPlatformLast7Days =  {
-  query: {
-      'start-date': '7daysAgo',
-      'end-date': 'yesterday',
-      'metrics': 'ga:pageviews, ga:pagePathLevel1',
-      'dimensions': 'ga:date',
-      'sort': '-ga:pageviews',
-      'filters': 'ga:pagePathLevel1!=/',
-      'max-results': 4 //number of platforms
-  },
-  chart: {
-      'type': 'LINE',
-      // 'options': {
-      //     'width': '100%',
-      //     'pieHole': 4 / 9,
-      // }
-  }
+const lastYears = {
+    query: {
+        'start-date': '2016-01-01',
+        'end-date': 'yesterday',
+        'metrics': 'ga:pageviews,ga:sessions',
+        'dimensions': 'ga:year',
+    },
+    chart: {
+        'type': 'LINE',
+        'options': {
+            'title': 'E-democracia - últimos anos'
+        }
+    }
 }
 
-const trafficByPlatformOverYears =  {
-  query: {
-    'start-date' : '2016-01-01', 
-    'end-date': 'yesterday',
-    'metrics': 'ga:sessions', 
-    'dimensions': 'ga:year',
-  }, 
-  chart: {
-    'type': 'LINE',
-  }
+const trafficByPlatformOverYears = {
+    query: {
+        'start-date': '2016-01-01',
+        'end-date': 'yesterday',
+        'metrics': 'ga:pageviews',
+        'dimensions': 'ga:pagePathLevel1',
+        'sort': '-ga:pageviews',
+        'filters': 'ga:pagePathLevel1!=/',
+        'max-results': 4 //number of platforms
+    },
+    chart: {
+        'type': 'PIE',
+        'options': {
+            'width': '100%',
+            'pieHole': 4 / 9,
+            'title': 'Tráfego por plataforma  nos últimos anos'
+        }
+    }
 }
+
 // analytics views ID
 const views = {
     query: {
@@ -92,24 +120,57 @@ const views = {
     }
 }
 
+class DateRangeForm extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            startDate: '',
+            endDate: ''
+        };
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleSubmit(event) {
+        this.setState({
+            startDate: event.target.startDate,
+            endDate: event.target.endDate
+        });
+        event.preventDefault();
+    }
+
+    render() {
+        return (
+            <form onSubmit={this.handleSubmit}>
+                <label>
+                    Data de início:
+                    <input name='startDate' value={this.state.startDate} />
+                </label>
+                <label>
+                    Data de término:
+                    <input name='endDate' value={this.state.endDate} />
+                </label>
+                <input type="submit" value="Enviar" />
+            </form>
+        );
+    }
+}
 export default class AnalyticsPage extends Component {
     constructor(props) {
         super(props)
-        this.state = { token: "ya29.c.Ko4BwgdDQ9YdZjpnOsXbwPyoinoCs98Zi5wGek40kUJqW7VDt0gPODh97Z_IZreP8NI8CPl8AFL5og6NDxl8x9mwOItvxoFjohQ_Qybv_pZ8M8vEOrLKyCEhLcYAG6jJPKievVhFoAP_Tuyusv6h_hT0POg5eC-psEhUjO1w_-AsvGuQscnRxvBK2wx93FKi0w" }
+        this.state = {
+            token: "token"
+        }
     }
     render = () => (
-        <ResponsiveDrawer title = 'Dashboard'>
+        <ResponsiveDrawer title='Google Analytics'>
             <center>
                 <GoogleProvider accessToken={this.state.token}>
-                    <h2> Pageviews E-democracia - últimos 30 dias </h2>
                     <GoogleDataChart views={views} config={last30days} />
-                    <h2> Tráfego por plataforma nos últimos 30 dias</h2>
                     <GoogleDataChart views={views} config={trafficByPlatformLast30Days} />
-                    <h2> Pageviews E-democracia </h2>
                     <GoogleDataChart views={views} config={last7days} />
-                    <h2> Tráfego por plataforma nos últimos 7 dias</h2>
                     <GoogleDataChart views={views} config={trafficByPlatformLast7Days} />
-                    <h2> Tráfego por plataforma nos últimos anos</h2>
+                    <GoogleDataChart views={views} config={lastYears} />
                     <GoogleDataChart views={views} config={trafficByPlatformOverYears} />
                 </GoogleProvider>
             </center>
