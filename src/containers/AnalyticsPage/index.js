@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { GoogleProvider, GoogleDataChart } from 'react-analytics-widget'
 import ResponsiveDrawer from '../MenuDrawer';
+import * as jsPDF from 'jspdf';
+import * as html2canvas from 'html2canvas';
 
-
-// graph 1 config
+// graph 1 config q   
 const last30days = {
     reportType: "ga",
     query: {
@@ -95,23 +96,35 @@ const views = {
 export default class AnalyticsPage extends Component {
     constructor(props) {
         super(props)
-        this.state = { token: "ya29.c.Ko4BwgdDQ9YdZjpnOsXbwPyoinoCs98Zi5wGek40kUJqW7VDt0gPODh97Z_IZreP8NI8CPl8AFL5og6NDxl8x9mwOItvxoFjohQ_Qybv_pZ8M8vEOrLKyCEhLcYAG6jJPKievVhFoAP_Tuyusv6h_hT0POg5eC-psEhUjO1w_-AsvGuQscnRxvBK2wx93FKi0w" }
+        this.state = { token: "ya29.c.Ko4BwgeZabB7px-w9qSkKzJp3ctHE1ckQkNIVzub9raJPM88l4zbqO5tCf71fX3Vg9fqgjSwKaDNxdwfUxqSVpJyLw5yX0K3TE7eQh7GCK5cPokDXDIeYnmSuilSoYs7B0lFlDcNatB9CWnmRXIr3y13aZbhChO23skQo9rpqxoF4gfM8q_6a5Gyyb-CJdelQw" }
+        this.printGraphic = this.printGraphic.bind(this)
     }
+
+    printGraphic() {
+      const input = document.getElementById('edemocracia-30days')
+      const pdf = new jsPDF()
+      html2canvas(input)
+        .then((canvas) => {
+          const imgData = canvas.toDataURL('image/png')
+          const pdf = new jsPDF('p', 'px', 'a4')
+          var width = pdf.internal.pageSize.getWidth();
+          const imgProps= pdf.getImageProperties(imgData);
+          var height = (imgProps.height * width) / imgProps.width;
+          pdf.addImage(imgData, 'JPEG', 0, 0, width, height);
+          pdf.save("test.pdf");
+        })
+    }
+
     render = () => (
         <ResponsiveDrawer title = 'Dashboard'>
             <center>
                 <GoogleProvider accessToken={this.state.token}>
                     <h2> Pageviews E-democracia - últimos 30 dias </h2>
-                    <GoogleDataChart views={views} config={last30days} />
-                    <h2> Tráfego por plataforma nos últimos 30 dias</h2>
-                    <GoogleDataChart views={views} config={trafficByPlatformLast30Days} />
-                    <h2> Pageviews E-democracia </h2>
-                    <GoogleDataChart views={views} config={last7days} />
-                    <h2> Tráfego por plataforma nos últimos 7 dias</h2>
-                    <GoogleDataChart views={views} config={trafficByPlatformLast7Days} />
-                    <h2> Tráfego por plataforma nos últimos anos</h2>
-                    <GoogleDataChart views={views} config={trafficByPlatformOverYears} />
+                    <div className="chart" id='edemocracia-30days'>
+                      <GoogleDataChart views={views} config={last30days} />
+                    </div>
                 </GoogleProvider>
+              <button onClick={this.printGraphic}> Download </button>
             </center>
         </ResponsiveDrawer>
     )
