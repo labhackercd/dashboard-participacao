@@ -96,12 +96,12 @@ const views = {
 export default class AnalyticsPage extends Component {
     constructor(props) {
         super(props)
-        this.state = { token: "ya29.c.Ko4BwgeZabB7px-w9qSkKzJp3ctHE1ckQkNIVzub9raJPM88l4zbqO5tCf71fX3Vg9fqgjSwKaDNxdwfUxqSVpJyLw5yX0K3TE7eQh7GCK5cPokDXDIeYnmSuilSoYs7B0lFlDcNatB9CWnmRXIr3y13aZbhChO23skQo9rpqxoF4gfM8q_6a5Gyyb-CJdelQw" }
+        this.state = { token: "ya29.c.Ko4Bwgcv0X74LIVc8sF96BHOrZlWe1K-OBz3J_X5GDS9YF4vAkTRpxYf-KRaCPOTFxh_4dYJD5A9viFEOvPyGZjewzhT8_j0SyQJO576u6lkEfDAKbjq3XVJqzV0WWJF709bnhwMgVkadB5Q3eozrKwfNnqETqO8RmoEYzM2OMCdhHyaSO1lDYldkJ34yJH88w" }
         this.printGraphic = this.printGraphic.bind(this)
     }
 
-    printGraphic() {
-      const input = document.getElementById('edemocracia-30days')
+    printGraphic(id) {
+      const input = document.getElementById(id)
       const pdf = new jsPDF()
       html2canvas(input)
         .then((canvas) => {
@@ -124,7 +124,27 @@ export default class AnalyticsPage extends Component {
                       <GoogleDataChart views={views} config={last30days} />
                     </div>
                 </GoogleProvider>
-              <button onClick={this.printGraphic}> Download </button>
+              <button onClick={() => this.printGraphic('edemocracia-30days')}> Download </button>
+            </center>
+            <br />
+            <center>
+                <GoogleProvider accessToken={this.state.token}>
+                    <h2> Pageviews E-democracia - últimos 7 dias </h2>
+                    <div className="chart" id='edemocracia-7days'>
+                      <GoogleDataChart views={views} config={last7days} />
+                    </div>
+                </GoogleProvider>
+              <button onClick={() => this.printGraphic('edemocracia-7days')}> Download </button>
+            </center>
+            <br />
+            <center>
+                <GoogleProvider accessToken={this.state.token}>
+                    <h2> Pageviews E-democracia - últimos 30 dias </h2>
+                    <div className="chart" id='trafficByPlatformLast7Days'>
+                      <GoogleDataChart views={views} config={trafficByPlatformLast30Days} />
+                    </div>
+                </GoogleProvider>
+              <button onClick={() => this.printGraphic('trafficByPlatformLast30Days')}> Download </button>
             </center>
         </ResponsiveDrawer>
     )
