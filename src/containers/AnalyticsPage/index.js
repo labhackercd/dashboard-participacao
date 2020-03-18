@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { GoogleProvider, GoogleDataChart } from 'react-analytics-widget'
 import ResponsiveDrawer from '../MenuDrawer';
-
+import DateFnsUtils from '@date-io/date-fns';
+import {
+    MuiPickersUtilsProvider,
+    DatePicker,
+} from '@material-ui/pickers';
 
 // graph 1 config
 const last30days = {
@@ -120,48 +124,57 @@ const views = {
     }
 }
 
-class DateRangeForm extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            startDate: '',
-            endDate: ''
-        };
-
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleSubmit(event) {
-        this.setState({
-            startDate: event.target.startDate,
-            endDate: event.target.endDate
-        });
-        event.preventDefault();
-    }
-
-    render() {
-        return (
-            <form onSubmit={this.handleSubmit}>
-                <label>
-                    Data de início:
-                    <input name='startDate' value={this.state.startDate} />
-                </label>
-                <label>
-                    Data de término:
-                    <input name='endDate' value={this.state.endDate} />
-                </label>
-                <input type="submit" value="Enviar" />
-            </form>
-        );
-    }
-}
 export default class AnalyticsPage extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            token: "token"
-        }
+            token: "ya29.c.Ko4Bwwe3B9xDW2o7QAMnJF4bf89GEgGVLDEMG0jgmQoopa0_jgajs9IwAa676TR1S9xgg0DKb6oxjk7yDRqIrPMQHMJ08tPcQZ90kgU34gdW2CG5rGehYaH60LSWBGqlTnBHFcBWKyHcAFrz6gcDICWaOgyydnNSIfmdJ-LG89Okpq0oBmmKshu7xMb0roMDyw",
+            startDate: '2019-01-01',
+            endDate: '2020-01-01',
+            trafficData: ''
+        };
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleStartDateChange = this.handleStartDateChange.bind(this);
+        this.handleEndDateChange = this.handleEndDateChange.bind(this);
+        this.setTrafficByPlatformRangeDate = this.setTrafficByPlatformRangeDate.bind(this);
     }
+
+    setTrafficByPlatformRangeDate() {
+        var trafficByPlatform = {
+            query: {
+                'start-date': this.state.startDate,
+                'end-date': this.state.endDate,
+                'metrics': 'ga:pageviews',
+                'dimensions': 'ga:pagePathLevel1',
+                'sort': '-ga:pageviews',
+                'filters': 'ga:pagePathLevel1!=/',
+                'max-results': 4 //number of platforms
+            },
+            chart: {
+                'type': 'PIE',
+                'options': {
+                    'width': '100%',
+                    'pieHole': 4 / 9,
+                    'title': 'Tráfego por plataforma  nos últimos anos'
+                }
+            }
+        }
+        this.setState({ trafficData: trafficByPlatform });
+    }
+
+    handleSubmit(event) {
+        this.setTrafficByPlatformRangeDate(event.target.startDate, event.target.endDate)
+        event.preventDefault();
+    }
+
+    handleStartDateChange(event) {
+        this.setState({ startDate: event.toISOString().split('T')[0] })
+    }
+
+    handleEndDateChange(event) {
+        this.setState({ endDate: event.toISOString().split('T')[0] })
+    }
+
     render = () => (
         <ResponsiveDrawer title='Google Analytics'>
             <center>
@@ -172,7 +185,38 @@ export default class AnalyticsPage extends Component {
                     <GoogleDataChart views={views} config={trafficByPlatformLast7Days} />
                     <GoogleDataChart views={views} config={lastYears} />
                     <GoogleDataChart views={views} config={trafficByPlatformOverYears} />
+                    <form onSubmit={this.handleSubmit}>
+                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                            <DatePicker
+                                id="start-date"
+                                label="Start Date"
+                                type="date"
+                                format="yyyy-MM-dd"
+                                value={this.state.startDate}
+                                onChange={this.handleStartDateChange}
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                            />
+                            <DatePicker
+                                id="end-date"
+                                label="End Date"
+                                type="date"
+                                format="yyyy-MM-dd"
+                                value={this.state.endDate}
+                                onChange={this.handleEndDateChange}
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                            />
+                        </MuiPickersUtilsProvider>
+                        <input type="submit" value="Enviar" />
+                    </form>
+                    <GoogleDataChart views={views} config={this.state.trafficData} />
                 </GoogleProvider>
+
+
+
             </center>
         </ResponsiveDrawer>
     )
