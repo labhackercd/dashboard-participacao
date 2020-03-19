@@ -12,6 +12,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import AudienciasRoomsTableReport from '../../components/AudienciasRoomsTableReportContainer'
 import AudienciasUserTableReport from '../../components/AudienciasUsersTableReportContainer'
+import CustomPaginationActionsTable from '../../components/componentTest'
 
 import { Divider } from '@material-ui/core';
 
@@ -82,7 +83,7 @@ class AudienciasReportPage extends Component {
       <div>
         <ResponsiveDrawer title = 'Estatísticas Partipação Pública'>
 
-          <ExpansionPanel defaultExpanded={true}>
+          <ExpansionPanel defaultExpanded={false}>
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
@@ -99,7 +100,7 @@ class AudienciasReportPage extends Component {
             <Divider></Divider>
             <br></br>
 
-            <ExpansionPanel defaultExpanded={true}>
+            <ExpansionPanel defaultExpanded={false}>
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel2a-content"
@@ -112,15 +113,6 @@ class AudienciasReportPage extends Component {
                   <AudienciasUserTableReport></AudienciasUserTableReport>
               </ExpansionPanelDetails>
             </ExpansionPanel>
-
-
-
-
-
-
-            
-
-            
         </ResponsiveDrawer>
       </div> 
     );

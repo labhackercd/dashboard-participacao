@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import MaterialTable from "material-table";
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+import { TablePagination } from '@material-ui/core';
+
 
 
 class AudienciasUserTableReport extends Component {
@@ -22,23 +24,26 @@ class AudienciasUserTableReport extends Component {
     super(props);
     this.state = {
       isLoadingTable:true,
-      page: 0,
+      currentPage: 1,
       setPage: 0,
-      rowsPerPage: 30,
-      setRowsPerPage : 10,
+      rowsPerPage: 20,
       rows: [ ],
+      totalRows:0
     };
   }
   
   loadDataInTable(callback){
     //https://edemocracia.camara.leg.br/audiencias/api/room/?ordering=-created&is_visible=true
-    const url = new URL("https://edemocracia.camara.leg.br/audiencias/api/room/?ordering=-created&is_visible=true")
+    const url = new URL("https://edemocracia.camara.leg.br/audiencias/api/user/?page="+ this.state.currentPage)
+    //console.log(url)
 
     fetch(url, {
       method: 'GET',
     }).then((response) => response.json())
     .then((responseJson) => {
-      this.setState({ rows: responseJson.results });
+      console.log(responseJson)
+      this.setState({ rows: responseJson.results, totalRows: responseJson.count });
+      //console.log(this.state.totalRows)
       callback();
     })
     .catch((error) => {
@@ -47,18 +52,45 @@ class AudienciasUserTableReport extends Component {
     
     //callback();
   }
+
+    handleNextPageChange(page){
+      
+      this.setState({isLoadingTable:true, currentPage:page})
+      
+      const url = new URL("https://edemocracia.camara.leg.br/audiencias/api/user/?page="+ this.state.currentPage)
+      
+      fetch(url, {
+        method: 'GET',
+      }).then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson)
+        this.setState({ rows: responseJson.results});
+        this.setState({isLoadingTable:false})
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+      
+    }
   
   componentDidMount() {
     this._isTableMounted = true;
     
     if(this._isTableMounted){
-      //this.loadDataInTable( () => {
+      this.loadDataInTable( () => {
         this.setState({isLoadingTable:false});
-      //});
+      });
       
     }
   }
     
+  handleNextPageChangeTeste(e,p){
+    console.log(p)
+    this.handleNextPageChange(p)
+    
+  }
+
+
   render(){
     const loading = this.state.isLoadingTable
 
@@ -68,28 +100,12 @@ class AudienciasUserTableReport extends Component {
       return (
           <MaterialTable
             columns={this.columns}
-            data={query =>
-              new Promise((resolve, reject) => {
-                let url = 'https://edemocracia.camara.leg.br/audiencias/api/user/'
-                url += '?page=' + (query.page + 1)
-                console.log(url)
-                fetch(url)
-                  .then(response => response.json())
-                  .then(result => {
-                    resolve({
-                      data: result.results,
-                      page: result.next.match(/\d+/g) - 1,
-                      totalCount: result.count
-                    })
-                  })
-              })
-            }
+            data={this.state.rows}
             options={{
-              filtering: true,
-              sorting: true,
               exportButton: true,
               exportAllData: true,
-              pageSizeOptions:[20, 40, 60, 80, 100],
+              pageSize:100,
+              pageSizeOptions:[20, 40, 60, 80, 100,80000],
               exportFileName: "usuarios_audiencias_interativas",
               emptyRowsWhenPaging:false,
               removable:true
@@ -110,6 +126,9 @@ class AudienciasUserTableReport extends Component {
                 nextTooltip: 'Próxima página',
                 lastTooltip: 'Última página'
               }
+            }}
+            components={{
+              Pagination: props => <TablePagination {...props} count={this.state.totalRows} page={this.state.currentPage} onChangePage={(event,page) => {this.handleNextPageChangeTeste(event,page) /* handle page size change : event.target.value */}}/>
             }}
             title="Usuários"
           />
