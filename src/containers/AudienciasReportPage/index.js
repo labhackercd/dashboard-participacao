@@ -22,13 +22,11 @@ const useStyles = theme => ({
   flexContainer: {
     display: 'flex',
     flexDirection: 'row',
-    padding: 0,
   },
   tableRoot: {
     width: '100%',
   },
   tableWrapper: {
-    maxHeight: 500,
     overflow: 'auto',
   },
 
