@@ -56,11 +56,11 @@ export const secondaryListItems = (
   <div>
     <ListSubheader inset>Relatórios</ListSubheader>
     <ListItem button component={Link} 
-      to={"/list-students"}>
+      to={"/audiencias-relatorio"}>
       <ListItemIcon>
         <GroupIcon />
       </ListItemIcon>
-      <ListItemText primary="Relatório 1" />
+      <ListItemText primary="Audiências" />
     </ListItem>
 
     <ListItem button component={Link} to={"/list-admins"}>
