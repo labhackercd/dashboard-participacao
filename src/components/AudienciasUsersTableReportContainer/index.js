@@ -102,13 +102,11 @@ class AudienciasUserTableReport extends Component {
             columns={this.columns}
             data={this.state.rows}
             options={{
-              exportButton: true,
-              exportAllData: true,
               pageSize:100,
               pageSizeOptions:[20, 40, 60, 80, 100,80000],
-              exportFileName: "usuarios_audiencias_interativas",
               emptyRowsWhenPaging:false,
-              removable:true
+              removable:true,
+              search:false
             }}
             localization={{
               body: {
