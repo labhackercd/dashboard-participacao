@@ -101,6 +101,7 @@ class allGoogleCharts extends Component {
 }
 
 export default class AnalyticsPage extends Component {
+  
     constructor(props) {
         super(props)
         this.state = { token: "ya29.c.Ko4BwwcfPMXLUChT91EVC6k_zfyqcS2xG2o9OrRHeMtzjgCZ-VOUvg0EPOQ0fZ-OeiTU2glBXrg7YS2WN1S17v8C2axEYgsqFIUJGhlPSJEq_WDWvicBrC_dN10cPzu-juccMbRDqt-IXz4NcXSs7d5M0NUXI9e4urG0Clq11e9wyQki5NqN522H7JqciRz8yw" }
@@ -138,11 +139,12 @@ export default class AnalyticsPage extends Component {
     appendsImagesToPDFFile(images, single_image_id) {
       const pdf = new jsPDF('p', 'px', 'a4')
       var width = pdf.internal.pageSize.getWidth()
-      images.forEach((image) => {
+      console.log("images length: " + images.length)
+      images.forEach((image, index) => {
           var imgProps = pdf.getImageProperties(image)
           var height = (imgProps.height * width) / imgProps.width
           pdf.addImage(image, 'JPEG', 0, 0, width, height)
-          pdf.addPage()        
+          if (index < images.length - 1) pdf.addPage()
       })
       single_image_id === null ? this.exportFinalFile({
         'name' : 'all_charts.pdf',
@@ -160,21 +162,9 @@ export default class AnalyticsPage extends Component {
     printSingleChart(id) {
       this.singleImagePromiseById(id)
           .then((image) => {
-            this.appendsImagesToPDFFile(image, id)
+            this.appendsImagesToPDFFile([image], id)
         })
     }
-
-      // const input = document.getElementById(id)
-      // html2canvas(input)
-      //   .then((canvas) => {
-      //     const imgData = canvas.toDataURL('image/png')
-      //     const pdf = new jsPDF('p', 'px', 'a4')
-      //     var width = pdf.internal.pageSize.getWidth();
-      //     const imgProps= pdf.getImageProperties(imgData);
-      //     var height = (imgProps.height * width) / imgProps.width;
-      //     pdf.addImage(imgData, 'JPEG', 0, 0, width, height);
-      //     pdf.save("test.pdf");
-      //   })
 
     render = () => (
         <ResponsiveDrawer title = 'Dashboard'>
@@ -212,15 +202,3 @@ export default class AnalyticsPage extends Component {
         </ResponsiveDrawer>
     )
 }
-
-      // const input = document.getElementById(id)
-      // html2canvas(input)
-      //   .then((canvas) => {
-      //     const imgData = canvas.toDataURL('image/png')
-      //     const pdf = new jsPDF('p', 'px', 'a4')
-      //     var width = pdf.internal.pageSize.getWidth();
-      //     const imgProps= pdf.getImageProperties(imgData);
-      //     var height = (imgProps.height * width) / imgProps.width;
-      //     pdf.addImage(imgData, 'JPEG', 0, 0, width, height);
-      //     pdf.save("test.pdf");
-      //   })
