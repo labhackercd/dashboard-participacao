@@ -3,19 +3,19 @@ import MaterialTable from "material-table";
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 
-class AudienciasRoomsTableReport extends Component {
+
+class AudienciasUserTableReport extends Component {
 
   _isTableMounted=false;
   columns = [
-    { field: 'title_reunion', title: 'Título da Reunião',  align: 'center'},
-    { field: 'date', title: 'Data' },
-    { field: 'questions_count', title: 'Perguntas' },
-    { field: 'answered_questions_count', title: 'Perguntas Respondidas'},
-    { field: 'messages_count', title: 'Mensagens' },
+    { field: 'username', title: 'Username',  align: 'center'},
+    { field: 'first_name', title: 'Nome' },
+    { field: 'questions_count', title: 'Perguntas Feitas' },
+    { field: 'messages_count', title: 'Mensagens Enviadas' },
     { field: 'votes_count', title: 'Votos' },
-    { field: 'participants_count', title: 'Participantes'},
-    { field: 'max_online_users', title: 'Máximo Usuários On'},
-    { field: 'legislative_body_initials', title: 'Comissão'}
+    { field: 'participations_count', title: 'Número de Participações'},
+    { field: 'questions_votes_count', title: 'Votos em questões'},
+    { field: 'date_joined', title: 'Data do Cadastro'}
   ]
     
   constructor(props) {
@@ -52,9 +52,9 @@ class AudienciasRoomsTableReport extends Component {
     this._isTableMounted = true;
     
     if(this._isTableMounted){
-      this.loadDataInTable( () => {
+      //this.loadDataInTable( () => {
         this.setState({isLoadingTable:false});
-      });
+      //});
       
     }
   }
@@ -68,15 +68,29 @@ class AudienciasRoomsTableReport extends Component {
       return (
           <MaterialTable
             columns={this.columns}
-            data={this.state.rows}
+            data={query =>
+              new Promise((resolve, reject) => {
+                let url = 'https://edemocracia.camara.leg.br/audiencias/api/user/'
+                url += '?page=' + (query.page + 1)
+                console.log(url)
+                fetch(url)
+                  .then(response => response.json())
+                  .then(result => {
+                    resolve({
+                      data: result.results,
+                      page: result.next.match(/\d+/g) - 1,
+                      totalCount: result.count
+                    })
+                  })
+              })
+            }
             options={{
               filtering: true,
               sorting: true,
               exportButton: true,
               exportAllData: true,
-              exportFileName: "salas_audiencias_interativas",
-              pageSize:5,
-              pageSizeOptions:[5, 10, 20, 30, 40, 50, 100, 200],
+              pageSizeOptions:[20, 40, 60, 80, 100],
+              exportFileName: "usuarios_audiencias_interativas",
               emptyRowsWhenPaging:false,
               removable:true
             }}
@@ -97,17 +111,7 @@ class AudienciasRoomsTableReport extends Component {
                 lastTooltip: 'Última página'
               }
             }}
-            title="Salas"
-            detailPanel={rowData => {
-              return (
-                <div>
-                  <p>{rowData.reunion_object}</p>
-                  <br></br>
-                  <p>{rowData.legislative_body}</p>
-                </div>
-              )
-            }}
-            onRowClick={(event, rowData, togglePanel) => togglePanel()}
+            title="Usuários"
           />
       )
     }
@@ -115,4 +119,4 @@ class AudienciasRoomsTableReport extends Component {
   }
 }
 
-export default (AudienciasRoomsTableReport);
+export default (AudienciasUserTableReport);

@@ -3,7 +3,17 @@ import ResponsiveDrawer from '../MenuDrawer';
 
 import {withStyles} from '@material-ui/core/styles';
 
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
 import AudienciasRoomsTableReport from '../../components/AudienciasRoomsTableReportContainer'
+import AudienciasUserTableReport from '../../components/AudienciasUsersTableReportContainer'
+
+import { Divider } from '@material-ui/core';
 
 const useStyles = theme => ({
   '@global': {
@@ -71,7 +81,46 @@ class AudienciasReportPage extends Component {
     return  (
       <div>
         <ResponsiveDrawer title = 'Estatísticas Partipação Pública'>
-            <AudienciasRoomsTableReport></AudienciasRoomsTableReport>
+
+          <ExpansionPanel defaultExpanded={true}>
+              <ExpansionPanelSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography>Relatório Audiências - Salas</Typography>
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                    <AudienciasRoomsTableReport></AudienciasRoomsTableReport>
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
+
+            <br></br>
+            <Divider></Divider>
+            <br></br>
+
+            <ExpansionPanel defaultExpanded={true}>
+              <ExpansionPanelSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel2a-content"
+                id="panel2a-header"
+              >
+                <Typography >Relatório Audiências - Usuários</Typography>
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                
+                  <AudienciasUserTableReport></AudienciasUserTableReport>
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
+
+
+
+
+
+
+            
+
+            
         </ResponsiveDrawer>
       </div> 
     );
