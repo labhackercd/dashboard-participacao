@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import ResponsiveDrawer from '../MenuDrawer';
 
-import {withStyles} from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -12,7 +12,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import AudienciasRoomsTableReport from '../../components/AudienciasRoomsTableReportContainer'
 import AudienciasUserTableReport from '../../components/AudienciasUsersTableReportContainer'
-import CustomPaginationActionsTable from '../../components/componentTest'
 
 import { Divider } from '@material-ui/core';
 
@@ -49,8 +48,8 @@ class AudienciasReportPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      openSnackBar:false,
-      snackBarMessageError:""
+      openSnackBar: false,
+      snackBarMessageError: ""
     };
   }
 
@@ -65,7 +64,7 @@ class AudienciasReportPage extends Component {
       });
     }
     */
-    this.setState({isLoadingPage:false});
+    this.setState({ isLoadingPage: false });
   }
 
   componentWillUnmount() {
@@ -78,43 +77,43 @@ class AudienciasReportPage extends Component {
 
 
   render() {
-    
-    return  (
+
+    return (
       <div>
-        <ResponsiveDrawer title = 'Estatísticas Partipação Pública'>
+        <ResponsiveDrawer title='Estatísticas Partipação Pública'>
 
           <ExpansionPanel defaultExpanded={false}>
-              <ExpansionPanelSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-              >
-                <Typography>Relatório Audiências - Salas</Typography>
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
-                    <AudienciasRoomsTableReport></AudienciasRoomsTableReport>
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography>Relatório Audiências - Salas</Typography>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <AudienciasRoomsTableReport></AudienciasRoomsTableReport>
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
 
-            <br></br>
-            <Divider></Divider>
-            <br></br>
+          <br></br>
+          <Divider></Divider>
+          <br></br>
 
-            <ExpansionPanel defaultExpanded={false}>
-              <ExpansionPanelSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel2a-content"
-                id="panel2a-header"
-              >
-                <Typography >Relatório Audiências - Usuários</Typography>
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
-                
-                  <AudienciasUserTableReport></AudienciasUserTableReport>
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
+          <ExpansionPanel defaultExpanded={false}>
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel2a-content"
+              id="panel2a-header"
+            >
+              <Typography >Relatório Audiências - Usuários</Typography>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+
+              <AudienciasUserTableReport></AudienciasUserTableReport>
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
         </ResponsiveDrawer>
-      </div> 
+      </div>
     );
   }
 
