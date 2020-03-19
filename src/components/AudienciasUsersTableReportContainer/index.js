@@ -35,15 +35,12 @@ class AudienciasUserTableReport extends Component {
   loadDataInTable(callback){
     //https://edemocracia.camara.leg.br/audiencias/api/room/?ordering=-created&is_visible=true
     const url = new URL("https://edemocracia.camara.leg.br/audiencias/api/user/?page="+ this.state.currentPage)
-    //console.log(url)
 
     fetch(url, {
       method: 'GET',
     }).then((response) => response.json())
     .then((responseJson) => {
-      console.log(responseJson)
       this.setState({ rows: responseJson.results, totalRows: responseJson.count });
-      //console.log(this.state.totalRows)
       callback();
     })
     .catch((error) => {
@@ -63,7 +60,6 @@ class AudienciasUserTableReport extends Component {
         method: 'GET',
       }).then((response) => response.json())
       .then((responseJson) => {
-        console.log(responseJson)
         this.setState({ rows: responseJson.results});
         this.setState({isLoadingTable:false})
       })
@@ -85,7 +81,6 @@ class AudienciasUserTableReport extends Component {
   }
     
   handleNextPageChangeTeste(e,p){
-    console.log(p)
     this.handleNextPageChange(p)
     
   }

@@ -147,7 +147,6 @@ class StatiticsTable extends Component {
     }).then((response) => response.json())
     .then((responseJson) => {
       this.setState({ rows: responseJson.data });
-      //console.log(responseJson.data)
       callback();
 
     })
@@ -172,7 +171,6 @@ class StatiticsTable extends Component {
   }
 
   render(){
-    //console.log(this.columns)
 
     if(this.isLoadingTable){
       return null;
