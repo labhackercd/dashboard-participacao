@@ -5,87 +5,87 @@ import * as jsPDF from 'jspdf';
 import * as html2canvas from 'html2canvas';
 
 // graph 1 config q   
+import DateFnsUtils from '@date-io/date-fns';
+import {
+    MuiPickersUtilsProvider,
+    DatePicker,
+} from '@material-ui/pickers';
+
+// graph 1 config
 const last30days = {
-    reportType: "ga",
+    reportType: 'ga',
     query: {
-        dimensions: "ga:date",
-        metrics: "ga:pageviews,ga:sessions",
-        "start-date": "30daysAgo",
-        "end-date": "yesterday"
+        'dimensions': 'ga:date',
+        'metrics': 'ga:pageviews,ga:sessions',
+        'start-date': '30daysAgo',
+        'end-date': 'yesterday'
     },
     chart: {
-        type: "LINE",
+        type: 'LINE',
         options: {
-            // options for google charts
-            // https://google-developers.appspot.com/chart/interactive/docs/gallery
-            title: "Last 30 days pageviews"
+            'title': 'E-democracia - últimos 30 dias'
+        }
+    }
+}
+
+const trafficByPlatformLast30Days = {
+    query: {
+        'start-date': '30daysAgo',
+        'end-date': 'yesterday',
+        'metrics': 'ga:pageviews',
+        'dimensions': 'ga:pagePathLevel1',
+        'sort': '-ga:pageviews',
+        'filters': 'ga:pagePathLevel1!=/',
+        'max-results': 4 //number of platforms
+    },
+    chart: {
+        'type': 'PIE',
+        'options': {
+            'width': '100%',
+            'pieHole': 4 / 9,
+            'title': 'Tráfego por plataforma nos últimos 30 dias'
         }
     }
 }
 
 // graph 2 config
 const last7days = {
-    reportType: "ga",
+    reportType: 'ga',
     query: {
-        dimensions: "ga:date",
-        metrics: "ga:pageviews, ga:sessions",
-        "start-date": "7daysAgo",
-        "end-date": "yesterday"
+        'dimensions': 'ga:date',
+        'metrics': 'ga:pageviews,ga:sessions',
+        'start-date': '7daysAgo',
+        'end-date': 'yesterday'
     },
     chart: {
-        type: "LINE"
+        type: 'LINE',
+        options: {
+            'title': 'E-democracia - últimos 7 dias'
+        }
     }
 }
 
-const trafficByPlatformLast30Days =  {
-  query: {
-      'start-date': "30daysAgo",
-      'end-date': 'yesterday',
-      'metrics': 'ga:pageviews',
-      'dimensions': 'ga:pagePathLevel1',
-      'sort': '-ga:pageviews',
-      'filters': 'ga:pagePathLevel1!=/',
-      'max-results': 4 //number of platforms
-  },
-  chart: {
-      'type': 'PIE',
-      'options': {
-          'width': '100%',
-          'pieHole': 4 / 9,
-      }
-  }
+
+const trafficByPlatformLast7Days = {
+    query: {
+        'start-date': '7daysAgo',
+        'end-date': 'yesterday',
+        'metrics': 'ga:pageviews',
+        'dimensions': 'ga:pagePathLevel1',
+        'sort': '-ga:pageviews',
+        'filters': 'ga:pagePathLevel1!=/',
+        'max-results': 4 //number of platforms
+    },
+    chart: {
+        'type': 'PIE',
+        'options': {
+            'width': '100%',
+            'pieHole': 4 / 9,
+            'title': 'Tráfego por plataforma nos últimos 7 dias'
+        }
+    }
 }
 
-const trafficByPlatformLast7Days =  {
-  query: {
-      'start-date': '7daysAgo',
-      'end-date': 'yesterday',
-      'metrics': 'ga:pageviews, ga:pagePathLevel1',
-      'dimensions': 'ga:date',
-      'sort': '-ga:pageviews',
-      'filters': 'ga:pagePathLevel1!=/',
-      'max-results': 4 //number of platforms
-  },
-  chart: {
-      'type': 'LINE',
-      // 'options': {
-      //     'width': '100%',
-      //     'pieHole': 4 / 9,
-      // }
-  }
-}
-
-const trafficByPlatformOverYears =  {
-  query: {
-    'start-date' : '2016-01-01', 
-    'end-date': 'yesterday',
-    'metrics': 'ga:sessions', 
-    'dimensions': 'ga:year',
-  }, 
-  chart: {
-    'type': 'LINE',
-  }
-}
 // analytics views ID
 const views = {
     query: {
@@ -93,24 +93,66 @@ const views = {
     }
 }
 
-class allGoogleCharts extends Component {
-  constructor(props) {
-    super(props)
-  }
+function getCurrentDate() {
+    let newDate = new Date()
+    let date = newDate.getDate();
+    let month = newDate.getMonth() + 1;
+    let year = newDate.getFullYear();
 
+    return `${year}-${month < 10 ? `0${month}` : `${month}`}-${date}`
 }
 
 export default class AnalyticsPage extends Component {
   
     constructor(props) {
         super(props)
-        this.state = { token: "ya29.c.Ko4BwwcfPMXLUChT91EVC6k_zfyqcS2xG2o9OrRHeMtzjgCZ-VOUvg0EPOQ0fZ-OeiTU2glBXrg7YS2WN1S17v8C2axEYgsqFIUJGhlPSJEq_WDWvicBrC_dN10cPzu-juccMbRDqt-IXz4NcXSs7d5M0NUXI9e4urG0Clq11e9wyQki5NqN522H7JqciRz8yw" }
+        this.state = {
+            token: "ya29.c.Ko4BwwdTiyaGqpzPa6eM5BYpygrtmSsu9agw1ftpvn-QgzE0DXZBsvHxX47lHXc2PqKVg_rLTqJjgLD58IoIHKQINotlPgMken38DyQLnTy5CUpl3qr8KCSvo8SA-X3lESf5HFKnWZ-FrCR5Llf88SFYx3YIfJPXEQ7OpS0-_c7S0jvml6m_Xy5V40Q5vdghkw",
+            startDate: '2016-01-01',
+            endDate: getCurrentDate(),
+            lineChartData: {
+                query: {
+                    'start-date': '2016-01-01',
+                    'end-date': 'yesterday',
+                    'metrics': 'ga:pageviews,ga:sessions',
+                    'dimensions': 'ga:yearMonth',
+                },
+                chart: {
+                    'type': 'LINE',
+                    'options': {
+                        'title': 'E-democracia - últimos anos'
+                    }
+                }
+            },
+            pieChartData: {
+                query: {
+                    'start-date': '2016-01-01',
+                    'end-date': 'yesterday',
+                    'metrics': 'ga:pageviews',
+                    'dimensions': 'ga:pagePathLevel1',
+                    'sort': '-ga:pageviews',
+                    'filters': 'ga:pagePathLevel1!=/',
+                    'max-results': 4 //number of platforms
+                },
+                chart: {
+                    'type': 'PIE',
+                    'options': {
+                        'width': '100%',
+                        'pieHole': 4 / 9,
+                        'title': 'Tráfego por plataforma  nos últimos anos'
+                    }
+                }
+            },
+        };
         this.chartIDs = ['edemocracia-30days', 'edemocracia-7days', 'trafficByPlatformLast7Days']
         this.singleImagePromiseById = this.singleImagePromiseById.bind(this)
         this.mountsAllPromisesFromSingleImages = this.mountsAllPromisesFromSingleImages .bind(this)
         this.appendsImagesToPDFFile = this.appendsImagesToPDFFile.bind(this)
         this.generatesAllChartsPDF = this.generatesAllChartsPDF.bind(this)
         this.exportFinalFile = this.exportFinalFile.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleStartDateChange = this.handleStartDateChange.bind(this);
+        this.handleEndDateChange = this.handleEndDateChange.bind(this);
     }
 
     singleImagePromiseById(id) {
@@ -166,7 +208,45 @@ export default class AnalyticsPage extends Component {
         })
     }
 
-    render = () => (
+    handleSubmit(event) {
+        this.setState(prevState => ({
+            lineChartData: {
+                ...prevState.lineChartData,
+                query: {
+                    ...prevState.query,
+                    'start-date': this.state.startDate,
+                    'end-date': this.state.endDate,
+                    'metrics': 'ga:pageviews,ga:sessions',
+                    'dimensions': 'ga:yearMonth',
+                }
+            },
+            pieChartData: {
+                ...prevState.pieChartData,
+                query: {
+                    ...prevState.query,
+                    'start-date': this.state.startDate,
+                    'end-date': this.state.endDate,
+                    'metrics': 'ga:pageviews',
+                    'dimensions': 'ga:pagePathLevel1',
+                    'sort': '-ga:pageviews',
+                    'filters': 'ga:pagePathLevel1!=/',
+                    'max-results': 4
+                }
+            }
+        }))
+        event.preventDefault();
+    }
+
+    handleStartDateChange(date) {
+        this.setState({ startDate: date.toISOString().split('T')[0] })
+    }
+
+    handleEndDateChange(date) {
+        this.setState({ endDate: date.toISOString().split('T')[0] })
+    }
+
+    render() {
+        return (
         <ResponsiveDrawer title = 'Dashboard'>
             <center>
                 <GoogleProvider accessToken={this.state.token}>
@@ -198,7 +278,39 @@ export default class AnalyticsPage extends Component {
               <button onClick={() => this.printSingleChart('trafficByPlatformLast7Days')}> Download </button>
             </center>
             <br />
+            <form onSubmit={this.handleSubmit}>
+                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                <DatePicker
+                                    id="start-date"
+                                    name="startDate"
+                                    label="Start Date"
+                                    type="date"
+                                    format="yyyy-MM-dd"
+                                    value={this.state.startDate}
+                                    onChange={this.handleStartDateChange}
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                />
+                                <DatePicker
+                                    id="end-date"
+                                    name="endDate"
+                                    label="End Date"
+                                    type="date"
+                                    format="yyyy-MM-dd"
+                                    value={this.state.endDate}
+                                    onChange={this.handleEndDateChange}
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                />
+                            </MuiPickersUtilsProvider>
+                            <input type="submit" value="Enviar" />
+                        </form>
+                        <GoogleDataChart views={views} config={this.state.lineChartData} />
+                        <GoogleDataChart views={views} config={this.state.pieChartData} />            
             <button onClick={this.generatesAllChartsPDF}> Download All </button>
         </ResponsiveDrawer>
-    )
-}
+      )
+    }
+  }
