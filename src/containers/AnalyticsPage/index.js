@@ -103,61 +103,78 @@ class allGoogleCharts extends Component {
 export default class AnalyticsPage extends Component {
     constructor(props) {
         super(props)
-        this.state = { token: "ya29.c.Ko4BwwdnkssUwZBOiKoJGADOqIpiT9J8bZTc4MpWj3AAI0B8EQsRHMEJ-nvzQ3oaLmpetRIleUbMuoQs48omw0Xai3VP--TANYApyryvqcNjrT-Ock1IZCGS8xOhlBHJMXeKuAI2oNBTt51_5BTj17oI0yrBoR4vAlNn-_plGAwEABjkDS9x6z25mvGY8I21Sw" }
-        // this.chartIDs = ['edemocracia-30days', 'edemocracia-7days', 'trafficByPlatformLast7Days']
-        // this.promises = []
-        this.images = []
-        this.getOneImage = this.getOneImage.bind(this)
-        this.testGetOneImage = this.testGetOneImage.bind(this)
-
+        this.state = { token: "ya29.c.Ko4BwwcfPMXLUChT91EVC6k_zfyqcS2xG2o9OrRHeMtzjgCZ-VOUvg0EPOQ0fZ-OeiTU2glBXrg7YS2WN1S17v8C2axEYgsqFIUJGhlPSJEq_WDWvicBrC_dN10cPzu-juccMbRDqt-IXz4NcXSs7d5M0NUXI9e4urG0Clq11e9wyQki5NqN522H7JqciRz8yw" }
+        this.chartIDs = ['edemocracia-30days', 'edemocracia-7days', 'trafficByPlatformLast7Days']
+        this.singleImagePromiseById = this.singleImagePromiseById.bind(this)
+        this.mountsAllPromisesFromSingleImages = this.mountsAllPromisesFromSingleImages .bind(this)
+        this.appendsImagesToPDFFile = this.appendsImagesToPDFFile.bind(this)
+        this.generatesAllChartsPDF = this.generatesAllChartsPDF.bind(this)
+        this.exportFinalFile = this.exportFinalFile.bind(this)
     }
 
-    getOneImage(id) {
+    singleImagePromiseById(id) {
       const input = document.getElementById(id)
-      return html2canvas(input).then((canvas) => canvas.toDataURL('image.png')).catch((err) => console.log(err))
+      return html2canvas(input).then((canvas) => {
+        return canvas.toDataURL('image.png')
+      })
     } 
 
-    testGetOneImage() {
-      var p = this.getOneImage('edemocracia-7days')
-      p.then((image) => {
-        this.images.push(image)
-        console.log(this.images)
-        return this.images
-      }).then((images) => this.getOneImage('edemocracia-30days'))
-      .then((image) => {
-        this.images.push(image)
-        console.log(this.images)
-        return this.images
-        }
-      ).then((images) => {
-        const pdf = new jsPDF('p','px', 'a4')
-        var width = pdf.internal.pageSize.getWidth()
-        this.images.forEach((image) => {
-          var imgProps = pdf.getImageProperties(image)
-          var height = (imgProps.height * width) / imgProps.width
-          pdf.addImage(image, 'JPEG', 0, 0, width, height)
-          pdf.addPage()
-        })
-        return pdf
-      }).then((pdf) => {
-        pdf.save('ufa.pdf')
+    mountsAllPromisesFromSingleImages() {
+      var promises = []
+      for (var i=0; i < this.chartIDs.length; i++) {
+        var p = this.singleImagePromiseById(this.chartIDs[i])
+        promises.push(p)
+      }
+      return promises
+    }
+
+    generatesAllChartsPDF() {
+      var promises = this.mountsAllPromisesFromSingleImages()
+      Promise.all(promises).then((images) => {
+        this.appendsImagesToPDFFile(images)
       })
     }
 
-    printGraphic(id) {
-      const input = document.getElementById(id)
-      html2canvas(input)
-        .then((canvas) => {
-          const imgData = canvas.toDataURL('image/png')
-          const pdf = new jsPDF('p', 'px', 'a4')
-          var width = pdf.internal.pageSize.getWidth();
-          const imgProps= pdf.getImageProperties(imgData);
-          var height = (imgProps.height * width) / imgProps.width;
-          pdf.addImage(imgData, 'JPEG', 0, 0, width, height);
-          pdf.save("test.pdf");
+    appendsImagesToPDFFile(images, single_image_id) {
+      const pdf = new jsPDF('p', 'px', 'a4')
+      var width = pdf.internal.pageSize.getWidth()
+      images.forEach((image) => {
+          var imgProps = pdf.getImageProperties(image)
+          var height = (imgProps.height * width) / imgProps.width
+          pdf.addImage(image, 'JPEG', 0, 0, width, height)
+          pdf.addPage()        
+      })
+      single_image_id === null ? this.exportFinalFile({
+        'name' : 'all_charts.pdf',
+        'pdf': pdf
+      }) : this.exportFinalFile({
+        'name' : single_image_id,
+        'pdf': pdf
+      })
+    }
+
+    exportFinalFile(obj) {
+      obj.pdf.save(obj.name)
+    }
+
+    printSingleChart(id) {
+      this.singleImagePromiseById(id)
+          .then((image) => {
+            this.appendsImagesToPDFFile(image, id)
         })
     }
 
+      // const input = document.getElementById(id)
+      // html2canvas(input)
+      //   .then((canvas) => {
+      //     const imgData = canvas.toDataURL('image/png')
+      //     const pdf = new jsPDF('p', 'px', 'a4')
+      //     var width = pdf.internal.pageSize.getWidth();
+      //     const imgProps= pdf.getImageProperties(imgData);
+      //     var height = (imgProps.height * width) / imgProps.width;
+      //     pdf.addImage(imgData, 'JPEG', 0, 0, width, height);
+      //     pdf.save("test.pdf");
+      //   })
 
     render = () => (
         <ResponsiveDrawer title = 'Dashboard'>
@@ -168,7 +185,7 @@ export default class AnalyticsPage extends Component {
                       <GoogleDataChart views={views} config={last30days} />
                     </div>
                 </GoogleProvider>
-              <button onClick={() => this.printGraphic('edemocracia-30days')}> Download </button>
+              <button onClick={() => this.printSingleChart('edemocracia-30days')}> Download </button>
             </center>
             <br />
             <center>
@@ -178,7 +195,7 @@ export default class AnalyticsPage extends Component {
                       <GoogleDataChart views={views} config={last7days} />
                     </div>
                 </GoogleProvider>
-              <button onClick={() => this.printGraphic('edemocracia-7days')}> Download </button>
+              <button onClick={() => this.printSingleChart('edemocracia-7days')}> Download </button>
             </center>
             <br />
             <center>
@@ -188,122 +205,22 @@ export default class AnalyticsPage extends Component {
                       <GoogleDataChart views={views} config={trafficByPlatformLast30Days} />
                     </div>
                 </GoogleProvider>
-              <button onClick={() => this.printGraphic('trafficByPlatformLast7Days')}> Download </button>
+              <button onClick={() => this.printSingleChart('trafficByPlatformLast7Days')}> Download </button>
             </center>
             <br />
-            <button onClick={this.testGetOneImage}> Download All </button>
+            <button onClick={this.generatesAllChartsPDF}> Download All </button>
         </ResponsiveDrawer>
     )
 }
-        // this.loadAllImages = this.loadAllImages.bind(this)
-        // this.getImageFromElement = this.getImageFromElement.bind(this)
-        // this.generatePDFAllCharts = this.generatePDFAllCharts.bind(this)
 
-      // //create first page 
-      // html2canvas(this.graphs[0], {
-      //   onrendered: function(canvas) {
-      //     var imgData = canvas.toDataURL('image/png');
-      //     doc.addImage(imgData, 'PNG', 0, 0);
-      //   }
-      // });
-      // // create other pages
-      // this.graphs.slice(1).map((item) => {
-      //   html2canvas(item, {
-      //     onrendered: function(canvas,doc) {
-      //       var imgData = canvas.toDataURL('image/png');
-      //       doc.addPage('l', 'mm', 'a4');
-      //       const imgProps = doc.getImageProperties(imgData);
-      //       const width = doc.internal.pageSize.getWidth();
-      //       var height = (imgProps.height * width) / imgProps.width;
-      //       doc.addImage(imgData, 'JPEG', 0, 0, width, height);
-      //     }
-      //   });
-      // });
-      // doc.save();
-
-
-      // var promises = []
-      // var pages = []
-
-      // this.graphs.map((input) => {
-      //   var element = document.getElementById(input)
-      //   var p = html2canvas(element)
-      //               .then((canvas) => {
-      //                 pages.push(canvas.toDataURL('image/png'))
-      //               })
-      //   promises.push(p)
-      // })
-      // var pdf = new jsPDF('p', 'px', 'a4');
-      // promises.forEach(promise => {
-      //   var p = Promise.resolve();
-      //   p.then((img) => {
-      //     pdf.addImage(img, 'JPEG', 0, 0);
-      //   });
-      // });
-      // pdf.save()
-      
-      // Promise.all(promises)
-      //   .then(function () {
-      //     var pdf = new jsPDF('p', 'px', 'a4');
-      //     pages.map((page) => {
-      //       var width = pdf.internal.pageSize.getWidth();
-      //       const imgProps = pdf.getImageProperties(page);
-      //       var height = (imgProps.height * width) / imgProps.width;
-      //       pdf.addImage(page, 'JPEG', 0, 0, width, height)
-      //       // result.addPage(page, 'JPEG', 0, 0)
-      //     })
-      //     pdf.save("result.pdf")
+      // const input = document.getElementById(id)
+      // html2canvas(input)
+      //   .then((canvas) => {
+      //     const imgData = canvas.toDataURL('image/png')
+      //     const pdf = new jsPDF('p', 'px', 'a4')
+      //     var width = pdf.internal.pageSize.getWidth();
+      //     const imgProps= pdf.getImageProperties(imgData);
+      //     var height = (imgProps.height * width) / imgProps.width;
+      //     pdf.addImage(imgData, 'JPEG', 0, 0, width, height);
+      //     pdf.save("test.pdf");
       //   })
-      //   .catch(err => {
-      //     console.log(err)
-      //   })
-
-         // async getImageFromElement(id) {
-   //    const input = document.getElementById(id)
-   //    html2canvas(input)
-   //      .then((canvas) => {
-   //        const img = canvas.toDataURL('image/png')
-   //        return img
-   //      })
-   //  }
-
-       // generateImagePromises() {
-    //   this.chartIDs.map((id) => {
-    //     const input = document.getElementById(id)
-    //     var p = html2canvas(input).then((canvas) => {
-    //       const imgData = canvas.toDataURL('image/png')
-    //       this.promises.push(imgData)
-    //     })
-    //   })
-    // }
-
-    // async seePromises() {
-    //   var inputs = [document.getElementById('edemocracia-7days'), document.getElementById('edemocracia-30days')]
-    //   const pdf = new jsPDF('p', 'px', 'a4')
-    //   inputs.map((input) => {
-    //     html2canvas(input).then((canvas) => {
-    //       const imgData = canvas.toDataURL('image/png')
-    //       var width = pdf.internal.pageSize.getWidth();
-    //       const imgProps= pdf.getImageProperties(imgData);
-    //       var height = (imgProps.height * width) / imgProps.width;
-    //       pdf.addImage(imgData, 'JPEG', 0, 0, width, height);
-    //     })
-    //   })
-    // }
-
-   // async loadAllImages() {
-   //    for (var i=0; i < this.chartIDs.length; i++) {
-   //      var img = await this.getImageFromElement(this.chartIDs[i])
-   //      this.images.push(img)
-   //    }
-   //    return this.images
-   //  }
-
-   // async generatePDFAllCharts() {
-   //    var pdf = new jsPDF('p', 'px', 'a4')
-   //    var width = pdf.internal.pageSize.getWidth()
-   //    var images = await this.loadAllImages()
-   //    for (var i=0; i < this.images.length ;i++) {
-   //      console.log(this.images[i])
-   //    }
-   // }
