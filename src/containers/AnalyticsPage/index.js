@@ -149,15 +149,14 @@ export default class AnalyticsPage extends Component {
     this.handleEndDateChange = this.handleEndDateChange.bind(this);
   }
 
-  componentDidMount = () => {
-    const url = new URL('http://localhost:5000') // Alterar pela URL válida 
-    fetch(url, {
-      method: 'GET',
-    })
-      .then(response => response.json())
-      .then((fetchToken) => {
-        this.setState({ token: fetchToken.token }); // TODO: handle errors
-      });
+  async componentDidMount() {
+    try {
+      const response = await fetch('http://localhost:5000'); // Alterar pela URL válida 
+      const json = await response.json();
+      this.setState({ token: json.token });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   handleSubmit(event) {
