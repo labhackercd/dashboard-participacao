@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import MaterialTable from "material-table";
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { flexbox } from '@material-ui/system';
 
+import Box from '@material-ui/core/Box';
 
 class AudienciasRoomsTableReport extends Component {
 
@@ -66,49 +68,52 @@ class AudienciasRoomsTableReport extends Component {
       return <div align="center"> <CircularProgress></CircularProgress> </div>
     }else{
       return (
-          <MaterialTable
-            columns={this.columns}
-            data={this.state.rows}
-            options={{
-              filtering: true,
-              sorting: true,
-              exportButton: true,
-              exportAllData: true,
-              exportFileName: "salas_audiencias_interativas",
-              pageSize:5,
-              pageSizeOptions:[5, 10, 20, 30, 40, 50, 100, 200],
-              emptyRowsWhenPaging:false,
-              removable:true
-            }}
-            localization={{
-              body: {
-                emptyDataSourceMessage: 'Nenhum resultado encontrado'
-              },
-              toolbar: {
-                searchTooltip: 'Pesquisar',
-                searchPlaceholder: 'Pesquisar'
-              },
-              pagination: {
-                labelRowsSelect: 'Linhas',
-                labelDisplayedRows: ' {from}-{to} de {count}',
-                firstTooltip: 'Primeira página',
-                previousTooltip: 'Página Anterior',
-                nextTooltip: 'Próxima página',
-                lastTooltip: 'Última página'
-              }
-            }}
-            title="Salas"
-            detailPanel={rowData => {
-              return (
-                <div>
-                  <p>{rowData.reunion_object}</p>
-                  <br></br>
-                  <p>{rowData.legislative_body}</p>
-                </div>
-              )
-            }}
-            onRowClick={(event, rowData, togglePanel) => togglePanel()}
-          />
+          <Box width="auto" display="flex">
+              <MaterialTable
+                columns={this.columns}
+                data={this.state.rows}
+                options={{
+                  filtering: true,
+                  sorting: true,
+                  exportButton: true,
+                  exportAllData: true,
+                  exportFileName: "salas_audiencias_interativas",
+                  pageSize:5,
+                  pageSizeOptions:[5, 10, 20, 30, 40, 50, 100, 200],
+                  emptyRowsWhenPaging:false,
+                  removable:true
+                }}
+                localization={{
+                  body: {
+                    emptyDataSourceMessage: 'Nenhum resultado encontrado'
+                  },
+                  toolbar: {
+                    searchTooltip: 'Pesquisar',
+                    searchPlaceholder: 'Pesquisar'
+                  },
+                  pagination: {
+                    labelRowsSelect: 'Linhas',
+                    labelDisplayedRows: ' {from}-{to} de {count}',
+                    firstTooltip: 'Primeira página',
+                    previousTooltip: 'Página Anterior',
+                    nextTooltip: 'Próxima página',
+                    lastTooltip: 'Última página'
+                  }
+                }}
+                title="Salas"
+                detailPanel={rowData => {
+                  return (
+                    <div>
+                      <p>{rowData.reunion_object}</p>
+                      <br></br>
+                      <p>{rowData.legislative_body}</p>
+                    </div>
+                  )
+                }}
+                onRowClick={(event, rowData, togglePanel) => togglePanel()}
+              />
+          </Box>
+
       )
     }
 

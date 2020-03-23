@@ -14,6 +14,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { mainListItems, secondaryListItems, thirdListItems } from './listItems';
 
+import Box from '@material-ui/core/Box';
 
 import logo from '../../camara_logo.png'
 
@@ -154,9 +155,12 @@ export default function Dashboard(props) {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
-            {props.children}
-        </Container>
+        <Box margin={2}>
+          <Container maxWidth="100%" className={classes.container}>
+              {props.children}
+          </Container>
+        </Box>
+
       </main>
     </div>
   );

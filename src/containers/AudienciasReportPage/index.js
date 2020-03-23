@@ -85,10 +85,10 @@ class AudienciasReportPage extends Component {
 
     return (
       <div>
-        <ResponsiveDrawer title='Estatísticas Partipação Pública'>
+        <ResponsiveDrawer title='Audiências Interativas'>
 
         <Box mb={5}>
-          <Alert severity="info">This is an information message!</Alert>
+          <Alert severity="info">Este é um texto de alerta para avisar sobre os dados!</Alert>
         </Box>
         <Box>
           <ExpansionPanel defaultExpanded={false}>
