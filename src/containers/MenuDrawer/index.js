@@ -18,7 +18,7 @@ import Box from '@material-ui/core/Box';
 
 import logo from '../../camara_logo.png'
 
-const drawerWidth = 240;
+const drawerWidth = 300;
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -126,10 +126,6 @@ export default function Dashboard(props) {
           <Typography component="h1" variant="h6" noWrap className={classes.title}>
             {props.title}
           </Typography>
-          <Typography component="h1" variant="h6" >
-             Menu
-          </Typography>
-
         </Toolbar>
       </AppBar>
       <Drawer
