@@ -4,18 +4,14 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import DashboardIcon from '@material-ui/icons/Dashboard';
-import BarChartIcon from '@material-ui/icons/BarChart';
-import ReportProblemIcon from '@material-ui/icons/ReportProblem';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import PersonIcon from '@material-ui/icons/Person';
-import SettingsIcon from '@material-ui/icons/Settings';
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
-import GroupIcon from '@material-ui/icons/Group';
+import PhoneIcon from '@material-ui/icons/Phone';
+import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
+import ListIcon from '@material-ui/icons/List';
 
 import { Link } from "react-router-dom";
 
 
-export const mainListItems = (
+export const toolsListItens = (
   <div>
     <ListSubheader inset>Gráficos</ListSubheader>
 
@@ -24,69 +20,28 @@ export const mainListItems = (
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
-      <ListItemText primary="Dashboard" />
+      <ListItemText primary="Página Inicial" />
     </ListItem>
 
-    <ListItem button component={Link}
-      to={"/estatisticas1"}>
+    <ListItem button component={Link}>
       <ListItemIcon>
-        <BarChartIcon />
+        <ListIcon />
       </ListItemIcon>
-      <ListItemText primary="Estatísticas 1" />
+      <ListItemText primary="Enquetes" />
     </ListItem>
 
-    <ListItem button component={Link} to={"/analytics-page"}>
+    <ListItem button component={Link}>
       <ListItemIcon>
-        <ReportProblemIcon />
+        <PhoneIcon />
       </ListItemIcon>
-      <ListItemText primary="Google Analytics" />
+      <ListItemText primary="0800" />
     </ListItem>
 
     <ListItem button>
       <ListItemIcon>
-        <SettingsIcon />
+        <QuestionAnswerIcon />
       </ListItemIcon>
-      <ListItemText primary="Estatísticas 3" />
-    </ListItem>
-
-  </div>
-);
-
-export const secondaryListItems = (
-  <div>
-    <ListSubheader inset>Relatórios</ListSubheader>
-    <ListItem button component={Link}
-      to={"/audiencias-relatorio"}>
-      <ListItemIcon>
-        <GroupIcon />
-      </ListItemIcon>
-      <ListItemText primary="Audiências" />
-    </ListItem>
-
-    <ListItem button component={Link} to={"/list-admins"}>
-      <ListItemIcon>
-        <PersonIcon />
-      </ListItemIcon>
-      <ListItemText primary="Relatório 2" />
-    </ListItem>
-
-    <ListItem button component={Link} to={"/register-admin"}>
-      <ListItemIcon>
-        <PersonAddIcon />
-      </ListItemIcon>
-      <ListItemText primary="Relatório 3" />
-    </ListItem>
-  </div>
-);
-
-export const thirdListItems = (
-  <div>
-    <ListSubheader inset>Para Desenvolvedores</ListSubheader>
-    <ListItem button component="">
-      <ListItemIcon>
-        <ExitToAppIcon />
-      </ListItemIcon>
-      <ListItemText primary="API's" />
+      <ListItemText primary="Plenarinho" />
     </ListItem>
 
   </div>

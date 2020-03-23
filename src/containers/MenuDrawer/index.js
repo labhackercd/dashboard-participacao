@@ -12,10 +12,11 @@ import IconButton from '@material-ui/core/IconButton';
 import Container from '@material-ui/core/Container';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import { mainListItems, secondaryListItems, thirdListItems } from './listItems';
+import { toolsListItens } from './listItems';
 
 import Box from '@material-ui/core/Box';
 
+import EDemocraciaList from './eDemocracia_list'
 import logo from '../../camara_logo.png'
 
 const drawerWidth = 300;
@@ -142,12 +143,10 @@ export default function Dashboard(props) {
               </IconButton>
             </div>
             <Divider />
-            <List>{mainListItems}</List>
+            <List>{toolsListItens}</List>
             <Divider />
-            <List>{secondaryListItems}</List>
-            <Divider />
-            <List>{thirdListItems}</List>
-
+            <List><EDemocraciaList></EDemocraciaList></List>
+            <Divider></Divider>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />

@@ -91,6 +91,10 @@ class AudienciasReportPage extends Component {
           <Alert severity="info">Este é um texto de alerta para avisar sobre os dados!</Alert>
         </Box>
         <Box>
+           <br></br>
+            <Divider></Divider>
+            <br></br>
+
           <ExpansionPanel defaultExpanded={false}>
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}
@@ -105,8 +109,7 @@ class AudienciasReportPage extends Component {
             </ExpansionPanel>
 
             <br></br>
-            <Divider></Divider>
-            <br></br>
+
 
             <ExpansionPanel defaultExpanded={false}>
               <ExpansionPanelSummary
@@ -121,6 +124,8 @@ class AudienciasReportPage extends Component {
                 <AudienciasUserTableReport></AudienciasUserTableReport>
               </ExpansionPanelDetails>
             </ExpansionPanel>
+
+  
         </Box>
 
         </ResponsiveDrawer>
