@@ -112,17 +112,17 @@ export default class AnalyticsPage extends Component {
       return <div align="center"> <CircularProgress></CircularProgress> </div>
     } else {
       return (
-        <ResponsiveDrawer title='Dashboard'>
+        <ResponsiveDrawer title='Analytics e-Democracia'>
           <GoogleProvider accessToken={this.state.token}>
             <GoogleAnalyticsCharts
               views={views}
-              title={'eDemocracia - últimos 30 dias'}
+              title={'e-Democracia - últimos 30 dias'}
               lineChartConfig={last30days}
               pieChartConfig={trafficByPlatformLast30Days}
             />
             <GoogleAnalyticsCharts
               views={views}
-              title={'eDemocracia - últimos 7 dias'}
+              title={'e-Democracia - últimos 7 dias'}
               lineChartConfig={last7days}
               pieChartConfig={trafficByPlatformLast7Days}
             />
