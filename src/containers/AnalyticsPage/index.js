@@ -4,6 +4,9 @@ import ResponsiveDrawer from '../MenuDrawer';
 import GoogleAnalyticsCharts from '../../components/GoogleAnalyticsCharts'
 import GoogleAnalyticsFilterForm from '../../components/GoogleAnalyticsFilterForm'
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
 
 
 const last30days = {
@@ -92,7 +95,9 @@ export default class AnalyticsPage extends Component {
     this.state = {
       token: "",
       isLoading: true,
+      gaMetricsSwitch: 'month'
     };
+    this.handleMetricsSwitchChange = this.handleMetricsSwitchChange.bind(this);
   }
 
   async componentDidMount() {
@@ -105,6 +110,46 @@ export default class AnalyticsPage extends Component {
     }
   }
 
+  handleMetricsSwitchChange(event) {
+    this.setState({ gaMetricsSwitch: event.target.value })
+  }
+
+  renderGoogleAnalyticsSwitch() {
+    switch (this.state.gaMetricsSwitch) {
+      case 'month':
+        return (
+          <GoogleAnalyticsCharts
+            views={views}
+            title={'e-Democracia - últimos 30 dias'}
+            lineChartConfig={last30days}
+            pieChartConfig={trafficByPlatformLast30Days}
+          />
+        );
+      case 'week':
+        return (
+          <GoogleAnalyticsCharts
+            views={views}
+            title={'e-Democracia - últimos 7 dias'}
+            lineChartConfig={last7days}
+            pieChartConfig={trafficByPlatformLast7Days}
+          />
+        );
+      case 'filter':
+        return (
+          <GoogleAnalyticsFilterForm views={views} />
+        );
+      default:
+        return (
+          <GoogleAnalyticsCharts
+            views={views}
+            title={'e-Democracia - últimos 30 dias'}
+            lineChartConfig={last30days}
+            pieChartConfig={trafficByPlatformLast30Days}
+          />
+        );
+    }
+  }
+
   render() {
     const loading = this.state.isLoading
 
@@ -114,20 +159,18 @@ export default class AnalyticsPage extends Component {
       return (
         <ResponsiveDrawer title='Analytics e-Democracia'>
           <GoogleProvider accessToken={this.state.token}>
-            <GoogleAnalyticsCharts
-              views={views}
-              title={'e-Democracia - últimos 30 dias'}
-              lineChartConfig={last30days}
-              pieChartConfig={trafficByPlatformLast30Days}
-            />
-            <GoogleAnalyticsCharts
-              views={views}
-              title={'e-Democracia - últimos 7 dias'}
-              lineChartConfig={last7days}
-              pieChartConfig={trafficByPlatformLast7Days}
-            />
-            <h2> Selecione o período para consulta </h2>
-            <GoogleAnalyticsFilterForm views={views} />
+            <InputLabel id="select-label">Visualizar por</InputLabel>
+            <Select
+              labelId="select-label"
+              id="simple-select"
+              value={this.state.gaMetricsSwitch}
+              onChange={this.handleMetricsSwitchChange}
+            >
+              <MenuItem value={'month'}>Últimos 30 dias</MenuItem>
+              <MenuItem value={'week'}>Últimos 7 dias</MenuItem>
+              <MenuItem value={'filter'}>Seleção de período</MenuItem>
+            </Select>
+            {this.renderGoogleAnalyticsSwitch()}
           </GoogleProvider>
         </ResponsiveDrawer >
       )
