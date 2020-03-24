@@ -11,7 +11,7 @@ class WikilegisDocumentsTableReport extends Component {
   _isTableMounted = false;
   columns = [
     { field: 'id', title: 'id' },
-    { field: 'owner.first_name', title: 'Dono', align: 'center' },
+    { field: 'responsible.name', title: 'Autor', align: 'center' },
     { field: 'theme.name', title: 'Tema' },
     { field: 'document_type.initials', title: 'Tipo projeto' },
     { field: 'number', title: 'Número' },
