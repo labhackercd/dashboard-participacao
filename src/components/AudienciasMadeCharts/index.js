@@ -6,7 +6,7 @@ import {
   ValueAxis,
   AreaSeries,
   Title,
-  Legend,
+  Legend
 } from '@devexpress/dx-react-chart-material-ui';
 import { withStyles } from '@material-ui/core/styles';
 import { ArgumentScale, Animation } from '@devexpress/dx-react-chart';
@@ -15,6 +15,9 @@ import {
   area,
 } from 'd3-shape';
 import { scalePoint } from 'd3-scale';
+
+import { EventTracker } from '@devexpress/dx-react-chart';
+
 
 const data = [
   { month: 'Jan', audienciasTransmitidas: 101, audienciasInterativas: 13 },
@@ -103,7 +106,7 @@ class AudienciasMadeCharts extends React.PureComponent {
           />
           <Animation />
           <Legend position="bottom" rootComponent={Root} labelComponent={Label} />
-          <Title text="Audiências Interativas / Audiências feita na casa" />
+          <Title text="Audiências Interativas / Audiências Realizadas" />
         </Chart>
       </Paper>
     );

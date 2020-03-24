@@ -6,7 +6,9 @@ import {
   Title,
   ArgumentAxis,
   ValueAxis,
+  Tooltip
 } from '@devexpress/dx-react-chart-material-ui';
+import { EventTracker } from '@devexpress/dx-react-chart';
 
 import { Animation } from '@devexpress/dx-react-chart';
 
@@ -44,6 +46,8 @@ export default class AudienciasUserChart extends React.PureComponent {
             argumentField="year"
           />
           <Title text="Crescimento da base de usuários" />
+          <EventTracker />
+          <Tooltip/>
           <Animation />
         </Chart>
       </Paper>

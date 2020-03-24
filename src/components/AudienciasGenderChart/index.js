@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import Paper from '@material-ui/core/Paper';
-import { Chart, PieSeries, Title } from '@devexpress/dx-react-chart-material-ui';
-import { Animation, Legend } from '@devexpress/dx-react-chart';
+import { Chart, PieSeries, Title, Legend, Tooltip, } from '@devexpress/dx-react-chart-material-ui';
+import { Animation } from '@devexpress/dx-react-chart';
+import { EventTracker } from '@devexpress/dx-react-chart';
+
 
 
 class AudienciasGenderChart extends Component {
@@ -10,8 +12,8 @@ class AudienciasGenderChart extends Component {
 
     this.state = {
       data: [
-        { region: 'Homem', val: 40000 },
-        { region: 'Mulheres', val: 45000 },
+        { region: 'Masculino', val: 40000},
+        { region: 'Feminino', val: 45000 },
       ]
     };
   }
@@ -23,6 +25,8 @@ class AudienciasGenderChart extends Component {
         <Chart
           data={this.state.data}
         >
+
+
           <PieSeries
             valueField="val"
             argumentField="region"
@@ -31,8 +35,12 @@ class AudienciasGenderChart extends Component {
           />
 
           <Title
-            text="Gênero dos usuários da Plataforma"
+            text="Gênero dos usuários"
           />
+          <EventTracker />
+          <Tooltip />
+          <Legend />
+
           <Animation />
         </Chart>
       </Paper>
