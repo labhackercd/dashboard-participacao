@@ -118,6 +118,16 @@ class WikilegisDocumentsTableReport extends Component {
             Pagination: props => <TablePagination {...props} count={this.state.totalRows} page={this.state.currentPage} onChangePage={(event, page) => { this.handleNextPageChange(page) /* handle page size change : event.target.value */ }} />
           }}
           title="Documentos"
+          detailPanel={rowData => {
+            return (
+              <div>
+                <p>{rowData.title}</p>
+                <br></br>
+                <p>{rowData.description}</p>
+              </div>
+            )
+          }}
+          onRowClick={(event, rowData, togglePanel) => togglePanel()}
         />
       )
     }
