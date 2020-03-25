@@ -12,6 +12,7 @@ import './App.css';
 import Statitics from './containers/StatisticsOne'
 import InitialDashboard from './containers/InitialDashboard'
 import AudienciasReportPage from './containers/AudienciasReportPage'
+import WikilegisReportPage from './containers/WikilegisReportPage'
 import { ptBR } from '@material-ui/core/locale';
 import AnalyticsPage from './containers/AnalyticsPage'
 
@@ -37,6 +38,9 @@ function App() {
           </Route>
           <Route exact path="/audiencias-relatorio">
             <AudienciasReportPage theme={theme}></AudienciasReportPage>
+          </Route>
+          <Route exact path="/wikilegis-relatorio">
+            <WikilegisReportPage theme={theme}></WikilegisReportPage>
           </Route>
           <Route exact path="/analytics-page">
             <AnalyticsPage theme={theme}></AnalyticsPage>

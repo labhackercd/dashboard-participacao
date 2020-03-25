@@ -45,7 +45,7 @@ export default function EDemocraciaList() {
       <ListItem button onClick={handleClick}>
         <ListItemIcon>
           <Icon>
-              <img alt="Ícone e-Democracia" src={eDemocraciaLogo} height={25} width={25}/>
+            <img alt="Ícone e-Democracia" src={eDemocraciaLogo} height={25} width={25} />
           </Icon>
         </ListItemIcon>
         <ListItemText primary="Portal e-Democracia" />
@@ -54,20 +54,20 @@ export default function EDemocraciaList() {
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
 
-        <ListItem button className={classes.nested}>
+          <ListItem button className={classes.nested}>
             <ListItemIcon>
               <Icon>
-                <img alt="Ícone e-Democracia geral" src={eDemocraciaLogo} height={22} width={22}/>
+                <img alt="Ícone e-Democracia geral" src={eDemocraciaLogo} height={22} width={22} />
               </Icon>
             </ListItemIcon>
             <ListItemText primary="e-Democracia" />
           </ListItem>
 
-          
+
           <ListItem button component={Link} to={"/audiencias-relatorio"} className={classes.nested}>
             <ListItemIcon>
               <Icon>
-                <img alt="Ícone Audiências Interativas" src={AudienciasLogo} height={22} width={22}/>
+                <img alt="Ícone Audiências Interativas" src={AudienciasLogo} height={22} width={22} />
               </Icon>
             </ListItemIcon>
             <ListItemText primary="Audiências" />
@@ -76,25 +76,25 @@ export default function EDemocraciaList() {
           <ListItem button className={classes.nested} disabled={true}>
             <ListItemIcon>
               <Icon>
-                <img alt="Ícone Pauta Participativa" src={PautaLogo} height={22} width={22}/>
+                <img alt="Ícone Pauta Participativa" src={PautaLogo} height={22} width={22} />
               </Icon>
             </ListItemIcon>
             <ListItemText primary="Pauta" />
           </ListItem>
 
-          <ListItem button className={classes.nested}>
+          <ListItem button className={classes.nested} component={Link} to={"/wikilegis-relatorio"}>
             <ListItemIcon>
               <Icon>
-                <img alt="Ícone Wikilegis" src={WikilegisLogo} height={22} width={22}/>
+                <img alt="Ícone Wikilegis" src={WikilegisLogo} height={22} width={22} />
               </Icon>
             </ListItemIcon>
             <ListItemText primary="Wikilegis" />
           </ListItem>
-          
-          <ListItem button component={Link} to={"/analytics-page"}  className={classes.nested}>
+
+          <ListItem button component={Link} to={"/analytics-page"} className={classes.nested}>
             <ListItemIcon>
               <Icon>
-                <img alt="Google Analytics" src={GoogleAnalyticsLogo} height={22} width={22}/>
+                <img alt="Google Analytics" src={GoogleAnalyticsLogo} height={22} width={22} />
               </Icon>
             </ListItemIcon>
             <ListItemText primary="Analytics e-Democracia" />
