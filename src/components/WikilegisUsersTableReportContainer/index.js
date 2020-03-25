@@ -31,7 +31,7 @@ class WikilegisUserTableReport extends Component {
 
   loadDataInTable(callback) {
     //https://edemocracia.camara.leg.br/audiencias/api/room/?ordering=-created&is_visible=true
-    const url = new URL("http://127.0.0.1:8001/api/v1/users/?page=" + this.state.currentPage)
+    const url = new URL("http://261572d9.ngrok.io/api/v1/users/?page=" + this.state.currentPage)
 
     fetch(url, {
       method: 'GET',
@@ -51,7 +51,7 @@ class WikilegisUserTableReport extends Component {
 
     this.setState({ isLoadingTable: true, currentPage: page })
 
-    const url = new URL("http://127.0.0.1:8001/api/v1/users/?page=" + this.state.currentPage)
+    const url = new URL("http://261572d9.ngrok.io/api/v1/users/?page=" + this.state.currentPage)
 
     fetch(url, {
       method: 'GET',

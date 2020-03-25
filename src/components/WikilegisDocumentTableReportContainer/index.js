@@ -34,7 +34,7 @@ class WikilegisDocumentsTableReport extends Component {
   }
 
   loadDataInTable(callback) {
-    const url = new URL("http://127.0.0.1:8001/api/v1/documents/?page=" + this.state.currentPage)
+    const url = new URL("http://261572d9.ngrok.io/api/v1/documents/?page=" + this.state.currentPage)
 
     fetch(url, {
       method: 'GET',
@@ -54,7 +54,7 @@ class WikilegisDocumentsTableReport extends Component {
 
     this.setState({ isLoadingTable: true, currentPage: page })
 
-    const url = new URL("http://127.0.0.1:8001/api/v1/documents/?page=" + this.state.currentPage)
+    const url = new URL("http://261572d9.ngrok.io/api/v1/documents/?page=" + this.state.currentPage)
 
     fetch(url, {
       method: 'GET',
