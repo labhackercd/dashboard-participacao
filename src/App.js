@@ -15,7 +15,7 @@ import AudienciasReportPage from './containers/AudienciasReportPage'
 import WikilegisReportPage from './containers/WikilegisReportPage'
 import { ptBR } from '@material-ui/core/locale';
 import AnalyticsPage from './containers/AnalyticsPage'
-
+import EDemocraciaPage from './containers/EDemocraciaPage'
 
 const theme = createMuiTheme({
   palette: {
@@ -44,6 +44,9 @@ function App() {
           </Route>
           <Route exact path="/analytics-page">
             <AnalyticsPage theme={theme}></AnalyticsPage>
+          </Route>
+          <Route exact path="/edemocracia-page">
+            <EDemocraciaPage theme={theme}></EDemocraciaPage>
           </Route>
         </Switch>
       </Router>

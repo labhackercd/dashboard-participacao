@@ -16,8 +16,6 @@ import {
 } from 'd3-shape';
 import { scalePoint } from 'd3-scale';
 
-import { EventTracker } from '@devexpress/dx-react-chart';
-
 
 const data = [
   { month: 'Jan', audienciasTransmitidas: 101, audienciasInterativas: 13 },

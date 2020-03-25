@@ -13,7 +13,6 @@ import AudienciasUserTableReport from '../../components/AudienciasUsersTableRepo
 import AudienciasMadeChart from '../../components/AudienciasMadeCharts'
 import AudienciasGenderChart from '../../components/AudienciasGenderChart'
 import AudienciasUserChart from '../../components/AudienciasUsersChart'
-import AudienciasComissionChart from '../../components/AudienciasComissionChart'
 import { Divider } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 
@@ -49,7 +48,7 @@ function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-class AudienciasReportPage extends Component {
+class EDemocraciaPage extends Component {
   _isMounted = false;
 
   constructor(props) {
@@ -87,7 +86,7 @@ class AudienciasReportPage extends Component {
 
     return (
       <div>
-        <ResponsiveDrawer title='Audiências Interativas'>
+        <ResponsiveDrawer title='e-Democracia'>
 
         <Box mb={5}>
           <Alert severity="info">Este é um texto de alerta para avisar sobre os dados!</Alert>
@@ -96,25 +95,20 @@ class AudienciasReportPage extends Component {
 
 
         <Grid container spacing={3}>
-          <Grid item xs={12} md={6} zeroMinWidth>
+          <Grid item xs={12} mb={6}>
             <Box width="100%" height="100%">
               <AudienciasUserChart></AudienciasUserChart>
             </Box>
 
           </Grid>
-          <Grid item xs={12} md={6} zeroMinWidth>
+          <Grid item xs={12} mb={6}>
               <Box>
                 <AudienciasGenderChart></AudienciasGenderChart>
               </Box>
           </Grid>
-          <Grid item xs={12} zeroMinWidth>
+          <Grid item xs={12}>
             <Box>
-              <AudienciasComissionChart></AudienciasComissionChart>
-            </Box>
-          </Grid>
-          <Grid item xs={12} zeroMinWidth>
-            <Box>
-              <AudienciasMadeChart></AudienciasMadeChart>
+              
             </Box>
           </Grid>
         </Grid>
@@ -124,20 +118,6 @@ class AudienciasReportPage extends Component {
         <Divider></Divider>
         <br></br>
 
-          <ExpansionPanel defaultExpanded={false}>
-              <ExpansionPanelSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-              >
-                <Typography>Relatório Audiências - Salas</Typography>
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
-                <AudienciasRoomsTableReport></AudienciasRoomsTableReport>
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
-
-            <br></br>
 
 
             <ExpansionPanel defaultExpanded={false}>
@@ -146,7 +126,7 @@ class AudienciasReportPage extends Component {
                 aria-controls="panel2a-content"
                 id="panel2a-header"
               >
-                <Typography >Relatório Audiências - Usuários</Typography>
+                <Typography >Usuários e-Democracia</Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
 
@@ -163,4 +143,4 @@ class AudienciasReportPage extends Component {
 }
 
 
-export default withStyles(useStyles)(AudienciasReportPage);
+export default withStyles(useStyles)(EDemocraciaPage);
