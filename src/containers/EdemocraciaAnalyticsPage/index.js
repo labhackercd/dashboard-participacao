@@ -3,84 +3,12 @@ import { GoogleProvider } from 'react-analytics-widget'
 import ResponsiveDrawer from '../MenuDrawer';
 import GoogleAnalyticsCharts from '../../components/GoogleAnalyticsCharts'
 import GoogleAnalyticsFilterForm from '../../components/GoogleAnalyticsFilterForm'
+import EdemocraciaLastWeek from '../../components/EdemocraciaLastWeek'
+import EdemocraciaLastMonth from '../../components/EdemocraciaLastMonth'
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-
-
-const last30days = {
-  reportType: 'ga',
-  query: {
-    'dimensions': 'ga:date',
-    'metrics': 'ga:pageviews,ga:sessions',
-    'start-date': '30daysAgo',
-    'end-date': 'yesterday'
-  },
-  chart: {
-    type: 'LINE',
-    options: {
-      'title': 'Acessos nos últimos 30 dias'
-    }
-  }
-}
-
-const trafficByPlatformLast30Days = {
-  query: {
-    'start-date': '30daysAgo',
-    'end-date': 'yesterday',
-    'metrics': 'ga:pageviews',
-    'dimensions': 'ga:pagePathLevel1',
-    'sort': '-ga:pageviews',
-    'filters': 'ga:pagePathLevel1!=/',
-    'max-results': 4 //number of platforms
-  },
-  chart: {
-    'type': 'PIE',
-    'options': {
-      'width': '100%',
-      'pieHole': 4 / 9,
-      'title': 'Tráfego por plataforma nos últimos 30 dias'
-    }
-  }
-}
-
-const last7days = {
-  reportType: 'ga',
-  query: {
-    'dimensions': 'ga:dayOfWeekName',
-    'metrics': 'ga:pageviews,ga:sessions',
-    'start-date': '7daysAgo',
-    'end-date': 'yesterday'
-  },
-  chart: {
-    type: 'LINE',
-    options: {
-      'title': 'Acessos nos últimos 7 dias'
-    }
-  }
-}
-
-
-const trafficByPlatformLast7Days = {
-  query: {
-    'start-date': '7daysAgo',
-    'end-date': 'yesterday',
-    'metrics': 'ga:pageviews',
-    'dimensions': 'ga:pagePathLevel1',
-    'sort': '-ga:pageviews',
-    'filters': 'ga:pagePathLevel1!=/',
-    'max-results': 4 //number of platforms
-  },
-  chart: {
-    'type': 'PIE',
-    'options': {
-      'width': '100%',
-      'pieHole': 4 / 9,
-      'title': 'Tráfego por plataforma nos últimos 7 dias'
-    }
-  }
-}
 
 // analytics views ID
 const views = {
@@ -118,20 +46,16 @@ export default class AnalyticsPage extends Component {
     switch (this.state.gaMetricsSwitch) {
       case 'month':
         return (
-          <GoogleAnalyticsCharts
+          <EdemocraciaLastMonth
             views={views}
             title={'e-Democracia - últimos 30 dias'}
-            lineChartConfig={last30days}
-            pieChartConfig={trafficByPlatformLast30Days}
           />
         );
       case 'week':
         return (
-          <GoogleAnalyticsCharts
+          <EdemocraciaLastWeek
             views={views}
             title={'e-Democracia - últimos 7 dias'}
-            lineChartConfig={last7days}
-            pieChartConfig={trafficByPlatformLast7Days}
           />
         );
       case 'filter':
@@ -140,11 +64,9 @@ export default class AnalyticsPage extends Component {
         );
       default:
         return (
-          <GoogleAnalyticsCharts
+          <EdemocraciaLastMonth
             views={views}
             title={'e-Democracia - últimos 30 dias'}
-            lineChartConfig={last30days}
-            pieChartConfig={trafficByPlatformLast30Days}
           />
         );
     }
