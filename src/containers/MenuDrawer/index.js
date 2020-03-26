@@ -16,7 +16,14 @@ import { toolsListItens } from './listItems';
 
 import Box from '@material-ui/core/Box';
 
-import EDemocraciaList from './eDemocracia_list'
+import AudienciasList from './ToolsList/audiencias_list'
+import EDemocraciaList from './ToolsList/eDemocracia_list'
+import EnquetesList from './ToolsList/enquetes_list'
+import PautaList from './ToolsList/pauta_list'
+import PlenarinhoList from './ToolsList/plenarinho_list'
+import WikilegisList from './ToolsList/wikilegis_list'
+import Zero800List from './ToolsList/Zero800_list'
+
 import logo from '../../camara_logo.png'
 
 const drawerWidth = 300;
@@ -137,7 +144,7 @@ export default function Dashboard(props) {
         open={open}
       > 
             <div className={classes.toolbarIcon}>
-              <img src={logo} alt="Logo Câmara dos Deputados" style={{ maxHeight: 100 , maxWidth: '70%', align:'center'}}/>
+              <img src={logo} alt="Logo Câmara dos Deputados" style={{ maxHeight: 100 , maxWidth: '80%', align:'center'}}/>
               <IconButton onClick={handleDrawerClose}>
                 <ChevronLeftIcon />
               </IconButton>
@@ -145,8 +152,13 @@ export default function Dashboard(props) {
             <Divider />
             <List>{toolsListItens}</List>
             <Divider />
+            <List><Zero800List></Zero800List></List>
+            <List><AudienciasList></AudienciasList></List>
             <List><EDemocraciaList></EDemocraciaList></List>
-            <Divider></Divider>
+            <List><EnquetesList></EnquetesList></List>
+            <List><WikilegisList></WikilegisList></List>
+            <List><PautaList></PautaList></List>
+            <List><PlenarinhoList></PlenarinhoList></List>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
