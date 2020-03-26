@@ -92,30 +92,6 @@ class EDemocraciaPage extends Component {
         <Box>
 
 
-        <Grid container spacing={3}>
-          <Grid item xs={12} mb={6}>
-            <Box width="100%" height="100%">
-              <AudienciasUserChart></AudienciasUserChart>
-            </Box>
-
-          </Grid>
-          <Grid item xs={12} mb={6}>
-              <Box>
-                <AudienciasGenderChart></AudienciasGenderChart>
-              </Box>
-          </Grid>
-          <Grid item xs={12}>
-            <Box>
-              
-            </Box>
-          </Grid>
-        </Grid>
-
-
-        <br></br>
-        <Divider></Divider>
-        <br></br>
-
 
 
             <ExpansionPanel defaultExpanded={false}>

@@ -10,6 +10,13 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AudienciasRoomsTableReport from '../../components/AudienciasRoomsTableReportContainer'
 import AudienciasUserTableReport from '../../components/AudienciasUsersTableReportContainer'
+import AudienciasMadeChart from '../../components/AudienciasMadeCharts'
+import AudienciasGenderChart from '../../components/AudienciasGenderChart'
+import AudienciasUserChart from '../../components/AudienciasUsersChart'
+import AudienciasComissionChart from '../../components/AudienciasComissionChart'
+import { Divider } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
+
 
 const useStyles = theme => ({
   '@global': {
@@ -87,35 +94,31 @@ class AudienciasReportPage extends Component {
         </Box>
         <Box>
 
-          <ExpansionPanel defaultExpanded={false}>
-              <ExpansionPanelSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-              >
-                <Typography>Relatório Audiências - Salas</Typography>
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
-                <AudienciasRoomsTableReport></AudienciasRoomsTableReport>
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
 
-            <br></br>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={4} zeroMinWidth>
+            <Box width="100%" height="100%">
+              <AudienciasUserChart></AudienciasUserChart>
+            </Box>
 
+          </Grid>
+          <Grid item xs={12} md={4} zeroMinWidth>
+              <Box>
+                <AudienciasGenderChart></AudienciasGenderChart>
+              </Box>
+          </Grid>
+          <Grid item xs={12} md={4} zeroMinWidth>
+            <Box>
+              <AudienciasComissionChart></AudienciasComissionChart>
+            </Box>
+          </Grid>
+          <Grid item xs={12} zeroMinWidth>
+            <Box>
+              <AudienciasMadeChart></AudienciasMadeChart>
+            </Box>
+          </Grid>
+        </Grid>
 
-            <ExpansionPanel defaultExpanded={false}>
-              <ExpansionPanelSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel2a-content"
-                id="panel2a-header"
-              >
-                <Typography >Relatório Audiências - Usuários</Typography>
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
-
-                <AudienciasUserTableReport></AudienciasUserTableReport>
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
         </Box>
 
         </ResponsiveDrawer>

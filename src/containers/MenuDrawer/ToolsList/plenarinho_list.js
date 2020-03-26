@@ -54,7 +54,7 @@ export default function PlenarinhoList() {
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
 
-        <ListItem button component={Link} to={"/plenarinho-graficos"} className={classes.nested}>
+        <ListItem disabled={true} button component={Link} to={"/plenarinho-graficos"} className={classes.nested}>
             <ListItemIcon>
               <Icon>
                 <TimelineIcon></TimelineIcon>
@@ -64,7 +64,7 @@ export default function PlenarinhoList() {
           </ListItem>
 
           
-          <ListItem button component={Link} to={"/plenarinho-relatorios"} className={classes.nested}>
+          <ListItem disabled={true} button component={Link} to={"/plenarinho-relatorios"} className={classes.nested}>
             <ListItemIcon>
               <Icon>
                 <AssignmentIcon></AssignmentIcon>
@@ -74,7 +74,7 @@ export default function PlenarinhoList() {
           </ListItem>
 
           
-          <ListItem button component={Link} to={"/plenarinho-analytics"}  className={classes.nested}>
+          <ListItem disabled={true} button component={Link} to={"/plenarinho-analytics"}  className={classes.nested}>
             <ListItemIcon>
               <Icon>
                 <img alt="Ícone Wikilegis Analytics" src={GoogleAnalyticsLogo} height={22} width={22}/>
