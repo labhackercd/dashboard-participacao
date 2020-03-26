@@ -5,7 +5,7 @@ import {
   Route
 } from "react-router-dom";
 
-import { MuiThemeProvider, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Colors } from './components/constant/index'
 import './App.css';
 

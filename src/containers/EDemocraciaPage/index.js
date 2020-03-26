@@ -8,9 +8,7 @@ import MuiAlert from '@material-ui/lab/Alert';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import AudienciasRoomsTableReport from '../../components/AudienciasRoomsTableReportContainer'
 import AudienciasUserTableReport from '../../components/AudienciasUsersTableReportContainer'
-import AudienciasMadeChart from '../../components/AudienciasMadeCharts'
 import AudienciasGenderChart from '../../components/AudienciasGenderChart'
 import AudienciasUserChart from '../../components/AudienciasUsersChart'
 import { Divider } from '@material-ui/core';
