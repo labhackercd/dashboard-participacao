@@ -5,6 +5,7 @@ import MuiAlert from '@material-ui/lab/Alert';
 import Box from '@material-ui/core/Box';
 import EdemocraciaGenderChart from '../../components/EdemocraciaGenderChart'
 import EdemocraciaUsersChart from '../../components/EdemocraciaUsersChart'
+import EdemocraciaUsersBrazilMap from '../../components/EdemocraciaUsersBrazilMap'
 import Grid from '@material-ui/core/Grid';
 
 
@@ -98,8 +99,8 @@ class EDemocraciaPage extends Component {
               </Box>
           </Grid>
           <Grid item xs={12}>
-            <Box>
-              
+            <Box width="100%" height="100%" alignContent="center">
+                <EdemocraciaUsersBrazilMap></EdemocraciaUsersBrazilMap>
             </Box>
           </Grid>
         </Grid>
