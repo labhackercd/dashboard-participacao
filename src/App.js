@@ -16,7 +16,7 @@ import AudienciasReportPage from './containers/AudienciasReportPage'
 import AudienciasChartsPage from './containers/AudienciasChartsPage'
 
 import EDemocraciaReportPage from './containers/EDemocraciaReportPage'
-import EDemocraciaChartsPage from './containers/EDemocraciaReportPage'
+import EDemocraciaChartsPage from './containers/EDemocraciaChartsPage'
 import EdemocraciaAnalyticsPage from './containers/EdemocraciaAnalyticsPage'
 
 import WikilegisReportPage from './containers/WikilegisReportPage'
