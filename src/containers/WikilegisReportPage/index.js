@@ -10,6 +10,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
+import WikilegisCharts from '../../components/WikilegisCharts'
 import WikilegisUserTableReport from '../../components/WikilegisUsersTableReportContainer'
 import WikilegisDocumentTableReport from '../../components/WikilegisDocumentTableReportContainer'
 
@@ -83,34 +84,10 @@ class WikilegisReportPage extends Component {
         <ResponsiveDrawer title='Estatísticas Partipação Pública'>
 
           <ExpansionPanel defaultExpanded={false}>
-            <ExpansionPanelSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography>Relatório Wikilegis - Documentos</Typography>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
-              <WikilegisDocumentTableReport></WikilegisDocumentTableReport>
-            </ExpansionPanelDetails>
+            <WikilegisCharts></WikilegisCharts>
           </ExpansionPanel>
 
-          <br></br>
-          <Divider></Divider>
-          <br></br>
-
-          <ExpansionPanel defaultExpanded={false}>
-            <ExpansionPanelSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel2a-content"
-              id="panel2a-header"
-            >
-              <Typography >Relatório Wikilegis - Usuários</Typography>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
-              <WikilegisUserTableReport></WikilegisUserTableReport>
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
+      
         </ResponsiveDrawer>
       </div>
     );
