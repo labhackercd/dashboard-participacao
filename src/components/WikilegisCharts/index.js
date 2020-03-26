@@ -36,8 +36,8 @@ class WikilegisCharts extends Component {
             <Title text="Documentos por tema no Wikilegis" />
           </Chart>
 
-            <Divider />
-
+          <br />
+          <br />
 
                     <Chart
             data={[
