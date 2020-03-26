@@ -5,7 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-class EdemocraciaLastMonth extends Component {
+class AudienciasLastMonth extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -82,4 +82,4 @@ class EdemocraciaLastMonth extends Component {
   }
 }
 
-export default EdemocraciaLastMonth;
+export default AudienciasLastMonth;

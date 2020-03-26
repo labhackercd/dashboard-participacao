@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { GoogleProvider } from 'react-analytics-widget'
 import ResponsiveDrawer from '../MenuDrawer';
-import AudienciasLastWeek from '../../components/AudienciasLastWeek'
-import AudienciasLastMonth from '../../components/AudienciasLastMonth'
+import WikilegisLastWeek from '../../components/WikilegisLastWeek'
+import WikilegisLastMonth from '../../components/WikilegisLastMonth'
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -15,7 +15,7 @@ const views = {
   }
 }
 
-export default class AudienciasAnalyticsPage extends Component {
+export default class WikilegisAnalyticsPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -44,23 +44,23 @@ export default class AudienciasAnalyticsPage extends Component {
     switch (this.state.gaMetricsSwitch) {
       case 'month':
         return (
-          <AudienciasLastMonth
+          <WikilegisLastMonth
             views={views}
-            title={'Audiências Interativas - últimos 30 dias'}
+            title={'Wikilegis - últimos 30 dias'}
           />
         );
       case 'week':
         return (
-          <AudienciasLastWeek
+          <WikilegisLastWeek
             views={views}
-            title={'Audiências Interativas - últimos 7 dias'}
+            title={'Wikilegis - últimos 7 dias'}
           />
         );
       default:
         return (
-          <AudienciasLastMonth
+          <WikilegisLastMonth
             views={views}
-            title={'Audiências Interativas - últimos 30 dias'}
+            title={'Wikilegis - últimos 30 dias'}
           />
         );
     }
@@ -73,7 +73,7 @@ export default class AudienciasAnalyticsPage extends Component {
       return <div align="center"> <CircularProgress></CircularProgress> </div>
     } else {
       return (
-        <ResponsiveDrawer title='Analytics Audiências Interativas'>
+        <ResponsiveDrawer title='Analytics Wikilegis'>
           <GoogleProvider accessToken={this.state.token}>
             <InputLabel id="select-label">Visualizar por</InputLabel>
             <Select

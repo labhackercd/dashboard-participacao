@@ -17,6 +17,7 @@ import { ptBR } from '@material-ui/core/locale';
 import EDemocraciaPage from './containers/EDemocraciaPage'
 import EdemocraciaAnalyticsPage from './containers/EdemocraciaAnalyticsPage'
 import AudienciasAnalyticsPage from './containers/AudienciasAnalyticsPage'
+import WikilegisAnalyticsPage from './containers/WikilegisAnalyticsPage'
 
 
 const theme = createMuiTheme({
@@ -46,6 +47,9 @@ function App() {
           </Route>
           <Route exact path="/wikilegis-relatorio">
             <WikilegisReportPage theme={theme}></WikilegisReportPage>
+          </Route>
+          <Route exact path="/wikilegis-analytics">
+            <WikilegisAnalyticsPage theme={theme}></WikilegisAnalyticsPage>
           </Route>
           <Route exact path="/edemocracia-analytics">
             <EdemocraciaAnalyticsPage theme={theme}></EdemocraciaAnalyticsPage>

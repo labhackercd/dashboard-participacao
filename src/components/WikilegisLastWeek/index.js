@@ -5,7 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-class AudienciasLastWeek extends Component {
+class WikilegisLastWeek extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,7 +26,7 @@ class AudienciasLastWeek extends Component {
         'metrics': 'ga:pageviews,ga:sessions',
         'start-date': '7daysAgo',
         'end-date': 'yesterday',
-        'filters': 'ga:pagePathLevel1=@/audiencias',
+        'filters': 'ga:pagePath=@/wikilegis/p/',
       },
       chart: {
         type: 'LINE',
@@ -43,7 +43,7 @@ class AudienciasLastWeek extends Component {
         'metrics': 'ga:pageviews',
         'dimensions': 'ga:pagePathLevel3',
         'sort': '-ga:pageviews',
-        'filters': 'ga:pagePathLevel1=@/audiencias',
+        'filters': 'ga:pagePath=@/wikilegis/p/',
         'max-results': 10 //number of platforms
       },
       chart: {
@@ -51,7 +51,7 @@ class AudienciasLastWeek extends Component {
         'options': {
           'width': '100%',
           'pieHole': 4 / 9,
-          'title': 'Top 10 audiências'
+          'title': 'Top 10 projetos'
         }
       }
     }
@@ -82,4 +82,4 @@ class AudienciasLastWeek extends Component {
   }
 }
 
-export default AudienciasLastWeek;
+export default WikilegisLastWeek;

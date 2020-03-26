@@ -5,7 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-class AudienciasLastWeek extends Component {
+class WikilegisLastMonth extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,31 +19,31 @@ class AudienciasLastWeek extends Component {
     }, 2500);
   }
   render() {
-    const last7days = {
+    const last30days = {
       reportType: 'ga',
       query: {
-        'dimensions': 'ga:dayOfWeekName',
+        'dimensions': 'ga:date',
         'metrics': 'ga:pageviews,ga:sessions',
-        'start-date': '7daysAgo',
+        'start-date': '30daysAgo',
         'end-date': 'yesterday',
-        'filters': 'ga:pagePathLevel1=@/audiencias',
+        'filters': 'ga:pagePath=@/wikilegis/p/',
       },
       chart: {
         type: 'LINE',
         options: {
-          'title': 'Acessos nos últimos 7 dias'
+          'title': 'Acessos nos últimos 30 dias'
         }
       }
     }
 
-    const trafficByPlatformLast7Days = {
+    const trafficByPlatformLast30Days = {
       query: {
-        'start-date': '7daysAgo',
+        'start-date': '30daysAgo',
         'end-date': 'yesterday',
         'metrics': 'ga:pageviews',
         'dimensions': 'ga:pagePathLevel3',
         'sort': '-ga:pageviews',
-        'filters': 'ga:pagePathLevel1=@/audiencias',
+        'filters': 'ga:pagePath=@/wikilegis/p/',
         'max-results': 10 //number of platforms
       },
       chart: {
@@ -51,7 +51,7 @@ class AudienciasLastWeek extends Component {
         'options': {
           'width': '100%',
           'pieHole': 4 / 9,
-          'title': 'Top 10 audiências'
+          'title': 'Top 10 projetos'
         }
       }
     }
@@ -69,10 +69,10 @@ class AudienciasLastWeek extends Component {
           <Box m={1} display={!this.state.done ? 'none' : 'block'}>
             <Grid container>
               <Grid item xs={6}>
-                <GoogleDataChart views={this.props.views} config={last7days} />
+                <GoogleDataChart views={this.props.views} config={last30days} />
               </Grid>
               <Grid item xs={6}>
-                <GoogleDataChart views={this.props.views} config={trafficByPlatformLast7Days} />
+                <GoogleDataChart views={this.props.views} config={trafficByPlatformLast30Days} />
               </Grid>
             </Grid>
           </Box>
@@ -82,4 +82,4 @@ class AudienciasLastWeek extends Component {
   }
 }
 
-export default AudienciasLastWeek;
+export default WikilegisLastMonth;
