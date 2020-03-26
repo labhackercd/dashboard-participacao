@@ -9,7 +9,6 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Colors } from './components/constant/index'
 import './App.css';
 
-import Statitics from './containers/StatisticsOne'
 import InitialDashboard from './containers/InitialDashboard'
 
 import AudienciasAnalyticsPage from './containers/AudienciasAnalyticsPage'
@@ -45,9 +44,6 @@ function App() {
           </Route>
           <Route exact path="/enquetes-graficos">
             <EnquetesPage theme={theme}></EnquetesPage>
-          </Route>
-          <Route exact path="/estatisticas1">
-            <Statitics />
           </Route>
 
 

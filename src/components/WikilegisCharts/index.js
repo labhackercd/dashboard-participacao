@@ -1,16 +1,8 @@
 import React, { Component } from 'react';
-import { GoogleDataChart } from 'react-analytics-widget'
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import { Title, Legend, BarSeries, PieSeries, Chart, ArgumentAxis, ValueAxis, LineSeries } from "@devexpress/dx-react-chart-material-ui";
+import { Title, BarSeries, PieSeries, Chart, ArgumentAxis, ValueAxis } from "@devexpress/dx-react-chart-material-ui";
 
 
 class WikilegisCharts extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     setTimeout(() => {

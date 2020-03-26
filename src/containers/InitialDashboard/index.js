@@ -5,9 +5,6 @@ import {
   withStyles
 } from '@material-ui/core/styles';
 
-import {Redirect} from 'react-router-dom';
-import MaterialTable from "material-table";
-
 
 const useStyles = theme => ({
   '@global': {
