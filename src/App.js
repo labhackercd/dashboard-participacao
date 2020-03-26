@@ -14,8 +14,11 @@ import InitialDashboard from './containers/InitialDashboard'
 import AudienciasReportPage from './containers/AudienciasReportPage'
 import WikilegisReportPage from './containers/WikilegisReportPage'
 import { ptBR } from '@material-ui/core/locale';
-import AnalyticsPage from './containers/AnalyticsPage'
 import EDemocraciaPage from './containers/EDemocraciaPage'
+import EdemocraciaAnalyticsPage from './containers/EdemocraciaAnalyticsPage'
+import AudienciasAnalyticsPage from './containers/AudienciasAnalyticsPage'
+import WikilegisAnalyticsPage from './containers/WikilegisAnalyticsPage'
+
 
 const theme = createMuiTheme({
   palette: {
@@ -39,11 +42,17 @@ function App() {
           <Route exact path="/audiencias-relatorio">
             <AudienciasReportPage theme={theme}></AudienciasReportPage>
           </Route>
-          <Route exact path="/wikilegis-relatorio">
+          <Route exact path="/audiencias-analytics">
+            <AudienciasAnalyticsPage theme={theme}></AudienciasAnalyticsPage>
+          </Route>
+          <Route exact path="/wikilegis-relatorios">
             <WikilegisReportPage theme={theme}></WikilegisReportPage>
           </Route>
-          <Route exact path="/analytics-page">
-            <AnalyticsPage theme={theme}></AnalyticsPage>
+          <Route exact path="/wikilegis-analytics">
+            <WikilegisAnalyticsPage theme={theme}></WikilegisAnalyticsPage>
+          </Route>
+          <Route exact path="/edemocracia-analytics">
+            <EdemocraciaAnalyticsPage theme={theme}></EdemocraciaAnalyticsPage>
           </Route>
           <Route exact path="/edemocracia-page">
             <EDemocraciaPage theme={theme}></EDemocraciaPage>

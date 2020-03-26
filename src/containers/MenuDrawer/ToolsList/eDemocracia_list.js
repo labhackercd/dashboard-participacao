@@ -45,7 +45,7 @@ export default function EDemocraciaList() {
       <ListItem button onClick={handleClick}>
         <ListItemIcon>
           <Icon>
-              <img alt="Ícone e-Democracia" src={eDemocraciaLogo} height={25} width={25}/>
+            <img alt="Ícone e-Democracia" src={eDemocraciaLogo} height={25} width={25} />
           </Icon>
         </ListItemIcon>
         <ListItemText primary="Portal e-Democracia" />
@@ -53,7 +53,7 @@ export default function EDemocraciaList() {
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-        <ListItem button component={Link} to={"/pauta-graficos"} className={classes.nested}>
+          <ListItem button component={Link} to={"/pauta-graficos"} className={classes.nested}>
             <ListItemIcon>
               <Icon>
                 <TimelineIcon></TimelineIcon>
@@ -62,7 +62,7 @@ export default function EDemocraciaList() {
             <ListItemText primary="Gráficos" />
           </ListItem>
 
-          
+
           <ListItem button component={Link} to={"/pauta-relatorios"} className={classes.nested}>
             <ListItemIcon>
               <Icon>
@@ -72,11 +72,11 @@ export default function EDemocraciaList() {
             <ListItemText primary="Relatórios" />
           </ListItem>
 
-          
-          <ListItem button component={Link} to={"/pauta-analytics"}  className={classes.nested}>
+
+          <ListItem button component={Link} to={"/edemocracia-analytics"} className={classes.nested}>
             <ListItemIcon>
               <Icon>
-                <img alt="Ícone Wikilegis Analytics" src={GoogleAnalyticsLogo} height={22} width={22}/>
+                <img alt="Ícone Google Analytics" src={GoogleAnalyticsLogo} height={22} width={22} />
               </Icon>
             </ListItemIcon>
             <ListItemText primary="Google Analytics" />

@@ -5,12 +5,15 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Icon from '@material-ui/core/Icon';
 import Button from '@material-ui/core/Button';
 import DateFnsUtils from '@date-io/date-fns';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import Box from '@material-ui/core/Box';
 import {
   MuiPickersUtilsProvider,
   DatePicker,
 } from '@material-ui/pickers';
 import GoogleAnalyticsCharts from '../../components/GoogleAnalyticsCharts'
-
+import FormControl from '@material-ui/core/FormControl';
 
 function getCurrentDate() {
   let newDate = new Date()
@@ -24,6 +27,10 @@ function getCurrentDate() {
 class GoogleAnalyticsFilterForm extends Component {
   constructor(props) {
     super(props)
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleStartDateChange = this.handleStartDateChange.bind(this);
+    this.handleEndDateChange = this.handleEndDateChange.bind(this);
+    this.handleDimensionChange = this.handleDimensionChange.bind(this);
     this.state = {
       startDate: '2016-01-01',
       endDate: getCurrentDate(),
@@ -62,10 +69,6 @@ class GoogleAnalyticsFilterForm extends Component {
         }
       },
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleStartDateChange = this.handleStartDateChange.bind(this);
-    this.handleEndDateChange = this.handleEndDateChange.bind(this);
-    this.handleDimensionChange = this.handleDimensionChange.bind(this);
   }
 
   handleSubmit(event) {
@@ -112,54 +115,58 @@ class GoogleAnalyticsFilterForm extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <DatePicker
-              id="start-date"
-              name="startDate"
-              label="Data inicial"
-              type="date"
-              format="yyyy-MM-dd"
-              value={this.state.startDate}
-              onChange={this.handleStartDateChange}
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-            <DatePicker
-              id="end-date"
-              name="endDate"
-              label="Data final"
-              type="date"
-              format="yyyy-MM-dd"
-              value={this.state.endDate}
-              onChange={this.handleEndDateChange}
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-          </MuiPickersUtilsProvider>
-          <InputLabel id="select-label">Dimensão</InputLabel>
-          <Select
-            labelId="select-label"
-            id="simple-select"
-            value={this.state.dimension}
-            onChange={this.handleDimensionChange}
-          >
-            <MenuItem value={'ga:day'}>Diário</MenuItem>
-            <MenuItem value={'ga:yearWeek'}>Semanal</MenuItem>
-            <MenuItem value={'ga:yearMonth'}>Mensal</MenuItem>
-            <MenuItem value={'ga:year'}>Anual</MenuItem>
-          </Select>
-          <Button variant="contained" type="subimit" color="primary" endIcon={<Icon>send</Icon>}>
-            Enviar
-                    </Button>
-        </form>
-        <GoogleAnalyticsCharts
-          views={this.props.views}
-          lineChartConfig={this.state.lineChartData}
-          pieChartConfig={this.state.pieChartData}
-        />
+        <Paper>
+          <form onSubmit={this.handleSubmit}>
+            <FormControl>
+              <Grid container justify="space-around">
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                  <DatePicker
+                    id="start-date"
+                    name="startDate"
+                    label="Data inicial"
+                    type="date"
+                    format="yyyy-MM-dd"
+                    value={this.state.startDate}
+                    onChange={this.handleStartDateChange}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  />
+                  <DatePicker
+                    id="end-date"
+                    name="endDate"
+                    label="Data final"
+                    type="date"
+                    format="yyyy-MM-dd"
+                    value={this.state.endDate}
+                    onChange={this.handleEndDateChange}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  />
+                </MuiPickersUtilsProvider>
+                <Select
+                  id="select-label"
+                  value={this.state.dimension}
+                  onChange={this.handleDimensionChange}
+                >
+                  <MenuItem value={'ga:day'}>Diário</MenuItem>
+                  <MenuItem value={'ga:yearWeek'}>Semanal</MenuItem>
+                  <MenuItem value={'ga:yearMonth'}>Mensal</MenuItem>
+                  <MenuItem value={'ga:year'}>Anual</MenuItem>
+                </Select>
+                <Button variant="contained" type="subimit" color="primary" endIcon={<Icon>send</Icon>}>
+                  Enviar
+                </Button>
+              </Grid>
+            </FormControl>
+          </form>
+          <GoogleAnalyticsCharts
+            views={this.props.views}
+            lineChartConfig={this.state.lineChartData}
+            pieChartConfig={this.state.pieChartData}
+          />
+        </Paper>
       </div>
     )
   }
