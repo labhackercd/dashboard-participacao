@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { GoogleProvider } from 'react-analytics-widget'
 import ResponsiveDrawer from '../MenuDrawer';
 import GoogleAnalyticsFilterForm from '../../components/GoogleAnalyticsFilterForm'
-import EdemocraciaLastWeek from '../../components/EdemocraciaLastWeek'
-import EdemocraciaLastMonth from '../../components/EdemocraciaLastMonth'
+import AudienciasLastWeek from '../../components/AudienciasLastWeek'
+import AudienciasLastMonth from '../../components/AudienciasLastMonth'
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -45,27 +45,23 @@ export default class AnalyticsPage extends Component {
     switch (this.state.gaMetricsSwitch) {
       case 'month':
         return (
-          <EdemocraciaLastMonth
+          <AudienciasLastMonth
             views={views}
-            title={'e-Democracia - últimos 30 dias'}
+            title={'Audiências Interativas - últimos 30 dias'}
           />
         );
       case 'week':
         return (
-          <EdemocraciaLastWeek
+          <AudienciasLastWeek
             views={views}
-            title={'e-Democracia - últimos 7 dias'}
+            title={'Audiências Interativas - últimos 7 dias'}
           />
-        );
-      case 'filter':
-        return (
-          <GoogleAnalyticsFilterForm views={views} />
         );
       default:
         return (
-          <EdemocraciaLastMonth
+          <AudienciasLastMonth
             views={views}
-            title={'e-Democracia - últimos 30 dias'}
+            title={'Audiências Interativas - últimos 30 dias'}
           />
         );
     }
@@ -78,7 +74,7 @@ export default class AnalyticsPage extends Component {
       return <div align="center"> <CircularProgress></CircularProgress> </div>
     } else {
       return (
-        <ResponsiveDrawer title='Analytics e-Democracia'>
+        <ResponsiveDrawer title='Analytics Audiências Interativas'>
           <GoogleProvider accessToken={this.state.token}>
             <InputLabel id="select-label">Visualizar por</InputLabel>
             <Select
@@ -89,7 +85,6 @@ export default class AnalyticsPage extends Component {
             >
               <MenuItem value={'month'}>Últimos 30 dias</MenuItem>
               <MenuItem value={'week'}>Últimos 7 dias</MenuItem>
-              <MenuItem value={'filter'}>Seleção de período</MenuItem>
             </Select>
             {this.renderGoogleAnalyticsSwitch()}
           </GoogleProvider>

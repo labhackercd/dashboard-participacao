@@ -73,7 +73,7 @@ export default function EDemocraciaList() {
           </ListItem>
 
 
-          <ListItem button component={Link} to={"/analytics-edemocracia"} className={classes.nested}>
+          <ListItem button component={Link} to={"/edemocracia-analytics"} className={classes.nested}>
             <ListItemIcon>
               <Icon>
                 <img alt="Ícone Google Analytics" src={GoogleAnalyticsLogo} height={22} width={22} />

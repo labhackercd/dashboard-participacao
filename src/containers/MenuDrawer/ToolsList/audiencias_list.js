@@ -45,7 +45,7 @@ export default function AudienciasList() {
       <ListItem button onClick={handleClick}>
         <ListItemIcon>
           <Icon>
-              <img alt="Ícone Audiencias Interativas" src={AudienciasLogo} height={25} width={25}/>
+            <img alt="Ícone Audiencias Interativas" src={AudienciasLogo} height={25} width={25} />
           </Icon>
         </ListItemIcon>
         <ListItemText primary="Audiências" />
@@ -54,7 +54,7 @@ export default function AudienciasList() {
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
 
-        <ListItem button component={Link} to={"/audiencias-graficos"} className={classes.nested}>
+          <ListItem button component={Link} to={"/audiencias-graficos"} className={classes.nested}>
             <ListItemIcon>
               <Icon>
                 <TimelineIcon></TimelineIcon>
@@ -63,7 +63,7 @@ export default function AudienciasList() {
             <ListItemText primary="Gráficos" />
           </ListItem>
 
-          
+
           <ListItem button component={Link} to={"/audiencias-relatorios"} className={classes.nested}>
             <ListItemIcon>
               <Icon>
@@ -73,11 +73,11 @@ export default function AudienciasList() {
             <ListItemText primary="Relatórios" />
           </ListItem>
 
-          
-          <ListItem button component={Link} to={"/audiencias-analytics"}  className={classes.nested}>
+
+          <ListItem button component={Link} to={"/audiencias-analytics"} className={classes.nested}>
             <ListItemIcon>
               <Icon>
-                <img alt="Ícone Wikilegis Analytics" src={GoogleAnalyticsLogo} height={22} width={22}/>
+                <img alt="Ícone Google Analytics" src={GoogleAnalyticsLogo} height={22} width={22} />
               </Icon>
             </ListItemIcon>
             <ListItemText primary="Google Analytics" />
