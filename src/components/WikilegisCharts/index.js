@@ -20,6 +20,7 @@ class WikilegisCharts extends Component {
 
   render() {
     return (
+      <div>
           <Chart
             data={[
               { tema: "Esportes", quant: 1},
@@ -34,6 +35,22 @@ class WikilegisCharts extends Component {
             <BarSeries valueField="quant" argumentField="tema" />
             <Title text="Documentos por tema no Wikilegis" />
           </Chart>
+
+            <Divider />
+
+
+                    <Chart
+            data={[
+              { gender: "masc", quant: 1212},
+              { gender: "fem", quant: 3201},
+            ]}
+          > 
+            <ArgumentAxis />
+            <ValueAxis />
+            <PieSeries valueField="quant" argumentField="gender" />
+            <Title text="Usuários por gênero no Wikilegis" />
+          </Chart>
+    </div>
     )
   }
 }
