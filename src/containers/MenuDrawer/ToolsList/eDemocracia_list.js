@@ -53,7 +53,7 @@ export default function EDemocraciaList() {
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          <ListItem button component={Link} to={"/pauta-graficos"} className={classes.nested}>
+          <ListItem button component={Link} to={"/edemocracia-graficos"} className={classes.nested}>
             <ListItemIcon>
               <Icon>
                 <TimelineIcon></TimelineIcon>
@@ -63,7 +63,7 @@ export default function EDemocraciaList() {
           </ListItem>
 
 
-          <ListItem button component={Link} to={"/pauta-relatorios"} className={classes.nested}>
+          <ListItem button component={Link} to={"/edemocracia-relatorios"} className={classes.nested}>
             <ListItemIcon>
               <Icon>
                 <AssignmentIcon></AssignmentIcon>

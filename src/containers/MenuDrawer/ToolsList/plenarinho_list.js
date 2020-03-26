@@ -9,11 +9,8 @@ import { Link } from "react-router-dom";
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Icon from '@material-ui/core/Icon';
-
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import GoogleAnalyticsLogo from '../icons/google_analytics-icon.svg'
-import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
-
 import TimelineIcon from '@material-ui/icons/Timeline';
 
 const useStyles = makeStyles(theme => ({
@@ -54,7 +51,7 @@ export default function PlenarinhoList() {
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
 
-        <ListItem button component={Link} to={"/plenarinho-graficos"} className={classes.nested}>
+        <ListItem disabled={true} button component={Link} to={"/plenarinho-graficos"} className={classes.nested}>
             <ListItemIcon>
               <Icon>
                 <TimelineIcon></TimelineIcon>
@@ -64,7 +61,7 @@ export default function PlenarinhoList() {
           </ListItem>
 
           
-          <ListItem button component={Link} to={"/plenarinho-relatorios"} className={classes.nested}>
+          <ListItem disabled={true} button component={Link} to={"/plenarinho-relatorios"} className={classes.nested}>
             <ListItemIcon>
               <Icon>
                 <AssignmentIcon></AssignmentIcon>
@@ -74,7 +71,7 @@ export default function PlenarinhoList() {
           </ListItem>
 
           
-          <ListItem button component={Link} to={"/plenarinho-analytics"}  className={classes.nested}>
+          <ListItem disabled={true} button component={Link} to={"/plenarinho-analytics"}  className={classes.nested}>
             <ListItemIcon>
               <Icon>
                 <img alt="Ícone Wikilegis Analytics" src={GoogleAnalyticsLogo} height={22} width={22}/>

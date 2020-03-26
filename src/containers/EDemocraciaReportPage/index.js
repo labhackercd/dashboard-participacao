@@ -9,10 +9,6 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AudienciasUserTableReport from '../../components/AudienciasUsersTableReportContainer'
-import AudienciasGenderChart from '../../components/AudienciasGenderChart'
-import AudienciasUserChart from '../../components/AudienciasUsersChart'
-import { Divider } from '@material-ui/core';
-import Grid from '@material-ui/core/Grid';
 
 
 const useStyles = theme => ({
@@ -90,33 +86,6 @@ class EDemocraciaPage extends Component {
           <Alert severity="info">Este é um texto de alerta para avisar sobre os dados!</Alert>
         </Box>
         <Box>
-
-
-        <Grid container spacing={3}>
-          <Grid item xs={12} mb={6}>
-            <Box width="100%" height="100%">
-              <AudienciasUserChart></AudienciasUserChart>
-            </Box>
-
-          </Grid>
-          <Grid item xs={12} mb={6}>
-              <Box>
-                <AudienciasGenderChart></AudienciasGenderChart>
-              </Box>
-          </Grid>
-          <Grid item xs={12}>
-            <Box>
-              
-            </Box>
-          </Grid>
-        </Grid>
-
-
-        <br></br>
-        <Divider></Divider>
-        <br></br>
-
-
 
             <ExpansionPanel defaultExpanded={false}>
               <ExpansionPanelSummary
