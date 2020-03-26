@@ -45,7 +45,7 @@ function App() {
           <Route exact path="/audiencias-analytics">
             <AudienciasAnalyticsPage theme={theme}></AudienciasAnalyticsPage>
           </Route>
-          <Route exact path="/wikilegis-relatorio">
+          <Route exact path="/wikilegis-relatorios">
             <WikilegisReportPage theme={theme}></WikilegisReportPage>
           </Route>
           <Route exact path="/wikilegis-analytics">
