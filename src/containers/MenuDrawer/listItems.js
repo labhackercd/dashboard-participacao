@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 
 export const toolsListItens = (
-  <div> 
+  <div>
     <ListItem button component={Link}
       to={"/"}>
       <ListItemIcon>
@@ -15,27 +15,5 @@ export const toolsListItens = (
       </ListItemIcon>
       <ListItemText primary="Página Inicial" />
     </ListItem>
-
-    <ListItem button component={Link} to={"/enquetes"}>
-      <ListItemIcon>
-        <ListIcon />
-      </ListItemIcon>
-      <ListItemText primary="Enquetes" />
-    </ListItem>
-
-    <ListItem button component={Link}>
-      <ListItemIcon>
-        <PhoneIcon />
-      </ListItemIcon>
-      <ListItemText primary="0800" />
-    </ListItem>
-
-    <ListItem button>
-      <ListItemIcon>
-        <QuestionAnswerIcon />
-      </ListItemIcon>
-      <ListItemText primary="Plenarinho" />
-    </ListItem>
-
   </div>
 );

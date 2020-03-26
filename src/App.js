@@ -24,7 +24,6 @@ import WikilegisReportPage from './containers/WikilegisReportPage'
 import WikilegisAnalyticsPage from './containers/WikilegisAnalyticsPage'
 import WikilegisChartsPage from './containers/WikilegisChartsPage'
 import { ptBR } from '@material-ui/core/locale';
-import AnalyticsPage from './containers/AnalyticsPage'
 import EnquetesPage from './containers/EnquetesPage'
 
 
@@ -44,7 +43,7 @@ function App() {
           <Route exact path="/">
             <InitialDashboard></InitialDashboard>
           </Route>
-          <Route exact path="/enquetes">
+          <Route exact path="/enquetes-graficos">
             <EnquetesPage theme={theme}></EnquetesPage>
           </Route>
           <Route exact path="/estatisticas1">
