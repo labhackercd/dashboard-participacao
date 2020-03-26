@@ -24,7 +24,7 @@ import WikilegisReportPage from './containers/WikilegisReportPage'
 import WikilegisAnalyticsPage from './containers/WikilegisAnalyticsPage'
 import WikilegisChartsPage from './containers/WikilegisChartsPage'
 import { ptBR } from '@material-ui/core/locale';
-
+import EnquetesPage from './containers/EnquetesPage'
 
 
 const theme = createMuiTheme({
@@ -42,6 +42,9 @@ function App() {
         <Switch>
           <Route exact path="/">
             <InitialDashboard></InitialDashboard>
+          </Route>
+          <Route exact path="/enquetes-graficos">
+            <EnquetesPage theme={theme}></EnquetesPage>
           </Route>
           <Route exact path="/estatisticas1">
             <Statitics />
@@ -69,7 +72,7 @@ function App() {
             <EDemocraciaReportPage theme={theme}></EDemocraciaReportPage>
           </Route>
 
-          
+
           <Route exact path="/wikilegis-relatorios">
             <WikilegisReportPage theme={theme}></WikilegisReportPage>
           </Route>
@@ -80,7 +83,7 @@ function App() {
             <WikilegisChartsPage theme={theme}></WikilegisChartsPage>
           </Route>
 
-          
+
 
         </Switch>
       </Router>
