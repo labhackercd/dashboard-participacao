@@ -13,7 +13,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { Stack, Animation } from "@devexpress/dx-react-chart";
 import { EventTracker } from "@devexpress/dx-react-chart";
 
-const data = [
+const ano_2017 = [
     {
         month: "Janeiro",
         questions: 20,
@@ -76,6 +76,133 @@ const data = [
     }
 ];
 
+
+const ano_2018 = [
+    {
+        month: "Janeiro",
+        questions: 40,
+        votes: 50
+    },
+    {
+        month: "Fevereiro",
+        questions: 30,
+        votes: 20
+    },
+    {
+        month: "Março",
+        questions: 30,
+        votes: 30
+    },
+    {
+        month: "Abril",
+        questions: 10,
+        votes: 50
+    },
+    {
+        month: "Maio",
+        questions: 30,
+        votes: 12
+    },
+    {
+        month: "Junho",
+        questions: 20,
+        votes: 30
+    },
+    {
+        month: "Julho",
+        questions: 10,
+        votes: 50
+    },
+    {
+        month: "Agosto",
+        questions: 100,
+        votes: 50
+    },
+    {
+        month: "Setembro",
+        questions: 40,
+        votes: 10
+    },
+    {
+        month: "Outubro",
+        questions: 10,
+        votes: 30
+    },
+    {
+        month: "Novembro",
+        questions: 65,
+        votes: 20
+    },
+    {
+        month: "Dezembro",
+        questions: 50,
+        votes: 23
+    }
+];
+
+const ano_2019 = [
+    {
+        month: "Janeiro",
+        questions: 30,
+        votes: 40
+    },
+    {
+        month: "Fevereiro",
+        questions: 20,
+        votes: 60
+    },
+    {
+        month: "Março",
+        questions: 53,
+        votes: 67
+    },
+    {
+        month: "Abril",
+        questions: 27,
+        votes: 45
+    },
+    {
+        month: "Maio",
+        questions: 37,
+        votes: 57
+    },
+    {
+        month: "Junho",
+        questions: 76,
+        votes: 30
+    },
+    {
+        month: "Julho",
+        questions: 50,
+        votes: 80
+    },
+    {
+        month: "Agosto",
+        questions: 30,
+        votes: 150
+    },
+    {
+        month: "Setembro",
+        questions: 54,
+        votes: 32
+    },
+    {
+        month: "Outubro",
+        questions: 57,
+        votes: 20
+    },
+    {
+        month: "Novembro",
+        questions: 40,
+        votes: 30
+    },
+    {
+        month: "Dezembro",
+        questions: 24,
+        votes: 50
+    }
+];
+
 const legendStyles = () => ({
     root: {
         display: "flex",
@@ -104,15 +231,28 @@ class EnquetesYearVotesAndSuggestion extends React.PureComponent {
         super(props);
 
         this.state = {
-            data
-        };
+            ano: 2019,
+        }
+    }
+
+    update_chart() {
+        let ano_data = []
+        if (this.props.ano == "2017") {
+            ano_data = ano_2017
+        } else if (this.props.ano == "2018") {
+            ano_data = ano_2018
+        } else {
+            ano_data = ano_2019
+        }
+
+        return ano_data
     }
 
     render() {
-        const { data: chartData } = this.state;
+        const data = this.update_chart()
 
         return (
-            <Chart data={chartData}>
+            <Chart data={data}>
                 <ArgumentAxis />
                 <ValueAxis />
 
@@ -135,7 +275,7 @@ class EnquetesYearVotesAndSuggestion extends React.PureComponent {
                     labelComponent={Label}
                 />
 
-                <Title text="Enquetes 2019" />
+                <Title text={"Enquetes " + this.props.ano} />
                 <Stack />
                 <Animation />
                 <EventTracker />

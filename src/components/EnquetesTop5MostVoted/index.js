@@ -13,7 +13,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { Stack, Animation } from "@devexpress/dx-react-chart";
 import { EventTracker } from "@devexpress/dx-react-chart";
 
-const data = [
+const ano_2017 = [
   {
     enquete: "Enquete A",
     positive: 20,
@@ -46,6 +46,72 @@ const data = [
   }
 ];
 
+const ano_2018 = [
+  {
+    enquete: "Enquete A",
+    positive: 30,
+    negative: 40
+  },
+  {
+    enquete: "Enquete B",
+    positive: 10,
+    negative: 20
+  },
+  {
+    enquete: "Enquete C",
+    positive: 10,
+    negative: 5
+  },
+  {
+    enquete: "Enquete D",
+    positive: 5,
+    negative: 45
+  },
+  {
+    enquete: "Enquete E",
+    positive: 10,
+    negative: 10
+  },
+  {
+    enquete: "Enquete F",
+    positive: 16,
+    negative: 32
+  }
+];
+
+const ano_2019 = [
+  {
+    enquete: "Enquete A",
+    positive: 20,
+    negative: 20
+  },
+  {
+    enquete: "Enquete B",
+    positive: 30,
+    negative: 40
+  },
+  {
+    enquete: "Enquete C",
+    positive: 13,
+    negative: 2
+  },
+  {
+    enquete: "Enquete D",
+    positive: 50,
+    negative: 15
+  },
+  {
+    enquete: "Enquete E",
+    positive: 12,
+    negative: 25
+  },
+  {
+    enquete: "Enquete F",
+    positive: 30,
+    negative: 30
+  }
+];
+
 const legendStyles = () => ({
   root: {
     display: "flex",
@@ -74,15 +140,28 @@ class EnqueteTop5MostVoted extends React.PureComponent {
     super(props);
 
     this.state = {
-      data
-    };
+      ano: 2019,
+    }
+  }
+
+  update_chart() {
+    let ano_data = []
+    if (this.props.ano == "2017") {
+      ano_data = ano_2017
+    } else if (this.props.ano == "2018") {
+      ano_data = ano_2018
+    } else {
+      ano_data = ano_2019
+    }
+
+    return ano_data
   }
 
   render() {
-    const { data: chartData } = this.state;
+    const data = this.update_chart()
 
     return (
-      <Chart data={chartData}>
+      <Chart data={data}>
         <ArgumentAxis />
         <ValueAxis />
 
@@ -105,7 +184,7 @@ class EnqueteTop5MostVoted extends React.PureComponent {
           labelComponent={Label}
         />
 
-        <Title text="Enquetes mais votadas 2019" />
+        <Title text={"Enquetes mais votadas " + this.props.ano} />
         <Stack />
         <Animation />
         <EventTracker />
