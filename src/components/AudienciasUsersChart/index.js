@@ -9,7 +9,6 @@ import {
   Tooltip
 } from '@devexpress/dx-react-chart-material-ui';
 import { EventTracker } from '@devexpress/dx-react-chart';
-
 import { Animation } from '@devexpress/dx-react-chart';
 
 const data = [
@@ -45,7 +44,7 @@ export default class AudienciasUserChart extends React.PureComponent {
             valueField="users"
             argumentField="year"
           />
-          <Title text="Crescimento da base de usuários" />
+          <Title text="Número de usuários cadastrados" />
           <EventTracker />
           <Tooltip/>
           <Animation />

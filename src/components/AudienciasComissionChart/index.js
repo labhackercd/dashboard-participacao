@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import Paper from '@material-ui/core/Paper';
-import { Title, Legend, BarSeries, PieSeries, Chart, ArgumentAxis, ValueAxis, LineSeries } from "@devexpress/dx-react-chart-material-ui";
-
-
+import { Title, BarSeries, Chart, ArgumentAxis, ValueAxis, Tooltip } from "@devexpress/dx-react-chart-material-ui";
+import { EventTracker } from '@devexpress/dx-react-chart';
 
 
 
@@ -31,6 +30,8 @@ class AudienciasComissionChart extends Component {
             <ValueAxis />
             <BarSeries valueField="messages" argumentField="room" />
             <Title text="Mensagens por Comissão Virtual" />
+            <EventTracker />
+            <Tooltip />
           </Chart>
       </Paper>
     );

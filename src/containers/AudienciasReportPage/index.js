@@ -95,19 +95,19 @@ class AudienciasReportPage extends Component {
         <Box>
 
 
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6} zeroMinWidth>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={4} zeroMinWidth>
             <Box width="100%" height="100%">
               <AudienciasUserChart></AudienciasUserChart>
             </Box>
 
           </Grid>
-          <Grid item xs={12} md={6} zeroMinWidth>
+          <Grid item xs={12} md={4} zeroMinWidth>
               <Box>
                 <AudienciasGenderChart></AudienciasGenderChart>
               </Box>
           </Grid>
-          <Grid item xs={12} zeroMinWidth>
+          <Grid item xs={12} md={4} zeroMinWidth>
             <Box>
               <AudienciasComissionChart></AudienciasComissionChart>
             </Box>
