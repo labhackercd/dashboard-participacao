@@ -9,7 +9,6 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Colors } from './components/constant/index'
 import './App.css';
 
-import Statitics from './containers/StatisticsOne'
 import InitialDashboard from './containers/InitialDashboard'
 
 import AudienciasAnalyticsPage from './containers/AudienciasAnalyticsPage'
@@ -17,7 +16,7 @@ import AudienciasReportPage from './containers/AudienciasReportPage'
 import AudienciasChartsPage from './containers/AudienciasChartsPage'
 
 import EDemocraciaReportPage from './containers/EDemocraciaReportPage'
-import EDemocraciaChartsPage from './containers/EDemocraciaReportPage'
+import EDemocraciaChartsPage from './containers/EDemocraciaChartsPage'
 import EdemocraciaAnalyticsPage from './containers/EdemocraciaAnalyticsPage'
 
 import WikilegisReportPage from './containers/WikilegisReportPage'
@@ -45,9 +44,6 @@ function App() {
           </Route>
           <Route exact path="/enquetes-graficos">
             <EnquetesPage theme={theme}></EnquetesPage>
-          </Route>
-          <Route exact path="/estatisticas1">
-            <Statitics />
           </Route>
 
 

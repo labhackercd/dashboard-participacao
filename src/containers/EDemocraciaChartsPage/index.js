@@ -3,8 +3,9 @@ import ResponsiveDrawer from '../MenuDrawer';
 import { withStyles } from '@material-ui/core/styles';
 import MuiAlert from '@material-ui/lab/Alert';
 import Box from '@material-ui/core/Box';
-import AudienciasGenderChart from '../../components/AudienciasGenderChart'
-import AudienciasUserChart from '../../components/AudienciasUsersChart'
+import EdemocraciaGenderChart from '../../components/EdemocraciaGenderChart'
+import EdemocraciaUsersChart from '../../components/EdemocraciaUsersChart'
+import EdemocraciaUsersBrazilMap from '../../components/EdemocraciaUsersBrazilMap'
 import Grid from '@material-ui/core/Grid';
 
 
@@ -86,20 +87,20 @@ class EDemocraciaPage extends Component {
 
 
         <Grid container spacing={3}>
-          <Grid item xs={12} mb={6}>
+          <Grid item xs={12} md={6}>
             <Box width="100%" height="100%">
-              <AudienciasUserChart></AudienciasUserChart>
+              <EdemocraciaUsersChart></EdemocraciaUsersChart>
             </Box>
 
           </Grid>
-          <Grid item xs={12} mb={6}>
+          <Grid item xs={12} md={6}>
               <Box>
-                <AudienciasGenderChart></AudienciasGenderChart>
+                <EdemocraciaGenderChart></EdemocraciaGenderChart>
               </Box>
           </Grid>
           <Grid item xs={12}>
-            <Box>
-              
+            <Box width="100%" height="100%" alignContent="center">
+                <EdemocraciaUsersBrazilMap></EdemocraciaUsersBrazilMap>
             </Box>
           </Grid>
         </Grid>
