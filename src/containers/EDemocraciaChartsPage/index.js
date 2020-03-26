@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
 import ResponsiveDrawer from '../MenuDrawer';
 import { withStyles } from '@material-ui/core/styles';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import MuiAlert from '@material-ui/lab/Alert';
 import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import AudienciasUserTableReport from '../../components/AudienciasUsersTableReportContainer'
 import AudienciasGenderChart from '../../components/AudienciasGenderChart'
 import AudienciasUserChart from '../../components/AudienciasUsersChart'
-import { Divider } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 
 

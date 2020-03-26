@@ -9,10 +9,6 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AudienciasUserTableReport from '../../components/AudienciasUsersTableReportContainer'
-import AudienciasGenderChart from '../../components/AudienciasGenderChart'
-import AudienciasUserChart from '../../components/AudienciasUsersChart'
-import { Divider } from '@material-ui/core';
-import Grid from '@material-ui/core/Grid';
 
 
 const useStyles = theme => ({
@@ -90,9 +86,6 @@ class EDemocraciaPage extends Component {
           <Alert severity="info">Este é um texto de alerta para avisar sobre os dados!</Alert>
         </Box>
         <Box>
-
-
-
 
             <ExpansionPanel defaultExpanded={false}>
               <ExpansionPanelSummary
