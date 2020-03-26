@@ -9,7 +9,7 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AudienciasUserTableReport from '../../components/AudienciasUsersTableReportContainer'
-
+import EDemocraciaUserTableReport from '../../components/EdemocraciaUsersTableReport'
 
 const useStyles = theme => ({
   '@global': {
@@ -97,7 +97,7 @@ class EDemocraciaPage extends Component {
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
 
-                <AudienciasUserTableReport></AudienciasUserTableReport>
+                <EDemocraciaUserTableReport></EDemocraciaUserTableReport>
               </ExpansionPanelDetails>
             </ExpansionPanel>
         </Box>
