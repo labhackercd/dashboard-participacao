@@ -13,14 +13,14 @@ class EdemocraciaUsersBrazilMap extends Component {
     return (
       <Paper>
             <Box mb={5} justifyContent="center">
-                <Typography>Número de votos por estado</Typography>
+                <Typography>Número de usários cadastrados por estado</Typography>
             </Box>
             
             <Box mb={5} alignItems="center">
                 <Chart
                     chartType="GeoChart"
                     data={[
-                        ['State', 'Votos'],
+                        ['State', 'Usuários'],
                         ['BR-DF', 100],
                         ['BR-SP', 300],
                         ['BR-PE', 350],

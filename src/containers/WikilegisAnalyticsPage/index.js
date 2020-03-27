@@ -1,12 +1,85 @@
 import React, { Component } from 'react';
 import { GoogleProvider } from 'react-analytics-widget'
 import ResponsiveDrawer from '../MenuDrawer';
-import WikilegisLastWeek from '../../components/WikilegisLastWeek'
-import WikilegisLastMonth from '../../components/WikilegisLastMonth'
+import GoogleAnalyticsCharts from '../../components/GoogleAnalyticsCharts'
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
+
+const last7days = {
+  reportType: 'ga',
+  query: {
+    'dimensions': 'ga:dayOfWeekName',
+    'metrics': 'ga:pageviews,ga:sessions',
+    'start-date': '7daysAgo',
+    'end-date': 'yesterday',
+    'filters': 'ga:pagePath=@/wikilegis/p/',
+  },
+  chart: {
+    type: 'LINE',
+    options: {
+      'title': 'Acessos nos últimos 7 dias'
+    }
+  }
+}
+
+const trafficByPlatformLast7Days = {
+  query: {
+    'start-date': '7daysAgo',
+    'end-date': 'yesterday',
+    'metrics': 'ga:pageviews',
+    'dimensions': 'ga:pagePathLevel3',
+    'sort': '-ga:pageviews',
+    'filters': 'ga:pagePath=@/wikilegis/p/',
+    'max-results': 10 //number of platforms
+  },
+  chart: {
+    'type': 'PIE',
+    'options': {
+      'width': '100%',
+      'pieHole': 4 / 9,
+      'title': 'Top 10 projetos'
+    }
+  }
+}
+
+const last30days = {
+  reportType: 'ga',
+  query: {
+    'dimensions': 'ga:date',
+    'metrics': 'ga:pageviews,ga:sessions',
+    'start-date': '30daysAgo',
+    'end-date': 'yesterday',
+    'filters': 'ga:pagePath=@/wikilegis/p/',
+  },
+  chart: {
+    type: 'LINE',
+    options: {
+      'title': 'Acessos nos últimos 30 dias'
+    }
+  }
+}
+
+const trafficByPlatformLast30Days = {
+  query: {
+    'start-date': '30daysAgo',
+    'end-date': 'yesterday',
+    'metrics': 'ga:pageviews',
+    'dimensions': 'ga:pagePathLevel3',
+    'sort': '-ga:pageviews',
+    'filters': 'ga:pagePath=@/wikilegis/p/',
+    'max-results': 10 //number of platforms
+  },
+  chart: {
+    'type': 'PIE',
+    'options': {
+      'width': '100%',
+      'pieHole': 4 / 9,
+      'title': 'Top 10 projetos'
+    }
+  }
+}
 
 // analytics views ID
 const views = {
@@ -44,23 +117,29 @@ export default class WikilegisAnalyticsPage extends Component {
     switch (this.state.gaMetricsSwitch) {
       case 'month':
         return (
-          <WikilegisLastMonth
+          <GoogleAnalyticsCharts
             views={views}
             title={'Wikilegis - últimos 30 dias'}
+            lineChartConfig={last30days}
+            pieChartConfig={trafficByPlatformLast30Days}
           />
         );
       case 'week':
         return (
-          <WikilegisLastWeek
+          <GoogleAnalyticsCharts
             views={views}
             title={'Wikilegis - últimos 7 dias'}
+            lineChartConfig={last7days}
+            pieChartConfig={trafficByPlatformLast7Days}
           />
         );
       default:
         return (
-          <WikilegisLastMonth
+          <GoogleAnalyticsCharts
             views={views}
             title={'Wikilegis - últimos 30 dias'}
+            lineChartConfig={last30days}
+            pieChartConfig={trafficByPlatformLast30Days}
           />
         );
     }
