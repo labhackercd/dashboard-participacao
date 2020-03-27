@@ -13,20 +13,6 @@ class WikilegisCharts extends Component {
   render() {
     return (
       <div>
-               <Chart
-            data={[
-              { room: "CSSF", messages: 2032},
-              { room: "SUBLIBRA", messages: 425},
-              { room: "CE" , messages: 765},
-              { room: "CTASP", messages: 332},
-            ]}
-          > 
-            <ArgumentAxis />
-            <ValueAxis />
-            <BarSeries valueField="messages" argumentField="room" />
-            <Title text="Mensagens por Comissão Virtual" />
-          </Chart>
-          <br/>
           <Chart
             data={[
               { tema: "Esportes", quant: 1},
