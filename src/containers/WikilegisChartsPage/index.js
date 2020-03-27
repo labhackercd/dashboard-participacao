@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ResponsiveDrawer from '../MenuDrawer';
-
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import WikilegisCharts from '../../components/WikilegisCharts';
 import { withStyles } from '@material-ui/core/styles';
 
 const useStyles = theme => ({
@@ -69,7 +70,9 @@ class WikilegisReportPage extends Component {
     return (
       <div>
         <ResponsiveDrawer title='Wikilegis - Gráficos'>
-
+          <ExpansionPanel defaultExpanded={false}>
+            <WikilegisCharts></WikilegisCharts>
+          </ExpansionPanel>
         
         </ResponsiveDrawer>
       </div>
