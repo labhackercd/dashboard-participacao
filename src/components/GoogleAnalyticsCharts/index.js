@@ -13,6 +13,15 @@ class GoogleAnalyticsCharts extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.lineChartConfig !== this.props.lineChartConfig) {
+      this.setState({ done: undefined });
+      setTimeout(() => {
+        this.setState({ done: true });
+      }, 1000);
+    }
+  }
+
   componentDidMount() {
     setTimeout(() => {
       this.setState({ done: true });
