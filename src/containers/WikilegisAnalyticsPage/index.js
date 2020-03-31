@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { GoogleProvider } from 'react-analytics-widget'
 import ResponsiveDrawer from '../MenuDrawer';
+import GoogleAnalyticsFilterForm from '../../components/GoogleAnalyticsFilterForm'
 import GoogleAnalyticsCharts from '../../components/GoogleAnalyticsCharts'
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Select from '@material-ui/core/Select';
@@ -11,7 +12,7 @@ import Box from '@material-ui/core/Box'
 import Divider from '@material-ui/core/Divider'
 import Grid from '@material-ui/core/Grid'
 
-import {GOOGLE_ANALYTICS_URL_TOKEN} from '../../config_constants'
+import { GOOGLE_ANALYTICS_URL_TOKEN } from '../../config_constants'
 
 const last7days = {
   reportType: 'ga',
@@ -53,10 +54,10 @@ const trafficByPlatformLast7Days = {
 const last30days = {
   reportType: 'ga',
   query: {
-    'dimensions': 'ga:date',
-    'metrics': 'ga:pageviews,ga:sessions',
     'start-date': '30daysAgo',
     'end-date': 'yesterday',
+    'dimensions': 'ga:date',
+    'metrics': 'ga:pageviews,ga:sessions',
     'filters': 'ga:pagePath=@/wikilegis/p/',
   },
   chart: {
@@ -75,7 +76,44 @@ const trafficByPlatformLast30Days = {
     'dimensions': 'ga:pagePathLevel3',
     'sort': '-ga:pageviews',
     'filters': 'ga:pagePath=@/wikilegis/p/',
-    'max-results': 10 //number of platforms
+    'max-results': 10
+  },
+  chart: {
+    'type': 'PIE',
+    'options': {
+      'width': '100%',
+      'pieHole': 4 / 9,
+      'title': 'Top 10 projetos'
+    }
+  }
+}
+
+const dynamicLineChart = {
+  reportType: 'ga',
+  query: {
+    'start-date': '2019-09-02',
+    'end-date': 'yesterday',
+    'dimensions': 'ga:date',
+    'metrics': 'ga:pageviews,ga:sessions',
+    'filters': 'ga:pagePath=@/wikilegis/p/',
+  },
+  chart: {
+    type: 'LINE',
+    options: {
+      'title': 'Acessos'
+    }
+  }
+}
+
+const dynamicPieChart = {
+  query: {
+    'start-date': '2019-09-02',
+    'end-date': 'yesterday',
+    'metrics': 'ga:pageviews',
+    'dimensions': 'ga:pagePathLevel3',
+    'sort': '-ga:pageviews',
+    'filters': 'ga:pagePath=@/wikilegis/p/',
+    'max-results': 10
   },
   chart: {
     'type': 'PIE',
@@ -139,6 +177,15 @@ export default class WikilegisAnalyticsPage extends Component {
             pieChartConfig={trafficByPlatformLast7Days}
           />
         );
+      case 'filter':
+        return (
+          <GoogleAnalyticsFilterForm
+            views={views}
+            lineChartConfig={dynamicLineChart}
+            pieChartConfig={dynamicPieChart}
+            startDate='2019-09-01'
+          />
+        );
       default:
         return (
           <GoogleAnalyticsCharts
@@ -162,20 +209,21 @@ export default class WikilegisAnalyticsPage extends Component {
           <GoogleProvider accessToken={this.state.token}>
             <Paper>
               <Box paddingY={3} paddingX={2} spacing={1}>
-                  <Grid container spacing={3}>
-                    <Grid item xs={12}>
-                        <InputLabel id="select-label">Visualizar por</InputLabel>
-                          <Select
-                            labelId="select-label"
-                            id="simple-select"
-                            value={this.state.gaMetricsSwitch}
-                            onChange={this.handleMetricsSwitchChange}
-                          >
-                          <MenuItem value={'month'}>Últimos 30 dias</MenuItem>
-                          <MenuItem value={'week'}>Últimos 7 dias</MenuItem>
-                        </Select>
-                    </Grid>
+                <Grid container spacing={3}>
+                  <Grid item xs={12}>
+                    <InputLabel id="select-label">Visualizar por</InputLabel>
+                    <Select
+                      labelId="select-label"
+                      id="simple-select"
+                      value={this.state.gaMetricsSwitch}
+                      onChange={this.handleMetricsSwitchChange}
+                    >
+                      <MenuItem value={'month'}>Últimos 30 dias</MenuItem>
+                      <MenuItem value={'week'}>Últimos 7 dias</MenuItem>
+                      <MenuItem value={'filter'}>Seleção de período</MenuItem>
+                    </Select>
                   </Grid>
+                </Grid>
               </Box>
 
               <Divider variant="middle"></Divider>

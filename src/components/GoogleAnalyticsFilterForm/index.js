@@ -33,42 +33,11 @@ class GoogleAnalyticsFilterForm extends Component {
     this.handleEndDateChange = this.handleEndDateChange.bind(this);
     this.handleDimensionChange = this.handleDimensionChange.bind(this);
     this.state = {
-      startDate: '2016-01-01',
+      startDate: props.startDate,
       endDate: getCurrentDate(),
       dimension: 'ga:year',
-      lineChartData: {
-        query: {
-          'start-date': '2016-01-01',
-          'end-date': 'yesterday',
-          'metrics': 'ga:pageviews,ga:sessions',
-          'dimensions': 'ga:year',
-        },
-        chart: {
-          'type': 'LINE',
-          'options': {
-            'title': 'Acessos'
-          }
-        }
-      },
-      pieChartData: {
-        query: {
-          'start-date': '2016-01-01',
-          'end-date': 'yesterday',
-          'metrics': 'ga:pageviews',
-          'dimensions': 'ga:pagePathLevel1',
-          'sort': '-ga:pageviews',
-          'filters': 'ga:pagePathLevel1!=/',
-          'max-results': 4 //number of platforms
-        },
-        chart: {
-          'type': 'PIE',
-          'options': {
-            'width': '100%',
-            'pieHole': 4 / 9,
-            'title': 'Tráfego por plataforma'
-          }
-        }
-      },
+      lineChartData: props.lineChartConfig,
+      pieChartData: props.pieChartConfig,
     };
   }
 
@@ -115,79 +84,79 @@ class GoogleAnalyticsFilterForm extends Component {
 
   render() {
     return (
-        <Box marginX={2} paddingBottom={2}>
-          <Box paddingBottom={2}>
-            <form onSubmit={this.handleSubmit}>
-                <Grid container spacing={3}>
-                  <Grid item>
-                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                      <DatePicker
-                        id="start-date"
-                        name="startDate"
-                        label="Data inicial"
-                        type="date"
-                        format="yyyy-MM-dd"
-                        variant="inline"
-                        value={this.state.startDate}
-                        onChange={this.handleStartDateChange}
-                      />
-                    </MuiPickersUtilsProvider>
-                  </Grid>
-                  <Grid item>
-                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                      <DatePicker
-                        id="end-date"
-                        name="endDate"
-                        label="Data final"
-                        type="date"
-                        format="yyyy-MM-dd"
-                        variant="inline"
-      
-                        value={this.state.endDate}
-                        onChange={this.handleEndDateChange}
-                      />
-                    </MuiPickersUtilsProvider>
-                  </Grid>
-                  <Grid item>
-                    <FormControl>
-                      <InputLabel shrink id="select-label">
-                        Intervalo
+      <Box marginX={2} paddingBottom={2}>
+        <Box paddingBottom={2}>
+          <form onSubmit={this.handleSubmit}>
+            <Grid container spacing={3}>
+              <Grid item>
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                  <DatePicker
+                    id="start-date"
+                    name="startDate"
+                    label="Data inicial"
+                    type="date"
+                    format="yyyy-MM-dd"
+                    variant="inline"
+                    value={this.state.startDate}
+                    onChange={this.handleStartDateChange}
+                  />
+                </MuiPickersUtilsProvider>
+              </Grid>
+              <Grid item>
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                  <DatePicker
+                    id="end-date"
+                    name="endDate"
+                    label="Data final"
+                    type="date"
+                    format="yyyy-MM-dd"
+                    variant="inline"
+
+                    value={this.state.endDate}
+                    onChange={this.handleEndDateChange}
+                  />
+                </MuiPickersUtilsProvider>
+              </Grid>
+              <Grid item>
+                <FormControl>
+                  <InputLabel shrink id="select-label">
+                    Intervalo
                       </InputLabel>
-                      <Select
-                        id="select-label"
-                        value={this.state.dimension}
-                        onChange={this.handleDimensionChange}
-                      >
-                        <MenuItem value={'ga:day'}>Diário</MenuItem>
-                        <MenuItem value={'ga:yearWeek'}>Semanal</MenuItem>
-                        <MenuItem value={'ga:yearMonth'}>Mensal</MenuItem>
-                        <MenuItem value={'ga:year'}>Anual</MenuItem>
-                      </Select>
-                    </FormControl>
-                  </Grid>
-                  <Grid item justify='flex-end'>
-                    <FormControl>
-                      <Button id="submit-button" color="blue" variant="contained" type="submit" endIcon={<SearchIcon></SearchIcon>}>
-                        Pesquisar
+                  <Select
+                    id="select-label"
+                    value={this.state.dimension}
+                    onChange={this.handleDimensionChange}
+                  >
+                    <MenuItem value={'ga:day'}>Diário</MenuItem>
+                    <MenuItem value={'ga:yearWeek'}>Semanal</MenuItem>
+                    <MenuItem value={'ga:yearMonth'}>Mensal</MenuItem>
+                    <MenuItem value={'ga:year'}>Anual</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item justify='flex-end'>
+                <FormControl>
+                  <Button id="submit-button" color="blue" variant="contained" type="submit" endIcon={<SearchIcon></SearchIcon>}>
+                    Pesquisar
                       </Button>
-                    </FormControl>
+                </FormControl>
 
-                  </Grid>
+              </Grid>
 
-                </Grid>
-            </form>
-          </Box>
-          <Box marginX={2} paddingBottom={1}>
-            <GoogleAnalyticsCharts
-              views={this.props.views}
-              lineChartConfig={this.state.lineChartData}
-              pieChartConfig={this.state.pieChartData}
-            />
-          </Box>
-
-          <Divider></Divider>
-
+            </Grid>
+          </form>
         </Box>
+        <Box marginX={2} paddingBottom={1}>
+          <GoogleAnalyticsCharts
+            views={this.props.views}
+            lineChartConfig={this.state.lineChartData}
+            pieChartConfig={this.state.pieChartData}
+          />
+        </Box>
+
+        <Divider></Divider>
+
+      </Box>
     )
   }
 }

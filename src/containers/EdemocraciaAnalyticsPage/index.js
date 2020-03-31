@@ -54,7 +54,7 @@ const trafficByPlatformLast30Days = {
 const last7days = {
   reportType: 'ga',
   query: {
-    'dimensions': 'ga:dayOfWeekName',
+    'dimensions': 'ga:date',
     'metrics': 'ga:pageviews,ga:sessions',
     'start-date': '7daysAgo',
     'end-date': 'yesterday'
@@ -83,6 +83,42 @@ const trafficByPlatformLast7Days = {
       'width': '100%',
       'pieHole': 4 / 9,
       'title': 'Tráfego por plataforma nos últimos 7 dias'
+    }
+  }
+}
+
+const dynamicLineChart = {
+  reportType: 'ga',
+  query: {
+    'start-date': '2016-01-01',
+    'end-date': 'yesterday',
+    'metrics': 'ga:pageviews,ga:sessions',
+    'dimensions': 'ga:year',
+  },
+  chart: {
+    type: 'LINE',
+    options: {
+      'title': 'Acessos'
+    }
+  }
+}
+
+const dynamicPieChart = {
+  query: {
+    'start-date': '2016-01-01',
+    'end-date': 'yesterday',
+    'metrics': 'ga:pageviews',
+    'dimensions': 'ga:pagePathLevel1',
+    'sort': '-ga:pageviews',
+    'filters': 'ga:pagePathLevel1!=/',
+    'max-results': 4  //number of platforms
+  },
+  chart: {
+    'type': 'PIE',
+    'options': {
+      'width': '100%',
+      'pieHole': 4 / 9,
+      'title': 'Tráfego por plataforma'
     }
   }
 }
@@ -141,7 +177,12 @@ export default class AnalyticsPage extends Component {
         );
       case 'filter':
         return (
-          <GoogleAnalyticsFilterForm views={views} />
+          <GoogleAnalyticsFilterForm
+            views={views}
+            lineChartConfig={dynamicLineChart}
+            pieChartConfig={dynamicPieChart}
+            startDate='2016-01-01'
+          />
         );
       default:
         return (
