@@ -36,12 +36,12 @@ class GoogleAnalyticsCharts extends Component {
           ? <h2> {this.props.title} </h2>
           : ''
         }
-        <Paper>
+        
           {!this.state.done
             ? <div align="center"> <CircularProgress></CircularProgress> </div>
             : ''
           }
-          <Box m={1} display={!this.state.done ? 'none' : 'block'}>
+          <Box paddingX={2} display={!this.state.done ? 'none' : 'block'}>
             <Grid container>
               <Grid item xs={6}>
                 <GoogleDataChart views={this.props.views} config={this.props.lineChartConfig} />
@@ -51,7 +51,7 @@ class GoogleAnalyticsCharts extends Component {
               </Grid>
             </Grid>
           </Box>
-        </Paper>
+       
       </div>
     )
   }

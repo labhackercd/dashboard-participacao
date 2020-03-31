@@ -6,6 +6,8 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
+import Paper from '@material-ui/core/Paper'
+import Box from '@material-ui/core/Box'
 
 const last30days = {
   reportType: 'ga',
@@ -101,7 +103,7 @@ export default class AudienciasAnalyticsPage extends Component {
 
   async componentDidMount() {
     try {
-      const response = await fetch('http://localhost:5000'); // Alterar pela URL válida 
+      const response = await fetch('http://322d46aa.ngrok.io'); // Alterar pela URL válida 
       const json = await response.json();
       this.setState({ token: json.token, isLoading: false });
     } catch (error) {
@@ -154,16 +156,21 @@ export default class AudienciasAnalyticsPage extends Component {
       return (
         <ResponsiveDrawer title='Analytics Audiências Interativas'>
           <GoogleProvider accessToken={this.state.token}>
-            <InputLabel id="select-label">Visualizar por</InputLabel>
-            <Select
-              labelId="select-label"
-              id="simple-select"
-              value={this.state.gaMetricsSwitch}
-              onChange={this.handleMetricsSwitchChange}
-            >
-              <MenuItem value={'month'}>Últimos 30 dias</MenuItem>
-              <MenuItem value={'week'}>Últimos 7 dias</MenuItem>
-            </Select>
+            <Paper>
+              <Box paddingY={3} paddingX={2}>
+                  <InputLabel id="select-label">Visualizar por</InputLabel>
+                  <Select
+                    labelId="select-label"
+                    id="simple-select"
+                    value={this.state.gaMetricsSwitch}
+                    onChange={this.handleMetricsSwitchChange}
+                  >
+                  <MenuItem value={'month'}>Últimos 30 dias</MenuItem>
+                  <MenuItem value={'week'}>Últimos 7 dias</MenuItem>
+              </Select>
+              </Box>
+
+            </Paper>
             {this.renderGoogleAnalyticsSwitch()}
           </GoogleProvider>
         </ResponsiveDrawer >

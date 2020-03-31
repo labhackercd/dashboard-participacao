@@ -101,7 +101,7 @@ export default class WikilegisAnalyticsPage extends Component {
 
   async componentDidMount() {
     try {
-      const response = await fetch('http://localhost:5000'); // Alterar pela URL válida 
+      const response = await fetch('http://322d46aa.ngrok.io'); // Alterar pela URL válida 
       const json = await response.json();
       this.setState({ token: json.token, isLoading: false });
     } catch (error) {
