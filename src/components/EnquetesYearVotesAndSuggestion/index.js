@@ -1,5 +1,4 @@
 import * as React from "react";
-import Paper from "@material-ui/core/Paper";
 import {
     Chart,
     ArgumentAxis,
@@ -237,9 +236,9 @@ class EnquetesYearVotesAndSuggestion extends React.PureComponent {
 
     update_chart() {
         let ano_data = []
-        if (this.props.ano == "2017") {
+        if (this.props.ano === "2017") {
             ano_data = ano_2017
-        } else if (this.props.ano == "2018") {
+        } else if (this.props.ano === "2018") {
             ano_data = ano_2018
         } else {
             ano_data = ano_2019
