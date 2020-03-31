@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import Icon from '@material-ui/core/Icon';
 import Button from '@material-ui/core/Button';
 import DateFnsUtils from '@date-io/date-fns';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import SearchIcon from '@material-ui/icons/Search';
 import Box from '@material-ui/core/Box'
 import InputLabel from '@material-ui/core/InputLabel';

@@ -44,7 +44,7 @@ const ano_2017 = [
   },
   {
     enquete: "Enquete B",
-    suggestions: 10,
+    suggestions: 30,
   },
   {
     enquete: "Enquete C",
@@ -55,30 +55,30 @@ const ano_2017 = [
 const ano_2018 = [
   {
     enquete: "Enquete A",
-    suggestions: 120,
-  },
-  {
-    enquete: "Enquete B",
     suggestions: 200,
   },
   {
-    enquete: "Enquete C",
+    enquete: "Enquete B",
     suggestions: 150,
+  },
+  {
+    enquete: "Enquete C",
+    suggestions: 100,
   }
 ]
 
 const ano_2019 = [
   {
     enquete: "Enquete A",
-    suggestions: 50,
+    suggestions: 100,
   },
   {
     enquete: "Enquete B",
-    suggestions: 30,
+    suggestions: 80,
   },
   {
     enquete: "Enquete C",
-    suggestions: 100,
+    suggestions: 50,
   }
 ]
 
