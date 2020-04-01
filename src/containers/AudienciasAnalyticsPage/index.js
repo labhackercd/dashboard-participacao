@@ -11,6 +11,8 @@ import Box from '@material-ui/core/Box'
 import Divider from '@material-ui/core/Divider'
 import Grid from '@material-ui/core/Grid'
 
+import {GOOGLE_ANALYTICS_URL_TOKEN} from '../../config_constants'
+
 
 const last30days = {
   reportType: 'ga',
@@ -106,7 +108,7 @@ export default class AudienciasAnalyticsPage extends Component {
 
   async componentDidMount() {
     try {
-      const response = await fetch('http://322d46aa.ngrok.io'); // Alterar pela URL válida 
+      const response = await fetch(GOOGLE_ANALYTICS_URL_TOKEN); // Alterar pela URL válida 
       const json = await response.json();
       this.setState({ token: json.token, isLoading: false });
     } catch (error) {

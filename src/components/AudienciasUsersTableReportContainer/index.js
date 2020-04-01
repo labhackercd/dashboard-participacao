@@ -4,6 +4,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { TablePagination } from '@material-ui/core';
 
+import {AUDIENCIAS_PAGED_USER_API_URL} from '../../config_constants'
 
 
 class AudienciasUserTableReport extends Component {
@@ -34,7 +35,8 @@ class AudienciasUserTableReport extends Component {
   
   loadDataInTable(callback){
     //https://edemocracia.camara.leg.br/audiencias/api/room/?ordering=-created&is_visible=true
-    const url = new URL("https://edemocracia.camara.leg.br/audiencias/api/user/?page="+ this.state.currentPage)
+
+    const url = new URL(AUDIENCIAS_PAGED_USER_API_URL + this.state.currentPage)
 
     fetch(url, {
       method: 'GET',
@@ -54,8 +56,8 @@ class AudienciasUserTableReport extends Component {
       
       this.setState({isLoadingTable:true, currentPage:page})
       
-      const url = new URL("https://edemocracia.camara.leg.br/audiencias/api/user/?page="+ this.state.currentPage)
-      
+      const url = new URL(AUDIENCIAS_PAGED_USER_API_URL + this.state.currentPage)
+
       fetch(url, {
         method: 'GET',
       }).then((response) => response.json())

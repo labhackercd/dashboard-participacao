@@ -4,6 +4,8 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Box from '@material-ui/core/Box';
 
+import {AUDIENCIAS_ROOM_API_URL} from '../../config_constants'
+
 class AudienciasRoomsTableReport extends Component {
 
   _isTableMounted=false;
@@ -33,7 +35,7 @@ class AudienciasRoomsTableReport extends Component {
   
   loadDataInTable(callback){
     //https://edemocracia.camara.leg.br/audiencias/api/room/?ordering=-created&is_visible=true
-    const url = new URL("https://edemocracia.camara.leg.br/audiencias/api/room/?ordering=-created&is_visible=true")
+    const url = new URL(AUDIENCIAS_ROOM_API_URL)
 
     fetch(url, {
       method: 'GET',
