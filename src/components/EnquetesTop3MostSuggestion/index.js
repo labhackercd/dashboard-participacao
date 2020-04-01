@@ -1,5 +1,4 @@
 import * as React from "react";
-import Paper from "@material-ui/core/Paper";
 import {
   Chart,
   ArgumentAxis,
@@ -44,7 +43,7 @@ const ano_2017 = [
   },
   {
     enquete: "Enquete B",
-    suggestions: 10,
+    suggestions: 30,
   },
   {
     enquete: "Enquete C",
@@ -55,30 +54,30 @@ const ano_2017 = [
 const ano_2018 = [
   {
     enquete: "Enquete A",
-    suggestions: 120,
-  },
-  {
-    enquete: "Enquete B",
     suggestions: 200,
   },
   {
-    enquete: "Enquete C",
+    enquete: "Enquete B",
     suggestions: 150,
+  },
+  {
+    enquete: "Enquete C",
+    suggestions: 100,
   }
 ]
 
 const ano_2019 = [
   {
     enquete: "Enquete A",
-    suggestions: 50,
+    suggestions: 100,
   },
   {
     enquete: "Enquete B",
-    suggestions: 30,
+    suggestions: 80,
   },
   {
     enquete: "Enquete C",
-    suggestions: 100,
+    suggestions: 50,
   }
 ]
 
@@ -93,9 +92,9 @@ class EnqueteTop3MostSuggestion extends React.Component {
 
   update_chart() {
     let ano_data = []
-    if (this.props.ano == "2017") {
+    if (this.props.ano === "2017") {
       ano_data = ano_2017
-    } else if (this.props.ano == "2018") {
+    } else if (this.props.ano === "2018") {
       ano_data = ano_2018
     } else {
       ano_data = ano_2019

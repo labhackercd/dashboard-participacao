@@ -4,6 +4,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { TablePagination } from '@material-ui/core';
 
+import { WIKILEGIS_PAGED_DOCUMENT_API_URL } from "../../config_constants";
 
 
 class WikilegisDocumentsTableReport extends Component {
@@ -34,7 +35,7 @@ class WikilegisDocumentsTableReport extends Component {
   }
 
   loadDataInTable(callback) {
-    const url = new URL("http://261572d9.ngrok.io/api/v1/documents/?page=" + this.state.currentPage)
+    const url = new URL(WIKILEGIS_PAGED_DOCUMENT_API_URL + this.state.currentPage)
 
     fetch(url, {
       method: 'GET',
@@ -54,7 +55,7 @@ class WikilegisDocumentsTableReport extends Component {
 
     this.setState({ isLoadingTable: true, currentPage: page })
 
-    const url = new URL("http://261572d9.ngrok.io/api/v1/documents/?page=" + this.state.currentPage)
+    const url = new URL(WIKILEGIS_PAGED_DOCUMENT_API_URL + this.state.currentPage)
 
     fetch(url, {
       method: 'GET',

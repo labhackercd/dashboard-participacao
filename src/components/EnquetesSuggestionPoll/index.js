@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Paper from '@material-ui/core/Paper';
 import {
   Chart,
   PieSeries,
@@ -36,9 +35,9 @@ class EnquetesSuggestionPoll extends React.Component {
 
   update_chart() {
     let enquete = []
-    if (this.props.enquete == "C") {
+    if (this.props.enquete === "C") {
       enquete = enquete_C
-    } else if (this.props.enquete == "B") {
+    } else if (this.props.enquete === "B") {
       enquete = enquete_B
     } else {
       enquete = enquete_A
