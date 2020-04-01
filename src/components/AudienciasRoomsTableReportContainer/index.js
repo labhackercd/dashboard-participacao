@@ -17,7 +17,9 @@ class AudienciasRoomsTableReport extends Component {
     { field: 'messages_count', title: 'Mensagens', tooltip:'Número de mensagens no chat da audiência interativa.' },
     { field: 'votes_count', title: 'Votos em Perguntas', tooltip:'Número de votos em perguntas enviadas.' },
     { field: 'participants_count', title: 'Participantes', tooltip: 'Número de participantes que interagiram com a audiência(perguntou/voto/comentou).'},
-    { field: 'legislative_body_initials', title: 'Comissão', tooltip: 'Sigla da comissão organizadora da audiência'}
+    { field: 'legislative_body_initials', title: 'Comissão', tooltip: 'Sigla da comissão organizadora da audiência'},
+    { field: 'reunion_type', title: 'Tipo', tooltip: 'Tipo do evento realizado'},
+    
   ]
     
   constructor(props) {
@@ -103,11 +105,13 @@ class AudienciasRoomsTableReport extends Component {
                 title="Salas"
                 detailPanel={rowData => {
                   return (
-                    <div>
+                    <Box marginX={2}>
+                      <p><b>Comissão:</b>{rowData.legislative_body}</p>
+                      <p><b>Descrição:</b></p>
                       <p>{rowData.reunion_object}</p>
                       <br></br>
-                      <p>{rowData.legislative_body}</p>
-                    </div>
+                      
+                    </Box>
                   )
                 }}
                 onRowClick={(event, rowData, togglePanel) => togglePanel()}
