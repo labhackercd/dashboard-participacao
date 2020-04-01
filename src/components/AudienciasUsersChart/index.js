@@ -10,10 +10,8 @@ import {
 } from '@devexpress/dx-react-chart-material-ui';
 import { EventTracker } from '@devexpress/dx-react-chart';
 import { Animation } from '@devexpress/dx-react-chart';
-import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box'
-import GetAppIcon from '@material-ui/icons/GetApp';
-import { CSVLink, CSVDownload } from "react-csv";
+import { CSVLink} from "react-csv";
 
 
 const data = [
