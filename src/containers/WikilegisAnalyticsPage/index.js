@@ -6,6 +6,11 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
+import Paper from '@material-ui/core/Paper'
+import Box from '@material-ui/core/Box'
+import Divider from '@material-ui/core/Divider'
+import Grid from '@material-ui/core/Grid'
+
 
 const last7days = {
   reportType: 'ga',
@@ -154,17 +159,30 @@ export default class WikilegisAnalyticsPage extends Component {
       return (
         <ResponsiveDrawer title='Analytics Wikilegis'>
           <GoogleProvider accessToken={this.state.token}>
-            <InputLabel id="select-label">Visualizar por</InputLabel>
-            <Select
-              labelId="select-label"
-              id="simple-select"
-              value={this.state.gaMetricsSwitch}
-              onChange={this.handleMetricsSwitchChange}
-            >
-              <MenuItem value={'month'}>Últimos 30 dias</MenuItem>
-              <MenuItem value={'week'}>Últimos 7 dias</MenuItem>
-            </Select>
-            {this.renderGoogleAnalyticsSwitch()}
+            <Paper>
+              <Box paddingY={3} paddingX={2} spacing={1}>
+                  <Grid container spacing={3}>
+                    <Grid item xs={12}>
+                        <InputLabel id="select-label">Visualizar por</InputLabel>
+                          <Select
+                            labelId="select-label"
+                            id="simple-select"
+                            value={this.state.gaMetricsSwitch}
+                            onChange={this.handleMetricsSwitchChange}
+                          >
+                          <MenuItem value={'month'}>Últimos 30 dias</MenuItem>
+                          <MenuItem value={'week'}>Últimos 7 dias</MenuItem>
+                        </Select>
+                    </Grid>
+                  </Grid>
+              </Box>
+
+              <Divider variant="middle"></Divider>
+
+              <Box spacing={2} paddingTop={2}>
+                {this.renderGoogleAnalyticsSwitch()}
+              </Box>
+            </Paper>
           </GoogleProvider>
         </ResponsiveDrawer >
       )

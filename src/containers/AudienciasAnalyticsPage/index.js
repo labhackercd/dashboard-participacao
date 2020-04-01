@@ -160,7 +160,7 @@ export default class AudienciasAnalyticsPage extends Component {
         <ResponsiveDrawer title='Analytics Audiências Interativas'>
           <GoogleProvider accessToken={this.state.token}>
 
-          <Paper>
+            <Paper>
               <Box paddingY={3} paddingX={2} spacing={1}>
                   <Grid container spacing={3}>
                     <Grid item xs={12}>
