@@ -19,6 +19,9 @@ import EDemocraciaReportPage from './containers/EDemocraciaReportPage'
 import EDemocraciaChartsPage from './containers/EDemocraciaChartsPage'
 import EdemocraciaAnalyticsPage from './containers/EdemocraciaAnalyticsPage'
 
+import PautaChartsPage from './containers/PautaChartsPage'
+import PautaReportPage from './containers/PautaReportPage'
+
 import WikilegisReportPage from './containers/WikilegisReportPage'
 import WikilegisAnalyticsPage from './containers/WikilegisAnalyticsPage'
 import WikilegisChartsPage from './containers/WikilegisChartsPage'
@@ -57,6 +60,13 @@ function App() {
             <AudienciasChartsPage theme={theme}></AudienciasChartsPage>
           </Route>
 
+          <Route exact path="/pauta-relatorios">
+            <PautaReportPage theme={theme}></PautaReportPage>
+          </Route>
+          <Route exact path="/pauta-graficos">
+            <PautaChartsPage theme={theme}></PautaChartsPage>
+          </Route>
+
 
           <Route exact path="/edemocracia-graficos">
             <EDemocraciaChartsPage theme={theme}></EDemocraciaChartsPage>
@@ -78,8 +88,6 @@ function App() {
           <Route exact path="/wikilegis-graficos">
             <WikilegisChartsPage theme={theme}></WikilegisChartsPage>
           </Route>
-
-
 
         </Switch>
       </Router>
