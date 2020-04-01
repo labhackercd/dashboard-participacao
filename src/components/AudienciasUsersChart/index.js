@@ -10,6 +10,11 @@ import {
 } from '@devexpress/dx-react-chart-material-ui';
 import { EventTracker } from '@devexpress/dx-react-chart';
 import { Animation } from '@devexpress/dx-react-chart';
+import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box'
+import GetAppIcon from '@material-ui/icons/GetApp';
+import { CSVLink, CSVDownload } from "react-csv";
+
 
 const data = [
   { year: '2015', users: 1.000 },
@@ -34,21 +39,27 @@ export default class AudienciasUserChart extends React.PureComponent {
 
     return (
       <Paper>
-        <Chart
-          data={chartData}
-        >
-          <ArgumentAxis />
-          <ValueAxis max={7} />
+        <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
+          <CSVLink data={chartData} filename={"usuarios-cadastrados-ano-audiencias.csv"} className="btn btn-primary">Exportar csv</CSVLink>
+        </Box>
+        <Box>
+            <Chart
+              data={chartData}
+            >
+              <ArgumentAxis />
+              <ValueAxis max={7} />
+              
+              <BarSeries
+                valueField="users"
+                argumentField="year"
+              />
+              <Title text="Usuários Cadastrados / Ano" />
+              <EventTracker />
+              <Tooltip/>
+              <Animation />
+            </Chart>
+        </Box>
 
-          <BarSeries
-            valueField="users"
-            argumentField="year"
-          />
-          <Title text="Número de usuários cadastrados" />
-          <EventTracker />
-          <Tooltip/>
-          <Animation />
-        </Chart>
       </Paper>
     );
   }
