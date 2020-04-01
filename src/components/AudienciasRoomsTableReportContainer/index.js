@@ -10,15 +10,14 @@ class AudienciasRoomsTableReport extends Component {
 
   _isTableMounted=false;
   columns = [
-    { field: 'title_reunion', title: 'Título da Reunião',  align: 'center'},
-    { field: 'date', title: 'Data' },
-    { field: 'questions_count', title: 'Perguntas' },
-    { field: 'answered_questions_count', title: 'Perguntas Respondidas'},
-    { field: 'messages_count', title: 'Mensagens' },
-    { field: 'votes_count', title: 'Votos' },
-    { field: 'participants_count', title: 'Participantes'},
-    { field: 'max_online_users', title: 'Máximo Usuários On'},
-    { field: 'legislative_body_initials', title: 'Comissão'}
+    { field: 'title_reunion', title: 'Título da Reunião', tooltip:'Título da Reunião'},
+    { field: 'date', title: 'Data', tooltip:'Data/Hora de realização' },
+    { field: 'questions_count', title: 'Perguntas', tooltip:'Número de perguntas enviadas para a audiência' },
+    { field: 'answered_questions_count', title: 'Perguntas Respondidas', tooltip:'Número de perguntas enviadas respondidas durante a audiência.'},
+    { field: 'messages_count', title: 'Mensagens', tooltip:'Número de mensagens no chat da audiência interativa.' },
+    { field: 'votes_count', title: 'Votos em Perguntas', tooltip:'Número de votos em perguntas enviadas.' },
+    { field: 'participants_count', title: 'Participantes', tooltip: 'Número de participantes que interagiram com a audiência(perguntou/voto/comentou).'},
+    { field: 'legislative_body_initials', title: 'Comissão', tooltip: 'Sigla da comissão organizadora da audiência'}
   ]
     
   constructor(props) {
