@@ -17,7 +17,7 @@ import { GOOGLE_ANALYTICS_URL_TOKEN } from '../../config_constants'
 const last7days = {
   reportType: 'ga',
   query: {
-    'dimensions': 'ga:dayOfWeekName',
+    'dimensions': 'ga:date',
     'metrics': 'ga:pageviews,ga:sessions',
     'start-date': '7daysAgo',
     'end-date': 'yesterday',
