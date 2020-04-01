@@ -6,6 +6,7 @@ import Box from '@material-ui/core/Box';
 import AudienciasMadeChart from '../../components/AudienciasMadeCharts'
 import AudienciasGenderChart from '../../components/AudienciasGenderChart'
 import AudienciasUserChart from '../../components/AudienciasUsersChart'
+import AudienciasAgeUsersChart from '../../components/AudienciasAgeUsersChart'
 import AudienciasComissionChart from '../../components/AudienciasComissionChart'
 import Grid from '@material-ui/core/Grid';
 
@@ -104,9 +105,14 @@ class AudienciasReportPage extends Component {
               <AudienciasComissionChart></AudienciasComissionChart>
             </Box>
           </Grid>
-          <Grid item xs={12} zeroMinWidth>
+          <Grid item xs={8} zeroMinWidth>
             <Box>
-              <AudienciasMadeChart></AudienciasMadeChart>
+              <AudienciasMadeChart ></AudienciasMadeChart>
+            </Box>
+          </Grid>
+          <Grid item xs={4}>
+            <Box>
+              <AudienciasAgeUsersChart></AudienciasAgeUsersChart>
             </Box>
           </Grid>
         </Grid>
