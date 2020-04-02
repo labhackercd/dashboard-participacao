@@ -94,20 +94,20 @@ class AudienciasMadeCharts extends React.PureComponent {
               <ValueAxis />
 
               <AreaSeries
-                name="Audiências transmitidas"
+                name="Audiências com transmissão comum"
                 valueField="audienciasTransmitidas"
                 argumentField="month"
                 seriesComponent={Area}
               />
               <AreaSeries
-                name="Audiências Interativas"
+                name="Audiências com transmissão interativa"
                 valueField="audienciasInterativas"
                 argumentField="month"
                 seriesComponent={Area}
               />
               <Animation />
               <Legend position="bottom" rootComponent={Root} labelComponent={Label} />
-              <Title text="Audiências Interativas / Audiências Realizadas" />
+              <Title text="Audiências com transmissão comum x Audiências com transmissão interativa" />
             </Chart>
         </Box>
 

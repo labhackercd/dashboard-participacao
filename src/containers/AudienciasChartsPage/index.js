@@ -3,11 +3,6 @@ import ResponsiveDrawer from '../MenuDrawer';
 import { withStyles } from '@material-ui/core/styles';
 import MuiAlert from '@material-ui/lab/Alert';
 import Box from '@material-ui/core/Box';
-import AudienciasMadeChart from '../../components/AudienciasMadeCharts'
-import AudienciasGenderChart from '../../components/AudienciasGenderChart'
-import AudienciasUserChart from '../../components/AudienciasUsersChart'
-import AudienciasAgeUsersChart from '../../components/AudienciasAgeUsersChart'
-import AudienciasComissionChart from '../../components/AudienciasComissionChart'
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
@@ -15,6 +10,14 @@ import PersonOutlineIcon from '@material-ui/icons/PersonOutline'
 import ForumIcon from '@material-ui/icons/Forum';
 import ChatIcon from '@material-ui/icons/Chat';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
+
+import AudienciasMadeChart from '../../components/AudienciasMadeCharts'
+import AudienciasGenderChart from '../../components/AudienciasGenderChart'
+import AudienciasUserChart from '../../components/AudienciasUsersChart'
+import AudienciasAgeUsersChart from '../../components/AudienciasAgeUsersChart'
+import AudienciasComissionChart from '../../components/AudienciasComissionChart'
+import AudienciasParticipationBrazilMap from '../../components/AudienciasParticipationBrazilMap'
+
 
 
 const useStyles = theme => ({
@@ -132,6 +135,11 @@ class AudienciasReportPage extends Component {
           <Grid item xs={4}>
             <Box>
               <AudienciasAgeUsersChart></AudienciasAgeUsersChart>
+            </Box>
+          </Grid>
+          <Grid item xs={12}>
+            <Box>
+              <AudienciasParticipationBrazilMap></AudienciasParticipationBrazilMap>
             </Box>
           </Grid>
         </Grid>
