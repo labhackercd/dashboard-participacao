@@ -12,7 +12,7 @@ import {
   MuiPickersUtilsProvider,
   DatePicker,
 } from '@material-ui/pickers';
-import GoogleAnalyticsCharts from '../../components/GoogleAnalyticsCharts'
+import GoogleAnalyticsCharts from '../GoogleAnalyticsCharts'
 import FormControl from '@material-ui/core/FormControl';
 import { Divider } from '@material-ui/core';
 
@@ -22,7 +22,7 @@ function getCurrentDate() {
   let month = newDate.getMonth() + 1;
   let year = newDate.getFullYear();
 
-  return `${year}-${month < 10 ? `0${month}` : `${month}`}-${date}`
+  return `${year}-${month < 10 ? `0${month}` : `${month}`}-${date < 10 ? `0${date}` : `${date}`}`
 }
 
 class GoogleAnalyticsFilterForm extends Component {
@@ -42,32 +42,24 @@ class GoogleAnalyticsFilterForm extends Component {
   }
 
   handleSubmit(event) {
+    event.preventDefault();
+    let lineChartQueryData = this.state.lineChartData['query'];
+    let pieChartQueryData = this.state.pieChartData['query'];
+    lineChartQueryData['start-date'] = this.state.startDate;
+    lineChartQueryData['end-date'] = this.state.endDate;
+    lineChartQueryData['dimensions'] = this.state.dimension;
+    pieChartQueryData['start-date'] = this.state.startDate;
+    pieChartQueryData['end-date'] = this.state.endDate;
     this.setState(prevState => ({
       lineChartData: {
         ...prevState.lineChartData,
-        query: {
-          ...prevState.query,
-          'start-date': this.state.startDate,
-          'end-date': this.state.endDate,
-          'metrics': 'ga:pageviews,ga:sessions',
-          'dimensions': this.state.dimension,
-        }
+        query: lineChartQueryData
       },
       pieChartData: {
         ...prevState.pieChartData,
-        query: {
-          ...prevState.query,
-          'start-date': this.state.startDate,
-          'end-date': this.state.endDate,
-          'metrics': 'ga:pageviews',
-          'dimensions': 'ga:pagePathLevel1',
-          'sort': '-ga:pageviews',
-          'filters': 'ga:pagePathLevel1!=/',
-          'max-results': 4
-        }
+        query: pieChartQueryData
       }
     }))
-    event.preventDefault();
   }
 
   handleStartDateChange(date) {
@@ -161,4 +153,47 @@ class GoogleAnalyticsFilterForm extends Component {
   }
 }
 
-export default GoogleAnalyticsFilterForm;
+class GoogleAnalyticsDynamicCharts extends Component {
+  constructor(props) {
+    super(props)
+    this.addAnotherChart = this.addAnotherChart.bind(this);
+    this.state = {
+      ChartRows: [
+        <GoogleAnalyticsFilterForm
+          views={this.props.views}
+          lineChartConfig={this.props.lineChartConfig}
+          pieChartConfig={this.props.pieChartConfig}
+          startDate={this.props.startDate}
+        />
+      ]
+    }
+  }
+
+  addAnotherChart() {
+    this.setState({
+      ChartRows: [...this.state.ChartRows, React.cloneElement(this.state.ChartRows[0])]
+    })
+  }
+
+  render() {
+    const charts = this.state.ChartRows.map(function (chart) {
+      return <li> {chart} </li>;
+    });
+    return (
+      <div>
+        <ul className="chatrs-container">
+          {charts}
+        </ul>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={this.addAnotherChart}
+        >
+          Adicionar novo gráfico
+        </Button>
+      </div>
+    )
+  }
+}
+
+export default GoogleAnalyticsDynamicCharts;

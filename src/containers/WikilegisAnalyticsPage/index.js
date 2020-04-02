@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { GoogleProvider } from 'react-analytics-widget'
 import ResponsiveDrawer from '../MenuDrawer';
-import GoogleAnalyticsFilterForm from '../../components/GoogleAnalyticsFilterForm'
+import GoogleAnalyticsDynamicCharts from '../../components/GoogleAnalyticsDynamicCharts'
 import GoogleAnalyticsCharts from '../../components/GoogleAnalyticsCharts'
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Select from '@material-ui/core/Select';
@@ -179,7 +179,7 @@ export default class WikilegisAnalyticsPage extends Component {
         );
       case 'filter':
         return (
-          <GoogleAnalyticsFilterForm
+          <GoogleAnalyticsDynamicCharts
             views={views}
             lineChartConfig={dynamicLineChart}
             pieChartConfig={dynamicPieChart}

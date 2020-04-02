@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { GoogleProvider } from 'react-analytics-widget'
 import ResponsiveDrawer from '../MenuDrawer';
 import GoogleAnalyticsCharts from '../../components/GoogleAnalyticsCharts'
-import GoogleAnalyticsFilterForm from '../../components/GoogleAnalyticsFilterForm'
+import GoogleAnalyticsDynamicCharts from '../../components/GoogleAnalyticsDynamicCharts'
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -180,7 +180,7 @@ export default class AudienciasAnalyticsPage extends Component {
         );
       case 'filter':
         return (
-          <GoogleAnalyticsFilterForm
+          <GoogleAnalyticsDynamicCharts
             views={views}
             lineChartConfig={dynamicLineChart}
             pieChartConfig={dynamicPieChart}
