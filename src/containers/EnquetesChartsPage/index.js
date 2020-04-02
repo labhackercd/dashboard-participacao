@@ -91,11 +91,11 @@ class EnquetesChartsPage extends Component {
   }
 
   handleChangeEnquete(event, values) {
-    console.log(event);
-    console.log(values);
-    // if (enquete.poll) {
-    //   this.setState({ enquete: enquete.poll });
-    // }
+    if (values === null) {
+      this.setState({ enquete: "A" });
+    } else {
+      this.setState({ enquete: values.id });
+    }
   }
 
   handleChangeAno = (event, values) => {
@@ -214,12 +214,12 @@ class EnquetesChartsPage extends Component {
                       options={polls}
                       getOptionLabel={option => option.title}
                       style={{ width: 300 }}
+                      onChange={this.handleChangeEnquete}
                       renderInput={params => (
                         <TextField
                           {...params}
                           label="Propostas"
                           variant="outlined"
-                          onChange={this.handleChangeEnquete}
                         />
                       )}
                     />
