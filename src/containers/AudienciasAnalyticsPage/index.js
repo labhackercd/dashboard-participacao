@@ -1,152 +1,151 @@
-import React, { Component } from 'react';
-import { GoogleProvider } from 'react-analytics-widget'
-import ResponsiveDrawer from '../MenuDrawer';
-import GoogleAnalyticsCharts from '../../components/GoogleAnalyticsCharts'
-import GoogleAnalyticsDynamicCharts from '../../components/GoogleAnalyticsDynamicCharts'
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import Paper from '@material-ui/core/Paper'
-import Box from '@material-ui/core/Box'
-import Divider from '@material-ui/core/Divider'
-import Grid from '@material-ui/core/Grid'
+import React, { Component } from "react";
+import { GoogleProvider } from "react-analytics-widget";
+import ResponsiveDrawer from "../MenuDrawer";
+import GoogleAnalyticsCharts from "../../components/GoogleAnalyticsCharts";
+import GoogleAnalyticsDynamicCharts from "../../components/GoogleAnalyticsDynamicCharts";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Select from "@material-ui/core/Select";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import Paper from "@material-ui/core/Paper";
+import Box from "@material-ui/core/Box";
+import Divider from "@material-ui/core/Divider";
+import Grid from "@material-ui/core/Grid";
 
-import { GOOGLE_ANALYTICS_URL_TOKEN } from '../../config_constants'
-
+import { EDEMOCRACIA_GOOGLE_ANALYTICS } from "../../config_constants";
 
 const last30days = {
-  reportType: 'ga',
+  reportType: "ga",
   query: {
-    'dimensions': 'ga:date',
-    'metrics': 'ga:pageviews,ga:sessions',
-    'start-date': '30daysAgo',
-    'end-date': 'yesterday',
-    'filters': 'ga:pagePathLevel1=@/audiencias',
+    dimensions: "ga:date",
+    metrics: "ga:pageviews,ga:sessions",
+    "start-date": "30daysAgo",
+    "end-date": "yesterday",
+    filters: "ga:pagePathLevel1=@/audiencias"
   },
   chart: {
-    type: 'LINE',
+    type: "LINE",
     options: {
-      'title': 'Acessos nos últimos 30 dias'
+      title: "Acessos nos últimos 30 dias"
     }
   }
-}
+};
 
 const trafficByPlatformLast30Days = {
   query: {
-    'start-date': '30daysAgo',
-    'end-date': 'yesterday',
-    'metrics': 'ga:pageviews',
-    'dimensions': 'ga:pagePath',
-    'sort': '-ga:pageviews',
-    'filters': 'ga:pagePathLevel1=@/audiencias',
-    'max-results': 10 //number of platforms
+    "start-date": "30daysAgo",
+    "end-date": "yesterday",
+    metrics: "ga:pageviews",
+    dimensions: "ga:pagePath",
+    sort: "-ga:pageviews",
+    filters: "ga:pagePathLevel1=@/audiencias",
+    "max-results": 10 //number of platforms
   },
   chart: {
-    'type': 'PIE',
-    'options': {
-      'width': '100%',
-      'pieHole': 4 / 9,
-      'title': 'Top 10 audiências'
+    type: "PIE",
+    options: {
+      width: "100%",
+      pieHole: 4 / 9,
+      title: "Top 10 audiências"
     }
   }
-}
+};
 
 const last7days = {
-  reportType: 'ga',
+  reportType: "ga",
   query: {
-    'start-date': '7daysAgo',
-    'end-date': 'yesterday',
-    'dimensions': 'ga:date',
-    'metrics': 'ga:pageviews,ga:sessions',
-    'filters': 'ga:pagePathLevel1=@/audiencias',
+    "start-date": "7daysAgo",
+    "end-date": "yesterday",
+    dimensions: "ga:date",
+    metrics: "ga:pageviews,ga:sessions",
+    filters: "ga:pagePathLevel1=@/audiencias"
   },
   chart: {
-    type: 'LINE',
+    type: "LINE",
     options: {
-      'title': 'Acessos nos últimos 7 dias'
+      title: "Acessos nos últimos 7 dias"
     }
   }
-}
+};
 
 const trafficByPlatformLast7Days = {
   query: {
-    'start-date': '7daysAgo',
-    'end-date': 'yesterday',
-    'metrics': 'ga:pageviews',
-    'dimensions': 'ga:pagePath',
-    'sort': '-ga:pageviews',
-    'filters': 'ga:pagePathLevel1=@/audiencias',
-    'max-results': 10 //number of platforms
+    "start-date": "7daysAgo",
+    "end-date": "yesterday",
+    metrics: "ga:pageviews",
+    dimensions: "ga:pagePath",
+    sort: "-ga:pageviews",
+    filters: "ga:pagePathLevel1=@/audiencias",
+    "max-results": 10 //number of platforms
   },
   chart: {
-    'type': 'PIE',
-    'options': {
-      'width': '100%',
-      'pieHole': 4 / 9,
-      'title': 'Top 10 audiências'
+    type: "PIE",
+    options: {
+      width: "100%",
+      pieHole: 4 / 9,
+      title: "Top 10 audiências"
     }
   }
-}
+};
 
 const dynamicLineChart = {
-  reportType: 'ga',
+  reportType: "ga",
   query: {
-    'start-date': '2016-01-01',
-    'end-date': 'yesterday',
-    'dimensions': 'ga:year',
-    'metrics': 'ga:pageviews,ga:sessions',
-    'filters': 'ga:pagePathLevel1=@/audiencias',
+    "start-date": "2016-01-01",
+    "end-date": "yesterday",
+    dimensions: "ga:year",
+    metrics: "ga:pageviews,ga:sessions",
+    filters: "ga:pagePathLevel1=@/audiencias"
   },
   chart: {
-    type: 'LINE',
+    type: "LINE",
     options: {
-      'title': 'Acessos'
+      title: "Acessos"
     }
   }
-}
+};
 
 const dynamicPieChart = {
   query: {
-    'start-date': '2016-01-01',
-    'end-date': 'yesterday',
-    'metrics': 'ga:pageviews',
-    'dimensions': 'ga:pagePath',
-    'sort': '-ga:pageviews',
-    'filters': 'ga:pagePathLevel1=@/audiencias',
-    'max-results': 10
+    "start-date": "2016-01-01",
+    "end-date": "yesterday",
+    metrics: "ga:pageviews",
+    dimensions: "ga:pagePath",
+    sort: "-ga:pageviews",
+    filters: "ga:pagePathLevel1=@/audiencias",
+    "max-results": 10
   },
   chart: {
-    'type': 'PIE',
-    'options': {
-      'width': '100%',
-      'pieHole': 4 / 9,
-      'title': 'Top 10 audiências'
+    type: "PIE",
+    options: {
+      width: "100%",
+      pieHole: 4 / 9,
+      title: "Top 10 audiências"
     }
   }
-}
+};
 
 // analytics views ID
 const views = {
   query: {
     ids: "ga:125230257"
   }
-}
+};
 
 export default class AudienciasAnalyticsPage extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       token: "",
       isLoading: true,
-      gaMetricsSwitch: 'month'
+      gaMetricsSwitch: "month"
     };
     this.handleMetricsSwitchChange = this.handleMetricsSwitchChange.bind(this);
   }
 
   async componentDidMount() {
     try {
-      const response = await fetch(GOOGLE_ANALYTICS_URL_TOKEN); // Alterar pela URL válida 
+      const response = await fetch(EDEMOCRACIA_GOOGLE_ANALYTICS); // Alterar pela URL válida
       const json = await response.json();
       this.setState({ token: json.token, isLoading: false });
     } catch (error) {
@@ -155,43 +154,43 @@ export default class AudienciasAnalyticsPage extends Component {
   }
 
   handleMetricsSwitchChange(event) {
-    this.setState({ gaMetricsSwitch: event.target.value })
+    this.setState({ gaMetricsSwitch: event.target.value });
   }
 
   renderGoogleAnalyticsSwitch() {
     switch (this.state.gaMetricsSwitch) {
-      case 'month':
+      case "month":
         return (
           <GoogleAnalyticsCharts
             views={views}
-            title={'Audiências Interativas - últimos 30 dias'}
+            title={"Audiências Interativas - últimos 30 dias"}
             lineChartConfig={last30days}
             pieChartConfig={trafficByPlatformLast30Days}
           />
         );
-      case 'week':
+      case "week":
         return (
           <GoogleAnalyticsCharts
             views={views}
-            title={'Audiências Interativas - últimos 7 dias'}
+            title={"Audiências Interativas - últimos 7 dias"}
             lineChartConfig={last7days}
             pieChartConfig={trafficByPlatformLast7Days}
           />
         );
-      case 'filter':
+      case "filter":
         return (
           <GoogleAnalyticsDynamicCharts
             views={views}
             lineChartConfig={dynamicLineChart}
             pieChartConfig={dynamicPieChart}
-            startDate='2016-01-01'
+            startDate="2016-01-01"
           />
         );
       default:
         return (
           <GoogleAnalyticsCharts
             views={views}
-            title={'Audiências Interativas - últimos 30 dias'}
+            title={"Audiências Interativas - últimos 30 dias"}
             lineChartConfig={last30days}
             pieChartConfig={trafficByPlatformLast30Days}
           />
@@ -200,15 +199,19 @@ export default class AudienciasAnalyticsPage extends Component {
   }
 
   render() {
-    const loading = this.state.isLoading
+    const loading = this.state.isLoading;
 
     if (loading) {
-      return <div align="center"> <CircularProgress></CircularProgress> </div>
+      return (
+        <div align="center">
+          {" "}
+          <CircularProgress></CircularProgress>{" "}
+        </div>
+      );
     } else {
       return (
-        <ResponsiveDrawer title='Analytics Audiências Interativas'>
+        <ResponsiveDrawer title="Analytics Audiências Interativas">
           <GoogleProvider accessToken={this.state.token}>
-
             <Paper>
               <Box paddingY={3} paddingX={2} spacing={1}>
                 <Grid container spacing={3}>
@@ -220,9 +223,9 @@ export default class AudienciasAnalyticsPage extends Component {
                       value={this.state.gaMetricsSwitch}
                       onChange={this.handleMetricsSwitchChange}
                     >
-                      <MenuItem value={'month'}>Últimos 30 dias</MenuItem>
-                      <MenuItem value={'week'}>Últimos 7 dias</MenuItem>
-                      <MenuItem value={'filter'}>Seleção de período</MenuItem>
+                      <MenuItem value={"month"}>Últimos 30 dias</MenuItem>
+                      <MenuItem value={"week"}>Últimos 7 dias</MenuItem>
+                      <MenuItem value={"filter"}>Seleção de período</MenuItem>
                     </Select>
                   </Grid>
                 </Grid>
@@ -233,11 +236,10 @@ export default class AudienciasAnalyticsPage extends Component {
               <Box spacing={2} paddingTop={2}>
                 {this.renderGoogleAnalyticsSwitch()}
               </Box>
-
             </Paper>
           </GoogleProvider>
-        </ResponsiveDrawer >
-      )
+        </ResponsiveDrawer>
+      );
     }
   }
 }

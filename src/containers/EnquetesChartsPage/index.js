@@ -23,6 +23,8 @@ import EnquetesCardSuggestions from "../../components/EnquetesCardSuggestions";
 import EnquetesCardParticipants from "../../components/EnquetesCardParticipants";
 import { Divider } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 
 const useStyles = theme => ({
   "@global": {
@@ -50,6 +52,12 @@ const useStyles = theme => ({
   }
 });
 
+const polls = [
+  { title: "PL 663/2020", id: "A" },
+  { title: "PL 601/2020", id: "B" },
+  { title: "PL 622/2020", id: "C" }
+];
+
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
@@ -65,6 +73,8 @@ class EnquetesChartsPage extends Component {
       enquete: "A",
       ano: 2019
     };
+
+    this.handleChangeEnquete = this.handleChangeEnquete.bind(this);
   }
 
   componentDidMount() {
@@ -80,12 +90,15 @@ class EnquetesChartsPage extends Component {
     this.openSnackBar = false;
   }
 
-  handleChangeEnquete = event => {
-    const enquete = event.target.value;
-    this.setState({ enquete: enquete });
-  };
+  handleChangeEnquete(event, values) {
+    console.log(event);
+    console.log(values);
+    // if (enquete.poll) {
+    //   this.setState({ enquete: enquete.poll });
+    // }
+  }
 
-  handleChangeAno = event => {
+  handleChangeAno = (event, values) => {
     const ano = event.target.value;
     this.setState({ ano: ano });
   };
@@ -196,20 +209,20 @@ class EnquetesChartsPage extends Component {
               <ExpansionPanelDetails>
                 <Grid container spacing={2}>
                   <Grid item xs={12} md={12} zeroMinWidth>
-                    <FormControl variant="filled">
-                      <InputLabel htmlFor="filled-age-native-simple">
-                        Enquete
-                      </InputLabel>
-                      <Select
-                        native
-                        value={this.state.enquete}
-                        onChange={this.handleChangeEnquete}
-                      >
-                        <option value={"A"}>Enquete A</option>
-                        <option value={"B"}>Enquete B</option>
-                        <option value={"C"}>Enquete C</option>
-                      </Select>
-                    </FormControl>
+                    <Autocomplete
+                      id="combo-box-demo"
+                      options={polls}
+                      getOptionLabel={option => option.title}
+                      style={{ width: 300 }}
+                      renderInput={params => (
+                        <TextField
+                          {...params}
+                          label="Propostas"
+                          variant="outlined"
+                          onChange={this.handleChangeEnquete}
+                        />
+                      )}
+                    />
                   </Grid>
                   <Grid item xs={12} md={6} zeroMinWidth>
                     <Box>
