@@ -18,6 +18,7 @@ import { scalePoint } from 'd3-scale';
 import Box from '@material-ui/core/Box'
 import { CSVLink} from "react-csv";
 
+//Audiências com transmissão comum x Audiências com transmissão interativas
 const data = [
   { month: 'Jan', audienciasTransmitidas: 101, audienciasInterativas: 13, year:'2019' },
   { month: 'Fev', audienciasTransmitidas: 89, audienciasInterativas: 15, year:'2019' },

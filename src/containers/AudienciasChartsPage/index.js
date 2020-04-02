@@ -9,6 +9,12 @@ import AudienciasUserChart from '../../components/AudienciasUsersChart'
 import AudienciasAgeUsersChart from '../../components/AudienciasAgeUsersChart'
 import AudienciasComissionChart from '../../components/AudienciasComissionChart'
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography'
+import Paper from '@material-ui/core/Paper'
+import PersonOutlineIcon from '@material-ui/icons/PersonOutline'
+import ForumIcon from '@material-ui/icons/Forum';
+import ChatIcon from '@material-ui/icons/Chat';
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 
 
 const useStyles = theme => ({
@@ -89,11 +95,24 @@ class AudienciasReportPage extends Component {
 
 
         <Grid container spacing={2}>
+
+          <Grid item xs={3}>
+              <UsersInfoCard></UsersInfoCard>
+          </Grid>
+          <Grid item xs={3}>
+              {AudiencesInfoCard()}
+          </Grid>
+          <Grid item xs={3}>
+              {MessagesInfoCard()}
+          </Grid>
+          <Grid item xs={3}>
+              {QuestionsInfoCard()}
+          </Grid>
+
           <Grid item xs={12} md={4} zeroMinWidth>
             <Box width="100%" height="100%">
               <AudienciasUserChart></AudienciasUserChart>
             </Box>
-
           </Grid>
           <Grid item xs={12} md={4} zeroMinWidth>
               <Box>
@@ -126,5 +145,108 @@ class AudienciasReportPage extends Component {
 
 }
 
+function UsersInfoCard() {
+  
+  return (
+    <React.Fragment>
+      <Paper elevation={3} square={false} rounded={5}>
+        <Box marginX={2} marginY={2}>
+          <Grid container >
+            <Grid item xs={2}></Grid>
+            <Grid item xs={3}>
+              <PersonOutlineIcon  style={{ fontSize: 70 }} />
+            </Grid>
+            <Grid item xs={4}>
+                <Typography component="p" variant="h4">
+                  72.000
+                </Typography>
+                <Typography color="textSecondary" >
+                  usuários
+                </Typography>
+            </Grid>
+          </Grid>
+        </Box>
+      </Paper>
+    </React.Fragment>
+  );
+}
+
+function AudiencesInfoCard() {
+  
+  return (
+    <React.Fragment>
+      <Paper elevation={3} square={false} rounded={5}>
+        <Box marginX={2} marginY={2}>
+          <Grid container >
+            <Grid item xs={2}></Grid>
+            <Grid item xs={3}>
+              <ForumIcon style={{ fontSize: 70 }} />
+            </Grid>
+            <Grid item>
+                <Typography component="p" variant="h4">
+                  150
+                </Typography>
+                <Typography color="textSecondary" >
+                  audiências Interativas
+                </Typography>
+            </Grid>
+          </Grid>
+        </Box>
+      </Paper>
+    </React.Fragment>
+  );
+}
+
+function MessagesInfoCard() {
+  
+  return (
+    <React.Fragment>
+      <Paper elevation={3} square={false} rounded={5}>
+        <Box marginX={2} marginY={2}>
+          <Grid container >
+            <Grid item xs={2}></Grid>
+            <Grid item xs={3}>
+              <ChatIcon style={{ fontSize: 70 }} />
+            </Grid>
+            <Grid item xs={4}>
+                <Typography component="p" variant="h4">
+                  125.231
+                </Typography>
+                <Typography color="textSecondary" >
+                  mensagens
+                </Typography>
+            </Grid>
+          </Grid>
+        </Box>
+      </Paper>
+    </React.Fragment>
+  );
+}
+
+function QuestionsInfoCard() {
+  
+  return (
+    <React.Fragment>
+      <Paper elevation={3} square={false} rounded={5}>
+        <Box marginX={2} marginY={2}>
+          <Grid container >
+            <Grid item xs={2}></Grid>
+            <Grid item xs={3}>
+              <HelpOutlineIcon style={{ fontSize: 70 }} />
+            </Grid>
+            <Grid item xs={4}>
+                <Typography component="p" variant="h4">
+                  2100
+                </Typography>
+                <Typography color="textSecondary" >
+                  perguntas
+                </Typography>
+            </Grid>
+          </Grid>
+        </Box>
+      </Paper>
+    </React.Fragment>
+  );
+}
 
 export default withStyles(useStyles)(AudienciasReportPage);
