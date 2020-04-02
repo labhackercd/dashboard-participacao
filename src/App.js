@@ -62,16 +62,6 @@ function App() {
             <AudienciasChartsPage theme={theme}></AudienciasChartsPage>
           </Route>
 
-          <Route exact path="/pauta-relatorios">
-            <PautaReportPage theme={theme}></PautaReportPage>
-          </Route>
-          <Route exact path="/pauta-graficos">
-            <PautaChartsPage theme={theme}></PautaChartsPage>
-          </Route>
-          <Route exact path="/pauta-analytics">
-            <PautaAnalyticsPage theme={theme}></PautaAnalyticsPage>
-          </Route>
-
           <Route exact path="/edemocracia-graficos">
             <EDemocraciaChartsPage theme={theme}></EDemocraciaChartsPage>
           </Route>
