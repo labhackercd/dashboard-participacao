@@ -17,100 +17,154 @@ import { CSVLink } from "react-csv";
 
 const ano_2017 = [
   {
-    enquete: "Enquete B",
-    positive: 30,
-    negative: 17
+    month: "Janeiro",
+    votes: 25000
   },
   {
-    enquete: "Enquete A",
-    positive: 20,
-    negative: 25
+    month: "Fevereiro",
+    votes: 17000
   },
   {
-    enquete: "Enquete E",
-    positive: 7,
-    negative: 27
+    month: "Março",
+    votes: 22000
   },
   {
-    enquete: "Enquete C",
-    positive: 13,
-    negative: 17
+    month: "Abril",
+    votes: 11000
   },
   {
-    enquete: "Enquete F",
-    positive: 16,
-    negative: 10
+    month: "Maio",
+    votes: 27000
   },
   {
-    enquete: "Enquete D",
-    positive: 7,
-    negative: 11
+    month: "Junho",
+    votes: 10000
+  },
+  {
+    month: "Julho",
+    votes: 90000
+  },
+  {
+    month: "Agosto",
+    votes: 170000
+  },
+  {
+    month: "Setembro",
+    votes: 102000
+  },
+  {
+    month: "Outubro",
+    votes: 80000
+  },
+  {
+    month: "Novembro",
+    votes: 200000
+  },
+  {
+    month: "Dezembro",
+    votes: 100000
   }
 ];
 
 const ano_2018 = [
   {
-    enquete: "Enquete A",
-    positive: 30,
-    negative: 40
+    month: "Janeiro",
+    votes: 50000
   },
   {
-    enquete: "Enquete D",
-    positive: 5,
-    negative: 45
+    month: "Fevereiro",
+    votes: 20000
   },
   {
-    enquete: "Enquete F",
-    positive: 16,
-    negative: 32
+    month: "Março",
+    votes: 30000
   },
   {
-    enquete: "Enquete B",
-    positive: 10,
-    negative: 20
+    month: "Abril",
+    votes: 50000
   },
   {
-    enquete: "Enquete E",
-    positive: 10,
-    negative: 10
+    month: "Maio",
+    votes: 12000
   },
   {
-    enquete: "Enquete C",
-    positive: 10,
-    negative: 5
+    month: "Junho",
+    votes: 34000
+  },
+  {
+    month: "Julho",
+    votes: 50000
+  },
+  {
+    month: "Agosto",
+    votes: 74000
+  },
+  {
+    month: "Setembro",
+    votes: 22000
+  },
+  {
+    month: "Outubro",
+    votes: 32000
+  },
+  {
+    month: "Novembro",
+    votes: 29000
+  },
+  {
+    month: "Dezembro",
+    votes: 45000
   }
 ];
 
 const ano_2019 = [
   {
-    enquete: "Enquete B",
-    positive: 30,
-    negative: 40
+    month: "Janeiro",
+    votes: 40000
   },
   {
-    enquete: "Enquete D",
-    positive: 50,
-    negative: 15
+    month: "Fevereiro",
+    votes: 60000
   },
   {
-    enquete: "Enquete F",
-    positive: 30,
-    negative: 30
+    month: "Março",
+    votes: 67000
   },
   {
-    enquete: "Enquete A",
-    positive: 20,
-    negative: 20
+    month: "Abril",
+    votes: 45000
   },
   {
-    enquete: "Enquete E",
-    positive: 12,
-    negative: 25
+    month: "Maio",
+    votes: 57000
   },
   {
-    enquete: "Enquete C",
-    positive: 13,
-    negative: 2
+    month: "Junho",
+    votes: 33000
+  },
+  {
+    month: "Julho",
+    votes: 80000
+  },
+  {
+    month: "Agosto",
+    votes: 150000
+  },
+  {
+    month: "Setembro",
+    votes: 32000
+  },
+  {
+    month: "Outubro",
+    votes: 20000
+  },
+  {
+    month: "Novembro",
+    votes: 30000
+  },
+  {
+    month: "Dezembro",
+    votes: 50000
   }
 ];
 
@@ -124,7 +178,9 @@ const legendStyles = () => ({
 const legendRootBase = ({ classes, ...restProps }) => (
   <Legend.Root {...restProps} className={classes.root} />
 );
-const Root = withStyles(legendStyles, { name: "LegendRoot" })(legendRootBase);
+const Root = withStyles(legendStyles, {
+  name: "LegendRoot"
+})(legendRootBase);
 const legendLabelStyles = () => ({
   label: {
     whiteSpace: "nowrap"
@@ -133,11 +189,11 @@ const legendLabelStyles = () => ({
 const legendLabelBase = ({ classes, ...restProps }) => (
   <Legend.Label className={classes.label} {...restProps} />
 );
-const Label = withStyles(legendLabelStyles, { name: "LegendLabel" })(
-  legendLabelBase
-);
+const Label = withStyles(legendLabelStyles, {
+  name: "LegendLabel"
+})(legendLabelBase);
 
-class EnqueteTop5MostVoted extends React.PureComponent {
+class EnquetesYearVotes extends React.Component {
   constructor(props) {
     super(props);
 
@@ -167,7 +223,7 @@ class EnqueteTop5MostVoted extends React.PureComponent {
         <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
           <CSVLink
             data={data}
-            filename={"enquetes_mais_votadas_" + this.state.ano + ".csv"}
+            filename={"votos-enquetes_" + this.state.ano + ".csv"}
             className="btn btn-primary"
           >
             Exportar csv
@@ -176,18 +232,11 @@ class EnqueteTop5MostVoted extends React.PureComponent {
         <Chart data={data}>
           <ArgumentAxis />
           <ValueAxis />
-
           <BarSeries
-            name="Votos Positivos"
-            valueField="positive"
-            argumentField="enquete"
-            color="#2F9728"
-          />
-          <BarSeries
-            name="Votos Negaticos"
-            valueField="negative"
-            argumentField="enquete"
-            color="#C70039"
+            name="Votos"
+            valueField="votes"
+            argumentField="month"
+            color="#FFC300"
           />
           <Animation />
           <Legend
@@ -195,9 +244,7 @@ class EnqueteTop5MostVoted extends React.PureComponent {
             rootComponent={Root}
             labelComponent={Label}
           />
-
-          <Title text={"Enquetes mais votadas " + this.props.ano} />
-          <Stack />
+          <Title text={"Enquetes " + this.props.ano} /> <Stack />
           <Animation />
           <EventTracker />
           <Tooltip />
@@ -207,4 +254,4 @@ class EnqueteTop5MostVoted extends React.PureComponent {
   }
 }
 
-export default EnqueteTop5MostVoted;
+export default EnquetesYearVotes;

@@ -1,27 +1,30 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   Chart,
   PieSeries,
   Legend,
   Title,
-  Tooltip,
-} from '@devexpress/dx-react-chart-material-ui';
+  Tooltip
+} from "@devexpress/dx-react-chart-material-ui";
+import Box from "@material-ui/core/Box";
 
-import { Animation, EventTracker } from '@devexpress/dx-react-chart';
+import { CSVLink } from "react-csv";
+
+import { Animation, EventTracker } from "@devexpress/dx-react-chart";
 
 const enquete_A = [
-  { vote: 'Positivo', count: 50 },
-  { vote: 'Negativo', count: 30 },
+  { vote: "Positivo", count: 5000 },
+  { vote: "Negativo", count: 3000 }
 ];
 
 const enquete_B = [
-  { vote: 'Positivo', count: 10 },
-  { vote: 'Negativo', count: 20 },
+  { vote: "Positivo", count: 1000 },
+  { vote: "Negativo", count: 2000 }
 ];
 
 const enquete_C = [
-  { vote: 'Positivo', count: 20 },
-  { vote: 'Negativo', count: 15 },
+  { vote: "Positivo", count: 2000 },
+  { vote: "Negativo", count: 1500 }
 ];
 
 class EnquetesSuggestionPoll extends React.Component {
@@ -34,41 +37,43 @@ class EnquetesSuggestionPoll extends React.Component {
   }
 
   update_chart() {
-    let enquete = []
+    let enquete = [];
     if (this.props.enquete === "C") {
-      enquete = enquete_C
+      enquete = enquete_C;
     } else if (this.props.enquete === "B") {
-      enquete = enquete_B
+      enquete = enquete_B;
     } else {
-      enquete = enquete_A
+      enquete = enquete_A;
     }
 
-    return enquete
+    return enquete;
   }
 
   render() {
-    const data = this.update_chart()
+    const data = this.update_chart();
     return (
+      <Box>
+        <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
+          <CSVLink
+            data={data}
+            filename={"sugestoes_enquetes.csv"}
+            className="btn btn-primary"
+          >
+            Exportar csv
+          </CSVLink>
+        </Box>
 
-      <Chart
-        data={data}
-      >
-        <PieSeries
-          valueField="count"
-          argumentField="vote"
-        />
-        <Legend />
-        <Title
-          text={"Sugestões da Enquete " + this.props.enquete}
-        />
-        <Animation />
-        <EventTracker />
-        <Tooltip />
-      </Chart>
+        <Chart data={data}>
+          <PieSeries valueField="count" argumentField="vote" />
+          <Legend />
+          <Title text={"Sugestões da Enquete " + this.props.enquete} />
+          <Animation />
+          <EventTracker />
+          <Tooltip />
+        </Chart>
+      </Box>
     );
   }
-
-
 }
 
 export default EnquetesSuggestionPoll;

@@ -17,100 +17,154 @@ import { CSVLink } from "react-csv";
 
 const ano_2017 = [
   {
-    enquete: "Enquete B",
-    positive: 30,
-    negative: 17
+    month: "Janeiro",
+    suggestions: 20
   },
   {
-    enquete: "Enquete A",
-    positive: 20,
-    negative: 25
+    month: "Fevereiro",
+    suggestions: 30
   },
   {
-    enquete: "Enquete E",
-    positive: 7,
-    negative: 27
+    month: "Março",
+    suggestions: 13
   },
   {
-    enquete: "Enquete C",
-    positive: 13,
-    negative: 17
+    month: "Abril",
+    suggestions: 7
   },
   {
-    enquete: "Enquete F",
-    positive: 16,
-    negative: 10
+    month: "Maio",
+    suggestions: 7
   },
   {
-    enquete: "Enquete D",
-    positive: 7,
-    negative: 11
+    month: "Junho",
+    suggestions: 16
+  },
+  {
+    month: "Julho",
+    suggestions: 30
+  },
+  {
+    month: "Agosto",
+    suggestions: 160
+  },
+  {
+    month: "Setembro",
+    suggestions: 106
+  },
+  {
+    month: "Outubro",
+    suggestions: 50
+  },
+  {
+    month: "Novembro",
+    suggestions: 15
+  },
+  {
+    month: "Dezembro",
+    suggestions: 74
   }
 ];
 
 const ano_2018 = [
   {
-    enquete: "Enquete A",
-    positive: 30,
-    negative: 40
+    month: "Janeiro",
+    suggestions: 40
   },
   {
-    enquete: "Enquete D",
-    positive: 5,
-    negative: 45
+    month: "Fevereiro",
+    suggestions: 30
   },
   {
-    enquete: "Enquete F",
-    positive: 16,
-    negative: 32
+    month: "Março",
+    suggestions: 30
   },
   {
-    enquete: "Enquete B",
-    positive: 10,
-    negative: 20
+    month: "Abril",
+    suggestions: 10
   },
   {
-    enquete: "Enquete E",
-    positive: 10,
-    negative: 10
+    month: "Maio",
+    suggestions: 30
   },
   {
-    enquete: "Enquete C",
-    positive: 10,
-    negative: 5
+    month: "Junho",
+    suggestions: 20
+  },
+  {
+    month: "Julho",
+    suggestions: 10
+  },
+  {
+    month: "Agosto",
+    suggestions: 100
+  },
+  {
+    month: "Setembro",
+    suggestions: 40
+  },
+  {
+    month: "Outubro",
+    suggestions: 10
+  },
+  {
+    month: "Novembro",
+    suggestions: 65
+  },
+  {
+    month: "Dezembro",
+    suggestions: 50
   }
 ];
 
 const ano_2019 = [
   {
-    enquete: "Enquete B",
-    positive: 30,
-    negative: 40
+    month: "Janeiro",
+    suggestions: 30
   },
   {
-    enquete: "Enquete D",
-    positive: 50,
-    negative: 15
+    month: "Fevereiro",
+    suggestions: 20
   },
   {
-    enquete: "Enquete F",
-    positive: 30,
-    negative: 30
+    month: "Março",
+    suggestions: 53
   },
   {
-    enquete: "Enquete A",
-    positive: 20,
-    negative: 20
+    month: "Abril",
+    suggestions: 27
   },
   {
-    enquete: "Enquete E",
-    positive: 12,
-    negative: 25
+    month: "Maio",
+    suggestions: 37
   },
   {
-    enquete: "Enquete C",
-    positive: 13,
-    negative: 2
+    month: "Junho",
+    suggestions: 76
+  },
+  {
+    month: "Julho",
+    suggestions: 50
+  },
+  {
+    month: "Agosto",
+    suggestions: 30
+  },
+  {
+    month: "Setembro",
+    suggestions: 54
+  },
+  {
+    month: "Outubro",
+    suggestions: 57
+  },
+  {
+    month: "Novembro",
+    suggestions: 40
+  },
+  {
+    month: "Dezembro",
+    suggestions: 24
   }
 ];
 
@@ -137,7 +191,7 @@ const Label = withStyles(legendLabelStyles, { name: "LegendLabel" })(
   legendLabelBase
 );
 
-class EnqueteTop5MostVoted extends React.PureComponent {
+class EnquetesYearSuggestion extends React.Component {
   constructor(props) {
     super(props);
 
@@ -167,7 +221,7 @@ class EnqueteTop5MostVoted extends React.PureComponent {
         <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
           <CSVLink
             data={data}
-            filename={"enquetes_mais_votadas_" + this.state.ano + ".csv"}
+            filename={"sugestoes-enquetes_" + this.state.ano + ".csv"}
             className="btn btn-primary"
           >
             Exportar csv
@@ -178,16 +232,10 @@ class EnqueteTop5MostVoted extends React.PureComponent {
           <ValueAxis />
 
           <BarSeries
-            name="Votos Positivos"
-            valueField="positive"
-            argumentField="enquete"
-            color="#2F9728"
-          />
-          <BarSeries
-            name="Votos Negaticos"
-            valueField="negative"
-            argumentField="enquete"
-            color="#C70039"
+            name="Sugestões"
+            valueField="suggestions"
+            argumentField="month"
+            color="#3498DB"
           />
           <Animation />
           <Legend
@@ -196,7 +244,7 @@ class EnqueteTop5MostVoted extends React.PureComponent {
             labelComponent={Label}
           />
 
-          <Title text={"Enquetes mais votadas " + this.props.ano} />
+          <Title text={"Enquetes " + this.props.ano} />
           <Stack />
           <Animation />
           <EventTracker />
@@ -207,4 +255,4 @@ class EnqueteTop5MostVoted extends React.PureComponent {
   }
 }
 
-export default EnqueteTop5MostVoted;
+export default EnquetesYearSuggestion;
