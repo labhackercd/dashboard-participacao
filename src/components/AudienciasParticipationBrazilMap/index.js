@@ -7,7 +7,6 @@ import { CSVLink} from "react-csv";
 import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import { spacing } from '@material-ui/system';
 import Divider from '@material-ui/core/Divider'
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -86,11 +85,10 @@ class AudienciasParticipationUsersBrazilMap extends Component {
                                             options={audiencesList}
                                             onChange={this.handleAutoCompleteChange}
                                             getOptionLabel={(option) => option.title}
-                                            renderInput={(params) => <TextField {...params} label="Pesquise a audiência" />}
+                                            renderInput={(params) => <TextField {...params} label="Pesquise por uma audiência, reunião" />}
                                         />
                                         )
                                     }
-                                        
                                     </Box>
                                 </Grid>
                             </Grid>
@@ -100,7 +98,7 @@ class AudienciasParticipationUsersBrazilMap extends Component {
                     
                     <Grid item xs={4}>
                         <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
-                            <CSVLink data={dataEstados} filename={"participacao-usuarios-estado-audiencias.csv"} className="btn btn-primary">Exportar csv</CSVLink>
+                            <CSVLink data={this.state.data} filename={"participacao-usuarios-estado-audiencias-"+this.state.title+".csv"} className="btn btn-primary">Exportar csv</CSVLink>
                         </Box>
                     </Grid>
                 </Grid>
