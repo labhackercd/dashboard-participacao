@@ -165,12 +165,14 @@ function UsersInfoCard() {
               <PersonOutlineIcon  style={{ fontSize: 70 }} />
             </Grid>
             <Grid item xs={4}>
+              <Box marginTop={1}>
                 <Typography component="p" variant="h4">
                   72.000
                 </Typography>
                 <Typography color="textSecondary" >
                   usuários
                 </Typography>
+              </Box>
             </Grid>
           </Grid>
         </Box>
@@ -191,12 +193,14 @@ function AudiencesInfoCard() {
               <ForumIcon style={{ fontSize: 70 }} />
             </Grid>
             <Grid item>
+              <Box marginTop={1}>
                 <Typography component="p" variant="h4">
                   150
                 </Typography>
                 <Typography color="textSecondary" >
                   audiências Interativas
                 </Typography>
+              </Box>
             </Grid>
           </Grid>
         </Box>
@@ -217,12 +221,14 @@ function MessagesInfoCard() {
               <ChatIcon style={{ fontSize: 70 }} />
             </Grid>
             <Grid item xs={4}>
+              <Box marginTop={1}>
                 <Typography component="p" variant="h4">
                   125.231
                 </Typography>
                 <Typography color="textSecondary" >
                   mensagens
                 </Typography>
+              </Box>
             </Grid>
           </Grid>
         </Box>
@@ -243,12 +249,14 @@ function QuestionsInfoCard() {
               <HelpOutlineIcon style={{ fontSize: 70 }} />
             </Grid>
             <Grid item xs={4}>
+              <Box marginTop={1}>
                 <Typography component="p" variant="h4">
                   2100
                 </Typography>
                 <Typography color="textSecondary" >
                   perguntas
                 </Typography>
+              </Box>
             </Grid>
           </Grid>
         </Box>

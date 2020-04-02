@@ -46,7 +46,7 @@ class AudienciasParticipationUsersBrazilMap extends Component {
             <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
                 <CSVLink data={dataEstados} filename={"participacao-usuarios-estado-audiencias.csv"} className="btn btn-primary">Exportar csv</CSVLink>
             </Box>
-            <Box marginY={2} display="flex" justifyContent="center" >
+            <Box marginY={1} display="flex" justifyContent="center" >
                 <Typography variant="h5" gutterBottom>Número de usuários que participaram por estado</Typography>
             </Box>
             
