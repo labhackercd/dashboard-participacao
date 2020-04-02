@@ -4,56 +4,118 @@ import Typography from '@material-ui/core/Typography'
 import { Chart } from "react-google-charts";
 import Box from '@material-ui/core/Box'
 import { CSVLink} from "react-csv";
+import Grid from '@material-ui/core/Grid'
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import { spacing } from '@material-ui/system';
+import Divider from '@material-ui/core/Divider'
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import {dataEstadosGeral, dataEstados1, dataEstados2, dataEstados3, dataEstados4} from './data'
+
 
 const dataEstados = [
-    ['Estado', 'Número de Usuários'],
-    ['BR-AC', 70],
-    ['BR-AL', 230],
-    ['BR-AP', 200],
-    ['BR-AM', 400],
-    ['BR-BA', 432],
-    ['BR-CE', 239],
-    ['BR-DF', 2000],
-    ['BR-ES', 432],
-    ['BR-GO', 389],
-    ['BR-MA', 213],
-    ['BR-MT', 193],
-    ['BR-MS', 134],
-    ['BR-MG', 1096],
-    ['BR-PA', 145],
-    ['BR-PB', 543],
-    ['BR-PR', 406],
-    ['BR-PE', 567],
-    ['BR-PI', 547],
-    ['BR-RJ', 454],
-    ['BR-RN', 654],
-    ['BR-RS', 765],
-    ['BR-RO', 756],
-    ['BR-RR', 587],
-    ['BR-SC', 305],
-    ['BR-SP', 324],
-    ['BR-SE', 123],
-    ['BR-TO', 398],
+    dataEstadosGeral,
+    dataEstados1,
+    dataEstados2,
+    dataEstados3,
+    dataEstados4
+]
+
+const audiencesList = [
+    { title: 'PEC 199/19 - PRISÃO EM 2ª INSTÂNCIA', id: 1 },
+    { title: 'PLP 146/19 - STARTUPS', id: 2 },
+    { title: 'CENTRO DE ESTUDOS E DEBATES ESTRATÉGICOS', id: 3 },
+    { title: 'PL 0399/15 - MEDICAMENTOS FORMULADOS COM CANNABIS', id: 4 },
 ]
 
 class AudienciasParticipationUsersBrazilMap extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+          title: "Geral",
+          radioGroupValue: "0",
+          data: dataEstados[0]
+        };
+
+        this.handleRadioChange = this.handleRadioChange.bind(this);  
+        this.handleAutoCompleteChange = this.handleAutoCompleteChange.bind(this);  
+    }
+
+    handleAutoCompleteChange(event,values){
+        if(values===null){
+            this.setState({data:dataEstados[0], title:"Geral"})
+        }else{
+            this.setState({data:dataEstados[values.id], title:values.title})
+        }   
+    }
+
+    handleRadioChange(event){
+        this.setState({radioGroupValue:event.target.value})
+        this.setState({data:dataEstados[0], title:"Geral"})
+    }
 
   render() {
+    const radioGroupValue = this.state.radioGroupValue;
 
     return (
-      <Paper>
-            <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
-                <CSVLink data={dataEstados} filename={"participacao-usuarios-estado-audiencias.csv"} className="btn btn-primary">Exportar csv</CSVLink>
+        <Paper>
+            <Box mb={2}>
+                <Grid container>
+                    <Grid item xs={8}>
+                        <Box ml={3} mt={2}>
+                            <Grid container>
+                                <Grid item xs={12}>
+                                    <FormControl component="fieldset">
+                                        <FormLabel component="legend">Desejar ver o mapa sobre dados</FormLabel>
+                                        <RadioGroup row aria-label="position" name="position" defaultValue="0" onChange={this.handleRadioChange}>
+                                            <FormControlLabel value="0" control={<Radio color="primary" />} label="Gerais" />
+                                            <FormControlLabel value="1" control={<Radio color="primary" />} label="Específico" />
+                                        </RadioGroup>
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Box>
+                                    {radioGroupValue === "1" && (
+                                        <Autocomplete
+                                            id="audience-auto-complete"
+                                            options={audiencesList}
+                                            onChange={this.handleAutoCompleteChange}
+                                            getOptionLabel={(option) => option.title}
+                                            renderInput={(params) => <TextField {...params} label="Pesquise a audiência" />}
+                                        />
+                                        )
+                                    }
+                                        
+                                    </Box>
+                                </Grid>
+                            </Grid>
+                        </Box>
+    
+                    </Grid>
+                    
+                    <Grid item xs={4}>
+                        <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
+                            <CSVLink data={dataEstados} filename={"participacao-usuarios-estado-audiencias.csv"} className="btn btn-primary">Exportar csv</CSVLink>
+                        </Box>
+                    </Grid>
+                </Grid>
             </Box>
-            <Box marginY={1} display="flex" justifyContent="center" >
-                <Typography variant="h5" gutterBottom>Número de usuários que participaram por estado</Typography>
+
+            <Divider variant="middle" ></Divider>
+
+            <Box marginY={2} display="flex" justifyContent="center" >
+                <Typography variant="h5" gutterBottom>Número de usuários que participaram por estado {this.state.title}</Typography>
             </Box>
             
             <Box mb={5} alignItems="center">
                 <Chart
                     chartType="GeoChart"
-                    data={dataEstados}
+                    data={this.state.data}
                     
                     options={{
                         region: 'BR', // Brazil
