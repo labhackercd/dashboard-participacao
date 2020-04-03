@@ -1,26 +1,24 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import MaterialTable from "material-table";
-import CircularProgress from '@material-ui/core/CircularProgress';
+import CircularProgress from "@material-ui/core/CircularProgress";
 
-import { TablePagination } from '@material-ui/core';
+import { TablePagination } from "@material-ui/core";
 
 import { WIKILEGIS_PAGED_DOCUMENT_API_URL } from "../../config_constants";
 
-
 class WikilegisDocumentsTableReport extends Component {
-
   _isTableMounted = false;
   columns = [
-    { field: 'id', title: 'id' },
-    { field: 'responsible.name', title: 'Autor', align: 'center' },
-    { field: 'theme.name', title: 'Tema' },
-    { field: 'document_type.initials', title: 'Tipo projeto' },
-    { field: 'number', title: 'Número' },
-    { field: 'year', title: 'Ano' },
-    { field: 'suggestions_count', title: 'Total de sugestões' },
-    { field: 'vote_count', title: 'Total de votos' },
-    { field: 'users_count', title: 'Total de participantes' }
-  ]
+    { field: "id", title: "id" },
+    { field: "responsible.name", title: "Autor", align: "center" },
+    { field: "theme.name", title: "Tema" },
+    { field: "document_type.initials", title: "Tipo projeto" },
+    { field: "number", title: "Número" },
+    { field: "year", title: "Ano" },
+    { field: "suggestions_count", title: "Total de sugestões" },
+    { field: "vote_count", title: "Total de votos" },
+    { field: "users_count", title: "Total de participantes" }
+  ];
 
   constructor(props) {
     super(props);
@@ -35,16 +33,22 @@ class WikilegisDocumentsTableReport extends Component {
   }
 
   loadDataInTable(callback) {
-    const url = new URL(WIKILEGIS_PAGED_DOCUMENT_API_URL + this.state.currentPage)
+    const url = new URL(
+      WIKILEGIS_PAGED_DOCUMENT_API_URL + this.state.currentPage
+    );
 
     fetch(url, {
-      method: 'GET',
-    }).then((response) => response.json())
-      .then((responseJson) => {
-        this.setState({ rows: responseJson.results, totalRows: responseJson.count });
+      method: "GET"
+    })
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState({
+          rows: responseJson.results,
+          totalRows: responseJson.count
+        });
         callback();
       })
-      .catch((error) => {
+      .catch(error => {
         console.error(error);
       });
 
@@ -52,22 +56,19 @@ class WikilegisDocumentsTableReport extends Component {
   }
 
   handleNextPageChange(page) {
-
-    this.setState({ isLoadingTable: true, currentPage: page })
-
-    const url = new URL(WIKILEGIS_PAGED_DOCUMENT_API_URL + this.state.currentPage)
-
-    fetch(url, {
-      method: 'GET',
-    }).then((response) => response.json())
-      .then((responseJson) => {
-        this.setState({ rows: responseJson.results });
-        this.setState({ isLoadingTable: false })
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-
+    // this.setState({ isLoadingTable: true, currentPage: page });
+    // const url = new URL(
+    //   WIKILEGIS_PAGED_DOCUMENT_API_URL + this.state.currentPage
+    // );
+    // fetch(url, { method: "GET" })
+    //   .then(response => response.json())
+    //   .then(responseJson => {
+    //     this.setState({ rows: responseJson.results });
+    //     this.setState({ isLoadingTable: false });
+    //   })
+    //   .catch(error => {
+    //     console.error(error);
+    //   });
   }
 
   componentDidMount() {
@@ -77,15 +78,19 @@ class WikilegisDocumentsTableReport extends Component {
       this.loadDataInTable(() => {
         this.setState({ isLoadingTable: false });
       });
-
     }
   }
 
   render() {
-    const loading = this.state.isLoadingTable
+    const loading = this.state.isLoadingTable;
 
     if (loading) {
-      return <div align="center"> <CircularProgress></CircularProgress> </div>
+      return (
+        <div align="center">
+          {" "}
+          <CircularProgress></CircularProgress>{" "}
+        </div>
+      );
     } else {
       return (
         <MaterialTable
@@ -100,23 +105,34 @@ class WikilegisDocumentsTableReport extends Component {
           }}
           localization={{
             body: {
-              emptyDataSourceMessage: 'Nenhum resultado encontrado'
+              emptyDataSourceMessage: "Nenhum resultado encontrado"
             },
             toolbar: {
-              searchTooltip: 'Pesquisar',
-              searchPlaceholder: 'Pesquisar'
+              searchTooltip: "Pesquisar",
+              searchPlaceholder: "Pesquisar"
             },
             pagination: {
-              labelRowsSelect: 'Linhas',
-              labelDisplayedRows: ' {from}-{to} de {count}',
-              firstTooltip: 'Primeira página',
-              previousTooltip: 'Página Anterior',
-              nextTooltip: 'Próxima página',
-              lastTooltip: 'Última página'
+              labelRowsSelect: "Linhas",
+              labelDisplayedRows: " {from}-{to} de {count}",
+              firstTooltip: "Primeira página",
+              previousTooltip: "Página Anterior",
+              nextTooltip: "Próxima página",
+              lastTooltip: "Última página"
             }
           }}
           components={{
-            Pagination: props => <TablePagination {...props} count={this.state.totalRows} page={this.state.currentPage} onChangePage={(event, page) => { this.handleNextPageChange(page) /* handle page size change : event.target.value */ }} />
+            Pagination: props => (
+              <TablePagination
+                {...props}
+                count={this.state.totalRows}
+                page={this.state.currentPage}
+                onChangePage={(event, page) => {
+                  this.handleNextPageChange(
+                    page
+                  ); /* handle page size change : event.target.value */
+                }}
+              />
+            )
           }}
           title="Documentos"
           detailPanel={rowData => {
@@ -126,14 +142,13 @@ class WikilegisDocumentsTableReport extends Component {
                 <br></br>
                 <p>{rowData.description}</p>
               </div>
-            )
+            );
           }}
           onRowClick={(event, rowData, togglePanel) => togglePanel()}
         />
-      )
+      );
     }
-
   }
 }
 
-export default (WikilegisDocumentsTableReport);
+export default WikilegisDocumentsTableReport;

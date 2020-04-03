@@ -1,5 +1,5 @@
 {
-  "name": "participacao-dashboard",
+  "name": "dashboard",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -55,5 +55,8 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "main": "index.js",
+  "repository": "https://github.com/labhackercd/dashboard-participacao.git",
+  "license": "MIT"
 }

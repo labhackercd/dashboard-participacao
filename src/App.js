@@ -1,42 +1,41 @@
-import React from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom";
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import { Colors } from './components/constant/index'
-import './App.css';
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { Colors } from "./components/constant/index";
+import "./App.css";
 
-import InitialDashboard from './containers/InitialDashboard'
+import InitialDashboard from "./containers/InitialDashboard";
 
-import AudienciasAnalyticsPage from './containers/AudienciasAnalyticsPage'
-import AudienciasReportPage from './containers/AudienciasReportPage'
-import AudienciasChartsPage from './containers/AudienciasChartsPage'
+import AudienciasAnalyticsPage from "./containers/AudienciasAnalyticsPage";
+import AudienciasReportPage from "./containers/AudienciasReportPage";
+import AudienciasChartsPage from "./containers/AudienciasChartsPage";
 
-import EDemocraciaReportPage from './containers/EDemocraciaReportPage'
-import EDemocraciaChartsPage from './containers/EDemocraciaChartsPage'
-import EdemocraciaAnalyticsPage from './containers/EdemocraciaAnalyticsPage'
+import EDemocraciaReportPage from "./containers/EDemocraciaReportPage";
+import EDemocraciaChartsPage from "./containers/EDemocraciaChartsPage";
+import EdemocraciaAnalyticsPage from "./containers/EdemocraciaAnalyticsPage";
 
-import PautaChartsPage from './containers/PautaChartsPage'
-import PautaReportPage from './containers/PautaReportPage'
-import PautaAnalyticsPage from './containers/PautaAnalyticsPage'
+import WikilegisReportPage from "./containers/WikilegisReportPage";
+import WikilegisAnalyticsPage from "./containers/WikilegisAnalyticsPage";
+import WikilegisChartsPage from "./containers/WikilegisChartsPage";
+import { ptBR } from "@material-ui/core/locale";
+import EnquetesChartsPage from "./containers/EnquetesChartsPage";
+import EnquetesReportsPage from "./containers/EnquetesReportsPage";
 
-import WikilegisReportPage from './containers/WikilegisReportPage'
-import WikilegisAnalyticsPage from './containers/WikilegisAnalyticsPage'
-import WikilegisChartsPage from './containers/WikilegisChartsPage'
-import { ptBR } from '@material-ui/core/locale';
-import EnquetesPage from './containers/EnquetesPage'
+import PautaChartsPage from "./containers/PautaChartsPage";
+import PautaReportPage from "./containers/PautaReportPage";
+import PautaAnalyticsPage from "./containers/PautaAnalyticsPage";
 
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: Colors.mainColor
+const theme = createMuiTheme(
+  {
+    palette: {
+      primary: {
+        main: Colors.mainColor
+      }
     }
-  }
-}, ptBR);
+  },
+  ptBR
+);
 
 function App() {
   return (
@@ -47,9 +46,11 @@ function App() {
             <InitialDashboard></InitialDashboard>
           </Route>
           <Route exact path="/enquetes-graficos">
-            <EnquetesPage theme={theme}></EnquetesPage>
+            <EnquetesChartsPage theme={theme}></EnquetesChartsPage>
           </Route>
-
+          <Route exact path="/enquetes-relatorios">
+            <EnquetesReportsPage theme={theme}></EnquetesReportsPage>
+          </Route>
 
           <Route exact path="/audiencias-relatorios">
             <AudienciasReportPage theme={theme}></AudienciasReportPage>
@@ -81,7 +82,6 @@ function App() {
             <EDemocraciaReportPage theme={theme}></EDemocraciaReportPage>
           </Route>
 
-
           <Route exact path="/wikilegis-relatorios">
             <WikilegisReportPage theme={theme}></WikilegisReportPage>
           </Route>
@@ -91,7 +91,6 @@ function App() {
           <Route exact path="/wikilegis-graficos">
             <WikilegisChartsPage theme={theme}></WikilegisChartsPage>
           </Route>
-
         </Switch>
       </Router>
     </ThemeProvider>

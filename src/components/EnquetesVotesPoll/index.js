@@ -1,27 +1,39 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   Chart,
   PieSeries,
   Legend,
   Title,
-  Tooltip,
-} from '@devexpress/dx-react-chart-material-ui';
+  Tooltip
+} from "@devexpress/dx-react-chart-material-ui";
 
-import { Animation, EventTracker } from '@devexpress/dx-react-chart';
+import { Animation, EventTracker } from "@devexpress/dx-react-chart";
+import Box from "@material-ui/core/Box";
+
+import { CSVLink } from "react-csv";
 
 const enquete_A = [
-  { vote: 'Positivo', count: 30 },
-  { vote: 'Negativo', count: 10 },
+  { vote: "Concordo Totalmente", count: 5000 },
+  { vote: "Concordo na maior parte", count: 20 },
+  { vote: "Estou indeciso", count: 0 },
+  { vote: "Discordo na maior parte", count: 15 },
+  { vote: "Discordo Totalmente", count: 1300 }
 ];
 
 const enquete_B = [
-  { vote: 'Positivo', count: 50 },
-  { vote: 'Negativo', count: 20 },
+  { vote: "Concordo Totalmente", count: 32000 },
+  { vote: "Concordo na maior parte", count: 100 },
+  { vote: "Estou indeciso", count: 5 },
+  { vote: "Discordo na maior parte", count: 150 },
+  { vote: "Discordo Totalmente", count: 5000 }
 ];
 
 const enquete_C = [
-  { vote: 'Positivo', count: 10 },
-  { vote: 'Negativo', count: 40 },
+  { vote: "Concordo Totalmente", count: 1123 },
+  { vote: "Concordo na maior parte", count: 2341 },
+  { vote: "Estou indeciso", count: 50 },
+  { vote: "Discordo na maior parte", count: 2000 },
+  { vote: "Discordo Totalmente", count: 50000 }
 ];
 
 class EnquetesVotesPoll extends React.Component {
@@ -34,41 +46,43 @@ class EnquetesVotesPoll extends React.Component {
   }
 
   update_chart() {
-    let enquete = []
+    let enquete = [];
     if (this.props.enquete === "C") {
-      enquete = enquete_C
+      enquete = enquete_C;
     } else if (this.props.enquete === "B") {
-      enquete = enquete_B
+      enquete = enquete_B;
     } else {
-      enquete = enquete_A
+      enquete = enquete_A;
     }
 
-    return enquete
+    return enquete;
   }
 
   render() {
-    const data = this.update_chart()
+    const data = this.update_chart();
     return (
+      <Box>
+        <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
+          <CSVLink
+            data={data}
+            filename={"votos_enquetes.csv"}
+            className="btn btn-primary"
+          >
+            Exportar csv
+          </CSVLink>
+        </Box>
 
-      <Chart
-        data={data}
-      >
-        <PieSeries
-          valueField="count"
-          argumentField="vote"
-        />
-        <Legend />
-        <Title
-          text={"Votos da Enquete " + this.props.enquete}
-        />
-        <Animation />
-        <EventTracker />
-        <Tooltip />
-      </Chart>
+        <Chart data={data}>
+          <PieSeries valueField="count" argumentField="vote" />
+          <Legend />
+          <Title text={"Votos da Enquete " + this.props.enquete} />
+          <Animation />
+          <EventTracker />
+          <Tooltip />
+        </Chart>
+      </Box>
     );
   }
-
-
 }
 
 export default EnquetesVotesPoll;

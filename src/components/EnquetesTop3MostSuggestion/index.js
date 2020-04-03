@@ -11,7 +11,9 @@ import {
 import { withStyles } from "@material-ui/core/styles";
 import { Stack, Animation } from "@devexpress/dx-react-chart";
 import { EventTracker } from "@devexpress/dx-react-chart";
+import Box from "@material-ui/core/Box";
 
+import { CSVLink } from "react-csv";
 
 const legendStyles = () => ({
   root: {
@@ -39,97 +41,107 @@ const Label = withStyles(legendLabelStyles, { name: "LegendLabel" })(
 const ano_2017 = [
   {
     enquete: "Enquete A",
-    suggestions: 50,
+    suggestions: 50
   },
   {
     enquete: "Enquete B",
-    suggestions: 30,
+    suggestions: 30
   },
   {
     enquete: "Enquete C",
-    suggestions: 20,
+    suggestions: 20
   }
-]
+];
 
 const ano_2018 = [
   {
     enquete: "Enquete A",
-    suggestions: 200,
+    suggestions: 200
   },
   {
     enquete: "Enquete B",
-    suggestions: 150,
+    suggestions: 150
   },
   {
     enquete: "Enquete C",
-    suggestions: 100,
+    suggestions: 100
   }
-]
+];
 
 const ano_2019 = [
   {
     enquete: "Enquete A",
-    suggestions: 100,
+    suggestions: 100
   },
   {
     enquete: "Enquete B",
-    suggestions: 80,
+    suggestions: 95
   },
   {
     enquete: "Enquete C",
-    suggestions: 50,
+    suggestions: 50
   }
-]
+];
 
 class EnqueteTop3MostSuggestion extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      ano: 2019,
-    }
+      ano: 2019
+    };
   }
 
   update_chart() {
-    let ano_data = []
+    let ano_data = [];
     if (this.props.ano === "2017") {
-      ano_data = ano_2017
+      ano_data = ano_2017;
     } else if (this.props.ano === "2018") {
-      ano_data = ano_2018
+      ano_data = ano_2018;
     } else {
-      ano_data = ano_2019
+      ano_data = ano_2019;
     }
 
-    return ano_data
+    return ano_data;
   }
 
-
   render() {
-    const data_ano = this.update_chart()
+    const data_ano = this.update_chart();
     return (
-      < Chart data={data_ano} >
-        <ArgumentAxis />
-        <ValueAxis />
+      <Box>
+        <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
+          <CSVLink
+            data={data_ano}
+            filename={"enquetes_mais_sugestoes_" + this.state.ano + ".csv"}
+            className="btn btn-primary"
+          >
+            Exportar csv
+          </CSVLink>
+        </Box>
+        <Chart data={data_ano}>
+          <ArgumentAxis />
+          <ValueAxis />
 
-        <BarSeries
-          name="Sugestões"
-          valueField="suggestions"
-          argumentField="enquete"
-          color="#3498DB"
-        />
-        <Animation />
-        <Legend
-          position="bottom"
-          rootComponent={Root}
-          labelComponent={Label}
-        />
+          <BarSeries
+            name="Sugestões"
+            valueField="suggestions"
+            argumentField="enquete"
+            color="#3498DB"
+          />
+          <Animation />
+          <Legend
+            position="bottom"
+            rootComponent={Root}
+            labelComponent={Label}
+          />
 
-        <Title text={"Enquetes com mais sugestões " + this.props.ano} />
-        <Stack />
-        <Animation />
-        <EventTracker />
-        <Tooltip />
-      </Chart >
+          <Title text={"Enquetes com mais sugestões " + this.props.ano} />
+          <Stack />
+          <Animation />
+          <EventTracker />
+          <Tooltip />
+        </Chart>
+      </Box>
     );
   }
 }
