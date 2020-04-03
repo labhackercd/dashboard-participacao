@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import ResponsiveDrawer from '../MenuDrawer';
-
+import Paper from '@material-ui/core/Paper';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
 import {
   withStyles
 } from '@material-ui/core/styles';
@@ -10,6 +12,7 @@ const useStyles = theme => ({
   '@global': {
     body: {
       backgroundColor: "theme.palette.common.white",
+      fontFamily: "Lato, sans-serif",
     },
   },
   chips: {
@@ -82,7 +85,13 @@ class InitialDashboard extends Component {
     return  (
       <div>
         <ResponsiveDrawer title = 'Dashboard'>
-
+          <Paper>
+            <Box style={{padding: '1rem'}}>
+              <center><h1>Dados da participação pública da Câmara dos Deputados</h1></center>
+              <center><img src="/img/initial_dashboard.svg" height="600" width="600" /></center>
+              <p style={{fontSize: '1.2rem', lineHeight: '1.5', padding: '1rem', textAlign: 'justify'}}> Bem vindo a plataforma de participação pública da Câmara dos Deputados. </p>
+            </Box>
+          </Paper>
         </ResponsiveDrawer>
       </div> 
     );
