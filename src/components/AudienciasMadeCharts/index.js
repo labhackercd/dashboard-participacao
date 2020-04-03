@@ -15,21 +15,23 @@ import {
   area,
 } from 'd3-shape';
 import { scalePoint } from 'd3-scale';
+import Box from '@material-ui/core/Box'
+import { CSVLink} from "react-csv";
 
-
+//Audiências com transmissão comum x Audiências com transmissão interativas
 const data = [
-  { month: 'Jan', audienciasTransmitidas: 101, audienciasInterativas: 13 },
-  { month: 'Fev', audienciasTransmitidas: 89, audienciasInterativas: 15 },
-  { month: 'Mar', audienciasTransmitidas: 107, audienciasInterativas: 20 },
-  { month: 'Abr', audienciasTransmitidas: 113, audienciasInterativas: 17 },
-  { month: 'Mai', audienciasTransmitidas: 105, audienciasInterativas: 21 },
-  { month: 'Jun', audienciasTransmitidas: 91, audienciasInterativas: 22 },
-  { month: 'Jul', audienciasTransmitidas: 110, audienciasInterativas: 23 },
-  { month: 'Ago', audienciasTransmitidas: 111, audienciasInterativas: 25 },
-  { month: 'Set', audienciasTransmitidas: 112, audienciasInterativas: 27 },
-  { month: 'Out', audienciasTransmitidas: 111, audienciasInterativas: 30 },
-  { month: 'Nov', audienciasTransmitidas: 120, audienciasInterativas: 35 },
-  { month: 'Dez', audienciasTransmitidas: 160, audienciasInterativas: 45 },
+  { month: 'Jan', audienciasTransmitidas: 101, audienciasInterativas: 13, year:'2019' },
+  { month: 'Fev', audienciasTransmitidas: 89, audienciasInterativas: 15, year:'2019' },
+  { month: 'Mar', audienciasTransmitidas: 107, audienciasInterativas: 20, year:'2019' },
+  { month: 'Abr', audienciasTransmitidas: 113, audienciasInterativas: 17, year:'2019' },
+  { month: 'Mai', audienciasTransmitidas: 105, audienciasInterativas: 21, year:'2019' },
+  { month: 'Jun', audienciasTransmitidas: 91, audienciasInterativas: 22, year:'2019' },
+  { month: 'Jul', audienciasTransmitidas: 110, audienciasInterativas: 23, year:'2019' },
+  { month: 'Ago', audienciasTransmitidas: 111, audienciasInterativas: 25, year:'2019' },
+  { month: 'Set', audienciasTransmitidas: 112, audienciasInterativas: 27, year:'2019' },
+  { month: 'Out', audienciasTransmitidas: 111, audienciasInterativas: 30, year:'2019' },
+  { month: 'Nov', audienciasTransmitidas: 120, audienciasInterativas: 35, year:'2019' },
+  { month: 'Dez', audienciasTransmitidas: 160, audienciasInterativas: 45, year:'2019' },
 ];
 const legendStyles = () => ({
   root: {
@@ -82,30 +84,33 @@ class AudienciasMadeCharts extends React.PureComponent {
     const { classes } = this.props;
     return (
       <Paper>
-        <Chart
-          data={chartData}
-          className={classes.chart}
-        >
-          <ArgumentScale factory={scalePoint} />
-          <ArgumentAxis />
-          <ValueAxis />
+        <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
+            <CSVLink data={this.state.data} filename={"audiencias-interativas-realizadas.csv"} className="btn btn-primary">Exportar csv</CSVLink>
+        </Box>
+        <Box>
+            <Chart data={chartData} className={classes.chart}>
+              <ArgumentScale factory={scalePoint} />
+              <ArgumentAxis />
+              <ValueAxis />
 
-          <AreaSeries
-            name="Audiências transmitidas"
-            valueField="audienciasTransmitidas"
-            argumentField="month"
-            seriesComponent={Area}
-          />
-          <AreaSeries
-            name="Audiências Interativas"
-            valueField="audienciasInterativas"
-            argumentField="month"
-            seriesComponent={Area}
-          />
-          <Animation />
-          <Legend position="bottom" rootComponent={Root} labelComponent={Label} />
-          <Title text="Audiências Interativas / Audiências Realizadas" />
-        </Chart>
+              <AreaSeries
+                name="Audiências com transmissão comum"
+                valueField="audienciasTransmitidas"
+                argumentField="month"
+                seriesComponent={Area}
+              />
+              <AreaSeries
+                name="Audiências com transmissão interativa"
+                valueField="audienciasInterativas"
+                argumentField="month"
+                seriesComponent={Area}
+              />
+              <Animation />
+              <Legend position="bottom" rootComponent={Root} labelComponent={Label} />
+              <Title text="Audiências com transmissão comum x Audiências com transmissão interativa" />
+            </Chart>
+        </Box>
+
       </Paper>
     );
   }
