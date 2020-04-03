@@ -75,10 +75,10 @@ class EnquetesReportPage extends Component {
   render() {
     return (
       <div>
-        <ResponsiveDrawer title="Audiências Interativas">
+        <ResponsiveDrawer title="Enquetes">
           <Box mb={5}>
             <Alert severity="info">
-              Este é um texto de alerta para avisar sobre os dados!
+              Os dados contidos nesta página são fictícios!
             </Alert>
           </Box>
           <Box>
