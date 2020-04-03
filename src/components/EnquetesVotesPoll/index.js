@@ -24,14 +24,14 @@ class EnquetesVotesPoll extends React.Component {
   update_chart() {
     const enquete = this.props.enquete;
     const enquete_format = [
-      { vote: "Concordo Totalmente", count: enquete.partial_agree_votes },
+      { vote: "Concordo Totalmente", count: enquete.agree_votes },
       { vote: "Concordo na maior parte", count: enquete.partial_agree_votes },
       { vote: "Estou indeciso", count: enquete.indecisive_votes },
       {
         vote: "Discordo na maior parte",
         count: enquete.partial_disagree_votes
       },
-      { vote: "Discordo Totalmente", count: enquete._disagree_votes }
+      { vote: "Discordo Totalmente", count: enquete.disagree_votes }
     ];
     return enquete_format;
   }
