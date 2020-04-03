@@ -1,88 +1,204 @@
-import * as React from "react";
-import {
-  Chart,
-  PieSeries,
-  Legend,
-  Title,
-  Tooltip
-} from "@devexpress/dx-react-chart-material-ui";
+import React, { Component } from "react";
+import MaterialTable from "material-table";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
-import { Animation, EventTracker } from "@devexpress/dx-react-chart";
 import Box from "@material-ui/core/Box";
 
-import { CSVLink } from "react-csv";
+import data_enquetes from "./data_enquetes";
 
-const enquete_A = [
-  { vote: "Concordo Totalmente", count: 5000 },
-  { vote: "Concordo na maior parte", count: 20 },
-  { vote: "Estou indeciso", count: 0 },
-  { vote: "Discordo na maior parte", count: 15 },
-  { vote: "Discordo Totalmente", count: 1300 }
-];
+class EnquetesPollTableReport extends Component {
+  _isTableMounted = false;
+  columns_votes = [
+    { field: "name", title: "Título da Enquete", tooltip: "Título da Enquete" },
+    {
+      field: "participants_count",
+      title: "Participantes",
+      tooltip: "Número de participantes de uma enquete."
+    },
+    {
+      field: "agree_votes",
+      title: "Concordam Totalmente",
+      tooltip: "Número de votos que concordam totalmente em uma enquete."
+    },
+    {
+      field: "partial_agree_votes",
+      title: "Concordam Parcialmente",
+      tooltip: "Número de votos que concordam parcialmente em uma enquete."
+    },
+    {
+      field: "indecisive_votes",
+      title: "Indecisos",
+      tooltip: "Número de votos que estão indeciso em uma enquete."
+    },
+    {
+      field: "partial_disagree_votes",
+      title: "Desconcordam Parcialmente",
+      tooltip: "Número de votos que desconcordam parcialmente em uma enquete."
+    },
+    {
+      field: "disagree_votes",
+      title: "Desconcordam Totalmente",
+      tooltip: "Número de votos que desconcordam totalmente em uma enquete."
+    },
+    {
+      field: "total_votes_count",
+      title: "Votos totais",
+      tooltip: "Número de votos em uma enquete."
+    }
+  ];
 
-const enquete_B = [
-  { vote: "Concordo Totalmente", count: 32000 },
-  { vote: "Concordo na maior parte", count: 100 },
-  { vote: "Estou indeciso", count: 5 },
-  { vote: "Discordo na maior parte", count: 150 },
-  { vote: "Discordo Totalmente", count: 5000 }
-];
+  columns_suggestions = [
+    { field: "name", title: "Título da Enquete", tooltip: "Título da Enquete" },
+    {
+      field: "participants_count",
+      title: "Participantes",
+      tooltip: "Número de participantes de uma enquete."
+    },
+    {
+      field: "positive_suggestions",
+      title: "Sugestões Favoráveis",
+      tooltip: "Número de sugestões favoráveis de uma enquete."
+    },
+    {
+      field: "negative_suggestions",
+      title: "Sugestões Contrários",
+      tooltip: "Número de sugestões contrárias de uma enquete."
+    },
+    {
+      field: "suggestions_count",
+      title: "Sugestões totais",
+      tooltip: "Número de sugestões em uma enquete."
+    },
+    {
+      field: "like_suggestions",
+      title: "Curtir",
+      tooltip: "Número de curtidas em sugestões da enquete."
+    },
+    {
+      field: "dislike_suggestions",
+      title: "Descurtir",
+      tooltip: "Número de descurtidas em sugestões da enquete."
+    },
+    {
+      field: "opinion_count",
+      title: "Total de Curtir e Descutir",
+      tooltip: "Número de votos em uma sugestão da enquete."
+    }
+  ];
 
-const enquete_C = [
-  { vote: "Concordo Totalmente", count: 1123 },
-  { vote: "Concordo na maior parte", count: 2341 },
-  { vote: "Estou indeciso", count: 50 },
-  { vote: "Discordo na maior parte", count: 2000 },
-  { vote: "Discordo Totalmente", count: 50000 }
-];
-
-class EnquetesVotesPoll extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      data: enquete_A
+      isLoadingTable: true,
+      page: 0,
+      setPage: 0,
+      rowsPerPage: 30,
+      setRowsPerPage: 10,
+      rows: []
     };
   }
 
-  update_chart() {
-    let enquete = [];
-    if (this.props.enquete === "C") {
-      enquete = enquete_C;
-    } else if (this.props.enquete === "B") {
-      enquete = enquete_B;
-    } else {
-      enquete = enquete_A;
-    }
+  loadDataInTable(callback) {
+    this.setState({ rows: data_enquetes });
+    callback();
+  }
 
-    return enquete;
+  componentDidMount() {
+    this._isTableMounted = true;
+
+    if (this._isTableMounted) {
+      this.loadDataInTable(() => {
+        this.setState({ isLoadingTable: false });
+      });
+    }
   }
 
   render() {
-    const data = this.update_chart();
-    return (
-      <Box>
-        <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
-          <CSVLink
-            data={data}
-            filename={"votos_enquetes.csv"}
-            className="btn btn-primary"
-          >
-            Exportar csv
-          </CSVLink>
-        </Box>
+    const loading = this.state.isLoadingTable;
 
-        <Chart data={data}>
-          <PieSeries valueField="count" argumentField="vote" />
-          <Legend />
-          <Title text={"Votos da Enquete " + this.props.enquete} />
-          <Animation />
-          <EventTracker />
-          <Tooltip />
-        </Chart>
-      </Box>
-    );
+    if (loading) {
+      return (
+        <div align="center">
+          {" "}
+          <CircularProgress></CircularProgress>{" "}
+        </div>
+      );
+    } else {
+      return (
+        <Box width="auto" display="inline">
+          <MaterialTable
+            columns={this.columns_votes}
+            data={this.state.rows}
+            options={{
+              filtering: true,
+              sorting: true,
+              exportButton: true,
+              exportAllData: true,
+              exportFileName: "enquetes",
+              pageSize: 5,
+              pageSizeOptions: [5, 10, 20, 30, 40, 50, 100, 200],
+              emptyRowsWhenPaging: false,
+              removable: true
+            }}
+            localization={{
+              body: {
+                emptyDataSourceMessage: "Nenhum resultado encontrado"
+              },
+              toolbar: {
+                searchTooltip: "Pesquisar",
+                searchPlaceholder: "Pesquisar"
+              },
+              pagination: {
+                labelRowsSelect: "Linhas",
+                labelDisplayedRows: " {from}-{to} de {count}",
+                firstTooltip: "Primeira página",
+                previousTooltip: "Página Anterior",
+                nextTooltip: "Próxima página",
+                lastTooltip: "Última página"
+              }
+            }}
+            title="Votos"
+          />
+
+          <br></br>
+
+          <MaterialTable
+            columns={this.columns_suggestions}
+            data={this.state.rows}
+            options={{
+              filtering: true,
+              sorting: true,
+              exportButton: true,
+              exportAllData: true,
+              exportFileName: "sugestoes",
+              pageSize: 5,
+              pageSizeOptions: [5, 10, 20, 30, 40, 50, 100, 200],
+              emptyRowsWhenPaging: false,
+              removable: true
+            }}
+            localization={{
+              body: {
+                emptyDataSourceMessage: "Nenhum resultado encontrado"
+              },
+              toolbar: {
+                searchTooltip: "Pesquisar",
+                searchPlaceholder: "Pesquisar"
+              },
+              pagination: {
+                labelRowsSelect: "Linhas",
+                labelDisplayedRows: " {from}-{to} de {count}",
+                firstTooltip: "Primeira página",
+                previousTooltip: "Página Anterior",
+                nextTooltip: "Próxima página",
+                lastTooltip: "Última página"
+              }
+            }}
+            title="Sugestões"
+          />
+        </Box>
+      );
+    }
   }
 }
 
-export default EnquetesVotesPoll;
+export default EnquetesPollTableReport;

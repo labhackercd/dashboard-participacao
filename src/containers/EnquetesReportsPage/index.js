@@ -8,8 +8,7 @@ import MuiAlert from "@material-ui/lab/Alert";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import AudienciasRoomsTableReport from "../../components/AudienciasRoomsTableReportContainer";
-import AudienciasUserTableReport from "../../components/AudienciasUsersTableReportContainer";
+import EnquetesPollReport from "../../components/EnquetesPollReport";
 
 const useStyles = theme => ({
   "@global": {
@@ -89,27 +88,27 @@ class EnquetesReportPage extends Component {
                 aria-controls="panel1a-content"
                 id="panel1a-header"
               >
-                <Typography>Relatório Audiências - Salas</Typography>
+                <Typography>Relatório Enquetes</Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
-                <AudienciasRoomsTableReport></AudienciasRoomsTableReport>
+                <EnquetesPollReport></EnquetesPollReport>
               </ExpansionPanelDetails>
             </ExpansionPanel>
 
             <br></br>
 
-            <ExpansionPanel defaultExpanded={false}>
+            {/* <ExpansionPanel defaultExpanded={false}>
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel2a-content"
                 id="panel2a-header"
               >
-                <Typography>Relatório Audiências - Usuários</Typography>
+                <Typography>Relatório Enquetes - Usuários</Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
                 <AudienciasUserTableReport></AudienciasUserTableReport>
               </ExpansionPanelDetails>
-            </ExpansionPanel>
+            </ExpansionPanel> */}
           </Box>
         </ResponsiveDrawer>
       </div>
