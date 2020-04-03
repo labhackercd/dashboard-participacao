@@ -37,16 +37,12 @@ class EnquetesSuggestionPoll extends React.Component {
   }
 
   update_chart() {
-    let enquete = [];
-    if (this.props.enquete === "C") {
-      enquete = enquete_C;
-    } else if (this.props.enquete === "B") {
-      enquete = enquete_B;
-    } else {
-      enquete = enquete_A;
-    }
-
-    return enquete;
+    const enquete = this.props.enquete;
+    const enquete_format = [
+      { vote: "Positivo", count: enquete.positive_suggestions },
+      { vote: "Negativo", count: enquete.negative_suggestions }
+    ];
+    return enquete_format;
   }
 
   render() {
@@ -66,7 +62,7 @@ class EnquetesSuggestionPoll extends React.Component {
         <Chart data={data}>
           <PieSeries valueField="count" argumentField="vote" />
           <Legend />
-          <Title text={"Sugestões da Enquete " + this.props.enquete} />
+          <Title text={"Sugestões da Enquete " + this.props.enquete.name} />
           <Animation />
           <EventTracker />
           <Tooltip />

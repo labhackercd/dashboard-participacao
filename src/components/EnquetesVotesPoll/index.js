@@ -12,50 +12,28 @@ import Box from "@material-ui/core/Box";
 
 import { CSVLink } from "react-csv";
 
-const enquete_A = [
-  { vote: "Concordo Totalmente", count: 5000 },
-  { vote: "Concordo na maior parte", count: 20 },
-  { vote: "Estou indeciso", count: 0 },
-  { vote: "Discordo na maior parte", count: 15 },
-  { vote: "Discordo Totalmente", count: 1300 }
-];
-
-const enquete_B = [
-  { vote: "Concordo Totalmente", count: 32000 },
-  { vote: "Concordo na maior parte", count: 100 },
-  { vote: "Estou indeciso", count: 5 },
-  { vote: "Discordo na maior parte", count: 150 },
-  { vote: "Discordo Totalmente", count: 5000 }
-];
-
-const enquete_C = [
-  { vote: "Concordo Totalmente", count: 1123 },
-  { vote: "Concordo na maior parte", count: 2341 },
-  { vote: "Estou indeciso", count: 50 },
-  { vote: "Discordo na maior parte", count: 2000 },
-  { vote: "Discordo Totalmente", count: 50000 }
-];
-
 class EnquetesVotesPoll extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      data: enquete_A
+      data: this.props.enquete
     };
   }
 
   update_chart() {
-    let enquete = [];
-    if (this.props.enquete === "C") {
-      enquete = enquete_C;
-    } else if (this.props.enquete === "B") {
-      enquete = enquete_B;
-    } else {
-      enquete = enquete_A;
-    }
-
-    return enquete;
+    const enquete = this.props.enquete;
+    const enquete_format = [
+      { vote: "Concordo Totalmente", count: enquete.partial_agree_votes },
+      { vote: "Concordo na maior parte", count: enquete.partial_agree_votes },
+      { vote: "Estou indeciso", count: enquete.indecisive_votes },
+      {
+        vote: "Discordo na maior parte",
+        count: enquete.partial_disagree_votes
+      },
+      { vote: "Discordo Totalmente", count: enquete._disagree_votes }
+    ];
+    return enquete_format;
   }
 
   render() {
@@ -75,7 +53,7 @@ class EnquetesVotesPoll extends React.Component {
         <Chart data={data}>
           <PieSeries valueField="count" argumentField="vote" />
           <Legend />
-          <Title text={"Votos da Enquete " + this.props.enquete} />
+          <Title text={"Votos da Enquete " + this.props.enquete.name} />
           <Animation />
           <EventTracker />
           <Tooltip />

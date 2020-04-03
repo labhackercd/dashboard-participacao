@@ -25,6 +25,7 @@ import { Divider } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import data_enquetes from "../../components/EnquetesVotesPoll/data_enquetes";
 
 const useStyles = theme => ({
   "@global": {
@@ -52,12 +53,6 @@ const useStyles = theme => ({
   }
 });
 
-const polls = [
-  { title: "PL 663/2020", id: "A" },
-  { title: "PL 601/2020", id: "B" },
-  { title: "PL 622/2020", id: "C" }
-];
-
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
@@ -70,7 +65,7 @@ class EnquetesChartsPage extends Component {
     this.state = {
       openSnackBar: false,
       snackBarMessageError: "",
-      enquete: "A",
+      enquete: data_enquetes[0],
       ano: 2019
     };
 
@@ -92,9 +87,9 @@ class EnquetesChartsPage extends Component {
 
   handleChangeEnquete(event, values) {
     if (values === null) {
-      this.setState({ enquete: "A" });
+      this.setState({ enquete: data_enquetes[0] });
     } else {
-      this.setState({ enquete: values.id });
+      this.setState({ enquete: values });
     }
   }
 
@@ -211,8 +206,8 @@ class EnquetesChartsPage extends Component {
                   <Grid item xs={12} md={12} zeroMinWidth>
                     <Autocomplete
                       id="combo-box-demo"
-                      options={polls}
-                      getOptionLabel={option => option.title}
+                      options={data_enquetes}
+                      getOptionLabel={option => option.name}
                       style={{ width: 300 }}
                       onChange={this.handleChangeEnquete}
                       renderInput={params => (
