@@ -88,7 +88,7 @@ class AudienciasReportPage extends Component {
             <Box width="100%" height="100%">
               <Paper style={{padding: "1rem"}}>
               <center><h1 style={{margin: "1rem 0 1rem 0"}}> Pauta Participativa </h1></center>
-              <p style={{lineHeight: 2, fontSize: 23, textAlign: "justify", margin: "0 1.5rem 0 1.5rem"}}>
+              <p style={{lineHeight: 2, fontSize: 20, textAlign: "justify", margin: "0 1.5rem 0 1.5rem"}}>
                A Pauta Participativa é uma forma de 
               você ajudar a Câmara a definir a 
               prioridade de votações dos projetos. 

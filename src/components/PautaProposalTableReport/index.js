@@ -4,18 +4,18 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { TablePagination } from '@material-ui/core';
 import {PAUTA_PROPOSAL_API_URL} from '../../config_constants'
+import { Page1 } from './mock_data';
 
-
-class PautaUserTableReport extends Component {
+class PautaProposalTableReport extends Component {
 
   _isTableMounted=false;
   columns = [
-    { field: 'ID', title: 'ID',  align: 'center'},
-    { field: 'profile.gender', title: 'Gênero' },
-    { field: 'profile.uf', title: 'UF' },
-    { field: 'profile.birthdate', title: 'Data de Nascimento' },
-    { field: 'date_joined', title: 'Data do Cadastro'}
-  ]
+    { field: 'id', title: 'id',  align: 'center'},
+    { field: 'number', title: 'Número' },
+    { field: 'proposal_type.initials', title: 'Tipo de proposta' },
+    { field: 'resource_uri', title: 'URL do recurso'},
+    { field: 'title', title: 'Titulo' },
+    { field: 'year', title: 'Ano'}]
     
   constructor(props) {
     super(props);
@@ -24,47 +24,16 @@ class PautaUserTableReport extends Component {
       currentPage: 1,
       setPage: 0,
       rowsPerPage: 20,
-      rows: [ ],
+      rows: [],
       totalRows:0
     };
+    this.loadDataInTable = this.loadDataInTable.bind(this);
   }
   
   loadDataInTable(callback){
-    //https://edemocracia.camara.leg.br/audiencias/api/room/?ordering=-created&is_visible=true
-    const url = new URL(PAUTA_PROPOSAL_API_URL + this.state.currentPage)
-
-    fetch(url, {
-      method: 'GET',
-    }).then((response) => response.json())
-    .then((responseJson) => {
-      this.setState({ rows: responseJson.results, totalRows: responseJson.count });
-      callback();
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-    
-    //callback();
+    this.setState({rows: Page1.objects, totalRows: Page1.total_count });
+    callback();
   }
-
-    handleNextPageChange(page){
-      
-      this.setState({isLoadingTable:true, currentPage:page})
-      
-      const url = new URL(PAUTA_PROPOSAL_API_URL + this.state.currentPage)
-      
-      fetch(url, {
-        method: 'GET',
-      }).then((response) => response.json())
-      .then((responseJson) => {
-        this.setState({ rows: responseJson.results});
-        this.setState({isLoadingTable:false})
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-      
-    }
   
   componentDidMount() {
     this._isTableMounted = true;
@@ -82,7 +51,6 @@ class PautaUserTableReport extends Component {
     
   }
 
-
   render(){
     const loading = this.state.isLoadingTable
 
@@ -94,8 +62,8 @@ class PautaUserTableReport extends Component {
             columns={this.columns}
             data={this.state.rows}
             options={{
-              pageSize:100,
-              pageSizeOptions:[20, 40, 60, 80, 100,80000],
+              pageSize:5,
+              pageSizeOptions:[15, 30, 45, 60, 75, 90],
               emptyRowsWhenPaging:false,
               removable:true,
               search:false
@@ -117,9 +85,6 @@ class PautaUserTableReport extends Component {
                 lastTooltip: 'Última página'
               }
             }}
-            components={{
-              Pagination: props => <TablePagination {...props} count={this.state.totalRows} page={this.state.currentPage} onChangePage={(event,page) => {this.handleNextPageChangeTeste(event,page) /* handle page size change : event.target.value */}}/>
-            }}
             title="Usuários"
           />
       )
@@ -128,4 +93,4 @@ class PautaUserTableReport extends Component {
   }
 }
 
-export default (PautaUserTableReport);
+export default (PautaProposalTableReport);

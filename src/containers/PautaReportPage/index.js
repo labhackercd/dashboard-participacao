@@ -8,7 +8,7 @@ import MuiAlert from '@material-ui/lab/Alert';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import PautaUserTableReport from '../../components/PautaUsersTableReport'
+import PautaProposalTableReport from '../../components/PautaProposalTableReport'
 
 const useStyles = theme => ({
   '@global': {
@@ -93,7 +93,7 @@ class PautaPage extends Component {
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
 
-                <PautaUserTableReport></PautaUserTableReport>
+                <PautaProposalTableReport></PautaProposalTableReport>
               </ExpansionPanelDetails>
             </ExpansionPanel>
         </Box>

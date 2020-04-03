@@ -74,10 +74,10 @@ export default function PautaList() {
           </ListItem>
 
           
-          <ListItem disabled={true} button component={Link} to={"/pauta-analytics"}  className={classes.nested}>
+          <ListItem button component={Link} to={"/pauta-analytics"}  className={classes.nested}>
             <ListItemIcon>
               <Icon>
-                <img alt="Ícone Wikilegis Analytics" src={GoogleAnalyticsLogo} height={22} width={22}/>
+                <img alt="Ícone Pauta Analytics" src={GoogleAnalyticsLogo} height={22} width={22}/>
               </Icon>
             </ListItemIcon>
             <ListItemText primary="Google Analytics" />

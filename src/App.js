@@ -21,6 +21,7 @@ import EdemocraciaAnalyticsPage from './containers/EdemocraciaAnalyticsPage'
 
 import PautaChartsPage from './containers/PautaChartsPage'
 import PautaReportPage from './containers/PautaReportPage'
+import PautaAnalyticsPage from './containers/PautaAnalyticsPage'
 
 import WikilegisReportPage from './containers/WikilegisReportPage'
 import WikilegisAnalyticsPage from './containers/WikilegisAnalyticsPage'
@@ -66,7 +67,9 @@ function App() {
           <Route exact path="/pauta-graficos">
             <PautaChartsPage theme={theme}></PautaChartsPage>
           </Route>
-
+          <Route exact path="/pauta-analytics">
+            <PautaAnalyticsPage theme={theme}></PautaAnalyticsPage>
+          </Route>
 
           <Route exact path="/edemocracia-graficos">
             <EDemocraciaChartsPage theme={theme}></EDemocraciaChartsPage>
