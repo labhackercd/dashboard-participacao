@@ -8,6 +8,10 @@ import MuiAlert from '@material-ui/lab/Alert';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Grid from '@material-ui/core/Grid'
+import IconButton from '@material-ui/core/IconButton';
+import Collapse from '@material-ui/core/Collapse';
+import CloseIcon from '@material-ui/icons/Close';
 import AudienciasRoomsTableReport from '../../components/AudienciasRoomsTableReportContainer'
 import AudienciasUserTableReport from '../../components/AudienciasUsersTableReportContainer'
 
@@ -96,7 +100,18 @@ class AudienciasReportPage extends Component {
                 <Typography>Relatório Audiências - Salas</Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
-                <AudienciasRoomsTableReport></AudienciasRoomsTableReport>
+                <Grid container>
+                  <Grid item xs={12}>
+                    <Box marginY={2}>
+                      <TransitionAlerts></TransitionAlerts>
+                    </Box>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <AudienciasRoomsTableReport></AudienciasRoomsTableReport>
+                  </Grid>
+                </Grid>
+                
+                
               </ExpansionPanelDetails>
             </ExpansionPanel>
 
@@ -125,5 +140,34 @@ class AudienciasReportPage extends Component {
 
 }
 
+function TransitionAlerts() {
+  const classes = useStyles();
+  const [open, setOpen] = React.useState(true);
+
+  return (
+    <div className={classes.root}>
+      <Collapse in={open}>
+        <Alert
+          severity="info"
+          variant="standard"
+          action={
+            <IconButton
+              aria-label="close"
+              color="inherit"
+              size="small"
+              onClick={() => {
+                setOpen(false);
+              }}
+            >
+              <CloseIcon fontSize="inherit" />
+            </IconButton>
+          }
+        >
+          Caso deseje visualizar mais informações sobre uma audiência específica, clique na linha correspondente e mais informações serão mostradas.
+        </Alert>
+      </Collapse>
+    </div>
+  );
+}
 
 export default withStyles(useStyles)(AudienciasReportPage);

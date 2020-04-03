@@ -114,6 +114,7 @@ class AudienciasRoomsTableReport extends Component {
                     </Box>
                   )
                 }}
+                
                 onRowClick={(event, rowData, togglePanel) => togglePanel()}
               />
           </Box>

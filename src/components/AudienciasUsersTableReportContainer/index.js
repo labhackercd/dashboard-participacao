@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import MaterialTable from "material-table";
 import CircularProgress from '@material-ui/core/CircularProgress';
-
+import Box from '@material-ui/core/Box'
 import { TablePagination } from '@material-ui/core';
 
 import {AUDIENCIAS_PAGED_USER_API_URL} from '../../config_constants'
@@ -11,8 +11,7 @@ class AudienciasUserTableReport extends Component {
 
   _isTableMounted=false;
   columns = [
-    { field: 'username', title: 'Username',  align: 'center'},
-    { field: 'first_name', title: 'Nome' },
+    { field: 'id', title: 'ID',  align: 'center'},
     { field: 'questions_count', title: 'Perguntas Feitas' },
     { field: 'messages_count', title: 'Mensagens Enviadas' },
     { field: 'votes_count', title: 'Votos' },
@@ -95,6 +94,7 @@ class AudienciasUserTableReport extends Component {
       return <div align="center"> <CircularProgress></CircularProgress> </div>
     }else{
       return (
+        <Box width="100%">
           <MaterialTable
             columns={this.columns}
             data={this.state.rows}
@@ -127,6 +127,7 @@ class AudienciasUserTableReport extends Component {
             }}
             title="Usuários"
           />
+        </Box>
       )
     }
 
