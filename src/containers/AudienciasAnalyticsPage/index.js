@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { GoogleProvider } from 'react-analytics-widget'
 import ResponsiveDrawer from '../MenuDrawer';
 import GoogleAnalyticsCharts from '../../components/GoogleAnalyticsCharts'
+import GoogleAnalyticsDynamicCharts from '../../components/GoogleAnalyticsDynamicCharts'
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -11,7 +12,7 @@ import Box from '@material-ui/core/Box'
 import Divider from '@material-ui/core/Divider'
 import Grid from '@material-ui/core/Grid'
 
-import {GOOGLE_ANALYTICS_URL_TOKEN} from '../../config_constants'
+import { GOOGLE_ANALYTICS_URL_TOKEN } from '../../config_constants'
 
 
 const last30days = {
@@ -36,7 +37,7 @@ const trafficByPlatformLast30Days = {
     'start-date': '30daysAgo',
     'end-date': 'yesterday',
     'metrics': 'ga:pageviews',
-    'dimensions': 'ga:pagePathLevel3',
+    'dimensions': 'ga:pagePath',
     'sort': '-ga:pageviews',
     'filters': 'ga:pagePathLevel1=@/audiencias',
     'max-results': 10 //number of platforms
@@ -54,10 +55,10 @@ const trafficByPlatformLast30Days = {
 const last7days = {
   reportType: 'ga',
   query: {
-    'dimensions': 'ga:dayOfWeekName',
-    'metrics': 'ga:pageviews,ga:sessions',
     'start-date': '7daysAgo',
     'end-date': 'yesterday',
+    'dimensions': 'ga:date',
+    'metrics': 'ga:pageviews,ga:sessions',
     'filters': 'ga:pagePathLevel1=@/audiencias',
   },
   chart: {
@@ -73,10 +74,47 @@ const trafficByPlatformLast7Days = {
     'start-date': '7daysAgo',
     'end-date': 'yesterday',
     'metrics': 'ga:pageviews',
-    'dimensions': 'ga:pagePathLevel3',
+    'dimensions': 'ga:pagePath',
     'sort': '-ga:pageviews',
     'filters': 'ga:pagePathLevel1=@/audiencias',
     'max-results': 10 //number of platforms
+  },
+  chart: {
+    'type': 'PIE',
+    'options': {
+      'width': '100%',
+      'pieHole': 4 / 9,
+      'title': 'Top 10 audiências'
+    }
+  }
+}
+
+const dynamicLineChart = {
+  reportType: 'ga',
+  query: {
+    'start-date': '2016-01-01',
+    'end-date': 'yesterday',
+    'dimensions': 'ga:year',
+    'metrics': 'ga:pageviews,ga:sessions',
+    'filters': 'ga:pagePathLevel1=@/audiencias',
+  },
+  chart: {
+    type: 'LINE',
+    options: {
+      'title': 'Acessos'
+    }
+  }
+}
+
+const dynamicPieChart = {
+  query: {
+    'start-date': '2016-01-01',
+    'end-date': 'yesterday',
+    'metrics': 'ga:pageviews',
+    'dimensions': 'ga:pagePath',
+    'sort': '-ga:pageviews',
+    'filters': 'ga:pagePathLevel1=@/audiencias',
+    'max-results': 10
   },
   chart: {
     'type': 'PIE',
@@ -140,6 +178,15 @@ export default class AudienciasAnalyticsPage extends Component {
             pieChartConfig={trafficByPlatformLast7Days}
           />
         );
+      case 'filter':
+        return (
+          <GoogleAnalyticsDynamicCharts
+            views={views}
+            lineChartConfig={dynamicLineChart}
+            pieChartConfig={dynamicPieChart}
+            startDate='2016-01-01'
+          />
+        );
       default:
         return (
           <GoogleAnalyticsCharts
@@ -164,20 +211,21 @@ export default class AudienciasAnalyticsPage extends Component {
 
             <Paper>
               <Box paddingY={3} paddingX={2} spacing={1}>
-                  <Grid container spacing={3}>
-                    <Grid item xs={12}>
-                        <InputLabel id="select-label">Visualizar por</InputLabel>
-                          <Select
-                            labelId="select-label"
-                            id="simple-select"
-                            value={this.state.gaMetricsSwitch}
-                            onChange={this.handleMetricsSwitchChange}
-                          >
-                          <MenuItem value={'month'}>Últimos 30 dias</MenuItem>
-                          <MenuItem value={'week'}>Últimos 7 dias</MenuItem>
-                        </Select>
-                    </Grid>
+                <Grid container spacing={3}>
+                  <Grid item xs={12}>
+                    <InputLabel id="select-label">Visualizar por</InputLabel>
+                    <Select
+                      labelId="select-label"
+                      id="simple-select"
+                      value={this.state.gaMetricsSwitch}
+                      onChange={this.handleMetricsSwitchChange}
+                    >
+                      <MenuItem value={'month'}>Últimos 30 dias</MenuItem>
+                      <MenuItem value={'week'}>Últimos 7 dias</MenuItem>
+                      <MenuItem value={'filter'}>Seleção de período</MenuItem>
+                    </Select>
                   </Grid>
+                </Grid>
               </Box>
 
               <Divider variant="middle"></Divider>
@@ -185,7 +233,7 @@ export default class AudienciasAnalyticsPage extends Component {
               <Box spacing={2} paddingTop={2}>
                 {this.renderGoogleAnalyticsSwitch()}
               </Box>
-              
+
             </Paper>
           </GoogleProvider>
         </ResponsiveDrawer >

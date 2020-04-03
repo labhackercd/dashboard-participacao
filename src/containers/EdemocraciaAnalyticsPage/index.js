@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { GoogleProvider } from 'react-analytics-widget'
 import ResponsiveDrawer from '../MenuDrawer';
-import GoogleAnalyticsFilterForm from '../../components/GoogleAnalyticsFilterForm'
+import GoogleAnalyticsDynamicCharts from '../../components/GoogleAnalyticsDynamicCharts'
 import GoogleAnalyticsCharts from '../../components/GoogleAnalyticsCharts'
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Select from '@material-ui/core/Select';
@@ -12,7 +12,7 @@ import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 import Divider from '@material-ui/core/Divider'
 
-import {GOOGLE_ANALYTICS_URL_TOKEN} from '../../config_constants'
+import { GOOGLE_ANALYTICS_URL_TOKEN } from '../../config_constants'
 
 
 const last30days = {
@@ -54,7 +54,7 @@ const trafficByPlatformLast30Days = {
 const last7days = {
   reportType: 'ga',
   query: {
-    'dimensions': 'ga:dayOfWeekName',
+    'dimensions': 'ga:date',
     'metrics': 'ga:pageviews,ga:sessions',
     'start-date': '7daysAgo',
     'end-date': 'yesterday'
@@ -83,6 +83,42 @@ const trafficByPlatformLast7Days = {
       'width': '100%',
       'pieHole': 4 / 9,
       'title': 'Tráfego por plataforma nos últimos 7 dias'
+    }
+  }
+}
+
+const dynamicLineChart = {
+  reportType: 'ga',
+  query: {
+    'start-date': '2016-01-01',
+    'end-date': 'yesterday',
+    'metrics': 'ga:pageviews,ga:sessions',
+    'dimensions': 'ga:year',
+  },
+  chart: {
+    type: 'LINE',
+    options: {
+      'title': 'Acessos'
+    }
+  }
+}
+
+const dynamicPieChart = {
+  query: {
+    'start-date': '2016-01-01',
+    'end-date': 'yesterday',
+    'metrics': 'ga:pageviews',
+    'dimensions': 'ga:pagePathLevel1',
+    'sort': '-ga:pageviews',
+    'filters': 'ga:pagePathLevel1!=/',
+    'max-results': 4  //number of platforms
+  },
+  chart: {
+    'type': 'PIE',
+    'options': {
+      'width': '100%',
+      'pieHole': 4 / 9,
+      'title': 'Tráfego por plataforma'
     }
   }
 }
@@ -141,7 +177,12 @@ export default class AnalyticsPage extends Component {
         );
       case 'filter':
         return (
-          <GoogleAnalyticsFilterForm views={views} />
+          <GoogleAnalyticsDynamicCharts
+            views={views}
+            lineChartConfig={dynamicLineChart}
+            pieChartConfig={dynamicPieChart}
+            startDate='2016-01-01'
+          />
         );
       default:
         return (
@@ -167,21 +208,21 @@ export default class AnalyticsPage extends Component {
 
             <Paper>
               <Box paddingY={3} paddingX={2} spacing={1}>
-                  <Grid container spacing={3}>
-                    <Grid item xs={12}>
-                        <InputLabel id="select-label">Visualizar por</InputLabel>
-                          <Select
-                            labelId="select-label"
-                            id="simple-select"
-                            value={this.state.gaMetricsSwitch}
-                            onChange={this.handleMetricsSwitchChange}
-                          >
-                          <MenuItem value={'month'}>Últimos 30 dias</MenuItem>
-                          <MenuItem value={'week'}>Últimos 7 dias</MenuItem>
-                          <MenuItem value={'filter'}>Seleção de período</MenuItem>
-                        </Select>
-                    </Grid>
+                <Grid container spacing={3}>
+                  <Grid item xs={12}>
+                    <InputLabel id="select-label">Visualizar por</InputLabel>
+                    <Select
+                      labelId="select-label"
+                      id="simple-select"
+                      value={this.state.gaMetricsSwitch}
+                      onChange={this.handleMetricsSwitchChange}
+                    >
+                      <MenuItem value={'month'}>Últimos 30 dias</MenuItem>
+                      <MenuItem value={'week'}>Últimos 7 dias</MenuItem>
+                      <MenuItem value={'filter'}>Seleção de período</MenuItem>
+                    </Select>
                   </Grid>
+                </Grid>
               </Box>
 
               <Divider variant="middle"></Divider>
@@ -189,9 +230,9 @@ export default class AnalyticsPage extends Component {
               <Box spacing={2} paddingTop={2}>
                 {this.renderGoogleAnalyticsSwitch()}
               </Box>
-              
+
             </Paper>
-    
+
           </GoogleProvider>
         </ResponsiveDrawer >
       )
