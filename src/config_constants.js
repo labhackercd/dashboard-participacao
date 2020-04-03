@@ -13,7 +13,7 @@ module.exports = Object.freeze({
     APPLICATION_NAME: 'Participacao',
      
     //GOOGLE ANALYTICS URL TO GENERATE AN VALID TOKEN
-    GOOGLE_ANALYTICS_URL_TOKEN:'http://322d46aa.ngrok.io',
+    GOOGLE_ANALYTICS_URL_TOKEN:'http://127.0.0.1:5000/edemocracia',
 
     //AUDIENCIAS PAGED USER API URL USED IN TABLE REPORTS
     AUDIENCIAS_PAGED_USER_API_URL:'https://edemocracia.camara.leg.br/audiencias/api/user/?page=',
@@ -26,5 +26,8 @@ module.exports = Object.freeze({
 
     //WIKILEGIS PAGED DOCUMENT API URL USED IN TABLE REPORTS
     WIKILEGIS_PAGED_DOCUMENT_API_URL:'http://261572d9.ngrok.io/api/v1/documents/?page=',
+
+    //PAUTA PARTICIPATIVA PAGED PROPOSAL API URL USED IN TABLE REPORTS
+    PAUTA_PROPOSAL_API_URL: 'https://edemocracia.camara.leg.br/pautaparticipativa/api/v1/proposal/?ordering=-created&is_visible=true'
  
   });

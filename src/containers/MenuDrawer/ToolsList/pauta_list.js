@@ -54,7 +54,7 @@ export default function PautaList() {
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
 
-        <ListItem disabled={true} button component={Link} to={"/pauta-graficos"} className={classes.nested}>
+        <ListItem button component={Link} to={"/pauta-graficos"} className={classes.nested}>
             <ListItemIcon>
               <Icon>
                 <TimelineIcon></TimelineIcon>
@@ -64,7 +64,7 @@ export default function PautaList() {
           </ListItem>
 
           
-          <ListItem disabled={true} button component={Link} to={"/pauta-relatorios"} className={classes.nested}>
+          <ListItem button component={Link} to={"/pauta-relatorios"} className={classes.nested}>
             <ListItemIcon>
               <Icon>
                 <AssignmentIcon></AssignmentIcon>
@@ -74,10 +74,10 @@ export default function PautaList() {
           </ListItem>
 
           
-          <ListItem disabled={true} button component={Link} to={"/pauta-analytics"}  className={classes.nested}>
+          <ListItem button component={Link} to={"/pauta-analytics"}  className={classes.nested}>
             <ListItemIcon>
               <Icon>
-                <img alt="Ícone Wikilegis Analytics" src={GoogleAnalyticsLogo} height={22} width={22}/>
+                <img alt="Ícone Pauta Analytics" src={GoogleAnalyticsLogo} height={22} width={22}/>
               </Icon>
             </ListItemIcon>
             <ListItemText primary="Google Analytics" />
