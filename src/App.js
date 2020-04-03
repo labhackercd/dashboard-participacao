@@ -22,6 +22,10 @@ import { ptBR } from "@material-ui/core/locale";
 import EnquetesChartsPage from "./containers/EnquetesChartsPage";
 import EnquetesReportsPage from "./containers/EnquetesReportsPage";
 
+import PautaChartsPage from "./containers/PautaChartsPage";
+import PautaReportPage from "./containers/PautaReportPage";
+import PautaAnalyticsPage from "./containers/PautaAnalyticsPage";
+
 const theme = createMuiTheme(
   {
     palette: {
@@ -56,6 +60,16 @@ function App() {
           </Route>
           <Route exact path="/audiencias-graficos">
             <AudienciasChartsPage theme={theme}></AudienciasChartsPage>
+          </Route>
+
+          <Route exact path="/pauta-relatorios">
+            <PautaReportPage theme={theme}></PautaReportPage>
+          </Route>
+          <Route exact path="/pauta-graficos">
+            <PautaChartsPage theme={theme}></PautaChartsPage>
+          </Route>
+          <Route exact path="/pauta-analytics">
+            <PautaAnalyticsPage theme={theme}></PautaAnalyticsPage>
           </Route>
 
           <Route exact path="/edemocracia-graficos">
