@@ -8,32 +8,32 @@ import MuiAlert from "@material-ui/lab/Alert";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import EnquetesPollReport from "../../components/EnquetesPollReport";
+import EnquetesPollReport from "../../components/Enquetes/EnquetesPollReport";
 
-const useStyles = theme => ({
+const useStyles = (theme) => ({
   "@global": {
     body: {
-      backgroundColor: "theme.palette.common.white"
-    }
+      backgroundColor: "theme.palette.common.white",
+    },
   },
   chips: {
     display: "flex",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
   },
   chip: {
-    margin: 2
+    margin: 2,
   },
 
   flexContainer: {
     display: "flex",
-    flexDirection: "row"
+    flexDirection: "row",
   },
   tableRoot: {
-    width: "100%"
+    width: "100%",
   },
   tableWrapper: {
-    overflow: "auto"
-  }
+    overflow: "auto",
+  },
 });
 
 function Alert(props) {
@@ -47,7 +47,7 @@ class EnquetesReportPage extends Component {
     super(props);
     this.state = {
       openSnackBar: false,
-      snackBarMessageError: ""
+      snackBarMessageError: "",
     };
   }
 

@@ -1,34 +1,33 @@
-import React, { Component } from 'react';
-import ResponsiveDrawer from '../MenuDrawer';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import WikilegisCharts from '../../components/WikilegisCharts';
-import { withStyles } from '@material-ui/core/styles';
+import React, { Component } from "react";
+import ResponsiveDrawer from "../MenuDrawer";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import WikilegisCharts from "../../components/Wikilegis/WikilegisCharts";
+import { withStyles } from "@material-ui/core/styles";
 
-const useStyles = theme => ({
-  '@global': {
+const useStyles = (theme) => ({
+  "@global": {
     body: {
       backgroundColor: "theme.palette.common.white",
     },
   },
   chips: {
-    display: 'flex',
-    flexWrap: 'wrap',
+    display: "flex",
+    flexWrap: "wrap",
   },
   chip: {
     margin: 2,
   },
 
   flexContainer: {
-    display: 'flex',
-    flexDirection: 'row',
+    display: "flex",
+    flexDirection: "row",
   },
   tableRoot: {
-    width: '100%',
+    width: "100%",
   },
   tableWrapper: {
-    overflow: 'auto',
+    overflow: "auto",
   },
-
 });
 
 class WikilegisReportPage extends Component {
@@ -38,10 +37,9 @@ class WikilegisReportPage extends Component {
     super(props);
     this.state = {
       openSnackBar: false,
-      snackBarMessageError: ""
+      snackBarMessageError: "",
     };
   }
-
 
   componentDidMount() {
     this._isMounted = true;
@@ -64,22 +62,17 @@ class WikilegisReportPage extends Component {
     this.openSnackBar = false;
   }
 
-
   render() {
-
     return (
       <div>
-        <ResponsiveDrawer title='Wikilegis - Gráficos'>
+        <ResponsiveDrawer title="Wikilegis - Gráficos">
           <ExpansionPanel defaultExpanded={false}>
             <WikilegisCharts></WikilegisCharts>
           </ExpansionPanel>
-        
         </ResponsiveDrawer>
       </div>
     );
   }
-
 }
-
 
 export default withStyles(useStyles)(WikilegisReportPage);

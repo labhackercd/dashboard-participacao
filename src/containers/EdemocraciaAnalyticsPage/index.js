@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { GoogleProvider } from "react-analytics-widget";
 import ResponsiveDrawer from "../MenuDrawer";
-import GoogleAnalyticsDynamicCharts from "../../components/GoogleAnalyticsDynamicCharts";
-import GoogleAnalyticsCharts from "../../components/GoogleAnalyticsCharts";
+import GoogleAnalyticsDynamicCharts from "../../components/GoogleAnalytics/GoogleAnalyticsDynamicCharts";
+import GoogleAnalyticsCharts from "../../components/GoogleAnalytics/GoogleAnalyticsCharts";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -20,14 +20,14 @@ const last30days = {
     dimensions: "ga:date",
     metrics: "ga:pageviews,ga:sessions",
     "start-date": "30daysAgo",
-    "end-date": "yesterday"
+    "end-date": "yesterday",
   },
   chart: {
     type: "LINE",
     options: {
-      title: "Acessos nos últimos 30 dias"
-    }
-  }
+      title: "Acessos nos últimos 30 dias",
+    },
+  },
 };
 
 const trafficByPlatformLast30Days = {
@@ -38,16 +38,16 @@ const trafficByPlatformLast30Days = {
     dimensions: "ga:pagePathLevel1",
     sort: "-ga:pageviews",
     filters: "ga:pagePathLevel1!=/",
-    "max-results": 4 //number of platforms
+    "max-results": 4, //number of platforms
   },
   chart: {
     type: "PIE",
     options: {
       width: "100%",
       pieHole: 4 / 9,
-      title: "Tráfego por plataforma nos últimos 30 dias"
-    }
-  }
+      title: "Tráfego por plataforma nos últimos 30 dias",
+    },
+  },
 };
 
 const last7days = {
@@ -56,14 +56,14 @@ const last7days = {
     dimensions: "ga:date",
     metrics: "ga:pageviews,ga:sessions",
     "start-date": "7daysAgo",
-    "end-date": "yesterday"
+    "end-date": "yesterday",
   },
   chart: {
     type: "LINE",
     options: {
-      title: "Acessos nos últimos 7 dias"
-    }
-  }
+      title: "Acessos nos últimos 7 dias",
+    },
+  },
 };
 
 const trafficByPlatformLast7Days = {
@@ -74,16 +74,16 @@ const trafficByPlatformLast7Days = {
     dimensions: "ga:pagePathLevel1",
     sort: "-ga:pageviews",
     filters: "ga:pagePathLevel1!=/",
-    "max-results": 4 //number of platforms
+    "max-results": 4, //number of platforms
   },
   chart: {
     type: "PIE",
     options: {
       width: "100%",
       pieHole: 4 / 9,
-      title: "Tráfego por plataforma nos últimos 7 dias"
-    }
-  }
+      title: "Tráfego por plataforma nos últimos 7 dias",
+    },
+  },
 };
 
 const dynamicLineChart = {
@@ -92,14 +92,14 @@ const dynamicLineChart = {
     "start-date": "2016-01-01",
     "end-date": "yesterday",
     metrics: "ga:pageviews,ga:sessions",
-    dimensions: "ga:year"
+    dimensions: "ga:year",
   },
   chart: {
     type: "LINE",
     options: {
-      title: "Acessos"
-    }
-  }
+      title: "Acessos",
+    },
+  },
 };
 
 const dynamicPieChart = {
@@ -110,23 +110,23 @@ const dynamicPieChart = {
     dimensions: "ga:pagePathLevel1",
     sort: "-ga:pageviews",
     filters: "ga:pagePathLevel1!=/",
-    "max-results": 4 //number of platforms
+    "max-results": 4, //number of platforms
   },
   chart: {
     type: "PIE",
     options: {
       width: "100%",
       pieHole: 4 / 9,
-      title: "Tráfego por plataforma"
-    }
-  }
+      title: "Tráfego por plataforma",
+    },
+  },
 };
 
 // analytics views ID
 const views = {
   query: {
-    ids: "ga:125230257"
-  }
+    ids: "ga:125230257",
+  },
 };
 
 export default class AnalyticsPage extends Component {
@@ -135,7 +135,7 @@ export default class AnalyticsPage extends Component {
     this.state = {
       token: "",
       isLoading: true,
-      gaMetricsSwitch: "month"
+      gaMetricsSwitch: "month",
     };
     this.handleMetricsSwitchChange = this.handleMetricsSwitchChange.bind(this);
   }

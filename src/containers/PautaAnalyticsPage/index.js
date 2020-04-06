@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { GoogleProvider } from "react-analytics-widget";
 import ResponsiveDrawer from "../MenuDrawer";
-import GoogleAnalyticsCharts from "../../components/GoogleAnalyticsCharts";
+import GoogleAnalyticsCharts from "../../components/GoogleAnalytics/GoogleAnalyticsCharts";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -20,14 +20,14 @@ const last7days = {
     metrics: "ga:pageviews,ga:sessions",
     "start-date": "7daysAgo",
     "end-date": "yesterday",
-    filters: "ga:pagePath=@/pautaparticipativa/"
+    filters: "ga:pagePath=@/pautaparticipativa/",
   },
   chart: {
     type: "LINE",
     options: {
-      title: "Acessos nos últimos 7 dias"
-    }
-  }
+      title: "Acessos nos últimos 7 dias",
+    },
+  },
 };
 
 const trafficByPlatformLast7Days = {
@@ -38,16 +38,16 @@ const trafficByPlatformLast7Days = {
     dimensions: "ga:pagePathLevel2",
     sort: "-ga:pageviews",
     filters: "ga:pagePath=@/pautaparticipativa/",
-    "max-results": 10 //number of platforms
+    "max-results": 10, //number of platforms
   },
   chart: {
     type: "PIE",
     options: {
       width: "100%",
       pieHole: 4 / 9,
-      title: "Acessos por ponto de entrada"
-    }
-  }
+      title: "Acessos por ponto de entrada",
+    },
+  },
 };
 
 const last30days = {
@@ -57,14 +57,14 @@ const last30days = {
     metrics: "ga:pageviews,ga:sessions",
     "start-date": "30daysAgo",
     "end-date": "yesterday",
-    filters: "ga:pagePath=@/pautaparticipativa/"
+    filters: "ga:pagePath=@/pautaparticipativa/",
   },
   chart: {
     type: "LINE",
     options: {
-      title: "Acessos nos últimos 30 dias"
-    }
-  }
+      title: "Acessos nos últimos 30 dias",
+    },
+  },
 };
 
 const trafficByPlatformLast30Days = {
@@ -75,23 +75,23 @@ const trafficByPlatformLast30Days = {
     dimensions: "ga:pagePathLevel2",
     sort: "-ga:pageviews",
     filters: "ga:pagePath=@/pautaparticipativa/",
-    "max-results": 10 //number of platforms
+    "max-results": 10, //number of platforms
   },
   chart: {
     type: "PIE",
     options: {
       width: "100%",
       pieHole: 4 / 9,
-      title: "Acessos por ponto de entrada"
-    }
-  }
+      title: "Acessos por ponto de entrada",
+    },
+  },
 };
 
 // analytics views ID
 const views = {
   query: {
-    ids: "ga:125230257"
-  }
+    ids: "ga:125230257",
+  },
 };
 
 export default class PautaParticipativaAnalyticsPage extends Component {
@@ -100,7 +100,7 @@ export default class PautaParticipativaAnalyticsPage extends Component {
     this.state = {
       token: "",
       isLoading: true,
-      gaMetricsSwitch: "month"
+      gaMetricsSwitch: "month",
     };
     this.handleMetricsSwitchChange = this.handleMetricsSwitchChange.bind(this);
   }
@@ -194,7 +194,7 @@ export default class PautaParticipativaAnalyticsPage extends Component {
                   padding: "2rem",
                   fontSize: "1rem",
                   lineHeight: "2",
-                  textAlign: "justify"
+                  textAlign: "justify",
                 }}
               >
                 <p>

@@ -12,45 +12,45 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import EnquetesSuggestionPoll from "../../components/EnquetesSuggestionPoll";
-import EnquetesVotesPoll from "../../components/EnquetesVotesPoll";
-import EnquetesTop5MostVoted from "../../components/EnquetesTop5MostVoted";
-import EnquetesTop3MostSuggestion from "../../components/EnquetesTop3MostSuggestion";
-import EnquetesYearVotes from "../../components/EnquetesYearVotes";
-import EnquetesYearSuggestion from "../../components/EnquetesYearSuggestion";
-import EnquetesCardVotes from "../../components/EnquetesCardVotes";
-import EnquetesCardSuggestions from "../../components/EnquetesCardSuggestions";
-import EnquetesCardParticipants from "../../components/EnquetesCardParticipants";
+import EnquetesSuggestionPoll from "../../components/Enquetes/EnquetesSuggestionPoll";
+import EnquetesVotesPoll from "../../components/Enquetes/EnquetesVotesPoll";
+import EnquetesTop5MostVoted from "../../components/Enquetes/EnquetesTop5MostVoted";
+import EnquetesTop3MostSuggestion from "../../components/Enquetes/EnquetesTop3MostSuggestion";
+import EnquetesYearVotes from "../../components/Enquetes/EnquetesYearVotes";
+import EnquetesYearSuggestion from "../../components/Enquetes/EnquetesYearSuggestion";
+import EnquetesCardVotes from "../../components/Enquetes/EnquetesCardVotes";
+import EnquetesCardSuggestions from "../../components/Enquetes/EnquetesCardSuggestions";
+import EnquetesCardParticipants from "../../components/Enquetes/EnquetesCardParticipants";
 import { Divider } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import data_enquetes from "../../components/EnquetesVotesPoll/data_enquetes";
+import data_enquetes from "../../components/Enquetes/EnquetesVotesPoll/data_enquetes";
 
-const useStyles = theme => ({
+const useStyles = (theme) => ({
   "@global": {
     body: {
-      backgroundColor: "theme.palette.common.white"
-    }
+      backgroundColor: "theme.palette.common.white",
+    },
   },
   chips: {
     display: "flex",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
   },
   chip: {
-    margin: 2
+    margin: 2,
   },
 
   flexContainer: {
     display: "flex",
-    flexDirection: "row"
+    flexDirection: "row",
   },
   tableRoot: {
-    width: "100%"
+    width: "100%",
   },
   tableWrapper: {
-    overflow: "auto"
-  }
+    overflow: "auto",
+  },
 });
 
 function Alert(props) {
@@ -66,7 +66,7 @@ class EnquetesChartsPage extends Component {
       openSnackBar: false,
       snackBarMessageError: "",
       enquete: data_enquetes[0],
-      ano: 2019
+      ano: 2019,
     };
 
     this.handleChangeEnquete = this.handleChangeEnquete.bind(this);
@@ -207,10 +207,10 @@ class EnquetesChartsPage extends Component {
                     <Autocomplete
                       id="combo-box-demo"
                       options={data_enquetes}
-                      getOptionLabel={option => option.name}
+                      getOptionLabel={(option) => option.name}
                       style={{ width: 300 }}
                       onChange={this.handleChangeEnquete}
-                      renderInput={params => (
+                      renderInput={(params) => (
                         <TextField
                           {...params}
                           label="Propostas"
