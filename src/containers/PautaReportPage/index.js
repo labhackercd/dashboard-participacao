@@ -1,40 +1,39 @@
-import React, { Component } from 'react';
-import ResponsiveDrawer from '../MenuDrawer';
-import { withStyles } from '@material-ui/core/styles';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import MuiAlert from '@material-ui/lab/Alert';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import PautaProposalTableReport from '../../components/PautaProposalTableReport'
+import React, { Component } from "react";
+import ResponsiveDrawer from "../MenuDrawer";
+import { withStyles } from "@material-ui/core/styles";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import MuiAlert from "@material-ui/lab/Alert";
+import Box from "@material-ui/core/Box";
+import Typography from "@material-ui/core/Typography";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import PautaProposalTableReport from "../../components/Pauta/PautaProposalTableReport";
 
-const useStyles = theme => ({
-  '@global': {
+const useStyles = (theme) => ({
+  "@global": {
     body: {
       backgroundColor: "theme.palette.common.white",
     },
   },
   chips: {
-    display: 'flex',
-    flexWrap: 'wrap',
+    display: "flex",
+    flexWrap: "wrap",
   },
   chip: {
     margin: 2,
   },
 
   flexContainer: {
-    display: 'flex',
-    flexDirection: 'row',
+    display: "flex",
+    flexDirection: "row",
   },
   tableRoot: {
-    width: '100%',
+    width: "100%",
   },
   tableWrapper: {
-    overflow: 'auto',
+    overflow: "auto",
   },
-
 });
 
 function Alert(props) {
@@ -48,10 +47,9 @@ class PautaPage extends Component {
     super(props);
     this.state = {
       openSnackBar: false,
-      snackBarMessageError: ""
+      snackBarMessageError: "",
     };
   }
-
 
   componentDidMount() {
     this._isMounted = true;
@@ -74,36 +72,28 @@ class PautaPage extends Component {
     this.openSnackBar = false;
   }
 
-
   render() {
-
     return (
       <div>
-        <ResponsiveDrawer title='Pauta Participativa'>
-
-        <Box>
-
+        <ResponsiveDrawer title="Pauta Participativa">
+          <Box>
             <ExpansionPanel defaultExpanded={false}>
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel2a-content"
                 id="panel2a-header"
               >
-                <Typography >Usuários Pauta Participativa</Typography>
+                <Typography>Usuários Pauta Participativa</Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
-
                 <PautaProposalTableReport></PautaProposalTableReport>
               </ExpansionPanelDetails>
             </ExpansionPanel>
-        </Box>
-
+          </Box>
         </ResponsiveDrawer>
       </div>
     );
   }
-
 }
-
 
 export default withStyles(useStyles)(PautaPage);

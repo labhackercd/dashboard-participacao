@@ -1,19 +1,22 @@
 import React, {Component} from 'react';
 import MaterialTable from "material-table";
 import CircularProgress from '@material-ui/core/CircularProgress';
-
+import Box from '@material-ui/core/Box'
 import { TablePagination } from '@material-ui/core';
-import {EDEMOCRACIA_PAGED_USER_API_URL} from '../../config_constants'
+
+import {AUDIENCIAS_PAGED_USER_API_URL} from '../../../config_constants'
 
 
-class EDemocraciaUserTableReport extends Component {
+class AudienciasUserTableReport extends Component {
 
   _isTableMounted=false;
   columns = [
-    { field: 'ID', title: 'ID',  align: 'center'},
-    { field: 'profile.gender', title: 'Gênero' },
-    { field: 'profile.uf', title: 'UF' },
-    { field: 'profile.birthdate', title: 'Data de Nascimento' },
+    { field: 'id', title: 'ID',  align: 'center'},
+    { field: 'questions_count', title: 'Perguntas Feitas' },
+    { field: 'messages_count', title: 'Mensagens Enviadas' },
+    { field: 'votes_count', title: 'Votos' },
+    { field: 'participations_count', title: 'Número de Participações'},
+    { field: 'questions_votes_count', title: 'Votos em questões'},
     { field: 'date_joined', title: 'Data do Cadastro'}
   ]
     
@@ -31,7 +34,8 @@ class EDemocraciaUserTableReport extends Component {
   
   loadDataInTable(callback){
     //https://edemocracia.camara.leg.br/audiencias/api/room/?ordering=-created&is_visible=true
-    const url = new URL(EDEMOCRACIA_PAGED_USER_API_URL + this.state.currentPage)
+
+    const url = new URL(AUDIENCIAS_PAGED_USER_API_URL + this.state.currentPage)
 
     fetch(url, {
       method: 'GET',
@@ -51,8 +55,8 @@ class EDemocraciaUserTableReport extends Component {
       
       this.setState({isLoadingTable:true, currentPage:page})
       
-      const url = new URL(EDEMOCRACIA_PAGED_USER_API_URL + this.state.currentPage)
-      
+      const url = new URL(AUDIENCIAS_PAGED_USER_API_URL + this.state.currentPage)
+
       fetch(url, {
         method: 'GET',
       }).then((response) => response.json())
@@ -90,6 +94,7 @@ class EDemocraciaUserTableReport extends Component {
       return <div align="center"> <CircularProgress></CircularProgress> </div>
     }else{
       return (
+        <Box width="100%">
           <MaterialTable
             columns={this.columns}
             data={this.state.rows}
@@ -122,10 +127,11 @@ class EDemocraciaUserTableReport extends Component {
             }}
             title="Usuários"
           />
+        </Box>
       )
     }
 
   }
 }
 
-export default (EDemocraciaUserTableReport);
+export default (AudienciasUserTableReport);
