@@ -1,45 +1,44 @@
-import React, { Component } from 'react';
-import ResponsiveDrawer from '../MenuDrawer';
-import { withStyles } from '@material-ui/core/styles';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import MuiAlert from '@material-ui/lab/Alert';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Grid from '@material-ui/core/Grid'
-import IconButton from '@material-ui/core/IconButton';
-import Collapse from '@material-ui/core/Collapse';
-import CloseIcon from '@material-ui/icons/Close';
-import AudienciasRoomsTableReport from '../../components/AudienciasRoomsTableReportContainer'
-import AudienciasUserTableReport from '../../components/AudienciasUsersTableReportContainer'
+import React, { Component } from "react";
+import ResponsiveDrawer from "../MenuDrawer";
+import { withStyles } from "@material-ui/core/styles";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import MuiAlert from "@material-ui/lab/Alert";
+import Box from "@material-ui/core/Box";
+import Typography from "@material-ui/core/Typography";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import Grid from "@material-ui/core/Grid";
+import IconButton from "@material-ui/core/IconButton";
+import Collapse from "@material-ui/core/Collapse";
+import CloseIcon from "@material-ui/icons/Close";
+import AudienciasRoomsTableReport from "../../components/Audiencias/AudienciasRoomsTableReportContainer";
+import AudienciasUserTableReport from "../../components/Audiencias/AudienciasUsersTableReportContainer";
 
-const useStyles = theme => ({
-  '@global': {
+const useStyles = (theme) => ({
+  "@global": {
     body: {
       backgroundColor: "theme.palette.common.white",
     },
   },
   chips: {
-    display: 'flex',
-    flexWrap: 'wrap',
+    display: "flex",
+    flexWrap: "wrap",
   },
   chip: {
     margin: 2,
   },
 
   flexContainer: {
-    display: 'flex',
-    flexDirection: 'row',
+    display: "flex",
+    flexDirection: "row",
   },
   tableRoot: {
-    width: '100%',
+    width: "100%",
   },
   tableWrapper: {
-    overflow: 'auto',
+    overflow: "auto",
   },
-
 });
 
 function Alert(props) {
@@ -53,10 +52,9 @@ class AudienciasReportPage extends Component {
     super(props);
     this.state = {
       openSnackBar: false,
-      snackBarMessageError: ""
+      snackBarMessageError: "",
     };
   }
-
 
   componentDidMount() {
     this._isMounted = true;
@@ -79,19 +77,17 @@ class AudienciasReportPage extends Component {
     this.openSnackBar = false;
   }
 
-
   render() {
-
     return (
       <div>
-        <ResponsiveDrawer title='Audiências Interativas'>
-
-        <Box mb={5}>
-          <Alert severity="info">Este é um texto de alerta para avisar sobre os dados!</Alert>
-        </Box>
-        <Box>
-
-          <ExpansionPanel defaultExpanded={false}>
+        <ResponsiveDrawer title="Audiências Interativas">
+          <Box mb={5}>
+            <Alert severity="info">
+              Este é um texto de alerta para avisar sobre os dados!
+            </Alert>
+          </Box>
+          <Box>
+            <ExpansionPanel defaultExpanded={false}>
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
@@ -110,13 +106,10 @@ class AudienciasReportPage extends Component {
                     <AudienciasRoomsTableReport></AudienciasRoomsTableReport>
                   </Grid>
                 </Grid>
-                
-                
               </ExpansionPanelDetails>
             </ExpansionPanel>
 
             <br></br>
-
 
             <ExpansionPanel defaultExpanded={false}>
               <ExpansionPanelSummary
@@ -124,20 +117,17 @@ class AudienciasReportPage extends Component {
                 aria-controls="panel2a-content"
                 id="panel2a-header"
               >
-                <Typography >Relatório Audiências - Usuários</Typography>
+                <Typography>Relatório Audiências - Usuários</Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
-
                 <AudienciasUserTableReport></AudienciasUserTableReport>
               </ExpansionPanelDetails>
             </ExpansionPanel>
-        </Box>
-
+          </Box>
         </ResponsiveDrawer>
       </div>
     );
   }
-
 }
 
 function TransitionAlerts() {
@@ -163,7 +153,9 @@ function TransitionAlerts() {
             </IconButton>
           }
         >
-          Caso deseje visualizar mais informações sobre uma audiência específica, clique na linha correspondente e mais informações serão mostradas.
+          Caso deseje visualizar mais informações sobre uma audiência
+          específica, clique na linha correspondente e mais informações serão
+          mostradas.
         </Alert>
       </Collapse>
     </div>

@@ -3,21 +3,16 @@ import MaterialTable from "material-table";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 import { TablePagination } from "@material-ui/core";
+import { EDEMOCRACIA_PAGED_USER_API_URL } from "../../../config_constants";
 
-import { WIKILEGIS_PAGED_DOCUMENT_API_URL } from "../../config_constants";
-
-class WikilegisDocumentsTableReport extends Component {
+class EDemocraciaUserTableReport extends Component {
   _isTableMounted = false;
   columns = [
-    { field: "id", title: "id" },
-    { field: "responsible.name", title: "Autor", align: "center" },
-    { field: "theme.name", title: "Tema" },
-    { field: "document_type.initials", title: "Tipo projeto" },
-    { field: "number", title: "Número" },
-    { field: "year", title: "Ano" },
-    { field: "suggestions_count", title: "Total de sugestões" },
-    { field: "vote_count", title: "Total de votos" },
-    { field: "users_count", title: "Total de participantes" }
+    { field: "ID", title: "ID", align: "center" },
+    { field: "profile.gender", title: "Gênero" },
+    { field: "profile.uf", title: "UF" },
+    { field: "profile.birthdate", title: "Data de Nascimento" },
+    { field: "date_joined", title: "Data do Cadastro" },
   ];
 
   constructor(props) {
@@ -28,27 +23,28 @@ class WikilegisDocumentsTableReport extends Component {
       setPage: 0,
       rowsPerPage: 20,
       rows: [],
-      totalRows: 0
+      totalRows: 0,
     };
   }
 
   loadDataInTable(callback) {
+    //https://edemocracia.camara.leg.br/audiencias/api/room/?ordering=-created&is_visible=true
     const url = new URL(
-      WIKILEGIS_PAGED_DOCUMENT_API_URL + this.state.currentPage
+      EDEMOCRACIA_PAGED_USER_API_URL + this.state.currentPage
     );
 
     fetch(url, {
-      method: "GET"
+      method: "GET",
     })
-      .then(response => response.json())
-      .then(responseJson => {
+      .then((response) => response.json())
+      .then((responseJson) => {
         this.setState({
           rows: responseJson.results,
-          totalRows: responseJson.count
+          totalRows: responseJson.count,
         });
         callback();
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
 
@@ -56,19 +52,23 @@ class WikilegisDocumentsTableReport extends Component {
   }
 
   handleNextPageChange(page) {
-    // this.setState({ isLoadingTable: true, currentPage: page });
-    // const url = new URL(
-    //   WIKILEGIS_PAGED_DOCUMENT_API_URL + this.state.currentPage
-    // );
-    // fetch(url, { method: "GET" })
-    //   .then(response => response.json())
-    //   .then(responseJson => {
-    //     this.setState({ rows: responseJson.results });
-    //     this.setState({ isLoadingTable: false });
-    //   })
-    //   .catch(error => {
-    //     console.error(error);
-    //   });
+    this.setState({ isLoadingTable: true, currentPage: page });
+
+    const url = new URL(
+      EDEMOCRACIA_PAGED_USER_API_URL + this.state.currentPage
+    );
+
+    fetch(url, {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({ rows: responseJson.results });
+        this.setState({ isLoadingTable: false });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   componentDidMount() {
@@ -79,6 +79,10 @@ class WikilegisDocumentsTableReport extends Component {
         this.setState({ isLoadingTable: false });
       });
     }
+  }
+
+  handleNextPageChangeTeste(e, p) {
+    this.handleNextPageChange(p);
   }
 
   render() {
@@ -101,15 +105,15 @@ class WikilegisDocumentsTableReport extends Component {
             pageSizeOptions: [20, 40, 60, 80, 100, 80000],
             emptyRowsWhenPaging: false,
             removable: true,
-            search: false
+            search: false,
           }}
           localization={{
             body: {
-              emptyDataSourceMessage: "Nenhum resultado encontrado"
+              emptyDataSourceMessage: "Nenhum resultado encontrado",
             },
             toolbar: {
               searchTooltip: "Pesquisar",
-              searchPlaceholder: "Pesquisar"
+              searchPlaceholder: "Pesquisar",
             },
             pagination: {
               labelRowsSelect: "Linhas",
@@ -117,38 +121,29 @@ class WikilegisDocumentsTableReport extends Component {
               firstTooltip: "Primeira página",
               previousTooltip: "Página Anterior",
               nextTooltip: "Próxima página",
-              lastTooltip: "Última página"
-            }
+              lastTooltip: "Última página",
+            },
           }}
           components={{
-            Pagination: props => (
+            Pagination: (props) => (
               <TablePagination
                 {...props}
                 count={this.state.totalRows}
                 page={this.state.currentPage}
                 onChangePage={(event, page) => {
-                  this.handleNextPageChange(
+                  this.handleNextPageChangeTeste(
+                    event,
                     page
                   ); /* handle page size change : event.target.value */
                 }}
               />
-            )
+            ),
           }}
-          title="Documentos"
-          detailPanel={rowData => {
-            return (
-              <div>
-                <p>{rowData.title}</p>
-                <br></br>
-                <p>{rowData.description}</p>
-              </div>
-            );
-          }}
-          onRowClick={(event, rowData, togglePanel) => togglePanel()}
+          title="Usuários"
         />
       );
     }
   }
 }
 
-export default WikilegisDocumentsTableReport;
+export default EDemocraciaUserTableReport;

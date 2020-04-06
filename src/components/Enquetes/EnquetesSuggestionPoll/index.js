@@ -12,41 +12,22 @@ import { CSVLink } from "react-csv";
 
 import { Animation, EventTracker } from "@devexpress/dx-react-chart";
 
-const enquete_A = [
-  { vote: "Positivo", count: 5000 },
-  { vote: "Negativo", count: 3000 }
-];
-
-const enquete_B = [
-  { vote: "Positivo", count: 1000 },
-  { vote: "Negativo", count: 2000 }
-];
-
-const enquete_C = [
-  { vote: "Positivo", count: 2000 },
-  { vote: "Negativo", count: 1500 }
-];
-
 class EnquetesSuggestionPoll extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      data: enquete_A
+      data: this.props.enquete
     };
   }
 
   update_chart() {
-    let enquete = [];
-    if (this.props.enquete === "C") {
-      enquete = enquete_C;
-    } else if (this.props.enquete === "B") {
-      enquete = enquete_B;
-    } else {
-      enquete = enquete_A;
-    }
-
-    return enquete;
+    const enquete = this.props.enquete;
+    const enquete_format = [
+      { vote: "Positivo", count: enquete.positive_suggestions },
+      { vote: "Negativo", count: enquete.negative_suggestions }
+    ];
+    return enquete_format;
   }
 
   render() {
@@ -66,7 +47,7 @@ class EnquetesSuggestionPoll extends React.Component {
         <Chart data={data}>
           <PieSeries valueField="count" argumentField="vote" />
           <Legend />
-          <Title text={"Sugestões da Enquete " + this.props.enquete} />
+          <Title text={"Sugestões da Enquete " + this.props.enquete.name} />
           <Animation />
           <EventTracker />
           <Tooltip />

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { GoogleProvider } from "react-analytics-widget";
 import ResponsiveDrawer from "../MenuDrawer";
-import GoogleAnalyticsCharts from "../../components/GoogleAnalyticsCharts";
-import GoogleAnalyticsDynamicCharts from "../../components/GoogleAnalyticsDynamicCharts";
+import GoogleAnalyticsCharts from "../../components/GoogleAnalytics/GoogleAnalyticsCharts";
+import GoogleAnalyticsDynamicCharts from "../../components/GoogleAnalytics/GoogleAnalyticsDynamicCharts";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -21,14 +21,14 @@ const last30days = {
     metrics: "ga:pageviews,ga:sessions",
     "start-date": "30daysAgo",
     "end-date": "yesterday",
-    filters: "ga:pagePathLevel1=@/audiencias"
+    filters: "ga:pagePathLevel1=@/audiencias",
   },
   chart: {
     type: "LINE",
     options: {
-      title: "Acessos nos últimos 30 dias"
-    }
-  }
+      title: "Acessos nos últimos 30 dias",
+    },
+  },
 };
 
 const trafficByPlatformLast30Days = {
@@ -39,16 +39,16 @@ const trafficByPlatformLast30Days = {
     dimensions: "ga:pagePath",
     sort: "-ga:pageviews",
     filters: "ga:pagePathLevel1=@/audiencias",
-    "max-results": 10 //number of platforms
+    "max-results": 10, //number of platforms
   },
   chart: {
     type: "PIE",
     options: {
       width: "100%",
       pieHole: 4 / 9,
-      title: "Top 10 audiências"
-    }
-  }
+      title: "Top 10 audiências",
+    },
+  },
 };
 
 const last7days = {
@@ -58,14 +58,14 @@ const last7days = {
     "end-date": "yesterday",
     dimensions: "ga:date",
     metrics: "ga:pageviews,ga:sessions",
-    filters: "ga:pagePathLevel1=@/audiencias"
+    filters: "ga:pagePathLevel1=@/audiencias",
   },
   chart: {
     type: "LINE",
     options: {
-      title: "Acessos nos últimos 7 dias"
-    }
-  }
+      title: "Acessos nos últimos 7 dias",
+    },
+  },
 };
 
 const trafficByPlatformLast7Days = {
@@ -76,16 +76,16 @@ const trafficByPlatformLast7Days = {
     dimensions: "ga:pagePath",
     sort: "-ga:pageviews",
     filters: "ga:pagePathLevel1=@/audiencias",
-    "max-results": 10 //number of platforms
+    "max-results": 10, //number of platforms
   },
   chart: {
     type: "PIE",
     options: {
       width: "100%",
       pieHole: 4 / 9,
-      title: "Top 10 audiências"
-    }
-  }
+      title: "Top 10 audiências",
+    },
+  },
 };
 
 const dynamicLineChart = {
@@ -95,14 +95,14 @@ const dynamicLineChart = {
     "end-date": "yesterday",
     dimensions: "ga:year",
     metrics: "ga:pageviews,ga:sessions",
-    filters: "ga:pagePathLevel1=@/audiencias"
+    filters: "ga:pagePathLevel1=@/audiencias",
   },
   chart: {
     type: "LINE",
     options: {
-      title: "Acessos"
-    }
-  }
+      title: "Acessos",
+    },
+  },
 };
 
 const dynamicPieChart = {
@@ -113,23 +113,23 @@ const dynamicPieChart = {
     dimensions: "ga:pagePath",
     sort: "-ga:pageviews",
     filters: "ga:pagePathLevel1=@/audiencias",
-    "max-results": 10
+    "max-results": 10,
   },
   chart: {
     type: "PIE",
     options: {
       width: "100%",
       pieHole: 4 / 9,
-      title: "Top 10 audiências"
-    }
-  }
+      title: "Top 10 audiências",
+    },
+  },
 };
 
 // analytics views ID
 const views = {
   query: {
-    ids: "ga:125230257"
-  }
+    ids: "ga:125230257",
+  },
 };
 
 export default class AudienciasAnalyticsPage extends Component {
@@ -138,7 +138,7 @@ export default class AudienciasAnalyticsPage extends Component {
     this.state = {
       token: "",
       isLoading: true,
-      gaMetricsSwitch: "month"
+      gaMetricsSwitch: "month",
     };
     this.handleMetricsSwitchChange = this.handleMetricsSwitchChange.bind(this);
   }

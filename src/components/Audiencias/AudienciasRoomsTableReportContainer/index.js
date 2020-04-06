@@ -4,7 +4,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Box from '@material-ui/core/Box';
 
-import {AUDIENCIAS_ROOM_API_URL} from '../../config_constants'
+import {AUDIENCIAS_ROOM_API_URL} from '../../../config_constants'
 
 class AudienciasRoomsTableReport extends Component {
 
