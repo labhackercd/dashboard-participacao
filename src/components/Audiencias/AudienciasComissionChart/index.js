@@ -13,7 +13,7 @@ class AudienciasComissionChart extends Component {
     this.state = {
       data: [
         { room: "CSSF", messages: 2032},
-        { room: "SUBLIBRA", messages: 425},
+        { room: "SUBLIBRAS", messages: 425},
         { room: "CE" , messages: 765},
         { room: "CTASP", messages: 332},
       ]
@@ -32,7 +32,7 @@ class AudienciasComissionChart extends Component {
               <ArgumentAxis />
               <ValueAxis />
               <BarSeries valueField="messages" argumentField="room" />
-              <Title text="Mensagens por Comissão Virtual" />
+              <Title text="Mensagens por Comissão" />
               <EventTracker />
               <Tooltip />
             </Chart>

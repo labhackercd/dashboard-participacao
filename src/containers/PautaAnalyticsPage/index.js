@@ -189,31 +189,17 @@ export default class PautaParticipativaAnalyticsPage extends Component {
                 {this.renderGoogleAnalyticsSwitch()}
               </Box>
 
-              <Box
-                style={{
-                  padding: "2rem",
-                  fontSize: "1rem",
-                  lineHeight: "2",
-                  textAlign: "justify",
-                }}
-              >
-                <p>
-                  {" "}
-                  No gráfico da esquerda, mostramos os acessos por cada modo com
-                  o qual um usuário pode interagir com o Pauta Participativa. A
-                  seção em azul, cuja legenda é "/", se refere a página inicial
-                  do{" "}
-                  <a href="https://edemocracia.camara.leg.br/pautaparticipativa/">
-                    Pauta Participativa
-                  </a>
-                  . Do mesmo modo, "/pauta" significa todos os acessos dos
-                  usuários que passaram da página inicial da plataforma, e
-                  acessaram pelo menos um dos projetos - o que não quer dizer
-                  que eles participaram necessariamente. A legenda "/method" se
-                  refere a todos que acessaram a explicação de como o Pauta
-                  funciona disponível no site, e "/api" reflete os acessos
-                  daqueles que interagiram com a nossa interface de programação.{" "}
-                </p>
+              <Box style={{padding: "2rem", fontSize: "1rem", lineHeight: "2", textAlign: "justify"}}>
+              <p> No gráfico da direita, mostramos os acessos por cada 
+              modo com o qual um usuário pode interagir com o Pauta Participativa. 
+              A seção em azul, cuja legenda é "/", se refere a página inicial 
+              do <a href="https://edemocracia.camara.leg.br/pautaparticipativa/">Pauta Participativa</a>.
+              Do mesmo modo, "/pauta" significa todos os acessos dos usuários que passaram
+              da página inicial da plataforma, e acessaram pelo menos um dos projetos - o que 
+              não quer dizer que eles participaram necessariamente. 
+              A legenda "/method" se refere a todos que acessaram a explicação de como 
+              o Pauta funciona disponível no site, e "/api" reflete os acessos daqueles
+              que interagiram com a nossa interface de programação. </p>
               </Box>
             </Paper>
           </GoogleProvider>

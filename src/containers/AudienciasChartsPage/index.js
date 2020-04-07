@@ -83,59 +83,75 @@ class AudienciasReportPage extends Component {
   render() {
     return (
       <div>
-        <ResponsiveDrawer title="Audiências Interativas">
-          <Box mb={5}>
-            <Alert severity="info">
-              Este é um texto de alerta para avisar sobre os dados!
-            </Alert>
-          </Box>
-          <Box>
-            <Grid container spacing={2}>
-              <Grid item xs={3}>
-                <UsersInfoCard></UsersInfoCard>
-              </Grid>
-              <Grid item xs={3}>
-                {AudiencesInfoCard()}
-              </Grid>
-              <Grid item xs={3}>
-                {MessagesInfoCard()}
-              </Grid>
-              <Grid item xs={3}>
-                {QuestionsInfoCard()}
-              </Grid>
+        <ResponsiveDrawer title='Audiências Interativas'>
 
-              <Grid item xs={12} md={4} zeroMinWidth>
-                <Box width="100%" height="100%">
-                  <AudienciasUserChart></AudienciasUserChart>
-                </Box>
-              </Grid>
-              <Grid item xs={12} md={4} zeroMinWidth>
-                <Box>
-                  <AudienciasGenderChart></AudienciasGenderChart>
-                </Box>
-              </Grid>
-              <Grid item xs={12} md={4} zeroMinWidth>
-                <Box>
-                  <AudienciasComissionChart></AudienciasComissionChart>
-                </Box>
-              </Grid>
-              <Grid item xs={8} zeroMinWidth>
-                <Box>
-                  <AudienciasMadeChart></AudienciasMadeChart>
-                </Box>
-              </Grid>
-              <Grid item xs={4}>
-                <Box>
-                  <AudienciasAgeUsersChart></AudienciasAgeUsersChart>
-                </Box>
-              </Grid>
-              <Grid item xs={12}>
-                <Box>
-                  <AudienciasParticipationBrazilMap></AudienciasParticipationBrazilMap>
-                </Box>
-              </Grid>
-            </Grid>
-          </Box>
+        <Box mb={5}>
+          <Alert severity="info">Este é um texto de alerta para avisar sobre os dados!</Alert>
+        </Box>
+        <Box>
+
+
+        <Grid container spacing={2}>
+
+          <Grid item xs={3}>
+              <UsersInfoCard></UsersInfoCard>
+          </Grid>
+          <Grid item xs={3}>
+              {AudiencesInfoCard()}
+          </Grid>
+          <Grid item xs={3}>
+              {MessagesInfoCard()}
+          </Grid>
+          <Grid item xs={3}>
+              {QuestionsInfoCard()}
+          </Grid>
+
+          <Grid item xs={12} md={4} zeroMinWidth>
+            <Box width="100%" height="100%">
+              <AudienciasUserChart></AudienciasUserChart>
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={4} zeroMinWidth>
+              <Box>
+                <AudienciasGenderChart></AudienciasGenderChart>
+              </Box>
+          </Grid>
+          <Grid item xs={12} md={4} zeroMinWidth>
+            <Box>
+              <AudienciasComissionChart></AudienciasComissionChart>
+            </Box>
+          </Grid>
+          <Grid item xs={8} zeroMinWidth>
+            <Box>
+              <AudienciasMadeChart ></AudienciasMadeChart>
+            </Box>
+          </Grid>
+          <Grid item xs={4}>
+            <Box>
+              <AudienciasAgeUsersChart></AudienciasAgeUsersChart>
+            </Box>
+          </Grid>
+          <Grid item xs={12}>
+            <Box>
+              <AudienciasParticipationBrazilMap></AudienciasParticipationBrazilMap>
+            </Box>
+          </Grid>
+          <Grid item xs={12}>
+            <Box>
+              <Paper style={{padding: "1rem"}}>
+              <h5>Siglas das Comissões mostradas nos gráficos: </h5>
+              <p> <h6> CSSF </h6> Comissão de Seguridade Social e Família </p>
+              <p> <h6> CE </h6> Comissão de Educação </p>
+              <p> <h6> SUBLIBRA </h6> Comissão de Seguridade Social e Família </p>
+              <p> <h6> CTASP </h6> Comissão de Trabalho, de administração e serviço público </p>
+              </Paper>
+            </Box>
+          </Grid>
+
+        </Grid>
+        </Box>
+
+>>>>>>> change to wikilegis gender chart layout
         </ResponsiveDrawer>
       </div>
     );
