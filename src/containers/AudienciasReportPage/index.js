@@ -120,7 +120,17 @@ class AudienciasReportPage extends Component {
                 <Typography>Relatório Audiências - Usuários</Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
-                <AudienciasUserTableReport></AudienciasUserTableReport>
+                <Grid container>
+                  <Grid item xs={12}>
+                    <Box marginY={2}>
+                      <TransitionAlerts></TransitionAlerts>
+                    </Box>
+                  </Grid>
+                  <Grid item xs={12}>
+                      <AudienciasUserTableReport></AudienciasUserTableReport>
+                  </Grid>
+                </Grid>
+                
               </ExpansionPanelDetails>
             </ExpansionPanel>
           </Box>
