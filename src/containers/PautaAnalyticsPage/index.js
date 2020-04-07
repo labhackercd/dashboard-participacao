@@ -185,7 +185,7 @@ export default class PautaParticipativaAnalyticsPage extends Component {
               </Box>
 
               <Box style={{padding: "2rem", fontSize: "1rem", lineHeight: "2", textAlign: "justify"}}>
-              <p> No gráfico da esquerda, mostramos os acessos por cada 
+              <p> No gráfico da direita, mostramos os acessos por cada 
               modo com o qual um usuário pode interagir com o Pauta Participativa. 
               A seção em azul, cuja legenda é "/", se refere a página inicial 
               do <a href="https://edemocracia.camara.leg.br/pautaparticipativa/">Pauta Participativa</a>.

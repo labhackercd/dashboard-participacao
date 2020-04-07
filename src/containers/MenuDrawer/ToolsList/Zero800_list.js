@@ -48,7 +48,7 @@ export default function Zero800List() {
              <PhoneIcon></PhoneIcon>
           </Icon>
         </ListItemIcon>
-        <ListItemText primary="0800" />
+        <ListItemText primary="Disque-Câmara" />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>

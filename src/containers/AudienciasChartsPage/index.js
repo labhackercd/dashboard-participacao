@@ -142,8 +142,19 @@ class AudienciasReportPage extends Component {
               <AudienciasParticipationBrazilMap></AudienciasParticipationBrazilMap>
             </Box>
           </Grid>
-        </Grid>
+          <Grid item xs={12}>
+            <Box>
+              <Paper style={{padding: "1rem"}}>
+              <h5>Siglas das Comissões mostradas nos gráficos: </h5>
+              <p> <h6> CSSF </h6> Comissão de Seguridade Social e Família </p>
+              <p> <h6> CE </h6> Comissão de Educação </p>
+              <p> <h6> SUBLIBRA </h6> Comissão de Seguridade Social e Família </p>
+              <p> <h6> CTASP </h6> Comissão de Trabalho, de administração e serviço público </p>
+              </Paper>
+            </Box>
+          </Grid>
 
+        </Grid>
         </Box>
 
         </ResponsiveDrawer>

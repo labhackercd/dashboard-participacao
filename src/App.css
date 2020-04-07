@@ -20,3 +20,11 @@
 .App-link {
   color: #09d3ac;
 }
+
+.wikilegis-gender-chart {
+  margin: 0 0 4rem 0;
+}
+
+.wikilegis-gender-chart .title {
+  margin-bottom: 5rem;
+}

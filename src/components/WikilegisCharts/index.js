@@ -1,16 +1,8 @@
-import React, { Component } from 'react';
-import { Title, BarSeries, PieSeries, Chart, ArgumentAxis, ValueAxis } from "@devexpress/dx-react-chart-material-ui";
+import React from 'react';
+import { Title, BarSeries, Chart, ArgumentAxis, ValueAxis } from "@devexpress/dx-react-chart-material-ui";
+import WikilegisGenderChart from '../WikilegisGenderChart';
 
-
-class WikilegisCharts extends Component {
-
-  componentDidMount() {
-    setTimeout(() => {
-      this.setState({ done: true });
-    }, 2500);
-  }
-
-  render() {
+function WikilegisCharts() {
     return (
       <div>
           <Chart
@@ -27,24 +19,11 @@ class WikilegisCharts extends Component {
             <BarSeries valueField="quant" argumentField="tema" />
             <Title text="Documentos por tema no Wikilegis" />
           </Chart>
-
+<br /><br />
           <br />
-          <br />
-
-                    <Chart
-            data={[
-              { gender: "masc", quant: 1212},
-              { gender: "fem", quant: 3201},
-            ]}
-          > 
-            <ArgumentAxis />
-            <ValueAxis />
-            <PieSeries valueField="quant" argumentField="gender" />
-            <Title text="Usuários por gênero no Wikilegis" />
-          </Chart>
+          <WikilegisGenderChart />
     </div>
     )
-  }
 }
 
 export default WikilegisCharts;

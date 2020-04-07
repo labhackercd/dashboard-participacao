@@ -124,7 +124,6 @@ export default function Dashboard(props) {
         <Toolbar className={classes.toolbar}>
           <IconButton
             edge="start"
-            
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
@@ -141,16 +140,17 @@ export default function Dashboard(props) {
         classes={{
           paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
         }}
-        open={open}
-      > 
-            <div className={classes.toolbarIcon}>
-              <img src={logo} alt="Logo Câmara dos Deputados" style={{ maxHeight: 100 , maxWidth: '80%', align:'center'}}/>
-              <IconButton onClick={handleDrawerClose}>
-                <ChevronLeftIcon />
-              </IconButton>
-            </div>
-            <Divider />
-            <List>{toolsListItens}</List>
+        open={open}>  
+          <div className={classes.toolbarIcon}>
+            <img src={logo} alt="Logo Câmara dos Deputados" style={{ maxHeight: 50 , align:'center', margin: '1rem 0 0 1rem'}}/>
+          </div>
+            <List>
+            {toolsListItens}
+            <IconButton onClick={handleDrawerClose}>
+            <ChevronLeftIcon />
+            </IconButton>
+            </List>
+
             <Divider />
             <List><Zero800List></Zero800List></List>
             <List><AudienciasList></AudienciasList></List>
