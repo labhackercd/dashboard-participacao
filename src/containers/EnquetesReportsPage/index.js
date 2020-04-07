@@ -9,6 +9,7 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import EnquetesPollReport from "../../components/Enquetes/EnquetesPollReport";
+import Grid from "@material-ui/core/Grid"
 
 const useStyles = (theme) => ({
   "@global": {
@@ -91,7 +92,12 @@ class EnquetesReportPage extends Component {
                 <Typography>Relatório Enquetes</Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
-                <EnquetesPollReport></EnquetesPollReport>
+                <Grid container>
+                  <Grid item xs={12}>
+                    <EnquetesPollReport></EnquetesPollReport>
+                  </Grid>
+                </Grid>
+                
               </ExpansionPanelDetails>
             </ExpansionPanel>
 

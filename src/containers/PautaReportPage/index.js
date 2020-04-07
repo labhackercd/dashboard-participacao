@@ -9,6 +9,7 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import PautaProposalTableReport from "../../components/Pauta/PautaProposalTableReport";
+import Grid from "@material-ui/core/Grid"
 
 const useStyles = (theme) => ({
   "@global": {
@@ -86,7 +87,11 @@ class PautaPage extends Component {
                 <Typography>Propostas no Pauta Participativa</Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
-                <PautaProposalTableReport></PautaProposalTableReport>
+                    <Grid container>
+                      <Grid item xs={12}>
+                        <PautaProposalTableReport></PautaProposalTableReport>
+                      </Grid>
+                    </Grid>       
               </ExpansionPanelDetails>
             </ExpansionPanel>
           </Box>

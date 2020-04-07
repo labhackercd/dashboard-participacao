@@ -9,6 +9,7 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import EDemocraciaUserTableReport from "../../components/Edemocracia/EdemocraciaUsersTableReport";
+import Grid from "@material-ui/core/Grid"
 
 const useStyles = (theme) => ({
   "@global": {
@@ -91,7 +92,12 @@ class EDemocraciaPage extends Component {
                 <Typography>Usuários e-Democracia</Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
-                <EDemocraciaUserTableReport></EDemocraciaUserTableReport>
+                <Grid container>
+                  <Grid item xs={12}>
+                    <EDemocraciaUserTableReport></EDemocraciaUserTableReport>
+                  </Grid>
+                </Grid>
+                
               </ExpansionPanelDetails>
             </ExpansionPanel>
           </Box>

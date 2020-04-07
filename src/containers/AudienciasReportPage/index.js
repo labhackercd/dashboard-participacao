@@ -15,6 +15,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import AudienciasRoomsTableReport from "../../components/Audiencias/AudienciasRoomsTableReportContainer";
 import AudienciasUserTableReport from "../../components/Audiencias/AudienciasUsersTableReportContainer";
 
+
 const useStyles = (theme) => ({
   "@global": {
     body: {
@@ -103,7 +104,11 @@ class AudienciasReportPage extends Component {
                     </Box>
                   </Grid>
                   <Grid item xs={12}>
-                    <AudienciasRoomsTableReport></AudienciasRoomsTableReport>
+                    <Grid container>
+                      <Grid item xs={12}>
+                        <AudienciasRoomsTableReport></AudienciasRoomsTableReport>
+                      </Grid>
+                    </Grid>
                   </Grid>
                 </Grid>
               </ExpansionPanelDetails>
@@ -127,7 +132,11 @@ class AudienciasReportPage extends Component {
                     </Box>
                   </Grid>
                   <Grid item xs={12}>
-                      <AudienciasUserTableReport></AudienciasUserTableReport>
+                      <Grid container>
+                        <Grid item xs={12}>
+                          <AudienciasUserTableReport></AudienciasUserTableReport>
+                        </Grid>
+                      </Grid>          
                   </Grid>
                 </Grid>
                 
