@@ -15,7 +15,6 @@ import AudienciasMadeChart from "../../components/Audiencias/AudienciasMadeChart
 import AudienciasGenderChart from "../../components/Audiencias/AudienciasGenderChart";
 import AudienciasUserChart from "../../components/Audiencias/AudienciasUsersChart";
 import AudienciasAgeUsersChart from "../../components/Audiencias/AudienciasAgeUsersChart";
-import AudienciasComissionChart from "../../components/Audiencias/AudienciasComissionChart";
 import AudienciasParticipationBrazilMap from "../../components/Audiencias/AudienciasParticipationBrazilMap";
 import AudienciasTypeChart from "../../components/Audiencias/AudiencesTypeChart"
 

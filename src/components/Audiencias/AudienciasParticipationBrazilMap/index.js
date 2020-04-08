@@ -72,8 +72,8 @@ class AudienciasParticipationUsersBrazilMap extends Component {
                                     <FormControl component="fieldset">
                                         <FormLabel component="legend">Desejar ver o mapa sobre dados</FormLabel>
                                         <RadioGroup row aria-label="position" name="position" defaultValue="0" onChange={this.handleRadioChange}>
-                                            <FormControlLabel value="0" control={<Radio color="primary" />} label="Gerais" />
-                                            <FormControlLabel value="1" control={<Radio color="primary" />} label="Específico" />
+                                            <FormControlLabel value="0" control={<Radio color="primary" />} label="Total Geral" />
+                                            <FormControlLabel value="1" control={<Radio color="primary" />} label="Pesquisar por evento" />
                                         </RadioGroup>
                                     </FormControl>
                                 </Grid>
@@ -85,7 +85,7 @@ class AudienciasParticipationUsersBrazilMap extends Component {
                                             options={audiencesList}
                                             onChange={this.handleAutoCompleteChange}
                                             getOptionLabel={(option) => option.title}
-                                            renderInput={(params) => <TextField {...params} label="Pesquise por uma audiência, reunião" />}
+                                            renderInput={(params) => <TextField {...params} label="Pesquise por uma audiência, reunião, seminário..." />}
                                         />
                                         )
                                     }
