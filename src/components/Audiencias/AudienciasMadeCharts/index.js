@@ -106,7 +106,7 @@ class AudienciasMadeCharts extends React.PureComponent {
     return (
       <Paper>
         <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
-            <CSVLink data={chartData} filename={"audiencias-interativas-realizadas.csv"} className="btn btn-primary">Exportar csv</CSVLink>
+            <CSVLink data={this.state.data2} filename={"audiencias-interativas-realizadas.csv"} className="btn btn-primary">Exportar csv</CSVLink>
         </Box>
         <Box>
             <Chart
