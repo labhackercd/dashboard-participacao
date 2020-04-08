@@ -17,7 +17,7 @@ function WikilegisCharts() {
             <ArgumentAxis />
             <ValueAxis />
             <BarSeries valueField="quant" argumentField="tema" />
-            <Title text="Documentos por tema no Wikilegis" />
+            <Title text="Projetos por tema no Wikilegis" />
           </Chart>
 <br /><br />
           <br />
