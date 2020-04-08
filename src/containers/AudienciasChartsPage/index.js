@@ -140,18 +140,16 @@ class AudienciasReportPage extends Component {
             <Box>
               <Paper style={{padding: "1rem"}}>
               <h5>Siglas das Comissões mostradas nos gráficos: </h5>
-              <p> <h6> CSSF </h6> Comissão de Seguridade Social e Família </p>
-              <p> <h6> CE </h6> Comissão de Educação </p>
-              <p> <h6> SUBLIBRA </h6> Comissão de Seguridade Social e Família </p>
-              <p> <h6> CTASP </h6> Comissão de Trabalho, de administração e serviço público </p>
+              <h6> CSSF </h6> <p> Comissão de Seguridade Social e Família </p>
+              <h6> CE </h6><p>  Comissão de Educação </p>
+              <h6> SUBLIBRA </h6> <p> Comissão de Seguridade Social e Família </p>
+              <h6> CTASP </h6><p> Comissão de Trabalho, de administração e serviço público </p>
               </Paper>
             </Box>
           </Grid>
 
         </Grid>
         </Box>
-
->>>>>>> change to wikilegis gender chart layout
         </ResponsiveDrawer>
       </div>
     );
