@@ -19,16 +19,16 @@ import { CSVLink} from "react-csv";
 const data = [
     { month: 'Jan', audienciasTransmitidas: 101, audienciasInterativas: 13, year:'2019' },
     { month: 'Fev', audienciasTransmitidas: 89, audienciasInterativas: 15, year:'2019' },
-    { month: 'Mar', audienciasTransmitidas: 107, audienciasInterativas: 20, year:'2019' },
+    { month: 'Mar', audienciasTransmitidas: 99, audienciasInterativas: 20, year:'2019' },
     { month: 'Abr', audienciasTransmitidas: 113, audienciasInterativas: 17, year:'2019' },
     { month: 'Mai', audienciasTransmitidas: 105, audienciasInterativas: 21, year:'2019' },
     { month: 'Jun', audienciasTransmitidas: 91, audienciasInterativas: 22, year:'2019' },
-    { month: 'Jul', audienciasTransmitidas: 110, audienciasInterativas: 23, year:'2019' },
-    { month: 'Ago', audienciasTransmitidas: 111, audienciasInterativas: 25, year:'2019' },
+    { month: 'Jul', audienciasTransmitidas: 77, audienciasInterativas: 23, year:'2019' },
+    { month: 'Ago', audienciasTransmitidas: 30, audienciasInterativas: 25, year:'2019' },
     { month: 'Set', audienciasTransmitidas: 112, audienciasInterativas: 27, year:'2019' },
-    { month: 'Out', audienciasTransmitidas: 111, audienciasInterativas: 30, year:'2019' },
+    { month: 'Out', audienciasTransmitidas: 67, audienciasInterativas: 30, year:'2019' },
     { month: 'Nov', audienciasTransmitidas: 120, audienciasInterativas: 35, year:'2019' },
-    { month: 'Dez', audienciasTransmitidas: 160, audienciasInterativas: 45, year:'2019' },
+    { month: 'Dez', audienciasTransmitidas: 147, audienciasInterativas: 45, year:'2019' },
   ];
 
 const legendStyles = () => ({
@@ -70,16 +70,6 @@ const demoStyles = () => ({
     whiteSpace: 'pre',
   },
 });
-
-const ValueLabel = (props) => {
-  const { text } = props;
-  return (
-    <ValueAxis.Label
-      {...props}
-      text={`${text}%`}
-    />
-  );
-};
 
 const titleStyles = {
   title: {
