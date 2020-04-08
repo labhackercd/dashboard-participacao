@@ -132,11 +132,11 @@ class AudienciasReportPage extends Component {
                     </Box>
                   </Grid>
                   <Grid item xs={12}>
-                      <Grid container>
-                        <Grid item xs={12}>
-                          <AudienciasUserTableReport></AudienciasUserTableReport>
-                        </Grid>
-                      </Grid>          
+                    <Grid container>
+                      <Grid item xs={12}>
+                        <AudienciasUserTableReport></AudienciasUserTableReport>
+                      </Grid>
+                    </Grid>          
                   </Grid>
                 </Grid>
                 

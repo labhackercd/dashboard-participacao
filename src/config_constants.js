@@ -1,4 +1,4 @@
-const GOOGLE_ANALYTICS_URL_TOKEN = "http://127.0.0.1:5000/";
+const GOOGLE_ANALYTICS_URL_TOKEN = "http://localhost:5000";
 
 module.exports = Object.freeze({
   // SYSTEM SETTING
