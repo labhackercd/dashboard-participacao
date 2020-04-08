@@ -13,7 +13,7 @@ class AudienciasComissionChart extends Component {
     this.state = {
       data: [
         { room: "CSSF", messages: 2032},
-        { room: "SUBLIBRA", messages: 425},
+        { room: "SUBLIBRAS", messages: 425},
         { room: "CE" , messages: 765},
         { room: "CTASP", messages: 332},
       ]
