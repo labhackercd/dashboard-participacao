@@ -94,7 +94,7 @@ class AudienciasReportPage extends Component {
                 aria-controls="panel1a-content"
                 id="panel1a-header"
               >
-                <Typography>Relatório Audiências - Salas</Typography>
+                <Typography>Relatório Audiências - Eventos interativos</Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
                 <Grid container>

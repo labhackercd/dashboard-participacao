@@ -70,7 +70,7 @@ class AudienciasRoomsTableReport extends Component {
       return <div align="center"> <CircularProgress></CircularProgress> </div>
     }else{
       return (
-          <Box width="auto" display="flex">
+          <Box width="auto" display="inline">
               <MaterialTable
                 columns={this.columns}
                 data={this.state.rows}
@@ -102,7 +102,7 @@ class AudienciasRoomsTableReport extends Component {
                     lastTooltip: 'Última página'
                   }
                 }}
-                title="Salas"
+                title="Eventos interativos"
                 detailPanel={rowData => {
                   return (
                     <Box marginX={2}>
