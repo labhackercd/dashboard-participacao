@@ -85,7 +85,7 @@ class PautaProposalTableReport extends Component {
                 lastTooltip: 'Última página'
               }
             }}
-            title="Usuários"
+            title="Propostas"
           />
       )
     }
