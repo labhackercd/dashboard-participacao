@@ -83,7 +83,7 @@ class PautaPage extends Component {
                 aria-controls="panel2a-content"
                 id="panel2a-header"
               >
-                <Typography>Usuários Pauta Participativa</Typography>
+                <Typography>Propostas no Pauta Participativa</Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
                 <PautaProposalTableReport></PautaProposalTableReport>

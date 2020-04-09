@@ -13,7 +13,7 @@ class PautaProposalTableReport extends Component {
     { field: 'id', title: 'id',  align: 'center'},
     { field: 'number', title: 'Número' },
     { field: 'proposal_type.initials', title: 'Tipo de proposta' },
-    { field: 'resource_uri', title: 'URL do recurso'},
+    { field: 'url', title: 'Link para a proposta'},
     { field: 'title', title: 'Titulo' },
     { field: 'year', title: 'Ano'}]
     
@@ -85,7 +85,7 @@ class PautaProposalTableReport extends Component {
                 lastTooltip: 'Última página'
               }
             }}
-            title="Usuários"
+            title="Propostas"
           />
       )
     }
