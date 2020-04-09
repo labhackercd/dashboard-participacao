@@ -10,7 +10,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 
 import {
   MuiPickersUtilsProvider,
-  DatePicker,
   KeyboardDatePicker
 } from '@material-ui/pickers';
 import GoogleAnalyticsCharts from '../GoogleAnalyticsCharts'

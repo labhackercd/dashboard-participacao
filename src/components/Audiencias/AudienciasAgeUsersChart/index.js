@@ -54,10 +54,6 @@ const LegendItem = withStyles(legendItemStyles, { name: 'LegendItem' })(LegendIt
 const Label = ({ text, ...props }) => (
   <ValueAxis.Label {...props} text={`${Math.abs(text)}`} />
 );
-const modifyDomain = ([start, end]) => {
-  const threshold = Math.ceil(Math.max(Math.abs(start), Math.abs(end)));
-  return [-threshold, threshold];
-};
 
 const populationPyramid = [
  {
