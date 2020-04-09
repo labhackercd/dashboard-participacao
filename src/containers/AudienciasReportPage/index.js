@@ -128,7 +128,7 @@ class AudienciasReportPage extends Component {
                 <Grid container>
                   <Grid item xs={12}>
                     <Box marginY={2}>
-                      <TransitionAlerts></TransitionAlerts>
+                      
                     </Box>
                   </Grid>
                   <Grid item xs={12}>

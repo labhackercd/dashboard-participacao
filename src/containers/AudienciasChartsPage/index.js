@@ -227,7 +227,7 @@ function QuestionsInfoCard() {
           <Grid container>
             <Grid item xs={2}></Grid>
             <Grid item xs={3}>
-              <HelpOutlineIcon style={{ fontSize: 70 }} />
+              <HelpOutlineIcon style={{ fontSize: '500%' }} />
             </Grid>
             <Grid item xs={4}>
               <Box marginTop={1}>

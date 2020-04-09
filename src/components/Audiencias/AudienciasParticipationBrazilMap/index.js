@@ -36,7 +36,7 @@ class AudienciasParticipationUsersBrazilMap extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          title: "Geral",
+          title: "Total Geral",
           radioGroupValue: "0",
           data: dataEstados[0]
         };
@@ -47,7 +47,7 @@ class AudienciasParticipationUsersBrazilMap extends Component {
 
     handleAutoCompleteChange(event,values){
         if(values===null){
-            this.setState({data:dataEstados[0], title:"Geral"})
+            this.setState({data:dataEstados[0], title:"Total Geral"})
         }else{
             this.setState({data:dataEstados[values.id], title:values.title})
         }   
@@ -55,7 +55,7 @@ class AudienciasParticipationUsersBrazilMap extends Component {
 
     handleRadioChange(event){
         this.setState({radioGroupValue:event.target.value})
-        this.setState({data:dataEstados[0], title:"Geral"})
+        this.setState({data:dataEstados[0], title:"Total Geral"})
     }
 
   render() {
@@ -107,7 +107,7 @@ class AudienciasParticipationUsersBrazilMap extends Component {
             <Divider variant="middle" ></Divider>
 
             <Box marginY={2} display="flex" justifyContent="center" >
-                <Typography variant="h5" gutterBottom>Número de usuários que participaram por estado {this.state.title}</Typography>
+                <Typography variant="h5" gutterBottom>Número de usuários que participaram por estado ({this.state.title})</Typography>
             </Box>
             
             <Box mb={5} alignItems="center">

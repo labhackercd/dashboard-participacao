@@ -121,7 +121,7 @@ class AudienciasMadeCharts extends React.PureComponent {
                 <Tooltip/>
                 <Legend position="bottom" rootComponent={Root} itemComponent={Item} labelComponent={Label} />
                 <Title
-                  text={"Audiências com transmissão comum x Audiências com transmissão interativa"}
+                  text={"Audiências com transmissão comum x Audiências com transmissão interativa em 2019"}
                   textComponent={TitleText}
                 />
                 <Animation />
