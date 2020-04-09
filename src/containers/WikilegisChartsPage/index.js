@@ -28,20 +28,20 @@ function WikilegisChartsPage() {
         <ResponsiveDrawer title="Wikilegis - Gráficos">
             <div>
               <Grid container spacing={3}>
-                <Grid item xs={12}>
+                <Grid item xs={12} md={12}>
                   <Paper>
                   <WikilegisProjectsPerTheme></WikilegisProjectsPerTheme>
                   </Paper>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={12} md={6}>
                   <Paper>
                   <WikilegisGenderChart></WikilegisGenderChart>
                   </Paper>
                 </Grid>
-                <Grid item xs={6}>
-                    <Paper>
-                    <WikilegisProjectsPerYear></WikilegisProjectsPerYear>
-                    </Paper>
+                <Grid item xs={12} md={6}>
+                  <Paper>
+                  <WikilegisProjectsPerYear></WikilegisProjectsPerYear>
+                  </Paper>
                 </Grid>
               </Grid>
             </div>
