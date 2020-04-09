@@ -1,4 +1,5 @@
-const GOOGLE_ANALYTICS_URL_TOKEN = "http://localhost:5000";
+//const GOOGLE_ANALYTICS_URL_TOKEN = "http://localhost:5000/"; 
+const GOOGLE_ANALYTICS_URL_TOKEN = "http://e4c4a5eb.ngrok.io/";
 
 module.exports = Object.freeze({
   // SYSTEM SETTING
