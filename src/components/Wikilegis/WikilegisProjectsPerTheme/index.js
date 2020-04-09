@@ -1,8 +1,10 @@
 import React from 'react';
-import { Title, BarSeries, Chart, ArgumentAxis, ValueAxis } from "@devexpress/dx-react-chart-material-ui";
+import { Title, BarSeries, Chart, ArgumentAxis, ValueAxis, Tooltip } from "@devexpress/dx-react-chart-material-ui";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
+import { EventTracker } from '@devexpress/dx-react-chart'
+import { Animation } from '@devexpress/dx-react-chart'
 
 function WikilegisProjectsPerTheme() {
 	return (
@@ -18,6 +20,9 @@ function WikilegisProjectsPerTheme() {
     <ValueAxis />
     <BarSeries valueField="quant" argumentField="tema" />
     <Title text="Projetos por tema no Wikilegis" />
+    <EventTracker />
+    <Tooltip />
+    <Animation />
     </Chart>
 	)
 }
