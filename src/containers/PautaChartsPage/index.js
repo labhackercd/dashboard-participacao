@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ResponsiveDrawer from "../MenuDrawer";
 import { withStyles } from "@material-ui/core/styles";
-import MuiAlert from "@material-ui/lab/Alert";
 import Box from "@material-ui/core/Box";
 import PautaUsersChart from "../../components/Pauta/PautaUsersChart";
 import PautaGenderChart from "../../components/Pauta/PautaGenderChart";
@@ -35,9 +34,6 @@ const useStyles = (theme) => ({
   },
 });
 
-function Alert(props) {
-  return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
 
 class AudienciasReportPage extends Component {
   _isMounted = false;

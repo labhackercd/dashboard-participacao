@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import MaterialTable from "material-table";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import Box from "@material-ui/core/Box"
 
 import { TablePagination } from "@material-ui/core";
 import { EDEMOCRACIA_PAGED_USER_API_URL } from "../../../config_constants";
+
 
 class EDemocraciaUserTableReport extends Component {
   _isTableMounted = false;
@@ -97,6 +99,7 @@ class EDemocraciaUserTableReport extends Component {
       );
     } else {
       return (
+        <Box width="auto" display="inline">
         <MaterialTable
           columns={this.columns}
           data={this.state.rows}
@@ -141,6 +144,7 @@ class EDemocraciaUserTableReport extends Component {
           }}
           title="Usuários"
         />
+        </Box>
       );
     }
   }

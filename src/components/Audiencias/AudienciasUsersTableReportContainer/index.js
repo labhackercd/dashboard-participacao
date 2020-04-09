@@ -94,7 +94,7 @@ class AudienciasUserTableReport extends Component {
       return <div align="center"> <CircularProgress></CircularProgress> </div>
     }else{
       return (
-        <Box width="100%">
+        <Box width="auto" display="inline">
           <MaterialTable
             columns={this.columns}
             data={this.state.rows}

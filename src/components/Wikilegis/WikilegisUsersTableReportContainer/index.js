@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MaterialTable from "material-table";
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Box from "@material-ui/core/Box"
 
 import { TablePagination } from '@material-ui/core';
 
@@ -84,38 +85,40 @@ class WikilegisUserTableReport extends Component {
       return <div align="center"> <CircularProgress></CircularProgress> </div>
     } else {
       return (
-        <MaterialTable
-          columns={this.columns}
-          data={this.state.rows}
-          options={{
-            pageSize: 100,
-            pageSizeOptions: [20, 40, 60, 80, 100, 80000],
-            emptyRowsWhenPaging: false,
-            removable: true,
-            search: false
-          }}
-          localization={{
-            body: {
-              emptyDataSourceMessage: 'Nenhum resultado encontrado'
-            },
-            toolbar: {
-              searchTooltip: 'Pesquisar',
-              searchPlaceholder: 'Pesquisar'
-            },
-            pagination: {
-              labelRowsSelect: 'Linhas',
-              labelDisplayedRows: ' {from}-{to} de {count}',
-              firstTooltip: 'Primeira página',
-              previousTooltip: 'Página Anterior',
-              nextTooltip: 'Próxima página',
-              lastTooltip: 'Última página'
-            }
-          }}
-          components={{
-            Pagination: props => <TablePagination {...props} count={this.state.totalRows} page={this.state.currentPage} onChangePage={(event, page) => { this.handleNextPageChange(page) /* handle page size change : event.target.value */ }} />
-          }}
-          title="Usuários"
-        />
+        <Box width="auto" display="inline">
+          <MaterialTable
+            columns={this.columns}
+            data={this.state.rows}
+            options={{
+              pageSize: 100,
+              pageSizeOptions: [20, 40, 60, 80, 100, 80000],
+              emptyRowsWhenPaging: false,
+              removable: true,
+              search: false
+            }}
+            localization={{
+              body: {
+                emptyDataSourceMessage: 'Nenhum resultado encontrado'
+              },
+              toolbar: {
+                searchTooltip: 'Pesquisar',
+                searchPlaceholder: 'Pesquisar'
+              },
+              pagination: {
+                labelRowsSelect: 'Linhas',
+                labelDisplayedRows: ' {from}-{to} de {count}',
+                firstTooltip: 'Primeira página',
+                previousTooltip: 'Página Anterior',
+                nextTooltip: 'Próxima página',
+                lastTooltip: 'Última página'
+              }
+            }}
+            components={{
+              Pagination: props => <TablePagination {...props} count={this.state.totalRows} page={this.state.currentPage} onChangePage={(event, page) => { this.handleNextPageChange(page) /* handle page size change : event.target.value */ }} />
+            }}
+            title="Usuários"
+          />
+        </Box>
       )
     }
 

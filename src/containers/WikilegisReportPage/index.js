@@ -9,6 +9,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import WikilegisDocumentTableReport from "../../components/Wikilegis/WikilegisDocumentTableReportContainer";
 import WikilegisUserTableReport from "../../components/Wikilegis/WikilegisUsersTableReportContainer";
 import { Divider } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid"
 
 const useStyles = (theme) => ({
   "@global": {
@@ -81,7 +82,11 @@ class WikilegisReportPage extends Component {
               <Typography>Relatório Wikilegis - Documentos</Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-              <WikilegisDocumentTableReport></WikilegisDocumentTableReport>
+                    <Grid container>
+                      <Grid item xs={12}>
+                        <WikilegisDocumentTableReport></WikilegisDocumentTableReport>
+                      </Grid>
+                    </Grid>  
             </ExpansionPanelDetails>
           </ExpansionPanel>
 
@@ -98,7 +103,11 @@ class WikilegisReportPage extends Component {
               <Typography>Relatório Wikilegis - Usuários</Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-              <WikilegisUserTableReport></WikilegisUserTableReport>
+                <Grid container>
+                  <Grid item xs={12}>
+                    <WikilegisUserTableReport></WikilegisUserTableReport>
+                  </Grid>
+                </Grid>                
             </ExpansionPanelDetails>
           </ExpansionPanel>
         </ResponsiveDrawer>

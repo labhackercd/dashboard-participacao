@@ -10,7 +10,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 
 import {
   MuiPickersUtilsProvider,
-  DatePicker,
+  KeyboardDatePicker
 } from '@material-ui/pickers';
 import GoogleAnalyticsCharts from '../GoogleAnalyticsCharts'
 import FormControl from '@material-ui/core/FormControl';
@@ -63,11 +63,23 @@ class GoogleAnalyticsFilterForm extends Component {
   }
 
   handleStartDateChange(date) {
-    this.setState({ startDate: date.toISOString().split('T')[0] })
+    
+    if(!isNaN(date)){
+      this.setState({ startDate: date.toISOString().split('T')[0] })
+    }else{
+      // Nothing to do
+    }
+    
   }
 
   handleEndDateChange(date) {
-    this.setState({ endDate: date.toISOString().split('T')[0] })
+    
+    if(!isNaN(date)){
+      this.setState({ endDate: date.toISOString().split('T')[0] })
+    }else{
+      // Nothing to do
+    }
+
   }
 
   handleDimensionChange(event) {
@@ -82,12 +94,11 @@ class GoogleAnalyticsFilterForm extends Component {
             <Grid container spacing={3}>
               <Grid item>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <DatePicker
+                  <KeyboardDatePicker
                     id="start-date"
                     name="startDate"
                     label="Data inicial"
-                    type="date"
-                    format="yyyy-MM-dd"
+                    format="dd/MM/yyyy"      
                     variant="inline"
                     value={this.state.startDate}
                     onChange={this.handleStartDateChange}
@@ -96,14 +107,12 @@ class GoogleAnalyticsFilterForm extends Component {
               </Grid>
               <Grid item>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <DatePicker
+                  <KeyboardDatePicker
                     id="end-date"
                     name="endDate"
-                    label="Data final"
-                    type="date"
-                    format="yyyy-MM-dd"
+                    label="Data Final"
+                    format="dd/MM/yyyy"    
                     variant="inline"
-
                     value={this.state.endDate}
                     onChange={this.handleEndDateChange}
                   />
@@ -128,7 +137,7 @@ class GoogleAnalyticsFilterForm extends Component {
               </Grid>
               <Grid item justify='flex-end'>
                 <FormControl>
-                  <Button id="submit-button" color="blue" variant="contained" type="submit" endIcon={<SearchIcon></SearchIcon>}>
+                  <Button id="submit-button" color="default" variant="contained" type="submit" endIcon={<SearchIcon></SearchIcon>}>
                     Pesquisar
                       </Button>
                 </FormControl>
@@ -138,7 +147,7 @@ class GoogleAnalyticsFilterForm extends Component {
             </Grid>
           </form>
         </Box>
-        <Box marginX={2} paddingBottom={1}>
+        <Box marginX={2} paddingBottom={2}>
           <GoogleAnalyticsCharts
             views={this.props.views}
             lineChartConfig={this.state.lineChartData}
@@ -184,13 +193,16 @@ class GoogleAnalyticsDynamicCharts extends Component {
         <ul className="chatrs-container">
           {charts}
         </ul>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={this.addAnotherChart}
-        >
-          Adicionar novo gráfico
-        </Button>
+        <Box display="flex" justifyContent="center" margin-bottom={2}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={this.addAnotherChart}
+          >
+            Adicionar novo gráfico
+          </Button>
+        </Box>
+
       </div>
     )
   }

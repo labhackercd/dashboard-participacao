@@ -7,8 +7,9 @@ import {
   ArgumentAxis,
   ValueAxis,
   Legend,
+  Tooltip
 } from '@devexpress/dx-react-chart-material-ui';
-
+import { EventTracker } from '@devexpress/dx-react-chart';
 import {
   Animation,
   ArgumentScale,
@@ -51,12 +52,8 @@ const LegendLabel = withStyles(legendLabelStyles, { name: 'LegendLabel' })(Legen
 const LegendItem = withStyles(legendItemStyles, { name: 'LegendItem' })(LegendItemBase);
 
 const Label = ({ text, ...props }) => (
-  <ValueAxis.Label {...props} text={`${Math.abs(text)}%`} />
+  <ValueAxis.Label {...props} text={`${Math.abs(text)}`} />
 );
-const modifyDomain = ([start, end]) => {
-  const threshold = Math.ceil(Math.max(Math.abs(start), Math.abs(end)));
-  return [-threshold, threshold];
-};
 
 const populationPyramid = [
  {
@@ -125,29 +122,32 @@ export default class AudienciasAgeUsersChart extends React.PureComponent {
         >
           <ArgumentScale factory={scaleBand} />
           <ArgumentAxis />
-          <ValueScale modifyDomain={modifyDomain} />
+          <ValueScale />
           <ValueAxis labelComponent={Label} />
 
           <BarSeries
-            name="Homem"
+            name="Masculino"
             valueField="male"
             argumentField="age"
             color="#3F7FBF"
           />
           <BarSeries
-            name="Mulheres"
+            name="Feminino"
             valueField="female"
             argumentField="age"
             color="#F87CCC"
           />
           <Title text="Faixa etária dos usuários por genêro" />
           <Animation />
+          <EventTracker />
+          <Tooltip />
           <Legend
             position="bottom"
             rootComponent={LegendRoot}
             itemComponent={LegendItem}
             labelComponent={LegendLabel}
           />
+
         </Chart>
       </Paper>
     );

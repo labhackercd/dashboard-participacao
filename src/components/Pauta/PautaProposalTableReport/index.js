@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import MaterialTable from "material-table";
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import { TablePagination } from '@material-ui/core';
-import {PAUTA_PROPOSAL_API_URL} from '../../../config_constants'
 import { Page1 } from './mock_data';
 
 class PautaProposalTableReport extends Component {
