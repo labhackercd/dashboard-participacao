@@ -76,7 +76,7 @@ class EnquetesReportPage extends Component {
   render() {
     return (
       <div>
-        <ResponsiveDrawer title="Enquetes">
+        <ResponsiveDrawer title="Enquete">
           <Box mb={5}>
             <Alert severity="info">
               Os dados contidos nesta página são fictícios!
@@ -89,7 +89,7 @@ class EnquetesReportPage extends Component {
                 aria-controls="panel1a-content"
                 id="panel1a-header"
               >
-                <Typography>Relatório Enquetes</Typography>
+                <Typography>Relatório Enquetes </Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
                 <Grid container>

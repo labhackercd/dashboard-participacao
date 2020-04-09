@@ -6,6 +6,7 @@ import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import MuiAlert from "@material-ui/lab/Alert";
 import Box from "@material-ui/core/Box";
+import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
@@ -101,13 +102,44 @@ class EnquetesChartsPage extends Component {
   render() {
     return (
       <div>
-        <ResponsiveDrawer title="Enquetes">
+        <ResponsiveDrawer title="Enquete">
           <Box mb={5}>
             <Alert severity="info">
               Os dados contidos nesta página são fictícios!
             </Alert>
           </Box>
           <Box>
+            <Grid container spacing={4}>
+              <Grid item xs={12} md={12}>
+                <Box width="100%" height="100%">
+                  <Paper style={{ padding: "1rem" }}>
+                    <center>
+                      <h1 style={{ margin: "1rem 0 1rem 0" }}> Enquete </h1>
+                    </center>
+                    <p
+                      style={{
+                        lineHeight: 2,
+                        fontSize: 20,
+                        textAlign: "justify",
+                        margin: "0 1.5rem 0 1.5rem",
+                      }}
+                    >
+                      A Enquete é uma ferramente que possibilita opinar sobre
+                      qualquer proposta legislativa, indicando seus pontos
+                      positivos ou negativos ou, ainda, votando nas opiniões de
+                      outros cidadãos. O objetivo dessa ferramenta é oferecer à
+                      sociedade mais um canal direto de manifestação. As
+                      enquetes não têm rigor científico, pois não representam
+                      uma amostra da sociedade. Seus resultados ficam
+                      disponíveis para os relatores das propostas, que podem
+                      considerar as manifestações na preparação do texto a ser
+                      votado.
+                    </p>
+                    <br />
+                  </Paper>
+                </Box>
+              </Grid>
+            </Grid>
             <br></br>
             <Divider></Divider>
             <br></br>
