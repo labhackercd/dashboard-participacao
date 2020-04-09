@@ -19,8 +19,7 @@ function WikilegisCharts() {
             <BarSeries valueField="quant" argumentField="tema" />
             <Title text="Projetos por tema no Wikilegis" />
           </Chart>
-<br /><br />
-          <br />
+           <br />
           <WikilegisGenderChart />
     </div>
     )

@@ -1,78 +1,53 @@
-import React, { Component } from "react";
+import React,  { Component } from 'react';
 import ResponsiveDrawer from "../MenuDrawer";
+import { Title, BarSeries, Chart, ArgumentAxis, ValueAxis } from "@devexpress/dx-react-chart-material-ui";
+import { makeStyles } from '@material-ui/core/styles';
+import WikilegisGenderChart from '../../components/Wikilegis/WikilegisGenderChart';
+import WikilegisProjectsPerYear from '../../components/Wikilegis/WikilegisProjectsPerYear';
+import WikilegisProjectsPerTheme from '../../components/Wikilegis/WikilegisProjectsPerTheme';
+import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import WikilegisCharts from "../../components/Wikilegis/WikilegisCharts";
 import { withStyles } from "@material-ui/core/styles";
 
-const useStyles = (theme) => ({
-  "@global": {
-    body: {
-      backgroundColor: "theme.palette.common.white",
-    },
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
   },
-  chips: {
-    display: "flex",
-    flexWrap: "wrap",
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
   },
-  chip: {
-    margin: 2,
-  },
+}));
 
-  flexContainer: {
-    display: "flex",
-    flexDirection: "row",
-  },
-  tableRoot: {
-    width: "100%",
-  },
-  tableWrapper: {
-    overflow: "auto",
-  },
-});
-
-class WikilegisReportPage extends Component {
-  _isMounted = false;
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      openSnackBar: false,
-      snackBarMessageError: "",
-    };
-  }
-
-  componentDidMount() {
-    this._isMounted = true;
-    /*
-    if(this._isMounted){
-      // If we need to wait for something to full render before render the page
-      this.checkIfUserIsAuthenticaded(() => {
-          this.setState({isLoadingPage:false});
-      });
-    }
-    */
-    this.setState({ isLoadingPage: false });
-  }
-
-  componentWillUnmount() {
-    this._isMounted = false;
-  }
-
-  handleCloseSnackBar() {
-    this.openSnackBar = false;
-  }
-
-  render() {
-    return (
+function WikilegisChartsPage() {
+  const classes = useStyles();
+  return (
       <div>
         <ResponsiveDrawer title="Wikilegis - Gráficos">
-          <ExpansionPanel defaultExpanded={false}>
-            <WikilegisCharts></WikilegisCharts>
-          </ExpansionPanel>
+            <div>
+              <Grid container spacing={3}>
+                <Grid item xs={12}>
+                  <Paper>
+                  <WikilegisProjectsPerTheme></WikilegisProjectsPerTheme>
+                  </Paper>
+                </Grid>
+                <Grid item xs={6}>
+                  <Paper>
+                  <WikilegisGenderChart></WikilegisGenderChart>
+                  </Paper>
+                </Grid>
+                <Grid item xs={6}>
+                    <Paper>
+                    <WikilegisProjectsPerYear></WikilegisProjectsPerYear>
+                    </Paper>
+                </Grid>
+              </Grid>
+            </div>
         </ResponsiveDrawer>
-      </div>
-    );
-  }
+      </div>   
+  );  
 }
 
-export default withStyles(useStyles)(WikilegisReportPage);
+export default WikilegisChartsPage;
