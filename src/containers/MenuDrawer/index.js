@@ -142,15 +142,14 @@ export default function Dashboard(props) {
         }}
         open={open}>  
           <div className={classes.toolbarIcon}>
-            <img src={logo} alt="Logo Câmara dos Deputados" style={{ maxHeight: 50 , align:'center', margin: '1rem 0 0 1rem'}}/>
-          </div>
+            <img src={logo} alt="Logo Câmara dos Deputados" style={{ maxHeight: 100 , maxWidth: '90%', align:'center'}}/>
+            <IconButton onClick={handleDrawerClose}>
+                        <ChevronLeftIcon />
+            </IconButton>
+            </div>
             <List>
             {toolsListItens}
-            <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-            </IconButton>
             </List>
-
             <Divider />
             <List><Zero800List></Zero800List></List>
             <List><AudienciasList></AudienciasList></List>
