@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { GoogleProvider } from "react-analytics-widget";
-import ResponsiveDrawer from "../MenuDrawer";
 import GoogleAnalyticsDynamicCharts from "../../components/GoogleAnalytics/GoogleAnalyticsDynamicCharts";
 import GoogleAnalyticsCharts from "../../components/GoogleAnalytics/GoogleAnalyticsCharts";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -210,7 +209,7 @@ export default class WikilegisAnalyticsPage extends Component {
       );
     } else {
       return (
-        <ResponsiveDrawer title="Analytics Wikilegis">
+        <React.Fragment>
           <GoogleProvider accessToken={this.state.token}>
             <Paper>
               <Box paddingY={3} paddingX={2} spacing={1}>
@@ -238,7 +237,7 @@ export default class WikilegisAnalyticsPage extends Component {
               </Box>
             </Paper>
           </GoogleProvider>
-        </ResponsiveDrawer>
+        </React.Fragment>
       );
     }
   }

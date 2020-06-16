@@ -1,5 +1,4 @@
 import React from "react";
-import ResponsiveDrawer from "../MenuDrawer";
 import WikilegisGenderChart from "../../components/Wikilegis/WikilegisGenderChart";
 import WikilegisProjectsPerYear from "../../components/Wikilegis/WikilegisProjectsPerYear";
 import WikilegisProjectsPerTheme from "../../components/Wikilegis/WikilegisProjectsPerTheme";
@@ -9,9 +8,7 @@ import Paper from "@material-ui/core/Paper";
 
 function WikilegisChartsPage() {
   return (
-    <div>
-      <ResponsiveDrawer title="Wikilegis - Gráficos">
-        <div>
+      <React.Fragment>
           <Grid container spacing={3}>
             <Grid item xs={12} md={12}>
               <Paper>
@@ -49,9 +46,8 @@ function WikilegisChartsPage() {
               </Paper>
             </Grid>
           </Grid>
-        </div>
-      </ResponsiveDrawer>
-    </div>
+      </React.Fragment>
+
   );
 }
 
