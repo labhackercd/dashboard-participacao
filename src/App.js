@@ -26,6 +26,8 @@ import PautaChartsPage from "./containers/PautaChartsPage";
 import PautaReportPage from "./containers/PautaReportPage";
 import PautaAnalyticsPage from "./containers/PautaAnalyticsPage";
 
+import MenuDrawer from './containers/MenuDrawer'
+
 const theme = createMuiTheme(
   {
     palette: {
