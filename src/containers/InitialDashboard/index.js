@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import ResponsiveDrawer from '../MenuDrawer';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import {
@@ -82,8 +81,8 @@ class InitialDashboard extends Component {
     
     
     return  (
-      <div>
-        <ResponsiveDrawer title = 'Dashboard'>
+      
+        <React.Fragment>
           <Paper>
             <Box style={{padding: '1rem'}}>
               <center><h1>Dados da participação pública da Câmara dos Deputados</h1>
@@ -95,8 +94,8 @@ class InitialDashboard extends Component {
               </center>
             </Box>
           </Paper>
-        </ResponsiveDrawer>
-      </div> 
+        </React.Fragment>
+      
     );
   }
 
