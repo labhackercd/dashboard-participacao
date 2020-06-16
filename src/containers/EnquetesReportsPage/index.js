@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ResponsiveDrawer from "../MenuDrawer";
 import { withStyles } from "@material-ui/core/styles";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
@@ -76,7 +75,7 @@ class EnquetesReportPage extends Component {
   render() {
     return (
       <div>
-        <ResponsiveDrawer title="Enquete">
+        <React.Fragment>
           <Box mb={5}>
             <Alert severity="info">
               Os dados contidos nesta página são fictícios!
@@ -116,7 +115,7 @@ class EnquetesReportPage extends Component {
               </ExpansionPanelDetails>
             </ExpansionPanel> */}
           </Box>
-        </ResponsiveDrawer>
+        </React.Fragment>
       </div>
     );
   }
