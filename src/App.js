@@ -48,12 +48,15 @@ function App() {
             <Route exact path="/">
               <InitialDashboard></InitialDashboard>
             </Route>
+
+
             <Route exact path="/enquetes-graficos">
               <EnquetesChartsPage theme={theme}></EnquetesChartsPage>
             </Route>
             <Route exact path="/enquetes-relatorios">
               <EnquetesReportsPage theme={theme}></EnquetesReportsPage>
             </Route>
+
 
             <Route exact path="/audiencias-relatorios">
               <AudienciasReportPage theme={theme}></AudienciasReportPage>
@@ -65,6 +68,7 @@ function App() {
               <AudienciasChartsPage theme={theme}></AudienciasChartsPage>
             </Route>
 
+
             <Route exact path="/pauta-relatorios">
               <PautaReportPage theme={theme}></PautaReportPage>
             </Route>
@@ -75,6 +79,7 @@ function App() {
               <PautaAnalyticsPage theme={theme}></PautaAnalyticsPage>
             </Route>
 
+
             <Route exact path="/edemocracia-graficos">
               <EDemocraciaChartsPage theme={theme}></EDemocraciaChartsPage>
             </Route>
@@ -84,6 +89,7 @@ function App() {
             <Route exact path="/edemocracia-relatorios">
               <EDemocraciaReportPage theme={theme}></EDemocraciaReportPage>
             </Route>
+
 
             <Route exact path="/wikilegis-relatorios">
               <WikilegisReportPage theme={theme}></WikilegisReportPage>
