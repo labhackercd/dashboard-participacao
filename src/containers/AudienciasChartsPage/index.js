@@ -17,6 +17,20 @@ import AudienciasAgeUsersChart from "../../components/Audiencias/AudienciasAgeUs
 import AudienciasParticipationBrazilMap from "../../components/Audiencias/AudienciasParticipationBrazilMap";
 import AudienciasTypeChart from "../../components/Audiencias/AudiencesTypeChart"
 
+//Data imports 
+import { AudienciasTypeChartData, 
+         AudienciasAgeUsersChartData,
+         AudienciasComissionChartData, 
+         AudienciasGenderChartData,
+         AudienciasMadeChartData,
+         AudienciasUsersChartData,
+         dataEstadosGeral,
+         dataEstados1, 
+         dataEstados2, 
+         dataEstados3, 
+         dataEstados4,
+         audiencesList } from "../API"
+
 const useStyles = (theme) => ({
   "@global": {
     body: {
@@ -54,7 +68,7 @@ class AudienciasReportPage extends Component {
     super(props);
     this.state = {
       openSnackBar: false,
-      snackBarMessageError: "",
+      snackBarMessageError: ""
     };
   }
 
@@ -80,6 +94,7 @@ class AudienciasReportPage extends Component {
   }
 
   render() {
+    const dataEstados = [dataEstadosGeral,dataEstados1,dataEstados2,dataEstados3,dataEstados4] 
     return (
       <React.Fragment>
         
@@ -103,34 +118,34 @@ class AudienciasReportPage extends Component {
                 {QuestionsInfoCard()}
               </Grid>
 
-              <Grid item xs={12} md={6} lg={4} zeroMinWidth>
-                <Box>
-                  <AudienciasGenderChart></AudienciasGenderChart>
+              <Grid item xs={12} md={4} zeroMinWidth>
+                <Box width="100%" height="100%">
+                  <AudienciasGenderChart data={AudienciasGenderChartData}></AudienciasGenderChart>
                 </Box>
               </Grid>
               <Grid item xs={12} md={6} lg={4} zeroMinWidth>
                 <Box>
-                  <AudienciasUserChart></AudienciasUserChart>
+                  <AudienciasUserChart data={AudienciasUsersChartData}></AudienciasUserChart>
                 </Box>
               </Grid>
               <Grid item xs={12} md={6} lg={4} zeroMinWidth>
                 <Box>
-                  <AudienciasTypeChart></AudienciasTypeChart>
+                  <AudienciasTypeChart data={AudienciasTypeChartData}></AudienciasTypeChart>
                 </Box>
               </Grid>
               <Grid item xs={12} md={6} lg={4} zeroMinWidth>
                 <Box>
-                  <AudienciasAgeUsersChart></AudienciasAgeUsersChart>
+                  <AudienciasMadeChart data={AudienciasMadeChartData}></AudienciasMadeChart>
                 </Box>
               </Grid>
               <Grid item xs={12} lg={8} zeroMinWidth>
                 <Box>
-                  <AudienciasMadeChart></AudienciasMadeChart>
+                  <AudienciasAgeUsersChart data={AudienciasAgeUsersChartData}></AudienciasAgeUsersChart>
                 </Box>
               </Grid>
               <Grid item xs={12} zeroMinWidth>
                 <Box>
-                  <AudienciasParticipationBrazilMap></AudienciasParticipationBrazilMap>
+                  <AudienciasParticipationBrazilMap data={{dataEstados: dataEstados, audiencesList: audiencesList}}></AudienciasParticipationBrazilMap>
                 </Box>
               </Grid>
             </Grid>

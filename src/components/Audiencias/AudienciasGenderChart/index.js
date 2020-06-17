@@ -6,48 +6,30 @@ import { EventTracker } from '@devexpress/dx-react-chart';
 import Box from '@material-ui/core/Box'
 import { CSVLink} from "react-csv";
 
-
-class AudienciasGenderChart extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      data: [
-        { region: 'Masculino', val: 40000},
-        { region: 'Feminino', val: 45000 },
-      ]
-    };
-  }
-
-  render() {
-
-    return (
-      <Paper>
-
-        <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
-            <CSVLink data={this.state.data} filename={"usuarios-genero-audiencias.csv"} className="btn btn-primary">Exportar csv</CSVLink>
-        </Box>
-        <Box>
-            <Chart data={this.state.data}>
-              <PieSeries
-                valueField="val"
-                argumentField="region"
-                innerRadius={0.6}
-                name="teste"
-              />
-              <Title
-                text="Gênero dos usuários"
-              />
-              <EventTracker />
-              <Tooltip />
-              <Legend />
-              <Animation />
-            </Chart>
-        </Box>
-
-      </Paper>
-    );
-  }
+export default function AudienciasGenderChart (props) {
+  const data = props.data 
+  return (
+   <Paper>
+    <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
+        <CSVLink data={data} filename={"usuarios-genero-audiencias.csv"} className="btn btn-primary">Exportar CSV</CSVLink>
+    </Box>
+    <Box>
+        <Chart data={data}>
+          <PieSeries
+            valueField="val"
+            argumentField="region"
+            innerRadius={0.6}
+            name="teste"
+          />
+          <Title
+            text="Gênero dos usuários"
+          />
+          <EventTracker />
+          <Tooltip />
+          <Legend />
+          <Animation />
+        </Chart>
+    </Box>
+  </Paper>   
+  )
 }
-
-export default (AudienciasGenderChart);

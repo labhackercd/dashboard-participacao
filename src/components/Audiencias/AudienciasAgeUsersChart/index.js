@@ -55,69 +55,15 @@ const Label = ({ text, ...props }) => (
   <ValueAxis.Label {...props} text={`${Math.abs(text)}`} />
 );
 
-const populationPyramid = [
- {
-    age: '10-20',
-    male: -4.0,
-    female: 3.8,
-  }, {
-    age: '21-30',
-    male: -3.9,
-    female: 3.7,
-  }, {
-    age: '31-40',
-    male: -4.0,
-    female: 3.8,
-  }, {
-    age: '41-50',
-    male: -4.0,
-    female: 3.8,
-  }, {
-    age: '51-60',
-    male: -3.5,
-    female: 3.4,
-  }, {
-    age: '61-70',
-    male: -3.2,
-    female: 3.1,
-  }, {
-    age: '71-80',
-    male: -3.1,
-    female: 3.1,
-  }, {
-    age: '81-90',
-    male: -2.8,
-    female: 2.8,
-  }, {
-    age: '91-100',
-    male: -2.4,
-    female: 2.5,
-  }, {
-    age: '100+',
-    male: -2.0,
-    female: 2.1,
-  }
-  ];
-
-export default class AudienciasAgeUsersChart extends React.PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      data: populationPyramid,
-    };
-  }
-
-  render() {
-    const { data: chartData } = this.state;
-
-    return (
-      <Paper>
+export default function AudienciasAgeUsersChart (props){
+  const data = props.data
+  return (
+     <Paper>
         <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
-            <CSVLink data={this.state.data} filename={"idade-usuarios-audiencias.csv"} className="btn btn-primary">Exportar csv</CSVLink>
+            <CSVLink data={data} filename={"idade-usuarios-audiencias.csv"} className="btn btn-primary">Exportar csv</CSVLink>
         </Box>
         <Chart
-          data={chartData}
+          data={data}
           rotated
         >
           <ArgumentScale factory={scaleBand} />
@@ -147,9 +93,7 @@ export default class AudienciasAgeUsersChart extends React.PureComponent {
             itemComponent={LegendItem}
             labelComponent={LegendLabel}
           />
-
         </Chart>
-      </Paper>
-    );
+      </Paper>    
+    )
   }
-}
