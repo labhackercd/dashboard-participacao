@@ -21,4 +21,8 @@ before_install:
 - chmod +x docker-compose
 - sudo mv docker-compose /usr/local/bin
 script:
-  - docker-compose up prod
+  - docker-compose up --build -d dev
+  - docker-compose start dev
+  - docker-compose run dev npm test -- --watchAll=false
+
+
