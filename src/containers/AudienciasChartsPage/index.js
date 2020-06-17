@@ -29,7 +29,7 @@ import { AudienciasTypeChartData,
          dataEstados2, 
          dataEstados3, 
          dataEstados4,
-         audiencesList } from "../API"
+         audiencesList } from "../API/audiencias"
 
 const useStyles = (theme) => ({
   "@global": {

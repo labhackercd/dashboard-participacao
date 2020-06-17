@@ -4,48 +4,23 @@ import { Chart, PieSeries, Title, Legend, Tooltip, } from '@devexpress/dx-react-
 import { Animation } from '@devexpress/dx-react-chart';
 import { EventTracker } from '@devexpress/dx-react-chart';
 
-
-
-class AudienciasGenderChart extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      data: [
-        { region: 'Masculino', val: 40000},
-        { region: 'Feminino', val: 45000 },
-      ]
-    };
-  }
-
-  render() {
-
-    return (
-      <Paper>
-        <Chart
-          data={this.state.data}
-        >
-
-
+export default function EdemocraciaGenderChart (props) {
+  const data = props.data 
+  return (
+    <Paper>
+       <Chart data={data}>
           <PieSeries
             valueField="val"
             argumentField="region"
             innerRadius={0.6}
-            name="teste"
-          />
-
+            name="teste" />
           <Title
-            text="Gênero dos usuários"
-          />
+            text="Gênero dos usuários" />
           <EventTracker />
           <Tooltip />
           <Legend />
-
           <Animation />
         </Chart>
-      </Paper>
-    );
-  }
+    </Paper>
+  )
 }
-
-export default (AudienciasGenderChart);
