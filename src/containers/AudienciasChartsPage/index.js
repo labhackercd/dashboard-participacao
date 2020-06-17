@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ResponsiveDrawer from "../MenuDrawer";
 import { withStyles } from "@material-ui/core/styles";
 import MuiAlert from "@material-ui/lab/Alert";
 import Box from "@material-ui/core/Box";
@@ -82,8 +81,8 @@ class AudienciasReportPage extends Component {
 
   render() {
     return (
-      <div>
-        <ResponsiveDrawer title="Audiências Interativas">
+      <React.Fragment>
+        
           <Box mb={5}>
             <Alert severity="info">
               Este é um texto de alerta para avisar sobre os dados!
@@ -136,8 +135,9 @@ class AudienciasReportPage extends Component {
               </Grid>
             </Grid>
           </Box>
-        </ResponsiveDrawer>
-      </div>
+ 
+      </React.Fragment>
+  
     );
   }
 }

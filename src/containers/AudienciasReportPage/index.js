@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ResponsiveDrawer from "../MenuDrawer";
 import { withStyles } from "@material-ui/core/styles";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
@@ -80,8 +79,7 @@ class AudienciasReportPage extends Component {
 
   render() {
     return (
-      <div>
-        <ResponsiveDrawer title="Audiências Interativas">
+      <React.Fragment>
           <Box mb={5}>
             <Alert severity="info">
               Este é um texto de alerta para avisar sobre os dados!
@@ -143,8 +141,7 @@ class AudienciasReportPage extends Component {
               </ExpansionPanelDetails>
             </ExpansionPanel>
           </Box>
-        </ResponsiveDrawer>
-      </div>
+        </React.Fragment>
     );
   }
 }

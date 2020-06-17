@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ResponsiveDrawer from "../MenuDrawer";
 import { withStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import PautaUsersChart from "../../components/Pauta/PautaUsersChart";
@@ -69,8 +68,7 @@ class AudienciasReportPage extends Component {
 
   render() {
     return (
-      <div>
-        <ResponsiveDrawer title="Pauta Participativa">
+        <React.Fragment>
           <Box>
             <Grid container spacing={4}>
               <Grid item xs={12} md={12}>
@@ -127,8 +125,7 @@ class AudienciasReportPage extends Component {
               </Grid>
             </Grid>
           </Box>
-        </ResponsiveDrawer>
-      </div>
+        </React.Fragment>
     );
   }
 }

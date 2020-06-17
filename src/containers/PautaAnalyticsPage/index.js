@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { GoogleProvider } from "react-analytics-widget";
-import ResponsiveDrawer from "../MenuDrawer";
 import GoogleAnalyticsCharts from "../../components/GoogleAnalytics/GoogleAnalyticsCharts";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Select from "@material-ui/core/Select";
@@ -163,7 +162,7 @@ export default class PautaParticipativaAnalyticsPage extends Component {
       );
     } else {
       return (
-        <ResponsiveDrawer title="Analytics Pauta Participativa">
+        <React.Fragment>
           <GoogleProvider accessToken={this.state.token}>
             <Paper>
               <Box paddingY={3} paddingX={2} spacing={1}>
@@ -203,7 +202,7 @@ export default class PautaParticipativaAnalyticsPage extends Component {
               </Box>
             </Paper>
           </GoogleProvider>
-        </ResponsiveDrawer>
+        </React.Fragment>
       );
     }
   }

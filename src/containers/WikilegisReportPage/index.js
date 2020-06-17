@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ResponsiveDrawer from "../MenuDrawer";
 import { withStyles } from "@material-ui/core/styles";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
@@ -71,8 +70,7 @@ class WikilegisReportPage extends Component {
 
   render() {
     return (
-      <div>
-        <ResponsiveDrawer title="Estatísticas Partipação Pública">
+      <React.Fragment>
           <ExpansionPanel defaultExpanded={false}>
             <ExpansionPanelSummary
               expandIcon={<ExpandMoreIcon />}
@@ -110,8 +108,7 @@ class WikilegisReportPage extends Component {
                 </Grid>                
             </ExpansionPanelDetails>
           </ExpansionPanel>
-        </ResponsiveDrawer>
-      </div>
+        </React.Fragment>
     );
   }
 }

@@ -26,6 +26,8 @@ import PautaChartsPage from "./containers/PautaChartsPage";
 import PautaReportPage from "./containers/PautaReportPage";
 import PautaAnalyticsPage from "./containers/PautaAnalyticsPage";
 
+import MenuDrawer from './containers/MenuDrawer'
+
 const theme = createMuiTheme(
   {
     palette: {
@@ -41,57 +43,65 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Router>
-        <Switch>
-          <Route exact path="/">
-            <InitialDashboard></InitialDashboard>
-          </Route>
-          <Route exact path="/enquetes-graficos">
-            <EnquetesChartsPage theme={theme}></EnquetesChartsPage>
-          </Route>
-          <Route exact path="/enquetes-relatorios">
-            <EnquetesReportsPage theme={theme}></EnquetesReportsPage>
-          </Route>
+        <MenuDrawer>
+          <Switch>
+            <Route exact path="/">
+              <InitialDashboard></InitialDashboard>
+            </Route>
 
-          <Route exact path="/audiencias-relatorios">
-            <AudienciasReportPage theme={theme}></AudienciasReportPage>
-          </Route>
-          <Route exact path="/audiencias-analytics">
-            <AudienciasAnalyticsPage theme={theme}></AudienciasAnalyticsPage>
-          </Route>
-          <Route exact path="/audiencias-graficos">
-            <AudienciasChartsPage theme={theme}></AudienciasChartsPage>
-          </Route>
 
-          <Route exact path="/pauta-relatorios">
-            <PautaReportPage theme={theme}></PautaReportPage>
-          </Route>
-          <Route exact path="/pauta-graficos">
-            <PautaChartsPage theme={theme}></PautaChartsPage>
-          </Route>
-          <Route exact path="/pauta-analytics">
-            <PautaAnalyticsPage theme={theme}></PautaAnalyticsPage>
-          </Route>
+            <Route exact path="/enquetes-graficos">
+              <EnquetesChartsPage theme={theme}></EnquetesChartsPage>
+            </Route>
+            <Route exact path="/enquetes-relatorios">
+              <EnquetesReportsPage theme={theme}></EnquetesReportsPage>
+            </Route>
 
-          <Route exact path="/edemocracia-graficos">
-            <EDemocraciaChartsPage theme={theme}></EDemocraciaChartsPage>
-          </Route>
-          <Route exact path="/edemocracia-analytics">
-            <EdemocraciaAnalyticsPage theme={theme}></EdemocraciaAnalyticsPage>
-          </Route>
-          <Route exact path="/edemocracia-relatorios">
-            <EDemocraciaReportPage theme={theme}></EDemocraciaReportPage>
-          </Route>
 
-          <Route exact path="/wikilegis-relatorios">
-            <WikilegisReportPage theme={theme}></WikilegisReportPage>
-          </Route>
-          <Route exact path="/wikilegis-analytics">
-            <WikilegisAnalyticsPage theme={theme}></WikilegisAnalyticsPage>
-          </Route>
-          <Route exact path="/wikilegis-graficos">
-            <WikilegisChartsPage theme={theme}></WikilegisChartsPage>
-          </Route>
-        </Switch>
+            <Route exact path="/audiencias-relatorios">
+              <AudienciasReportPage theme={theme}></AudienciasReportPage>
+            </Route>
+            <Route exact path="/audiencias-analytics">
+              <AudienciasAnalyticsPage theme={theme}></AudienciasAnalyticsPage>
+            </Route>
+            <Route exact path="/audiencias-graficos">
+              <AudienciasChartsPage theme={theme}></AudienciasChartsPage>
+            </Route>
+
+
+            <Route exact path="/pauta-relatorios">
+              <PautaReportPage theme={theme}></PautaReportPage>
+            </Route>
+            <Route exact path="/pauta-graficos">
+              <PautaChartsPage theme={theme}></PautaChartsPage>
+            </Route>
+            <Route exact path="/pauta-analytics">
+              <PautaAnalyticsPage theme={theme}></PautaAnalyticsPage>
+            </Route>
+
+
+            <Route exact path="/edemocracia-graficos">
+              <EDemocraciaChartsPage theme={theme}></EDemocraciaChartsPage>
+            </Route>
+            <Route exact path="/edemocracia-analytics">
+              <EdemocraciaAnalyticsPage theme={theme}></EdemocraciaAnalyticsPage>
+            </Route>
+            <Route exact path="/edemocracia-relatorios">
+              <EDemocraciaReportPage theme={theme}></EDemocraciaReportPage>
+            </Route>
+
+
+            <Route exact path="/wikilegis-relatorios">
+              <WikilegisReportPage theme={theme}></WikilegisReportPage>
+            </Route>
+            <Route exact path="/wikilegis-analytics">
+              <WikilegisAnalyticsPage theme={theme}></WikilegisAnalyticsPage>
+            </Route>
+            <Route exact path="/wikilegis-graficos">
+              <WikilegisChartsPage theme={theme}></WikilegisChartsPage>
+            </Route>
+          </Switch>
+        </MenuDrawer>
       </Router>
     </ThemeProvider>
   );
