@@ -1,4 +1,5 @@
 import * as React from "react";
+import {useState} from "react";
 import {
   Chart,
   ArgumentAxis,
@@ -14,105 +15,6 @@ import { EventTracker } from "@devexpress/dx-react-chart";
 import Box from "@material-ui/core/Box";
 
 import { CSVLink } from "react-csv";
-
-const ano_2017 = [
-  {
-    enquete: "Enquete B",
-    positive: 30,
-    negative: 17
-  },
-  {
-    enquete: "Enquete A",
-    positive: 20,
-    negative: 25
-  },
-  {
-    enquete: "Enquete E",
-    positive: 7,
-    negative: 27
-  },
-  {
-    enquete: "Enquete C",
-    positive: 13,
-    negative: 17
-  },
-  {
-    enquete: "Enquete F",
-    positive: 16,
-    negative: 10
-  },
-  {
-    enquete: "Enquete D",
-    positive: 7,
-    negative: 11
-  }
-];
-
-const ano_2018 = [
-  {
-    enquete: "Enquete A",
-    positive: 30,
-    negative: 40
-  },
-  {
-    enquete: "Enquete D",
-    positive: 5,
-    negative: 45
-  },
-  {
-    enquete: "Enquete F",
-    positive: 16,
-    negative: 32
-  },
-  {
-    enquete: "Enquete B",
-    positive: 10,
-    negative: 20
-  },
-  {
-    enquete: "Enquete E",
-    positive: 10,
-    negative: 10
-  },
-  {
-    enquete: "Enquete C",
-    positive: 10,
-    negative: 5
-  }
-];
-
-const ano_2019 = [
-  {
-    enquete: "Enquete B",
-    positive: 30,
-    negative: 40
-  },
-  {
-    enquete: "Enquete D",
-    positive: 50,
-    negative: 15
-  },
-  {
-    enquete: "Enquete F",
-    positive: 30,
-    negative: 30
-  },
-  {
-    enquete: "Enquete A",
-    positive: 20,
-    negative: 20
-  },
-  {
-    enquete: "Enquete E",
-    positive: 12,
-    negative: 25
-  },
-  {
-    enquete: "Enquete C",
-    positive: 13,
-    negative: 2
-  }
-];
 
 const legendStyles = () => ({
   root: {
@@ -137,43 +39,37 @@ const Label = withStyles(legendLabelStyles, { name: "LegendLabel" })(
   legendLabelBase
 );
 
-class EnqueteTop5MostVoted extends React.PureComponent {
-  constructor(props) {
-    super(props);
+/**
+ *
+ * Receives an object containing data for all years and returns chart-friendly data for a specific year
+ *
+ * @param {Object} data Object which contains chart data for all years
+ * @param {String} ano  String which represents the desidered year
+ *
+ * @return {Array} Array of chart-friendly objects containing data for a specific year.
+ */
+function updateChart(data, ano){
+  let filterPerYear = data.filter((year) => Object.keys(year) == ano)
+  let valuesForYear = filterPerYear[0]
+  return Object.values(valuesForYear)[0]
+}
 
-    this.state = {
-      ano: 2019
-    };
-  }
-
-  update_chart() {
-    let ano_data = [];
-    if (this.props.ano === "2017") {
-      ano_data = ano_2017;
-    } else if (this.props.ano === "2018") {
-      ano_data = ano_2018;
-    } else {
-      ano_data = ano_2019;
-    }
-
-    return ano_data;
-  }
-
-  render() {
-    const data = this.update_chart();
-
-    return (
+export default function EnqueteTop5MostVoted(props) {
+  let data = props.data
+  let ano = props.ano.toString()
+  const [anoObject, setAnoObject] = useState(updateChart(data,ano)) 
+  return (
       <Box>
         <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
           <CSVLink
-            data={data}
-            filename={"enquetes_mais_votadas_" + this.state.ano + ".csv"}
+            data={anoObject}
+            filename={"enquetes_mais_votadas_" + ano + ".csv"}
             className="btn btn-primary"
           >
             Exportar csv
           </CSVLink>
         </Box>
-        <Chart data={data}>
+        <Chart data={anoObject}>
           <ArgumentAxis />
           <ValueAxis />
 
@@ -196,15 +92,13 @@ class EnqueteTop5MostVoted extends React.PureComponent {
             labelComponent={Label}
           />
 
-          <Title text={"Enquetes mais votadas " + this.props.ano} />
+          <Title text={"Enquetes mais votadas " + ano} />
           <Stack />
           <Animation />
           <EventTracker />
           <Tooltip />
         </Chart>
-      </Box>
-    );
-  }
+      </Box>    
+  )
 }
 
-export default EnqueteTop5MostVoted;

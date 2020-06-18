@@ -13,7 +13,6 @@ import { CSVLink } from "react-csv";
 import { Animation, EventTracker } from "@devexpress/dx-react-chart";
 
 export default function EnquetesSuggestionPoll(props) {
-  console.log("chega aqui")
   function update_chart() {
     return [{vote: "Positivo", count: props.enquete.positive_suggestions},
             {vote: "Negativo", count: props.enquete.negative_suggestions}];    
