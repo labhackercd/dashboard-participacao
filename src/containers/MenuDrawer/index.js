@@ -29,6 +29,16 @@ import logo from '../../camara_logo.png'
 const drawerWidth = 300;
 
 const useStyles = makeStyles(theme => ({
+  sideBarIcons:{
+    root: {
+      width: '100%',
+      maxWidth: 360,
+      backgroundColor: theme.palette.background.paper,
+    },
+    nested: {
+      paddingLeft: theme.spacing(4),
+    },
+  },
   root: {
     display: 'flex',
   },
@@ -151,13 +161,13 @@ export default function MenuDrawer(props) {
             {toolsListItens}
             </List>
             <Divider />
-            <List><Zero800List></Zero800List></List>
-            <List><AudienciasList></AudienciasList></List>
-            <List><EDemocraciaList></EDemocraciaList></List>
-            <List><EnquetesList></EnquetesList></List>
-            <List><WikilegisList></WikilegisList></List>
-            <List><PautaList></PautaList></List>
-            <List><PlenarinhoList></PlenarinhoList></List>
+            <List><Zero800List className={classes.sideBarIcons}></Zero800List></List>
+            <List><AudienciasList className={classes.sideBarIcons}></AudienciasList></List>
+            <List><EDemocraciaList className={classes.sideBarIcons}></EDemocraciaList></List>
+            <List><EnquetesList className={classes.sideBarIcons}></EnquetesList></List>
+            <List><WikilegisList className={classes.sideBarIcons}></WikilegisList></List>
+            <List><PautaList className={classes.sideBarIcons}></PautaList></List>
+            <List><PlenarinhoList className={classes.sideBarIcons}></PlenarinhoList></List>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />

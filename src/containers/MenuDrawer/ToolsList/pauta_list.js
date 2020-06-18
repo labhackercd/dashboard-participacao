@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -16,19 +15,8 @@ import GoogleAnalyticsLogo from '../icons/google_analytics-icon.svg'
 
 import TimelineIcon from '@material-ui/icons/Timeline';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    width: '100%',
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
-  },
-  nested: {
-    paddingLeft: theme.spacing(4),
-  },
-}));
-
-export default function PautaList() {
-  const classes = useStyles();
+export default function PautaList(props) {
+  const classes =  props.className;
   const [open, setOpen] = React.useState(false);
 
   const handleClick = () => {
