@@ -96,8 +96,8 @@ const useStyles = makeStyles(theme => ({
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
   },
+  padding: theme.spacing(1),
   paper: {
-    padding: theme.spacing(2),
     display: 'flex',
     overflow: 'auto',
     flexDirection: 'column',
@@ -144,9 +144,9 @@ export default function MenuDrawer(props) {
           <div className={classes.toolbarIcon}>
             <img src={logo} alt="Logo Câmara dos Deputados" style={{ maxHeight: 100 , maxWidth: '90%', align:'center'}}/>
             <IconButton onClick={handleDrawerClose}>
-                        <ChevronLeftIcon />
+                <ChevronLeftIcon />
             </IconButton>
-            </div>
+          </div>
             <List>
             {toolsListItens}
             </List>
@@ -161,7 +161,7 @@ export default function MenuDrawer(props) {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Box margin={2}>
+        <Box margin={1}>
           <Container maxWidth="100%" className={classes.container}>
               {props.children}
           </Container>
