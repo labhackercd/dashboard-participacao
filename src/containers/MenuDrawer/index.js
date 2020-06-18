@@ -22,11 +22,17 @@ import EnquetesList from './ToolsList/enquetes_list'
 import PautaList from './ToolsList/pauta_list'
 import PlenarinhoList from './ToolsList/plenarinho_list'
 import WikilegisList from './ToolsList/wikilegis_list'
-import Zero800List from './ToolsList/Zero800_list'
 
 import NestedToolListItem from './listItemComponent'
 
 import PhoneIcon from '@material-ui/icons/Phone';
+import ListIcon from "@material-ui/icons/List";
+import AudienciasLogo from './icons/audiencias-icone.svg'
+import eDemocraciaLogo from './icons/e-Democracia.svg'
+import PautaLogo from './icons/pauta-icone.svg'
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import WikilegisLogo from './icons/logo-wikilegis-icone.svg'
+
 import logo from '../../camara_logo.png'
 
 const drawerWidth = 300;
@@ -121,21 +127,109 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const toolsInfo={
-    zero800:{
-      icon: <PhoneIcon></PhoneIcon>,
-      title:"Disque Câmara",
-      pageActive:{
+
+    audiencias:{
+      icon: false,
+      icon_svg: AudienciasLogo,
+      title:"Audiências",
+      pageisActive:{
         chart:true,
         report:true,
         analytics:true,
+      },
+      url:{
+        chart:"/audiencias-graficos",
+        report:"/audiencias-relatorios",
+        analytics:"/audiencias-analytics"
+      }
+    },
+    eDemocracia:{
+      icon: false,
+      icon_svg: eDemocraciaLogo,
+      title:"Portal e-Democracia",
+      pageisActive:{
+        chart:true,
+        report:true,
+        analytics:true,
+      },
+      url:{
+        chart:"/edemocracia-graficos",
+        report:"/edemocracia-relatorios",
+        analytics:"/edemocracia-analytics"
+      }
+    },
+    enquetes:{
+      icon: <ListIcon></ListIcon>,
+      title:"Enquetes",
+      pageisActive:{
+        chart:true,
+        report:true,
+        analytics:true,
+      },
+      url:{
+        chart:"/enquetes-graficos",
+        report:"/enquetes-relatorios",
+        analytics:"/enquetes-analytics"
+      }
+    },
+    pauta:{
+      icon: false,
+      icon_svg: PautaLogo,
+      title:"Pauta Participativa",
+      pageisActive:{
+        chart:true,
+        report:true,
+        analytics:true,
+      },
+      url:{
+        chart:"/pauta-graficos",
+        report:"/pauta-relatorios",
+        analytics:"/pauta-analytics"
+      }
+    },
+    plenarinho:{
+      icon: <AssignmentIcon></AssignmentIcon>,
+      title:"Plenarinho",
+      pageisActive:{
+        chart:false,
+        report:false,
+        analytics:false,
+      },
+      url:{
+        chart:"",
+        report:"",
+        analytics:""
+      }
+    },
+    wikilegis:{
+      icon: false,
+      icon_svg: WikilegisLogo,
+      title:"Wikilegis",
+      pageisActive:{
+        chart:true,
+        report:true,
+        analytics:true,
+      },
+      url:{
+        chart:"/wikilegis-graficos",
+        report:"/wikilegis-relatorios",
+        analytics:"/wikilegis-analytics"
+      }
+    },
+    zero800:{
+      icon: <PhoneIcon></PhoneIcon>,
+      title:"Disque Câmara",
+      pageisActive:{
+        chart:false,
+        report:false,
+        analytics:false,
       },
       url:{
         chart:"/0800-graficos",
         report:"/0800-relatorios",
         analytics:"/0800-analytics"
       }
-    }
-
+    },
 }
 
 export default function MenuDrawer(props) {
@@ -182,13 +276,15 @@ export default function MenuDrawer(props) {
             {toolsListItens}
             </List>
             <Divider />
+            
             <NestedToolListItem className={classes.sideBarIcons} info={toolsInfo.zero800}></NestedToolListItem>
-            <List><AudienciasList className={classes.sideBarIcons}></AudienciasList></List>
-            <List><EDemocraciaList className={classes.sideBarIcons}></EDemocraciaList></List>
-            <List><EnquetesList className={classes.sideBarIcons}></EnquetesList></List>
-            <List><WikilegisList className={classes.sideBarIcons}></WikilegisList></List>
-            <List><PautaList className={classes.sideBarIcons}></PautaList></List>
-            <List><PlenarinhoList className={classes.sideBarIcons}></PlenarinhoList></List>
+            <NestedToolListItem className={classes.sideBarIcons} info={toolsInfo.audiencias}></NestedToolListItem>
+            <NestedToolListItem className={classes.sideBarIcons} info={toolsInfo.eDemocracia}></NestedToolListItem>
+            <NestedToolListItem className={classes.sideBarIcons} info={toolsInfo.enquetes}></NestedToolListItem>
+            <NestedToolListItem className={classes.sideBarIcons} info={toolsInfo.wikilegis}></NestedToolListItem>
+            <NestedToolListItem className={classes.sideBarIcons} info={toolsInfo.pauta}></NestedToolListItem>
+            <NestedToolListItem className={classes.sideBarIcons} info={toolsInfo.plenarinho}></NestedToolListItem>
+
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />

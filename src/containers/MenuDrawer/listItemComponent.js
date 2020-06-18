@@ -31,7 +31,9 @@ export default function NestedToolListItem(props) {
       <ListItem button onClick={handleClick}>
         <ListItemIcon>
           <Icon>
-             {props.info.icon}
+              {props.info.icon ? 
+                props.info.icon : <img alt="Ícone" src={props.info.icon_svg} height={25} width={25} />}
+             
           </Icon>
         </ListItemIcon>
         <ListItemText primary={props.info.title} />
@@ -40,7 +42,7 @@ export default function NestedToolListItem(props) {
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
 
-        <ListItem disabled={props.info.pageActive.chart} button component={Link} to={props.info.url.chart} className={classes.nested}>
+        <ListItem disabled={!props.info.pageisActive.chart} button component={Link} to={props.info.url.chart} className={classes.nested}>
             <ListItemIcon>
               <Icon>
                 <TimelineIcon></TimelineIcon>
@@ -50,7 +52,7 @@ export default function NestedToolListItem(props) {
           </ListItem>
 
           
-          <ListItem disabled={props.info.pageActive.report} button component={Link} to={props.info.url.report} className={classes.nested}>
+          <ListItem disabled={!props.info.pageisActive.report} button component={Link} to={props.info.url.report} className={classes.nested}>
             <ListItemIcon>
               <Icon>
                 <AssignmentIcon></AssignmentIcon>
@@ -60,10 +62,10 @@ export default function NestedToolListItem(props) {
           </ListItem>
 
           
-          <ListItem disabled={props.info.pageActive.analytics} button component={Link} to={props.info.url.analytics} className={classes.nested}>
+          <ListItem disabled={!props.info.pageisActive.analytics} button component={Link} to={props.info.url.analytics} className={classes.nested}>
             <ListItemIcon>
               <Icon>
-                <img alt="Ícone Wikilegis Analytics" src={GoogleAnalyticsLogo} height={22} width={22}/>
+                <img alt="Ícone Google Analytics" src={GoogleAnalyticsLogo} height={22} width={22}/>
               </Icon>
             </ListItemIcon>
             <ListItemText primary="Google Analytics" />
