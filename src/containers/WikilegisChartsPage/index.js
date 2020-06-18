@@ -3,6 +3,7 @@ import WikilegisGenderChart from "../../components/Wikilegis/WikilegisGenderChar
 import WikilegisProjectsPerYear from "../../components/Wikilegis/WikilegisProjectsPerYear";
 import WikilegisProjectsPerTheme from "../../components/Wikilegis/WikilegisProjectsPerTheme";
 import WikilegisSuggestionsPerProject from "../../components/Wikilegis/WikilegisSuggestionsPerProject";
+import {genderData, projectsPerTheme, projectsPerYear, suggestionsPerProject} from "../API/wikilegis";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 
@@ -12,22 +13,22 @@ function WikilegisChartsPage() {
           <Grid container spacing={3}>
             <Grid item xs={12} md={12}>
               <Paper>
-                <WikilegisProjectsPerTheme></WikilegisProjectsPerTheme>
+                <WikilegisProjectsPerTheme data={projectsPerTheme}></WikilegisProjectsPerTheme>
               </Paper>
             </Grid>
             <Grid item xs={12} md={6}>
               <Paper>
-                <WikilegisGenderChart></WikilegisGenderChart>
+                <WikilegisGenderChart data={genderData}></WikilegisGenderChart>
               </Paper>
             </Grid>
             <Grid item xs={12} md={6}>
               <Paper>
-                <WikilegisProjectsPerYear></WikilegisProjectsPerYear>
+                <WikilegisProjectsPerYear data={projectsPerYear}></WikilegisProjectsPerYear>
               </Paper>
             </Grid>
             <Grid item xs={12} md={12}>
               <Paper>
-                <WikilegisSuggestionsPerProject></WikilegisSuggestionsPerProject>
+                <WikilegisSuggestionsPerProject data={suggestionsPerProject}></WikilegisSuggestionsPerProject>
                 <div style={{ padding: "1.5rem" }}>
                   <p>
                     {" "}

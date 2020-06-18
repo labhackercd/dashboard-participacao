@@ -4,6 +4,7 @@ import Box from "@material-ui/core/Box";
 import PautaUsersChart from "../../components/Pauta/PautaUsersChart";
 import PautaGenderChart from "../../components/Pauta/PautaGenderChart";
 import PautaVoteParticipationChart from "../../components/Pauta/PautaVoteParticipationChart";
+import {pautaGenderData, pautaUsersData, voteParticipation} from "../API/pauta"
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 
@@ -104,7 +105,7 @@ class AudienciasReportPage extends Component {
             <Grid container spacing={4}>
               <Grid item xs={12} md={12}>
                 <Box width="100%" height="100%">
-                  <PautaVoteParticipationChart></PautaVoteParticipationChart>
+                  <PautaVoteParticipationChart data={voteParticipation}></PautaVoteParticipationChart>
                 </Box>
               </Grid>
             </Grid>
@@ -112,7 +113,7 @@ class AudienciasReportPage extends Component {
             <Grid container spacing={4}>
               <Grid item xs={12} md={12}>
                 <Box width="100%" height="100%">
-                  <PautaUsersChart></PautaUsersChart>
+                  <PautaUsersChart data={pautaUsersData}></PautaUsersChart>
                 </Box>
               </Grid>
             </Grid>
@@ -120,7 +121,7 @@ class AudienciasReportPage extends Component {
             <Grid container spacing={4}>
               <Grid item xs={12} md={12}>
                 <Box width="100%" height="100%">
-                  <PautaGenderChart></PautaGenderChart>
+                  <PautaGenderChart data={pautaGenderData}></PautaGenderChart>
                 </Box>
               </Grid>
             </Grid>

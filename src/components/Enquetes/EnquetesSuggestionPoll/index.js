@@ -12,49 +12,32 @@ import { CSVLink } from "react-csv";
 
 import { Animation, EventTracker } from "@devexpress/dx-react-chart";
 
-class EnquetesSuggestionPoll extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      data: this.props.enquete
-    };
+export default function EnquetesSuggestionPoll(props) {
+  function update_chart() {
+    return [{vote: "Positivo", count: props.enquete.positive_suggestions},
+            {vote: "Negativo", count: props.enquete.negative_suggestions}];    
   }
-
-  update_chart() {
-    const enquete = this.props.enquete;
-    const enquete_format = [
-      { vote: "Positivo", count: enquete.positive_suggestions },
-      { vote: "Negativo", count: enquete.negative_suggestions }
-    ];
-    return enquete_format;
-  }
-
-  render() {
-    const data = this.update_chart();
-    return (
-      <Box>
-        <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
-          <CSVLink
-            data={data}
-            filename={"sugestoes_enquetes.csv"}
-            className="btn btn-primary"
-          >
-            Exportar csv
-          </CSVLink>
-        </Box>
-
-        <Chart data={data}>
-          <PieSeries valueField="count" argumentField="vote" />
-          <Legend />
-          <Title text={"Sugestões da Enquete " + this.props.enquete.name} />
-          <Animation />
-          <EventTracker />
-          <Tooltip />
-        </Chart>
+  const data = update_chart()
+  return (
+    <Box>
+      <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
+        <CSVLink
+          data={data}
+          filename={"sugestoes_enquetes.csv"}
+          className="btn btn-primary"
+        >
+          Exportar csv
+        </CSVLink>
       </Box>
-    );
-  }
-}
 
-export default EnquetesSuggestionPoll;
+      <Chart data={data}>
+        <PieSeries valueField="count" argumentField="vote" />
+        <Legend />
+        <Title text={"Sugestões da Enquete " + props.enquete.name} />
+        <Animation />
+        <EventTracker />
+        <Tooltip />
+      </Chart>
+    </Box>    
+  )
+}

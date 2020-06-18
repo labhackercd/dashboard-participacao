@@ -6,6 +6,9 @@ import EdemocraciaGenderChart from "../../components/Edemocracia/EdemocraciaGend
 import EdemocraciaUsersChart from "../../components/Edemocracia/EdemocraciaUsersChart";
 import EdemocraciaUsersBrazilMap from "../../components/Edemocracia/EdemocraciaUsersBrazilMap";
 import Grid from "@material-ui/core/Grid";
+import {edemocraciaGenderChartData, 
+        edemocraciaUsersBrazilMapData, 
+        edemocraciaUsersChartData} from "../API/edemocracia";
 
 const useStyles = (theme) => ({
   "@global": {
@@ -82,17 +85,17 @@ class EDemocraciaPage extends Component {
             <Grid container spacing={3}>
               <Grid item xs={12} md={6}>
                 <Box width="100%" height="100%">
-                  <EdemocraciaUsersChart></EdemocraciaUsersChart>
+                  <EdemocraciaUsersChart data={edemocraciaUsersChartData}></EdemocraciaUsersChart>
                 </Box>
               </Grid>
               <Grid item xs={12} md={6}>
                 <Box>
-                  <EdemocraciaGenderChart></EdemocraciaGenderChart>
+                  <EdemocraciaGenderChart data={edemocraciaGenderChartData}></EdemocraciaGenderChart>
                 </Box>
               </Grid>
               <Grid item xs={12}>
                 <Box width="100%" height="100%" alignContent="center">
-                  <EdemocraciaUsersBrazilMap></EdemocraciaUsersBrazilMap>
+                  <EdemocraciaUsersBrazilMap data={edemocraciaUsersBrazilMapData}></EdemocraciaUsersBrazilMap>
                 </Box>
               </Grid>
             </Grid>

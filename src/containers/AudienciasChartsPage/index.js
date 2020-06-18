@@ -17,6 +17,19 @@ import AudienciasAgeUsersChart from "../../components/Audiencias/AudienciasAgeUs
 import AudienciasParticipationBrazilMap from "../../components/Audiencias/AudienciasParticipationBrazilMap";
 import AudienciasTypeChart from "../../components/Audiencias/AudiencesTypeChart"
 
+//Data imports 
+import { AudienciasTypeChartData, 
+         AudienciasAgeUsersChartData,
+         AudienciasGenderChartData,
+         AudienciasMadeChartData,
+         AudienciasUsersChartData,
+         dataEstadosGeral,
+         dataEstados1, 
+         dataEstados2, 
+         dataEstados3, 
+         dataEstados4,
+         audiencesList } from "../API/audiencias"
+
 const useStyles = (theme) => ({
   "@global": {
     body: {
@@ -54,7 +67,7 @@ class AudienciasReportPage extends Component {
     super(props);
     this.state = {
       openSnackBar: false,
-      snackBarMessageError: "",
+      snackBarMessageError: ""
     };
   }
 
@@ -80,57 +93,58 @@ class AudienciasReportPage extends Component {
   }
 
   render() {
+    const dataEstados = [dataEstadosGeral,dataEstados1,dataEstados2,dataEstados3,dataEstados4] 
     return (
       <React.Fragment>
         
-          <Box mb={5}>
+          <Box mb={3}>
             <Alert severity="info">
               Este é um texto de alerta para avisar sobre os dados!
             </Alert>
           </Box>
           <Box>
             <Grid container spacing={2}>
-              <Grid item xs={3}>
+              <Grid item xs={12} md={6} lg={3} zeroMinWidth>
                 <UsersInfoCard></UsersInfoCard>
               </Grid>
-              <Grid item xs={3}>
+              <Grid item xs={12} md={6} lg={3} zeroMinWidth>
                 {AudiencesInfoCard()}
               </Grid>
-              <Grid item xs={3}>
+              <Grid item xs={12} md={6} lg={3} zeroMinWidth>
                 {MessagesInfoCard()}
               </Grid>
-              <Grid item xs={3}>
+              <Grid item xs={12} md={6} lg={3} zeroMinWidth>
                 {QuestionsInfoCard()}
               </Grid>
 
               <Grid item xs={12} md={4} zeroMinWidth>
                 <Box width="100%" height="100%">
-                  <AudienciasGenderChart></AudienciasGenderChart>
+                  <AudienciasGenderChart data={AudienciasGenderChartData}></AudienciasGenderChart>
                 </Box>
               </Grid>
-              <Grid item xs={12} md={4} zeroMinWidth>
+              <Grid item xs={12} md={6} lg={4} zeroMinWidth>
                 <Box>
-                  <AudienciasUserChart></AudienciasUserChart>
+                  <AudienciasUserChart data={AudienciasUsersChartData}></AudienciasUserChart>
                 </Box>
               </Grid>
-              <Grid item xs={12} md={4} zeroMinWidth>
+              <Grid item xs={12} md={6} lg={4} zeroMinWidth>
                 <Box>
-                  <AudienciasTypeChart></AudienciasTypeChart>
+                  <AudienciasTypeChart data={AudienciasTypeChartData}></AudienciasTypeChart>
                 </Box>
               </Grid>
-              <Grid item xs={8} zeroMinWidth>
+              <Grid item xs={12} md={6} lg={4} zeroMinWidth>
                 <Box>
-                  <AudienciasMadeChart></AudienciasMadeChart>
+                  <AudienciasMadeChart data={AudienciasMadeChartData}></AudienciasMadeChart>
                 </Box>
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12} lg={8} zeroMinWidth>
                 <Box>
-                  <AudienciasAgeUsersChart></AudienciasAgeUsersChart>
+                  <AudienciasAgeUsersChart data={AudienciasAgeUsersChartData}></AudienciasAgeUsersChart>
                 </Box>
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={12} zeroMinWidth>
                 <Box>
-                  <AudienciasParticipationBrazilMap></AudienciasParticipationBrazilMap>
+                  <AudienciasParticipationBrazilMap data={{dataEstados: dataEstados, audiencesList: audiencesList}}></AudienciasParticipationBrazilMap>
                 </Box>
               </Grid>
             </Grid>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import MaterialTable from "material-table";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Box from "@material-ui/core/Box"
+import { WIKILEGIS_PAGED_USERS_API_URL } from "../../../config_constants";
 
 import { TablePagination } from '@material-ui/core';
 
@@ -12,8 +13,8 @@ class WikilegisUserTableReport extends Component {
   _isTableMounted = false;
   columns = [
     { field: 'id', title: 'id' },
-    { field: 'username', title: 'Username', align: 'center' },
     { field: 'profile.uf', title: 'UF' },
+    { field: 'profile.gender', title: 'Genêro', align: 'center' },
     { field: 'suggestions_count', title: 'Mensagens Enviadas' },
     { field: 'vote_count', title: 'Votos' },
   ]
@@ -31,9 +32,8 @@ class WikilegisUserTableReport extends Component {
   }
 
   loadDataInTable(callback) {
-    //https://edemocracia.camara.leg.br/audiencias/api/room/?ordering=-created&is_visible=true
-    const url = new URL("http://261572d9.ngrok.io/api/v1/users/?page=" + this.state.currentPage)
 
+    const url = new URL(WIKILEGIS_PAGED_USERS_API_URL + this.state.currentPage)
     fetch(url, {
       method: 'GET',
     }).then((response) => response.json())
@@ -52,7 +52,7 @@ class WikilegisUserTableReport extends Component {
 
     this.setState({ isLoadingTable: true, currentPage: page })
 
-    const url = new URL("http://261572d9.ngrok.io/api/v1/users/?page=" + this.state.currentPage)
+    const url = new URL(WIKILEGIS_PAGED_USERS_API_URL + this.state.currentPage)
 
     fetch(url, {
       method: 'GET',

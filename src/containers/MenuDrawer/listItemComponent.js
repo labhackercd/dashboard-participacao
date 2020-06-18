@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -9,12 +8,10 @@ import { Link } from "react-router-dom";
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Icon from '@material-ui/core/Icon';
-
-import AssignmentIcon from '@material-ui/icons/Assignment';
-import PautaLogo from '../icons/pauta-icone.svg'
-import GoogleAnalyticsLogo from '../icons/google_analytics-icon.svg'
-
+import { makeStyles } from '@material-ui/core/styles';
+import GoogleAnalyticsLogo from './icons/google_analytics-icon.svg'
 import TimelineIcon from '@material-ui/icons/Timeline';
+import AssignmentIcon from '@material-ui/icons/Assignment';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -27,34 +24,37 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function PautaList() {
+
+export default function NestedToolListItem(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
   const handleClick = () => {
     setOpen(!open);
+    console.log(classes)
   };
 
   return (
     <List
       component="nav"
       aria-labelledby="nested-list-subheader"
-
       className={classes.root}
     >
       <ListItem button onClick={handleClick}>
         <ListItemIcon>
           <Icon>
-              <img alt="Ícone Pauta Participativa" src={PautaLogo} height={25} width={25}/>
+              {props.info.icon ? 
+                props.info.icon : <img alt="Ícone" src={props.info.icon_svg} height={25} width={25} />}
+             
           </Icon>
         </ListItemIcon>
-        <ListItemText primary="Pauta" />
+        <ListItemText primary={props.info.title} />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
 
-        <ListItem button component={Link} to={"/pauta-graficos"} className={classes.nested}>
+        <ListItem disabled={!props.info.pageisActive.chart} button component={Link} to={props.info.url.chart} className={classes.nested}>
             <ListItemIcon>
               <Icon>
                 <TimelineIcon></TimelineIcon>
@@ -64,7 +64,7 @@ export default function PautaList() {
           </ListItem>
 
           
-          <ListItem button component={Link} to={"/pauta-relatorios"} className={classes.nested}>
+          <ListItem disabled={!props.info.pageisActive.report} button component={Link} to={props.info.url.report} className={classes.nested}>
             <ListItemIcon>
               <Icon>
                 <AssignmentIcon></AssignmentIcon>
@@ -74,10 +74,10 @@ export default function PautaList() {
           </ListItem>
 
           
-          <ListItem button component={Link} to={"/pauta-analytics"}  className={classes.nested}>
+          <ListItem disabled={!props.info.pageisActive.analytics} button component={Link} to={props.info.url.analytics} className={classes.nested}>
             <ListItemIcon>
               <Icon>
-                <img alt="Ícone Pauta Analytics" src={GoogleAnalyticsLogo} height={22} width={22}/>
+                <img alt="Ícone Google Analytics" src={GoogleAnalyticsLogo} height={22} width={22}/>
               </Icon>
             </ListItemIcon>
             <ListItemText primary="Google Analytics" />

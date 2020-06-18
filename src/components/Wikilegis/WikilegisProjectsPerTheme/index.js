@@ -11,16 +11,10 @@ import {
 import { EventTracker } from "@devexpress/dx-react-chart";
 import { Animation } from "@devexpress/dx-react-chart";
 
-function WikilegisProjectsPerTheme() {
+function WikilegisProjectsPerTheme(props) {
   return (
     <Chart
-      data={[
-        { tema: "Esportes", quant: 1 },
-        { tema: "Comunicações", quant: 2 },
-        { tema: "Meio Ambiente", quant: 1 },
-        { tema: "Cultura", quant: 1 },
-        { tema: "Segurança", quant: 1 },
-      ]}
+      data={props.data}
     >
       <ArgumentAxis />
       <ValueAxis />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Title,
   PieSeries,
@@ -9,15 +9,10 @@ import {
 import { EventTracker } from "@devexpress/dx-react-chart";
 import { Animation } from "@devexpress/dx-react-chart";
 
-function WikilegisDocumentsPerYear() {
-  let [projectsPerYear] = useState([
-    { year: 2019, quant: 4 },
-    { year: 2018, quant: 1 },
-    { year: 2015, quant: 1 },
-  ]);
+function WikilegisDocumentsPerYear(props) {
 
   return (
-    <Chart data={projectsPerYear} className="wikilegis-gender-chart">
+    <Chart data={props.data} className="wikilegis-gender-chart">
       <PieSeries
         valueField="quant"
         argumentField="year"
