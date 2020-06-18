@@ -8,18 +8,30 @@ import { Link } from "react-router-dom";
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Icon from '@material-ui/core/Icon';
-
+import { makeStyles } from '@material-ui/core/styles';
 import GoogleAnalyticsLogo from './icons/google_analytics-icon.svg'
 import TimelineIcon from '@material-ui/icons/Timeline';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 
+const useStyles = makeStyles(theme => ({
+  root: {
+    width: '100%',
+    maxWidth: 360,
+    backgroundColor: theme.palette.background.paper,
+  },
+  nested: {
+    paddingLeft: theme.spacing(4),
+  },
+}));
+
 
 export default function NestedToolListItem(props) {
-  const classes = props.className;
+  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
   const handleClick = () => {
     setOpen(!open);
+    console.log(classes)
   };
 
   return (
