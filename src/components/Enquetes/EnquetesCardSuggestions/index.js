@@ -5,14 +5,7 @@ import Paper from "@material-ui/core/Paper";
 import ForumIcon from "@material-ui/icons/Forum";
 import Typography from "@material-ui/core/Typography";
 
-export class EnquetesCardSuggestions extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
-  render() {
+export default function EnquetesCardSuggestions(props) {
     return (
       <React.Fragment>
         <Paper elevation={3} square={false} rounded={5}>
@@ -25,7 +18,7 @@ export class EnquetesCardSuggestions extends Component {
               <Grid item>
                 <Box marginTop={1}>
                   <Typography component="p" variant="h4">
-                    {this.props.suggestions}
+                    {props.suggestions}
                   </Typography>
                   <Typography color="textSecondary">
                     Total de sugestões
@@ -36,8 +29,5 @@ export class EnquetesCardSuggestions extends Component {
           </Box>
         </Paper>
       </React.Fragment>
-    );
-  }
+    );  
 }
-
-export default EnquetesCardSuggestions;

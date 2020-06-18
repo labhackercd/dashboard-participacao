@@ -5,14 +5,7 @@ import Paper from "@material-ui/core/Paper";
 import PeopleIcon from "@material-ui/icons/People";
 import Typography from "@material-ui/core/Typography";
 
-export class EnquetesCardParticipants extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
-  render() {
+export default function EnquetesCardParticipants (props) {
     return (
       <React.Fragment>
         <Paper elevation={3} square={false} rounded={5}>
@@ -25,7 +18,7 @@ export class EnquetesCardParticipants extends Component {
               <Grid item>
                 <Box marginTop={1}>
                   <Typography component="p" variant="h4">
-                    {this.props.participants}
+                    {props.participants}
                   </Typography>
                   <Typography color="textSecondary">
                     Total de participantes
@@ -36,8 +29,5 @@ export class EnquetesCardParticipants extends Component {
           </Box>
         </Paper>
       </React.Fragment>
-    );
-  }
+    );  
 }
-
-export default EnquetesCardParticipants;

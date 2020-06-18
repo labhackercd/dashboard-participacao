@@ -6,7 +6,7 @@ import Box from "@material-ui/core/Box";
 
 import data_enquetes from "./data_enquetes";
 
-class EnquetesPollTableReport extends Component {
+class EnquetesPollReport extends Component {
   _isTableMounted = false;
   columns_votes = [
     { field: "name", title: "Título da Enquete", tooltip: "Título da Enquete" },
@@ -201,4 +201,4 @@ class EnquetesPollTableReport extends Component {
   }
 }
 
-export default EnquetesPollTableReport;
+export default EnquetesPollReport;
