@@ -26,7 +26,7 @@ import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import data_enquetes from "../../components/Enquetes/EnquetesVotesPoll/data_enquetes";
-import {top3MostSuggestionByYear} from "../API/enquetes"
+import {top3MostSuggestionByYear, top5MostVoted, enquetesYearSuggestionData,enquetesYearVotesData} from "../API/enquetes"
 const useStyles = (theme) => ({
   "@global": {
     body: {
@@ -190,6 +190,7 @@ class EnquetesChartsPage extends Component {
                     <Box>
                       <EnquetesYearVotes
                         ano={this.state.ano}
+                        data={enquetesYearVotesData}
                         redraw={true}
                       ></EnquetesYearVotes>
                     </Box>
@@ -198,6 +199,7 @@ class EnquetesChartsPage extends Component {
                     <Box>
                       <EnquetesYearSuggestion
                         ano={this.state.ano}
+                        data={enquetesYearSuggestionData}
                         redraw={true}
                       ></EnquetesYearSuggestion>
                     </Box>
@@ -206,6 +208,7 @@ class EnquetesChartsPage extends Component {
                     <Box>
                       <EnquetesTop5MostVoted
                         ano={this.state.ano}
+                        data={top5MostVoted}
                         redraw={true}
                       ></EnquetesTop5MostVoted>
                     </Box>
