@@ -1,4 +1,5 @@
 import * as React from "react";
+import {useState} from "react";
 import {
   Chart,
   PieSeries,
@@ -12,18 +13,11 @@ import Box from "@material-ui/core/Box";
 
 import { CSVLink } from "react-csv";
 
-class EnquetesVotesPoll extends React.Component {
-  constructor(props) {
-    super(props);
+function EnquetesVotesPoll(props) {
+  const [enquete] = useState(props.enquete)
 
-    this.state = {
-      data: this.props.enquete
-    };
-  }
-
-  update_chart() {
-    const enquete = this.props.enquete;
-    const enquete_format = [
+  function updateChart() {
+    const enqueteFormat = [
       { vote: "Concordo Totalmente", count: enquete.agree_votes },
       { vote: "Concordo na maior parte", count: enquete.partial_agree_votes },
       { vote: "Estou indeciso", count: enquete.indecisive_votes },
@@ -33,34 +27,33 @@ class EnquetesVotesPoll extends React.Component {
       },
       { vote: "Discordo Totalmente", count: enquete.disagree_votes }
     ];
-    return enquete_format;
+    return enqueteFormat     
   }
 
-  render() {
-    const data = this.update_chart();
-    return (
-      <Box>
-        <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
-          <CSVLink
-            data={data}
-            filename={"votos_enquetes.csv"}
-            className="btn btn-primary"
-          >
-            Exportar csv
-          </CSVLink>
-        </Box>
+  const data = updateChart()
 
-        <Chart data={data}>
-          <PieSeries valueField="count" argumentField="vote" />
-          <Legend />
-          <Title text={"Votos da Enquete " + this.props.enquete.name} />
-          <Animation />
-          <EventTracker />
-          <Tooltip />
-        </Chart>
+  return (
+    <Box>
+      <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
+        <CSVLink
+          data={data}
+          filename={"votos_enquetes.csv"}
+          className="btn btn-primary"
+        >
+          Exportar csv
+        </CSVLink>
       </Box>
-    );
-  }
+
+      <Chart data={data}>
+        <PieSeries valueField="count" argumentField="vote" />
+        <Legend />
+        <Title text={"Votos da Enquete " + enquete.name} />
+        <Animation />
+        <EventTracker />
+        <Tooltip />
+      </Chart>
+    </Box>
+  )
 }
 
 export default EnquetesVotesPoll;

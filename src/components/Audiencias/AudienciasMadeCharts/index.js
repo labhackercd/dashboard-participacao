@@ -16,20 +16,6 @@ import { ArgumentScale, Animation } from '@devexpress/dx-react-chart';
 import Box from '@material-ui/core/Box'
 import { CSVLink} from "react-csv";
 
-const data = [
-    { month: 'Jan', audienciasTransmitidas: 101, audienciasInterativas: 13, year:'2019' },
-    { month: 'Fev', audienciasTransmitidas: 89, audienciasInterativas: 15, year:'2019' },
-    { month: 'Mar', audienciasTransmitidas: 99, audienciasInterativas: 20, year:'2019' },
-    { month: 'Abr', audienciasTransmitidas: 113, audienciasInterativas: 17, year:'2019' },
-    { month: 'Mai', audienciasTransmitidas: 105, audienciasInterativas: 21, year:'2019' },
-    { month: 'Jun', audienciasTransmitidas: 91, audienciasInterativas: 22, year:'2019' },
-    { month: 'Jul', audienciasTransmitidas: 77, audienciasInterativas: 23, year:'2019' },
-    { month: 'Ago', audienciasTransmitidas: 30, audienciasInterativas: 25, year:'2019' },
-    { month: 'Set', audienciasTransmitidas: 112, audienciasInterativas: 27, year:'2019' },
-    { month: 'Out', audienciasTransmitidas: 67, audienciasInterativas: 30, year:'2019' },
-    { month: 'Nov', audienciasTransmitidas: 120, audienciasInterativas: 35, year:'2019' },
-    { month: 'Dez', audienciasTransmitidas: 147, audienciasInterativas: 45, year:'2019' },
-  ];
 
 const legendStyles = () => ({
   root: {
@@ -80,29 +66,15 @@ const TitleText = withStyles(titleStyles)(({ classes, ...props }) => (
   <Title.Text {...props} className={classes.title} />
 ));
 
-class AudienciasMadeCharts extends React.PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      data2:data,
-    };
-  }
-
-  render() {
-    const { data2: chartData } = this.state;
-    const { classes } = this.props;
-
-    return (
+function AudienciasMadeCharts (props) {
+  const data = props.data
+  return (
       <Paper>
         <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
-            <CSVLink data={this.state.data2} filename={"audiencias-interativas-realizadas.csv"} className="btn btn-primary">Exportar csv</CSVLink>
+            <CSVLink data={data} filename={"audiencias-interativas-realizadas.csv"} className="btn btn-primary">Exportar csv</CSVLink>
         </Box>
         <Box>
-            <Chart
-                data={chartData}
-                className={classes.chart}
-              >
+            <Chart data={data}>
                 <ArgumentScale factory={scalePoint} />
                 <ArgumentAxis />
                 <ValueAxis
@@ -122,14 +94,12 @@ class AudienciasMadeCharts extends React.PureComponent {
                 <Legend position="bottom" rootComponent={Root} itemComponent={Item} labelComponent={Label} />
                 <Title
                   text={"Audiências com transmissão comum x Audiências com transmissão interativa em 2019"}
-                  textComponent={TitleText}
-                />
+                  textComponent={TitleText} />
                 <Animation />
             </Chart>
         </Box>
-      </Paper>
-    );
-  }
+      </Paper>    
+  )
 }
 
 export default withStyles(demoStyles, { name: 'AudienciasMadeCharts' })(AudienciasMadeCharts);

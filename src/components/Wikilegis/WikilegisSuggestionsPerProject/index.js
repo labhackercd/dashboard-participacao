@@ -11,15 +11,9 @@ import {
 import { EventTracker } from "@devexpress/dx-react-chart";
 import { Animation } from "@devexpress/dx-react-chart";
 
-function WikilegisSuggestionsPerProjects() {
-  const suggestionsPerProject = [
-    { project: "1", quant: 72 },
-    { project: "2", quant: 53 },
-    { project: "3", quant: 14 },
-  ];
-
+function WikilegisSuggestionsPerProjects(props) {
   return (
-    <Chart data={suggestionsPerProject}>
+    <Chart data={props.data}>
       <ArgumentAxis />
       <ValueAxis />
       <BarSeries valueField="quant" argumentField="project" />

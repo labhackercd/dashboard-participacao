@@ -36,32 +36,11 @@ const legendLabelBase = ({ classes, ...restProps }) => (
 );
 const Label = withStyles(legendLabelStyles, { name: 'LegendLabel' })(legendLabelBase);
 
-class PautaVoteParticipationChart extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      data: [
-        {
-          pauta: 'Autônomo exclusivo', infavor: 96, against: 56,
-        }, {
-          pauta: 'Auxílio-doença', against: 10, infavor: 176,
-        }, {
-          pauta: 'Hepatites B e C', against: 15, infavor: 100,
-        }, {
-          pauta: 'Demissão por alcoolismo', infavor: 60, against: 58,
-        }, {
-          pauta: 'Regras de estágio', infavor: 127, against: 33,
-        }]
-    };
-  }
-
-  render() {
-
-    return (
-      <Paper>
+export default function PautaVoteParticipationChart(props) {
+  return (
+     <Paper>
         <Chart
-          data={this.state.data}>
+          data={props.data}>
           <ArgumentAxis />
           <ValueAxis
             max={2400}/>
@@ -86,8 +65,5 @@ class PautaVoteParticipationChart extends React.Component {
           />
         </Chart>
       </Paper>
-    );
-  }
+  )
 }
-
-export default PautaVoteParticipationChart;

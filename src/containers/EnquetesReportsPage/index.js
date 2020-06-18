@@ -7,7 +7,7 @@ import MuiAlert from "@material-ui/lab/Alert";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import EnquetesPollReport from "../../components/Enquetes/EnquetesPollReport";
+import EDemocraciaUserTableReport from "../../components/Edemocracia/EdemocraciaUsersTableReport";
 import Grid from "@material-ui/core/Grid"
 
 const useStyles = (theme) => ({
@@ -40,7 +40,7 @@ function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-class EnquetesReportPage extends Component {
+class EDemocraciaPage extends Component {
   _isMounted = false;
 
   constructor(props) {
@@ -74,51 +74,34 @@ class EnquetesReportPage extends Component {
 
   render() {
     return (
-      <div>
         <React.Fragment>
           <Box mb={5}>
             <Alert severity="info">
-              Os dados contidos nesta página são fictícios!
+              Este é um texto de alerta para avisar sobre os dados!
             </Alert>
           </Box>
           <Box>
             <ExpansionPanel defaultExpanded={false}>
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
+                aria-controls="panel2a-content"
+                id="panel2a-header"
               >
-                <Typography>Relatório Enquetes </Typography>
+                <Typography>Usuários e-Democracia</Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
                 <Grid container>
                   <Grid item xs={12}>
-                    <EnquetesPollReport></EnquetesPollReport>
+                    <EDemocraciaUserTableReport></EDemocraciaUserTableReport>
                   </Grid>
                 </Grid>
                 
               </ExpansionPanelDetails>
             </ExpansionPanel>
-
-            <br></br>
-
-            {/* <ExpansionPanel defaultExpanded={false}>
-              <ExpansionPanelSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel2a-content"
-                id="panel2a-header"
-              >
-                <Typography>Relatório Enquetes - Usuários</Typography>
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
-                <AudienciasUserTableReport></AudienciasUserTableReport>
-              </ExpansionPanelDetails>
-            </ExpansionPanel> */}
           </Box>
         </React.Fragment>
-      </div>
     );
   }
 }
 
-export default withStyles(useStyles)(EnquetesReportPage);
+export default withStyles(useStyles)(EDemocraciaPage);

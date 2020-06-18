@@ -46,7 +46,6 @@ class PautaProposalTableReport extends Component {
     
   handleNextPageChangeTeste(e,p){
     this.handleNextPageChange(p)
-    
   }
 
   render(){

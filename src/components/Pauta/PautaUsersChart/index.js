@@ -11,31 +11,11 @@ import {
 import { EventTracker } from '@devexpress/dx-react-chart';
 import { Animation } from '@devexpress/dx-react-chart';
 
-const data = [
-  { year: '2015', users: 1.000 },
-  { year: '2016', users: 2.000 },
-  { year: '2017', users: 10.000 },
-  { year: '2018', users: 20.000 },
-  { year: '2019', users: 50.000 },
-  { year: '2020', users: 80.000 },
-];
-
-export default class PautaUsersChart extends React.PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      data,
-    };
-  }
-
-  render() {
-    const { data: chartData } = this.state;
-
-    return (
+export default function PautaUsersChart(props) {
+  return (
       <Paper>
         <Chart
-          data={chartData}
+          data={props.data}
         >
           <ArgumentAxis />
           <ValueAxis max={7} />
@@ -50,6 +30,5 @@ export default class PautaUsersChart extends React.PureComponent {
           <Animation />
         </Chart>
       </Paper>
-    );
-  }
+  )
 }
