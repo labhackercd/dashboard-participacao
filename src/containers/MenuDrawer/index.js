@@ -12,12 +12,21 @@ import IconButton from '@material-ui/core/IconButton';
 import Container from '@material-ui/core/Container';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import { mainListItems, secondaryListItems, thirdListItems } from './listItems';
+import { toolsListItens } from './listItems';
 
+import Box from '@material-ui/core/Box';
+
+import AudienciasList from './ToolsList/audiencias_list'
+import EDemocraciaList from './ToolsList/eDemocracia_list'
+import EnquetesList from './ToolsList/enquetes_list'
+import PautaList from './ToolsList/pauta_list'
+import PlenarinhoList from './ToolsList/plenarinho_list'
+import WikilegisList from './ToolsList/wikilegis_list'
+import Zero800List from './ToolsList/Zero800_list'
 
 import logo from '../../camara_logo.png'
 
-const drawerWidth = 240;
+const drawerWidth = 300;
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -98,7 +107,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Dashboard(props) {
+export default function MenuDrawer(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -115,7 +124,6 @@ export default function Dashboard(props) {
         <Toolbar className={classes.toolbar}>
           <IconButton
             edge="start"
-            
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
@@ -125,10 +133,6 @@ export default function Dashboard(props) {
           <Typography component="h1" variant="h6" noWrap className={classes.title}>
             {props.title}
           </Typography>
-          <Typography component="h1" variant="h6" >
-             Menu
-          </Typography>
-
         </Toolbar>
       </AppBar>
       <Drawer
@@ -136,27 +140,33 @@ export default function Dashboard(props) {
         classes={{
           paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
         }}
-        open={open}
-      > 
-            <div className={classes.toolbarIcon}>
-              <img src={logo} alt="Logo Câmara dos Deputados" style={{ maxHeight: 100 , maxWidth: '70%', align:'center'}}/>
-              <IconButton onClick={handleDrawerClose}>
-                <ChevronLeftIcon />
-              </IconButton>
+        open={open}>  
+          <div className={classes.toolbarIcon}>
+            <img src={logo} alt="Logo Câmara dos Deputados" style={{ maxHeight: 100 , maxWidth: '90%', align:'center'}}/>
+            <IconButton onClick={handleDrawerClose}>
+                        <ChevronLeftIcon />
+            </IconButton>
             </div>
+            <List>
+            {toolsListItens}
+            </List>
             <Divider />
-            <List>{mainListItems}</List>
-            <Divider />
-            <List>{secondaryListItems}</List>
-            <Divider />
-            <List>{thirdListItems}</List>
-
+            <List><Zero800List></Zero800List></List>
+            <List><AudienciasList></AudienciasList></List>
+            <List><EDemocraciaList></EDemocraciaList></List>
+            <List><EnquetesList></EnquetesList></List>
+            <List><WikilegisList></WikilegisList></List>
+            <List><PautaList></PautaList></List>
+            <List><PlenarinhoList></PlenarinhoList></List>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
-            {props.children}
-        </Container>
+        <Box margin={2}>
+          <Container maxWidth="100%" className={classes.container}>
+              {props.children}
+          </Container>
+        </Box>
+
       </main>
     </div>
   );

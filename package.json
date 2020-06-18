@@ -1,8 +1,11 @@
 {
-  "name": "participacao-dashboard",
+  "name": "dashboard",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@devexpress/dx-react-chart": "^2.5.1",
+    "@devexpress/dx-react-chart-material-ui": "^2.5.1",
+    "@devexpress/dx-react-core": "^2.5.1",
     "@material-ui/core": "^4.5.0",
     "@material-ui/icons": "^4.5.1",
     "@material-ui/lab": "^4.0.0-alpha.32",
@@ -18,7 +21,9 @@
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-analytics-widget": "^1.2.0",
+    "react-csv": "^2.0.3",
     "react-dom": "^16.9.0",
+    "react-google-charts": "^3.0.15",
     "react-localization": "^1.0.15",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.3.0",
@@ -50,5 +55,8 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "main": "index.js",
+  "repository": "https://github.com/labhackercd/dashboard-participacao.git",
+  "license": "MIT"
 }
