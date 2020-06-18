@@ -9,14 +9,9 @@ import {
 import { EventTracker } from "@devexpress/dx-react-chart";
 import { Animation } from "@devexpress/dx-react-chart";
 
-function WikilegisGenderChart() {
-  let [genderData] = useState([
-    { gender: "masc", quant: 1212 },
-    { gender: "fem", quant: 3201 },
-  ]);
-
+function WikilegisGenderChart(props) {
   return (
-    <Chart data={genderData} className="wikilegis-gender-chart">
+    <Chart data={props.data} className="wikilegis-gender-chart">
       <PieSeries
         valueField="quant"
         argumentField="gender"
