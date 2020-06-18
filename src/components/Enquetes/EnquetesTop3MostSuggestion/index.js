@@ -1,5 +1,5 @@
 import * as React from "react";
-import {useState, useEffect} from "react";
+import {useState} from "react";
 import {
   Chart,
   ArgumentAxis,
@@ -43,7 +43,7 @@ const Label = withStyles(legendLabelStyles, { name: "LegendLabel" })(
 export default function EnqueteTop3MostSuggestion(props) {
     let data = props.data 
     let ano = props.ano.toString()
-    const [anoObject, setAnoObject] = useState(updateChart(data,ano)) 
+    const [anoObject] = useState(updateChart(data,ano)) 
     return (
       <Box>
         <Box display="flex" flexDirection="row-reverse" p={1} m={1}>

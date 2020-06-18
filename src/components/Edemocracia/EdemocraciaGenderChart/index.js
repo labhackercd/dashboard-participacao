@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import { Chart, PieSeries, Title, Legend, Tooltip, } from '@devexpress/dx-react-chart-material-ui';
 import { Animation } from '@devexpress/dx-react-chart';

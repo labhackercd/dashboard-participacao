@@ -17,8 +17,8 @@ import FormLabel from '@material-ui/core/FormLabel';
 export default function AudienciasParticipationUsersBrazilMap (props) {
   let [radioGroupValue, setRadioGroupValue] = useState("0")
   let [title, setTitle] = useState("Total Geral")
-  let [dataEstados, setDataEstados] = useState(props.data.dataEstados)
-  let [audiencesList, setAudiencesList] = useState(props.data.audiencesList)
+  let [dataEstados] = useState(props.data.dataEstados)
+  let [audiencesList] = useState(props.data.audiencesList)
   let [data, setData] = useState(dataEstados[0])
 
   function handleAutoCompleteChange(event, values) {

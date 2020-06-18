@@ -20,7 +20,6 @@ import AudienciasTypeChart from "../../components/Audiencias/AudiencesTypeChart"
 //Data imports 
 import { AudienciasTypeChartData, 
          AudienciasAgeUsersChartData,
-         AudienciasComissionChartData, 
          AudienciasGenderChartData,
          AudienciasMadeChartData,
          AudienciasUsersChartData,

@@ -14,7 +14,7 @@ import Box from "@material-ui/core/Box";
 import { CSVLink } from "react-csv";
 
 function EnquetesVotesPoll(props) {
-  const [enquete, setEnquete] = useState(props.enquete)
+  const [enquete] = useState(props.enquete)
 
   function updateChart() {
     const enqueteFormat = [
