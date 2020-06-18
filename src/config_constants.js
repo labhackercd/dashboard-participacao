@@ -1,5 +1,5 @@
 //const GOOGLE_ANALYTICS_URL_TOKEN = "http://localhost:5000/"; 
-const GOOGLE_ANALYTICS_URL_TOKEN = "http://e4c4a5eb.ngrok.io/";
+const GOOGLE_ANALYTICS_URL_TOKEN = "http://estatisticas-participacao.labhackercd.leg.br/ga-token/";
 
 module.exports = Object.freeze({
   // SYSTEM SETTING
@@ -34,5 +34,5 @@ module.exports = Object.freeze({
 
   //WIKILEGIS PAGED DOCUMENT API URL USED IN TABLE REPORTS
   WIKILEGIS_PAGED_DOCUMENT_API_URL:
-    "http://261572d9.ngrok.io/api/v1/documents/?page="
+    "https://edemocracia.camara.leg.br/wikilegis/api/v1/documents/?page="
 });
