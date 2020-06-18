@@ -83,52 +83,52 @@ class AudienciasReportPage extends Component {
     return (
       <React.Fragment>
         
-          <Box mb={5}>
+          <Box mb={3}>
             <Alert severity="info">
               Este é um texto de alerta para avisar sobre os dados!
             </Alert>
           </Box>
           <Box>
             <Grid container spacing={2}>
-              <Grid item xs={3}>
+              <Grid item xs={12} md={6} lg={3} zeroMinWidth>
                 <UsersInfoCard></UsersInfoCard>
               </Grid>
-              <Grid item xs={3}>
+              <Grid item xs={12} md={6} lg={3} zeroMinWidth>
                 {AudiencesInfoCard()}
               </Grid>
-              <Grid item xs={3}>
+              <Grid item xs={12} md={6} lg={3} zeroMinWidth>
                 {MessagesInfoCard()}
               </Grid>
-              <Grid item xs={3}>
+              <Grid item xs={12} md={6} lg={3} zeroMinWidth>
                 {QuestionsInfoCard()}
               </Grid>
 
-              <Grid item xs={12} md={4} zeroMinWidth>
-                <Box width="100%" height="100%">
+              <Grid item xs={12} md={6} lg={4} zeroMinWidth>
+                <Box>
                   <AudienciasGenderChart></AudienciasGenderChart>
                 </Box>
               </Grid>
-              <Grid item xs={12} md={4} zeroMinWidth>
+              <Grid item xs={12} md={6} lg={4} zeroMinWidth>
                 <Box>
                   <AudienciasUserChart></AudienciasUserChart>
                 </Box>
               </Grid>
-              <Grid item xs={12} md={4} zeroMinWidth>
+              <Grid item xs={12} md={6} lg={4} zeroMinWidth>
                 <Box>
                   <AudienciasTypeChart></AudienciasTypeChart>
                 </Box>
               </Grid>
-              <Grid item xs={8} zeroMinWidth>
-                <Box>
-                  <AudienciasMadeChart></AudienciasMadeChart>
-                </Box>
-              </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12} md={6} lg={4} zeroMinWidth>
                 <Box>
                   <AudienciasAgeUsersChart></AudienciasAgeUsersChart>
                 </Box>
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={12} lg={8} zeroMinWidth>
+                <Box>
+                  <AudienciasMadeChart></AudienciasMadeChart>
+                </Box>
+              </Grid>
+              <Grid item xs={12} zeroMinWidth>
                 <Box>
                   <AudienciasParticipationBrazilMap></AudienciasParticipationBrazilMap>
                 </Box>

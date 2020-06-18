@@ -1,5 +1,5 @@
 //const GOOGLE_ANALYTICS_URL_TOKEN = "http://localhost:5000/"; 
-const GOOGLE_ANALYTICS_URL_TOKEN = "http://e4c4a5eb.ngrok.io/";
+const GOOGLE_ANALYTICS_URL_TOKEN = "http://estatisticas-participacao.labhackercd.leg.br/ga-token/";
 
 module.exports = Object.freeze({
   // SYSTEM SETTING
