@@ -74,13 +74,13 @@ export default function MenuDrawer(props) {
               <ListItemText primary="Página Inicial" />
             </ListItem>
 
-            <NestedToolListItem className={classes.sideBarIcons} info={toolsInfo.zero800}></NestedToolListItem>
-            <NestedToolListItem className={classes.sideBarIcons} info={toolsInfo.audiencias}></NestedToolListItem>
-            <NestedToolListItem className={classes.sideBarIcons} info={toolsInfo.eDemocracia}></NestedToolListItem>
-            <NestedToolListItem className={classes.sideBarIcons} info={toolsInfo.enquetes}></NestedToolListItem>
-            <NestedToolListItem className={classes.sideBarIcons} info={toolsInfo.wikilegis}></NestedToolListItem>
-            <NestedToolListItem className={classes.sideBarIcons} info={toolsInfo.pauta}></NestedToolListItem>
-            <NestedToolListItem className={classes.sideBarIcons} info={toolsInfo.plenarinho}></NestedToolListItem>
+            <NestedToolListItem info={toolsInfo.zero800}></NestedToolListItem>
+            <NestedToolListItem info={toolsInfo.audiencias}></NestedToolListItem>
+            <NestedToolListItem info={toolsInfo.eDemocracia}></NestedToolListItem>
+            <NestedToolListItem info={toolsInfo.enquetes}></NestedToolListItem>
+            <NestedToolListItem info={toolsInfo.wikilegis}></NestedToolListItem>
+            <NestedToolListItem info={toolsInfo.pauta}></NestedToolListItem>
+            <NestedToolListItem info={toolsInfo.plenarinho}></NestedToolListItem>
           </Box>
 
       </Drawer>

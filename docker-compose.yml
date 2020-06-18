@@ -7,6 +7,13 @@ services:
     ports:
       - '5000:5000'
     stdin_open: true
+    environment:
+      REACT_APP_EDEMOCRACIA_GOOGLE_ANALYTICS : http://estatisticas-participacao.labhackercd.leg.br/ga-token/edemocracia
+      REACT_APP_ENQUETES_GOOGLE_ANALYTICS : http://estatisticas-participacao.labhackercd.leg.br/ga-token/enquetes 
+      REACT_APP_AUDIENCIAS_PAGED_USER_API_URL : https://edemocracia.camara.leg.br/audiencias/api/user/?page=
+      REACT_APP_AUDIENCIAS_ROOM_API_URL : https://edemocracia.camara.leg.br/audiencias/api/room/?ordering=-created&is_visible=true
+      REACT_APP_EDEMOCRACIA_PAGED_USER_API_URL : https://edemocracia.camara.leg.br/api/v1/user/?page=  
+      REACT_APP_WIKILEGIS_PAGED_DOCUMENT_API_URL : https://edemocracia.camara.leg.br/wikilegis/api/v1/documents/?page=
 
   dev:
     build:
