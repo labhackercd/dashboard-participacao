@@ -34,5 +34,5 @@ module.exports = Object.freeze({
 
   //WIKILEGIS PAGED DOCUMENT API URL USED IN TABLE REPORTS
   WIKILEGIS_PAGED_DOCUMENT_API_URL:
-    "http://261572d9.ngrok.io/api/v1/documents/?page="
+    "https://edemocracia.camara.leg.br/wikilegis/api/v1/documents/?page="
 });
