@@ -24,6 +24,9 @@ import PlenarinhoList from './ToolsList/plenarinho_list'
 import WikilegisList from './ToolsList/wikilegis_list'
 import Zero800List from './ToolsList/Zero800_list'
 
+import NestedToolListItem from './listItemComponent'
+
+import PhoneIcon from '@material-ui/icons/Phone';
 import logo from '../../camara_logo.png'
 
 const drawerWidth = 300;
@@ -117,6 +120,24 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const toolsInfo={
+    zero800:{
+      icon: <PhoneIcon></PhoneIcon>,
+      title:"Disque Câmara",
+      pageActive:{
+        chart:true,
+        report:true,
+        analytics:true,
+      },
+      url:{
+        chart:"/0800-graficos",
+        report:"/0800-relatorios",
+        analytics:"/0800-analytics"
+      }
+    }
+
+}
+
 export default function MenuDrawer(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
@@ -161,7 +182,7 @@ export default function MenuDrawer(props) {
             {toolsListItens}
             </List>
             <Divider />
-            <List><Zero800List className={classes.sideBarIcons}></Zero800List></List>
+            <NestedToolListItem className={classes.sideBarIcons} info={toolsInfo.zero800}></NestedToolListItem>
             <List><AudienciasList className={classes.sideBarIcons}></AudienciasList></List>
             <List><EDemocraciaList className={classes.sideBarIcons}></EDemocraciaList></List>
             <List><EnquetesList className={classes.sideBarIcons}></EnquetesList></List>
