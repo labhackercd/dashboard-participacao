@@ -29,9 +29,6 @@ class WikilegisUserTableReport extends Component {
   }
 
   loadDataInTable(callback) {
-    console.log("REACT_APP_WIKILEGIS_PAGED_USERS_API_URL: " + WIKILEGIS_PAGED_USERS_API_URL)
-    console.log("new url: " + WIKILEGIS_PAGED_USERS_API_URL + this.state.currentPage)
-    console.log("this.state.currentPage: " + this.state.currentPage)
     const url = new URL(WIKILEGIS_PAGED_USERS_API_URL + this.state.currentPage)
     fetch(url, {
       method: 'GET',
@@ -89,11 +86,16 @@ class WikilegisUserTableReport extends Component {
             columns={this.columns}
             data={this.state.rows}
             options={{
+              filtering: true,
+              sorting: true,
+              exportButton: true,
+              exportAllData: true,
+              exportFileName: "wikilegis_users",
               pageSize: 100,
               pageSizeOptions: [20, 40, 60, 80, 100, 80000],
               emptyRowsWhenPaging: false,
               removable: true,
-              search: false
+              search: true
             }}
             localization={{
               body: {

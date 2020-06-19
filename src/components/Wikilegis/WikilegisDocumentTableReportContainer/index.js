@@ -99,11 +99,16 @@ class WikilegisDocumentsTableReport extends Component {
             columns={this.columns}
             data={this.state.rows}
             options={{
+              filtering: true,
+              sorting: true,
+              exportButton: true,
+              exportAllData: true,
+              exportFileName: "wikilegis_document_table",
               pageSize: 100,
               pageSizeOptions: [20, 40, 60, 80, 100, 80000],
               emptyRowsWhenPaging: false,
               removable: true,
-              search: false
+              search: true
             }}
             localization={{
               body: {
