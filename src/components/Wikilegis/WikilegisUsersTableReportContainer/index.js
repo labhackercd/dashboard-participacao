@@ -29,6 +29,7 @@ class WikilegisUserTableReport extends Component {
   }
 
   loadDataInTable(callback) {
+    
     const url = new URL(WIKILEGIS_PAGED_USERS_API_URL + this.state.currentPage)
     fetch(url, {
       method: 'GET',
