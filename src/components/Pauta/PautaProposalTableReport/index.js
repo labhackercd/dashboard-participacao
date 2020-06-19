@@ -67,8 +67,13 @@ class PautaProposalTableReport extends Component {
               exportButton: true,
               exportAllData: true,
               exportFileName: "pauta_proposal_table",
+<<<<<<< HEAD
               pageSize:20,
               pageSizeOptions:[20],
+=======
+              pageSize:15,
+              pageSizeOptions:[15, 30, 45, 60, 75, 90],
+>>>>>>> minor fixes
               emptyRowsWhenPaging:false,
               removable:true,
               search:true
