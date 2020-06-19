@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import MaterialTable from "material-table";
 import CircularProgress from '@material-ui/core/CircularProgress';
+import axios from 'axios'
 
 import Box from '@material-ui/core/Box';
 
@@ -31,24 +32,39 @@ class AudienciasRoomsTableReport extends Component {
       rowsPerPage: 30,
       setRowsPerPage : 10,
       rows: [ ],
+      totalCount:0,
+      currentPage:1
     };
   }
-  
+
+  getRooms = (url, planets, resolve, reject) => {
+    axios.get(url)
+    .then(response => {
+      const retrivedPlanets = planets.concat(response.data.results)
+      if (response.data.next !== null) {
+        this.setState({currentPage: ((response.data.next).match(/(\d+)/))})
+        this.getRooms(response.data.next, retrivedPlanets, resolve, reject)
+      } else {
+        resolve(retrivedPlanets)
+      }
+    })
+    .catch(error => {
+      console.log(error)
+      reject('Something wrong. Please refresh the page and try again.')
+    })
+  }
+
+
   loadDataInTable(callback){
-    //https://edemocracia.camara.leg.br/audiencias/api/room/?ordering=-created&is_visible=true
     const url = new URL(AUDIENCIAS_ROOM_API_URL)
 
-    fetch(url, {
-      method: 'GET',
-    }).then((response) => response.json())
-    .then((responseJson) => {
-      this.setState({ rows: responseJson.results });
-      callback();
+    new Promise((resolve, reject) => {
+      this.getRooms(url, [], resolve, reject)
     })
-    .catch((error) => {
-      console.error(error);
-    });
-    
+    .then(response => {
+      this.setState({rows: response})
+      callback()
+    })
     //callback();
   }
   
@@ -59,29 +75,45 @@ class AudienciasRoomsTableReport extends Component {
       this.loadDataInTable( () => {
         this.setState({isLoadingTable:false});
       });
-      
     }
   }
     
   render(){
     const loading = this.state.isLoadingTable
+    const tableRef = React.createRef();
 
     if(loading){
-      return <div align="center"> <CircularProgress></CircularProgress> </div>
+      return (<div align="center"> 
+                <Box width="auto" display="inline">
+                  <CircularProgress></CircularProgress> 
+                </Box>
+                <Box>
+                  Buscando dados da página {this.state.currentPage[0]}
+                </Box>
+              </div>
+             )
     }else{
       return (
           <Box width="auto" display="inline">
               <MaterialTable
                 columns={this.columns}
+                tableRef={tableRef}
                 data={this.state.rows}
+                actions={[
+                  {
+                    icon: 'refresh',
+                    tooltip: 'Refresh Data',
+                    isFreeAction: true,
+                    onClick: () => tableRef.current && tableRef.current.onQueryChange(),
+                  }
+                ]}
                 options={{
-                  filtering: true,
                   sorting: true,
                   exportButton: true,
                   exportAllData: true,
                   exportFileName: "salas_audiencias_interativas",
-                  pageSize:5,
-                  pageSizeOptions:[5, 10, 20, 30, 40, 50, 100, 200],
+                  pageSize:10,
+                  pageSizeOptions:[5, 10, 20, 30, 40, 50, 100,1300],
                   emptyRowsWhenPaging:false,
                   removable:true
                 }}
@@ -118,10 +150,8 @@ class AudienciasRoomsTableReport extends Component {
                 onRowClick={(event, rowData, togglePanel) => togglePanel()}
               />
           </Box>
-
       )
     }
-
   }
 }
 

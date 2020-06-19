@@ -16,7 +16,7 @@ export const toolsInfo={
       icon_svg: AudienciasLogo,
       title:"Audiências",
       pageisActive:{
-        chart:true,
+        chart:false,
         report:true,
         analytics:true,
       },
@@ -31,7 +31,7 @@ export const toolsInfo={
       icon_svg: eDemocraciaLogo,
       title:"Portal e-Democracia",
       pageisActive:{
-        chart:true,
+        chart:false,
         report:true,
         analytics:true,
       },
@@ -45,7 +45,7 @@ export const toolsInfo={
       icon: <ListIcon></ListIcon>,
       title:"Enquetes",
       pageisActive:{
-        chart:true,
+        chart:false,
         report:true,
         analytics:true,
       },
@@ -60,7 +60,7 @@ export const toolsInfo={
       icon_svg: PautaLogo,
       title:"Pauta Participativa",
       pageisActive:{
-        chart:true,
+        chart:false,
         report:true,
         analytics:true,
       },
@@ -89,7 +89,7 @@ export const toolsInfo={
       icon_svg: WikilegisLogo,
       title:"Wikilegis",
       pageisActive:{
-        chart:true,
+        chart:false,
         report:true,
         analytics:true,
       },
