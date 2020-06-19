@@ -38,7 +38,6 @@ class AudienciasRoomsTableReport extends Component {
   }
 
   getRooms = (url, planets, resolve, reject) => {
-
     axios.get(url)
     .then(response => {
       const retrivedPlanets = planets.concat(response.data.results)
@@ -57,7 +56,6 @@ class AudienciasRoomsTableReport extends Component {
 
 
   loadDataInTable(callback){
-    //https://edemocracia.camara.leg.br/audiencias/api/room/?ordering=-created&is_visible=true
     const url = new URL(AUDIENCIAS_ROOM_API_URL)
 
     new Promise((resolve, reject) => {
@@ -67,8 +65,6 @@ class AudienciasRoomsTableReport extends Component {
       this.setState({rows: response})
       callback()
     })
-
-
     //callback();
   }
   
@@ -154,10 +150,8 @@ class AudienciasRoomsTableReport extends Component {
                 onRowClick={(event, rowData, togglePanel) => togglePanel()}
               />
           </Box>
-
       )
     }
-
   }
 }
 
