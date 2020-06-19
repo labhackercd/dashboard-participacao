@@ -21,6 +21,7 @@ import WikilegisChartsPage from "./containers/WikilegisChartsPage";
 import { ptBR } from "@material-ui/core/locale";
 import EnquetesChartsPage from "./containers/EnquetesChartsPage";
 import EnquetesReportsPage from "./containers/EnquetesReportsPage";
+import EnquetesAnalyticsPage from "./containers/EnquetesAnalyticsPage";
 
 import PautaChartsPage from "./containers/PautaChartsPage";
 import PautaReportPage from "./containers/PautaReportPage";
