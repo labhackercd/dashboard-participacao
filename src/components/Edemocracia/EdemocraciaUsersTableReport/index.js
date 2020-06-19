@@ -20,12 +20,18 @@ class EDemocraciaUserTableReport extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      filtering: true,
+      sorting: true,
+      exportButton: true,
+      exportAllData: true,
+      exportFileName: "salas_audiencias_interativas",
       isLoadingTable: true,
       currentPage: 1,
       setPage: 0,
       rowsPerPage: 20,
       rows: [],
       totalRows: 0,
+      search: true, 
     };
   }
 
