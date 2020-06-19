@@ -101,7 +101,7 @@ class AudienciasRoomsTableReport extends Component {
                   }
                 ]}
                 options={{
-                  filtering: true,
+  
                   sorting: true,
                   exportButton: true,
                   exportAllData: true,

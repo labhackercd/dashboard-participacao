@@ -169,9 +169,9 @@ function TransitionAlerts() {
             </IconButton>
           }
         >
-          Caso deseje visualizar mais informações sobre uma audiência
-          específica, clique na linha correspondente e mais informações serão
-          mostradas.
+          Para um melhor desempenho do relatório as consultas de dados estão limitadas a uma paginação de 100 linhas, logo quando for feito o download 
+          ou outra consulta dos dados os resultados serão limitados a essas informações carregadas. Estamos trabalhando em uma melhor implementação dessa 
+          visualização.
         </Alert>
       </Collapse>
     </div>
