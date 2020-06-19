@@ -31,7 +31,6 @@ export default function NestedToolListItem(props) {
 
   const handleClick = () => {
     setOpen(!open);
-    console.log(classes)
   };
 
   return (

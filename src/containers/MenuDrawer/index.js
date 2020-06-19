@@ -87,8 +87,8 @@ export default function MenuDrawer(props) {
       
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Box margin={2}>
-          <Container maxWidth="100%" className={classes.container}>
+        <Box margin={1}>
+          <Container maxWidth="ls" className={classes.container}>
               {props.children}
           </Container>
         </Box>
