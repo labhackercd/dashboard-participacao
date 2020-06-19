@@ -24,7 +24,11 @@ class EDemocraciaUserTableReport extends Component {
       sorting: true,
       exportButton: true,
       exportAllData: true,
+<<<<<<< HEAD
       exportFileName: "edemocracia_users_table_report",
+=======
+      exportFileName: "salas_audiencias_interativas",
+>>>>>>> added search and csv export to edemocracia and pauta components
       isLoadingTable: true,
       currentPage: 1,
       setPage: 0,
