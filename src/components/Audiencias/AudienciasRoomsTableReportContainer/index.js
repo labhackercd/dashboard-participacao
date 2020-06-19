@@ -31,6 +31,7 @@ class AudienciasRoomsTableReport extends Component {
       rowsPerPage: 30,
       setRowsPerPage : 10,
       rows: [ ],
+      totalCount:0
     };
   }
   
@@ -43,6 +44,7 @@ class AudienciasRoomsTableReport extends Component {
     }).then((response) => response.json())
     .then((responseJson) => {
       this.setState({ rows: responseJson.results });
+      console.log(this.state.rows)
       callback();
     })
     .catch((error) => {
@@ -65,6 +67,7 @@ class AudienciasRoomsTableReport extends Component {
     
   render(){
     const loading = this.state.isLoadingTable
+    const tableRef = React.createRef();
 
     if(loading){
       return <div align="center"> <CircularProgress></CircularProgress> </div>
@@ -73,15 +76,38 @@ class AudienciasRoomsTableReport extends Component {
           <Box width="auto" display="inline">
               <MaterialTable
                 columns={this.columns}
-                data={this.state.rows}
+                tableRef={tableRef}
+                data={query =>
+                  new Promise((resolve, reject) => {
+                    let url = AUDIENCIAS_ROOM_API_URL
+                    url += '&page=' + (query.page + 1)
+                    fetch(url)
+                      .then(response => response.json())
+                      .then(result => {
+                        resolve({
+                          data: result.results,
+                          page: ((parseInt(url.match(/(\d+)/)[0]))) - 1,
+                          totalCount: result.count,
+                        })
+                      })
+                  })
+                }
+                actions={[
+                  {
+                    icon: 'refresh',
+                    tooltip: 'Refresh Data',
+                    isFreeAction: true,
+                    onClick: () => tableRef.current && tableRef.current.onQueryChange(),
+                  }
+                ]}
                 options={{
                   filtering: true,
                   sorting: true,
                   exportButton: true,
                   exportAllData: true,
                   exportFileName: "salas_audiencias_interativas",
-                  pageSize:5,
-                  pageSizeOptions:[5, 10, 20, 30, 40, 50, 100, 200],
+                  pageSize:10,
+                  pageSizeOptions:[5, 10, 20, 30, 40, 50, 100],
                   emptyRowsWhenPaging:false,
                   removable:true
                 }}

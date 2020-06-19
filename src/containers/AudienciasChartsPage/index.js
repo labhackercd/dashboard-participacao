@@ -17,6 +17,8 @@ import AudienciasAgeUsersChart from "../../components/Audiencias/AudienciasAgeUs
 import AudienciasParticipationBrazilMap from "../../components/Audiencias/AudienciasParticipationBrazilMap";
 import AudienciasTypeChart from "../../components/Audiencias/AudiencesTypeChart"
 
+import {AUDIENCIAS_ROOM_API_URL} from '../../config_constants'
+
 //Data imports 
 import { AudienciasTypeChartData, 
          AudienciasAgeUsersChartData,
@@ -66,22 +68,43 @@ class AudienciasReportPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      _isPageMounted:true,
+      isLoadingPage:true,
       openSnackBar: false,
-      snackBarMessageError: ""
+      snackBarMessageError: "",
+      roomsData:null,
+      usersData:null,
+      questionData:null,
+      votesData:null
     };
   }
 
+  loadData(callback){
+    console.log(AUDIENCIAS_ROOM_API_URL)
+    const url = new URL(AUDIENCIAS_ROOM_API_URL)
+
+    fetch(url, {
+      method: 'GET',
+    }).then((response) => response.json())
+    .then((responseJson) => {
+      this.setState({ roomsData: responseJson.results });
+      callback();
+    }).catch((error) => {
+      console.error(error);
+    });
+    
+    //callback();
+  }
+  
   componentDidMount() {
-    this._isMounted = true;
-    /*
-    if(this._isMounted){
-      // If we need to wait for something to full render before render the page
-      this.checkIfUserIsAuthenticaded(() => {
-          this.setState({isLoadingPage:false});
+    this._isPageMounted = true;
+    
+    if(this._isPageMounted){
+      this.loadData( () => {
+        this.setState({isLoadingPage:false});
       });
+      
     }
-    */
-    this.setState({ isLoadingPage: false });
   }
 
   componentWillUnmount() {
@@ -117,7 +140,7 @@ class AudienciasReportPage extends Component {
                 {QuestionsInfoCard()}
               </Grid>
 
-              <Grid item xs={12} md={4} zeroMinWidth>
+              <Grid item xs={12} md={6} lg={4} zeroMinWidth>
                 <Box width="100%" height="100%">
                   <AudienciasGenderChart data={AudienciasGenderChartData}></AudienciasGenderChart>
                 </Box>
@@ -134,12 +157,12 @@ class AudienciasReportPage extends Component {
               </Grid>
               <Grid item xs={12} md={6} lg={4} zeroMinWidth>
                 <Box>
-                  <AudienciasMadeChart data={AudienciasMadeChartData}></AudienciasMadeChart>
+                  <AudienciasAgeUsersChart data={AudienciasAgeUsersChartData}></AudienciasAgeUsersChart>
                 </Box>
               </Grid>
-              <Grid item xs={12} lg={8} zeroMinWidth>
+              <Grid item xs={12} md={6} lg={8} zeroMinWidth>
                 <Box>
-                  <AudienciasAgeUsersChart data={AudienciasAgeUsersChartData}></AudienciasAgeUsersChart>
+                  <AudienciasMadeChart data={AudienciasMadeChartData}></AudienciasMadeChart>
                 </Box>
               </Grid>
               <Grid item xs={12} zeroMinWidth>
