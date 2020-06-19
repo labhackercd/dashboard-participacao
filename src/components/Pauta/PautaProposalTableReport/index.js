@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import MaterialTable from "material-table";
 import CircularProgress from '@material-ui/core/CircularProgress';
+import {PAUTA_PAGED_DOCUMENT_API_URL} from "../../../config_constants";
 
 class PautaProposalTableReport extends Component {
 
@@ -40,7 +41,7 @@ class PautaProposalTableReport extends Component {
         this.setState({isLoadingTable:false});
       });
       
-    fetch('https://edemocracia.camara.leg.br/pautaparticipativa/api/v1/proposal/')
+    fetch(PAUTA_PAGED_DOCUMENT_API_URL)
     .then(response => response.json())
     .then(data => this.setState({ data: data}))
     }
@@ -66,7 +67,7 @@ class PautaProposalTableReport extends Component {
               exportButton: true,
               exportAllData: true,
               exportFileName: "pauta_proposal_table",
-              pageSize:5,
+              pageSize:15,
               pageSizeOptions:[15, 30, 45, 60, 75, 90],
               emptyRowsWhenPaging:false,
               removable:true,

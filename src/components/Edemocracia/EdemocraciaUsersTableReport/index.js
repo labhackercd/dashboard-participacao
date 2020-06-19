@@ -24,7 +24,7 @@ class EDemocraciaUserTableReport extends Component {
       sorting: true,
       exportButton: true,
       exportAllData: true,
-      exportFileName: "salas_audiencias_interativas",
+      exportFileName: "edemocracia_users_table_report",
       isLoadingTable: true,
       currentPage: 1,
       setPage: 0,
