@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import MaterialTable from "material-table";
 import CircularProgress from '@material-ui/core/CircularProgress';
-
-import { Page1 } from './mock_data';
+import {PAUTA_PAGED_DOCUMENT_API_URL} from "../../../config_constants";
 
 class PautaProposalTableReport extends Component {
 
@@ -23,13 +22,14 @@ class PautaProposalTableReport extends Component {
       setPage: 0,
       rowsPerPage: 20,
       rows: [],
-      totalRows:0
+      totalRows:0,
+      data: {}
     };
     this.loadDataInTable = this.loadDataInTable.bind(this);
   }
   
   loadDataInTable(callback){
-    this.setState({rows: Page1.objects, totalRows: Page1.total_count });
+    this.setState({rows: this.state.data.objects, totalRows: this.state.data.total_count });
     callback();
   }
   
@@ -41,6 +41,9 @@ class PautaProposalTableReport extends Component {
         this.setState({isLoadingTable:false});
       });
       
+    fetch(PAUTA_PAGED_DOCUMENT_API_URL)
+    .then(response => response.json())
+    .then(data => this.setState({ data: data}))
     }
   }
     
@@ -59,11 +62,16 @@ class PautaProposalTableReport extends Component {
             columns={this.columns}
             data={this.state.rows}
             options={{
-              pageSize:5,
+              filtering: true,
+              sorting: true,
+              exportButton: true,
+              exportAllData: true,
+              exportFileName: "pauta_proposal_table",
+              pageSize:15,
               pageSizeOptions:[15, 30, 45, 60, 75, 90],
               emptyRowsWhenPaging:false,
               removable:true,
-              search:false
+              search:true
             }}
             localization={{
               body: {

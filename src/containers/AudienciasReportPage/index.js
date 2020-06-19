@@ -78,11 +78,13 @@ class AudienciasReportPage extends Component {
   }
 
   render() {
+    const textReportUser = "Para um melhor desempenho do relatório as consultas de dados estão limitadas a uma paginação de 100 linhas, logo quando for feito o download  ou outra consulta dos dados os resultados serão limitados a essas informações carregadas. Estamos trabalhando em uma melhor implementação dessa visualização."
+    const textReportRoom = "Todos os dados estão sendo buscados. A consulta deve demorar alguns instantes." 
     return (
       <React.Fragment>
           <Box mb={5}>
             <Alert severity="info">
-              Este é um texto de alerta para avisar sobre os dados!
+              Estes dados são consultados diretamente da API do Audiências.
             </Alert>
           </Box>
           <Box>
@@ -98,13 +100,13 @@ class AudienciasReportPage extends Component {
                 <Grid container>
                   <Grid item xs={12}>
                     <Box marginY={2}>
-                      <TransitionAlerts></TransitionAlerts>
+                      <TransitionAlerts text={textReportRoom}></TransitionAlerts>
                     </Box>
                   </Grid>
                   <Grid item xs={12}>
                     <Grid container>
                       <Grid item xs={12}>
-                        <AudienciasRoomsTableReport></AudienciasRoomsTableReport>
+                        <AudienciasRoomsTableReport ></AudienciasRoomsTableReport>
                       </Grid>
                     </Grid>
                   </Grid>
@@ -126,7 +128,7 @@ class AudienciasReportPage extends Component {
                 <Grid container>
                   <Grid item xs={12}>
                     <Box marginY={2}>
-                      
+                    <TransitionAlerts text={textReportUser}></TransitionAlerts>
                     </Box>
                   </Grid>
                   <Grid item xs={12}>
@@ -146,7 +148,7 @@ class AudienciasReportPage extends Component {
   }
 }
 
-function TransitionAlerts() {
+function TransitionAlerts(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
 
@@ -169,9 +171,7 @@ function TransitionAlerts() {
             </IconButton>
           }
         >
-          Caso deseje visualizar mais informações sobre uma audiência
-          específica, clique na linha correspondente e mais informações serão
-          mostradas.
+          {props.text}
         </Alert>
       </Collapse>
     </div>

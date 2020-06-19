@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 import MaterialTable from "material-table";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Box from "@material-ui/core/Box"
-import { WIKILEGIS_PAGED_USERS_API_URL } from "../../../config_constants";
-
+import {WIKILEGIS_PAGED_USERS_API_URL} from "../../../config_constants";
 import { TablePagination } from '@material-ui/core';
-
-
 
 class WikilegisUserTableReport extends Component {
 
@@ -32,7 +29,6 @@ class WikilegisUserTableReport extends Component {
   }
 
   loadDataInTable(callback) {
-
     const url = new URL(WIKILEGIS_PAGED_USERS_API_URL + this.state.currentPage)
     fetch(url, {
       method: 'GET',
@@ -90,11 +86,16 @@ class WikilegisUserTableReport extends Component {
             columns={this.columns}
             data={this.state.rows}
             options={{
+              filtering: true,
+              sorting: true,
+              exportButton: true,
+              exportAllData: true,
+              exportFileName: "wikilegis_users",
               pageSize: 100,
               pageSizeOptions: [20, 40, 60, 80, 100, 80000],
               emptyRowsWhenPaging: false,
               removable: true,
-              search: false
+              search: true
             }}
             localization={{
               body: {
