@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 import MaterialTable from "material-table";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Box from "@material-ui/core/Box"
-import { WIKILEGIS_PAGED_USERS_API_URL } from "../../../config_constants";
-
+import {WIKILEGIS_PAGED_USERS_API_URL} from "../../../config_constants";
 import { TablePagination } from '@material-ui/core';
-
-
 
 class WikilegisUserTableReport extends Component {
 
@@ -32,7 +29,9 @@ class WikilegisUserTableReport extends Component {
   }
 
   loadDataInTable(callback) {
-
+    console.log("REACT_APP_WIKILEGIS_PAGED_USERS_API_URL: " + WIKILEGIS_PAGED_USERS_API_URL)
+    console.log("new url: " + WIKILEGIS_PAGED_USERS_API_URL + this.state.currentPage)
+    console.log("this.state.currentPage: " + this.state.currentPage)
     const url = new URL(WIKILEGIS_PAGED_USERS_API_URL + this.state.currentPage)
     fetch(url, {
       method: 'GET',
