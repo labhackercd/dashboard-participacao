@@ -54,7 +54,7 @@ export default function MenuDrawer(props) {
         </Toolbar>
       </AppBar>
       <Drawer
-        variant="permanent"
+        variant="temporary"
         classes={{
           paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
         }}
