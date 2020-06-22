@@ -37,15 +37,17 @@ class AudienciasRoomsTableReport extends Component {
     };
   }
 
-  getRooms = (url, planets, resolve, reject) => {
+  getRooms = (url, rooms, resolve, reject) => {
     axios.get(url)
     .then(response => {
-      const retrivedPlanets = planets.concat(response.data.results)
+      const retrivedRooms = rooms.concat(response.data.results)
       if (response.data.next !== null) {
+        var nextUrl = (response.data.next).replace("http","https")
+
         this.setState({currentPage: ((response.data.next).match(/(\d+)/))})
-        this.getRooms(response.data.next, retrivedPlanets, resolve, reject)
+        this.getRooms(nextUrl, retrivedRooms, resolve, reject)
       } else {
-        resolve(retrivedPlanets)
+        resolve(retrivedRooms)
       }
     })
     .catch(error => {

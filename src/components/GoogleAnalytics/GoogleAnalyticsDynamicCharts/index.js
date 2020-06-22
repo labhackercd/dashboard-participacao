@@ -88,11 +88,11 @@ class GoogleAnalyticsFilterForm extends Component {
 
   render() {
     return (
-      <Box marginX={2} paddingBottom={2}>
-        <Box paddingBottom={2}>
+      <Box marginX={1} paddingBottom={2}>
+        <Box>
           <form onSubmit={this.handleSubmit}>
-            <Grid container spacing={3}>
-              <Grid item>
+            <Grid container spacing={1}>
+              <Grid item xs={12}>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                   <KeyboardDatePicker
                     id="start-date"
@@ -105,7 +105,7 @@ class GoogleAnalyticsFilterForm extends Component {
                   />
                 </MuiPickersUtilsProvider>
               </Grid>
-              <Grid item>
+              <Grid item xs={12}>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                   <KeyboardDatePicker
                     id="end-date"
@@ -118,7 +118,7 @@ class GoogleAnalyticsFilterForm extends Component {
                   />
                 </MuiPickersUtilsProvider>
               </Grid>
-              <Grid item>
+              <Grid item xs={12}>
                 <FormControl>
                   <InputLabel shrink id="select-label">
                     Intervalo
@@ -135,7 +135,7 @@ class GoogleAnalyticsFilterForm extends Component {
                   </Select>
                 </FormControl>
               </Grid>
-              <Grid item justify='flex-end'>
+              <Grid item xs={12} justify='flex-end'>
                 <FormControl>
                   <Button id="submit-button" color="default" variant="contained" type="submit" endIcon={<SearchIcon></SearchIcon>}>
                     Pesquisar
@@ -147,7 +147,7 @@ class GoogleAnalyticsFilterForm extends Component {
             </Grid>
           </form>
         </Box>
-        <Box marginX={2} paddingBottom={2}>
+        <Box container="true" paddingBottom={2}>
           <GoogleAnalyticsCharts
             views={this.props.views}
             lineChartConfig={this.state.lineChartData}
@@ -186,14 +186,14 @@ class GoogleAnalyticsDynamicCharts extends Component {
 
   render() {
     const charts = this.state.ChartRows.map(function (chart) {
-      return <li> {chart} </li>;
+      return <Grid item xs={12} zeroMinWidth> {chart} </Grid>;
     });
     return (
-      <div>
-        <ul className="chatrs-container">
+      <Box >
+        <Grid container spacing={1}>
           {charts}
-        </ul>
-        <Box display="flex" justifyContent="center" margin-bottom={2}>
+        </Grid>
+        <Box display="flex" justifyContent="center" paddingBottom={1} >
           <Button
             variant="contained"
             color="primary"
@@ -203,7 +203,7 @@ class GoogleAnalyticsDynamicCharts extends Component {
           </Button>
         </Box>
 
-      </div>
+      </Box>
     )
   }
 }
