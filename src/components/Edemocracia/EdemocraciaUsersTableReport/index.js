@@ -122,7 +122,10 @@ class EDemocraciaUserTableReport extends Component {
             pageSizeOptions: [20, 40, 60, 80, 100, 80000],
             emptyRowsWhenPaging: false,
             removable: true,
-            search: false,
+            search: true,
+            exportButton: true,
+            exportAllData: true,
+            exportFileName: "edemocracia_users_table_report",
           }}
           localization={{
             body: {

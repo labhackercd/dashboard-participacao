@@ -98,6 +98,7 @@ class AudienciasUserTableReport extends Component {
              )
     }else{
       return (
+<<<<<<< HEAD
           <Box width="auto" display="inline">
               <MaterialTable
                 columns={this.columns}
@@ -157,6 +158,45 @@ class AudienciasUserTableReport extends Component {
 
               />
           </Box>
+=======
+        <Box width="auto" display="inline">
+          <MaterialTable
+            columns={this.columns}
+            data={this.state.rows}
+            options={{
+              pageSize:100,
+              pageSizeOptions:[20, 40, 60, 80, 100,80000],
+              emptyRowsWhenPaging:false,
+              removable:true,
+              search:true, 
+              exportButton: true,
+              exportAllData: true,
+              exportFileName: "audiencias_users_table_report",
+            }}
+            localization={{
+              body: {
+                emptyDataSourceMessage: 'Nenhum resultado encontrado'
+              },
+              toolbar: {
+                searchTooltip: 'Pesquisar',
+                searchPlaceholder: 'Pesquisar'
+              },
+              pagination: {
+                labelRowsSelect: 'Linhas',
+                labelDisplayedRows: ' {from}-{to} de {count}',
+                firstTooltip: 'Primeira página',
+                previousTooltip: 'Página Anterior',
+                nextTooltip: 'Próxima página',
+                lastTooltip: 'Última página'
+              }
+            }}
+            components={{
+              Pagination: props => <TablePagination {...props} count={this.state.totalRows} page={this.state.currentPage} onChangePage={(event,page) => {this.handleNextPageChangeTeste(event,page) /* handle page size change : event.target.value */}}/>
+            }}
+            title="Usuários"
+          />
+        </Box>
+>>>>>>> added api pagination to Pautas report table and added search/export buttons for audiencias, edemocracia and pauta
       )
     }
    
