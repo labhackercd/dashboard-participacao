@@ -3,6 +3,7 @@ import MaterialTable from "material-table";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Box from '@material-ui/core/Box'
 import axios from 'axios'
+import { TablePagination } from '@material-ui/core';
 
 import {AUDIENCIAS_PAGED_USER_API_URL} from '../../../config_constants'
 
@@ -98,67 +99,6 @@ class AudienciasUserTableReport extends Component {
              )
     }else{
       return (
-<<<<<<< HEAD
-          <Box width="auto" display="inline">
-              <MaterialTable
-                columns={this.columns}
-                tableRef={tableRef}
-                //data={this.state.rows}
-                data={query =>
-                  new Promise((resolve, reject) => {
-                    let url = AUDIENCIAS_PAGED_USER_API_URL
-                    url += (query.page + 1)
-                    fetch(url)
-                      .then(response => response.json())
-                      .then(result => {
-                        resolve({
-                          data: result.results,
-                          page: parseInt((result.next).match(/(\d+)/)),
-                          totalCount: result.count,
-                        })
-                      })
-                  })
-                }
-                actions={[
-                  {
-                    icon: 'refresh',
-                    tooltip: 'Refresh Data',
-                    isFreeAction: true,
-                    onClick: () => tableRef.current && tableRef.current.onQueryChange(),
-                  }
-                ]}
-                options={{
-                  sorting: true,
-                  exportButton: true,
-                  exportAllData: true,
-                  exportFileName: "usuarios_audiencias_interativas",
-                  pageSize:10,
-                  pageSizeOptions:[5, 10, 20, 30, 40, 50, 100,1300],
-                  emptyRowsWhenPaging:false,
-                  removable:true
-                }}
-                localization={{
-                  body: {
-                    emptyDataSourceMessage: 'Nenhum resultado encontrado'
-                  },
-                  toolbar: {
-                    searchTooltip: 'Pesquisar',
-                    searchPlaceholder: 'Pesquisar'
-                  },
-                  pagination: {
-                    labelRowsSelect: 'Linhas',
-                    labelDisplayedRows: ' {from}-{to} de {count}',
-                    firstTooltip: 'Primeira página',
-                    previousTooltip: 'Página Anterior',
-                    nextTooltip: 'Próxima página',
-                    lastTooltip: 'Última página'
-                  }
-                }}
-                title="Usuários Audiências Interativas"
-
-              />
-          </Box>
-=======
         <Box width="auto" display="inline">
           <MaterialTable
             columns={this.columns}
@@ -196,7 +136,6 @@ class AudienciasUserTableReport extends Component {
             title="Usuários"
           />
         </Box>
->>>>>>> added api pagination to Pautas report table and added search/export buttons for audiencias, edemocracia and pauta
       )
     }
    

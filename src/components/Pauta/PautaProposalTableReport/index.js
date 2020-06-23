@@ -100,41 +100,6 @@ class PautaProposalTableReport extends Component {
 
     if (loading) {
       return (
-          <MaterialTable
-            columns={this.columns}
-            data={this.state.rows}
-            options={{
-              filtering: true,
-              sorting: true,
-              exportButton: true,
-              exportAllData: true,
-              exportFileName: "pauta_proposal_table",
-              pageSize:20,
-              pageSizeOptions:[20],
-              emptyRowsWhenPaging:false,
-              removable:true,
-              search:true
-            }}
-            localization={{
-              body: {
-                emptyDataSourceMessage: 'Nenhum resultado encontrado'
-              },
-              toolbar: {
-                searchTooltip: 'Pesquisar',
-                searchPlaceholder: 'Pesquisar'
-              },
-              pagination: {
-                labelRowsSelect: 'Linhas',
-                labelDisplayedRows: ' {from}-{to} de {count}',
-                firstTooltip: 'Primeira página',
-                previousTooltip: 'Página Anterior',
-                nextTooltip: 'Próxima página',
-                lastTooltip: 'Última página'
-              }
-            }}
-            title="Propostas"
-          />
-      )
         <div align="center">
           {" "}
           <CircularProgress></CircularProgress>{" "}
