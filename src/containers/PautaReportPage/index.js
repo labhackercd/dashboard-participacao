@@ -49,14 +49,6 @@ class PautaPage extends Component {
 
   componentDidMount() {
     this._isMounted = true;
-    /*
-    if(this._isMounted){
-      // If we need to wait for something to full render before render the page
-      this.checkIfUserIsAuthenticaded(() => {
-          this.setState({isLoadingPage:false});
-      });
-    }
-    */
     this.setState({ isLoadingPage: false });
   }
 
