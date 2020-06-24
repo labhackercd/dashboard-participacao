@@ -89,7 +89,7 @@ class InitialDashboard extends Component {
               <img src="/img/initial_dashboard.svg" height="500" width="500" alt="Imagem logo" />
               <h2 style={{lineHeight: '1.5', padding: '1rem', textAlign: 'justify'}}><center> Bem vindo a plataforma de participação pública da Câmara dos Deputados! </center></h2>
               <p style={{fontSize: '1.2rem', lineHeight: '2.5', padding: '0 5rem 0 5rem', textAlign: 'justify'}}> Neste portal, nós disponibilizamos os dados em forma gráfica e textual das plataformas de participação da Câmara dos Deputados.
-                Como ainda estamos em fase de protótipo, os dados mostrados neste momento <b> não são reais </b> mas representam dados que podem ser obtidos das plataformas numa fase futura. 
+                Como ainda estamos em fase de protótipo, somente os relatórios estão disponíveis. Estes dados são obtidos diretamente das API's das aplicações e são dados reais das plataformas, obtidos no momento que a página está sendo carregada.
                 </p> <p style={{fontSize: '1.2rem', lineHeight: '1.5', padding: '1rem', textAlign: 'justify'}}><center> Agradecemos a sua colaboração!</center></p>
               </center>
             </Box>
