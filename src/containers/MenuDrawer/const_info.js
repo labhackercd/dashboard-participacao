@@ -45,7 +45,7 @@ export const toolsInfo={
       icon: <ListIcon></ListIcon>,
       title:"Enquetes",
       pageisActive:{
-        chart:false,
+        chart:true,
         report:true,
         analytics:true,
       },

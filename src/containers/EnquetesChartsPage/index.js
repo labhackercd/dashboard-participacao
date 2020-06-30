@@ -67,14 +67,47 @@ class EnquetesChartsPage extends Component {
       snackBarMessageError: "",
       enquete: data_enquetes[0],
       ano: 2019,
+      generalData:[]
     };
 
     this.handleChangeEnquete = this.handleChangeEnquete.bind(this);
   }
 
+
+  fetchApiGeneralData(callback) {
+    const url = new URL(
+      "https://estatisticas-participacao.labhackercd.leg.br/enquetes-api/statistics/"
+    );
+  
+    fetch(url, {
+      method: "GET",
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      
+      this.setState({
+        generalData: data
+      });
+      callback();
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+
+    //callback();
+  }
+
+
   componentDidMount() {
     this._isMounted = true;
-    this.setState({ isLoadingPage: false });
+
+    if (this._isMounted) {
+      this.fetchApiGeneralData(() => {
+        this.setState({ isLoadingPage: false });
+      });
+    }
+    console.log(this.state.generalData)
+
   }
 
   componentWillUnmount() {
@@ -99,6 +132,7 @@ class EnquetesChartsPage extends Component {
   };
 
   render() {
+   
     return (
       <div>
         <React.Fragment>
@@ -145,7 +179,7 @@ class EnquetesChartsPage extends Component {
 
             <Grid container spacing={2}>
               <Grid item xs={12} md={4} zeroMinWidth>
-                <EnquetesCardVotes votes={"2.643.521"}></EnquetesCardVotes>
+                <EnquetesCardVotes votes={this.state.generalData.count_likes}></EnquetesCardVotes>
               </Grid>
               <Grid item xs={12} md={4} zeroMinWidth>
                 <EnquetesCardSuggestions

@@ -8,7 +8,10 @@
  * @return {Array} Array of chart-friendly objects containing data for a specific year.
  */
 export function updateChart(data, ano){
-  let filterPerYear = data.filter((year) => Object.keys(year) === ano)
+
+  let filterPerYear = data.filter((year) => toString(Object.keys(year)) === toString(ano))
+
   let valuesForYear = filterPerYear[0]
   return Object.values(valuesForYear)[0]
 }
+
