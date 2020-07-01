@@ -4,6 +4,9 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import ForumIcon from "@material-ui/icons/Forum";
 import Typography from "@material-ui/core/Typography";
+import CircularProgress from '@material-ui/core/CircularProgress';
+
+
 
 export default function EnquetesCardSuggestions(props) {
     return (
@@ -17,9 +20,10 @@ export default function EnquetesCardSuggestions(props) {
               </Grid>
               <Grid item>
                 <Box marginTop={1}>
-                  <Typography component="p" variant="h4">
-                    {props.suggestions}
-                  </Typography>
+                  { props.suggestions
+                    ? <Typography component="p" variant="h4">{props.suggestions}</Typography>
+                    : <CircularProgress></CircularProgress>
+                  }
                   <Typography color="textSecondary">
                     Total de sugestões
                   </Typography>

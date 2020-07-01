@@ -27,6 +27,9 @@ import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import data_enquetes from "../../components/Enquetes/EnquetesVotesPoll/data_enquetes";
 import {top3MostSuggestionByYear, top5MostVoted, enquetesYearSuggestionData,enquetesYearVotesData} from "../API/enquetes"
+
+import {ENQUETES_STATISTICS_RESUME_DATA_API_URL} from "../../config_constants" 
+
 const useStyles = (theme) => ({
   "@global": {
     body: {
@@ -60,6 +63,8 @@ function Alert(props) {
 class EnquetesChartsPage extends Component {
   _isMounted = false;
 
+  
+
   constructor(props) {
     super(props);
     this.state = {
@@ -75,19 +80,22 @@ class EnquetesChartsPage extends Component {
 
 
   fetchApiGeneralData(callback) {
-    const url = new URL(
-      "https://estatisticas-participacao.labhackercd.leg.br/enquetes-api/statistics/"
-    );
-  
+    console.log(ENQUETES_STATISTICS_RESUME_DATA_API_URL);
+    const url = new URL(ENQUETES_STATISTICS_RESUME_DATA_API_URL);
+
+    //TODO CORRECT THIS LOAD RETURN THAT DON'T HAVE ANY DATA
     fetch(url, {
       method: "GET",
+      mode: 'cors',
     })
     .then((response) => response.json())
     .then((data) => {
-      
+      console.log(data)
       this.setState({
         generalData: data
       });
+
+      console.log(this.state.generalData)
       callback();
     })
     .catch((error) => {
@@ -183,12 +191,12 @@ class EnquetesChartsPage extends Component {
               </Grid>
               <Grid item xs={12} md={4} zeroMinWidth>
                 <EnquetesCardSuggestions
-                  suggestions={"17.876"}
+                  suggestions={this.state.generalData.count_responses}
                 ></EnquetesCardSuggestions>
               </Grid>
               <Grid item xs={12} md={4} zeroMinWidth>
                 <EnquetesCardParticipants
-                  participants={"1.634.976"}
+                  participants={this.state.generalData.users_participations}
                 ></EnquetesCardParticipants>
               </Grid>
             </Grid>

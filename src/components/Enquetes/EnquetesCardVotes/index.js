@@ -4,6 +4,9 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import HowToVoteIcon from "@material-ui/icons/HowToVote";
 import Typography from "@material-ui/core/Typography";
+import CircularProgress from '@material-ui/core/CircularProgress';
+
+
 
 export default function EnquetesCardVotes(props) {
   return (
@@ -18,8 +21,12 @@ export default function EnquetesCardVotes(props) {
             <Grid item>
               <Box marginTop={1}>
                 <Typography component="p" variant="h4">
-                  {props.votes}
+                 
                 </Typography>
+                  { props.votes
+                    ? <Typography component="p" variant="h4"> {props.votes}</Typography>
+                    : <CircularProgress></CircularProgress>
+                  }
                 <Typography color="textSecondary">Total de votos</Typography>
               </Box>
             </Grid>

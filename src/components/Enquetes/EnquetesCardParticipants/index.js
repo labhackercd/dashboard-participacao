@@ -4,9 +4,13 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import PeopleIcon from "@material-ui/icons/People";
 import Typography from "@material-ui/core/Typography";
+import CircularProgress from '@material-ui/core/CircularProgress';
+
+
 
 export default function EnquetesCardParticipants (props) {
     return (
+    
       <React.Fragment>
         <Paper elevation={3} square={false} rounded={5}>
           <Box marginX={2} marginY={2}>
@@ -17,9 +21,11 @@ export default function EnquetesCardParticipants (props) {
               </Grid>
               <Grid item>
                 <Box marginTop={1}>
-                  <Typography component="p" variant="h4">
-                    {props.participants}
-                  </Typography>
+                  { props.participants 
+                    ? <Typography component="p" variant="h4">{props.participants}</Typography>
+                    : <CircularProgress></CircularProgress>
+                  }
+                  
                   <Typography color="textSecondary">
                     Total de participantes
                   </Typography>
